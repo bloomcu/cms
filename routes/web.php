@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Post;
+use App\Models\Layout;
+use App\Models\Block;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +18,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/posts', function () {
+    return Post::all();
+});
+
+Route::get('/layouts', function () {
+    return Layout::all();
+});
+
+Route::get('/blocks', function () {
+    return Block::all();
 });
