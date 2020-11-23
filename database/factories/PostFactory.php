@@ -22,6 +22,7 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
+            'layout_id' => \App\Models\Layout::factory(),
             'title' => $this->faker->catchPhrase
         ];
     }
