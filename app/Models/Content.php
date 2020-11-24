@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Content extends Model
 {
     use HasFactory;
 
@@ -13,13 +13,13 @@ class Post extends Model
         'id'
     ];
 
-    public function layout()
+    public function block()
     {
-        return $this->belongsTo('App\Models\Layout');
+        return $this->belongsTo('App\Models\Block');
     }
 
-    public function contents()
+    public function post()
     {
-        return $this->hasMany('App\Models\Content');
+        return $this->belongsTo('App\Models\Post');
     }
 }

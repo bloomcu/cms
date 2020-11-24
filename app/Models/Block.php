@@ -17,4 +17,9 @@ class Block extends Model
     {
         return $this->belongsToMany('App\Models\Layout');
     }
+
+    public function contents()
+    {
+        return $this->hasMany('App\Models\Content');
+    }
 }
