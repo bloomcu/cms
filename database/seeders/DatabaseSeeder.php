@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Layout::factory()->count(3)
+            ->has(Block::factory()->count(5))
             ->has(Post::factory()->count(10))
             ->create();
     }

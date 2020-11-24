@@ -17,4 +17,9 @@ class Layout extends Model
     {
         return $this->hasMany('App\Models\Post');
     }
+
+    public function blocks()
+    {
+        return $this->belongsToMany('App\Models\Block');
+    }
 }

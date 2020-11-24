@@ -12,4 +12,9 @@ class Block extends Model
     protected $guarded = [
         'id'
     ];
+
+    public function layouts()
+    {
+        return $this->belongsToMany('App\Models\Layout');
+    }
 }
