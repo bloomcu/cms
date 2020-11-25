@@ -2,9 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Block;
 use App\Models\Content;
-use App\Models\Post;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ContentFactory extends Factory
