@@ -24,10 +24,36 @@ Route::get('/posts', function () {
     return Post::all();
 });
 
+Route::get('/posts/{id}', function ($id) {
+
+    return Post::find($id)
+        ->load('layout')
+        ->load('layout.blocks')
+        ->load(['layout.blocks.contents' => function($query) use ($id) {
+            $query->where('post_id', $id);
+        }]);
+
+    // return Post::find($id)
+    //     ->with('layout')
+    //     ->with('layout.blocks')
+    //     ->with(['layout.blocks.contents' => function($query) use ($id) {
+    //         $query->where('post_id', $id);
+    //     }])
+    //     ->get();
+});
+
 Route::get('/layouts', function () {
     return Layout::all();
 });
 
+Route::get('/layouts/{id}', function ($id) {
+    return Layout::find($id)->load('blocks');
+});
+
 Route::get('/blocks', function () {
     return Block::all();
+});
+
+Route::get('/blocks/{id}', function ($id) {
+    return Block::find($id)->load('contents');
 });
