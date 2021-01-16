@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Post;
+use App\Models\Page;
 use App\Models\Layout;
 use App\Models\Block;
 use Illuminate\Support\Facades\Route;
@@ -20,17 +20,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/posts', function () {
-    return Post::all();
+Route::get('/pages', function () {
+    return Page::all();
 });
 
-Route::get('/posts/{id}', function ($id) {
+Route::get('/pages/{id}', function ($id) {
 
-    return Post::find($id)
+    return Page::find($id)
         ->load('layout')
         ->load('layout.blocks')
         ->load(['layout.blocks.contents' => function($query) use ($id) {
-            $query->where('post_id', $id);
+            $query->where('page_id', $id);
         }]);
 
     // return Post::find($id)
@@ -47,7 +47,8 @@ Route::get('/layouts', function () {
 });
 
 Route::get('/layouts/{id}', function ($id) {
-    return Layout::find($id)->load('blocks');
+    return Layout::find($id)
+        ->load('blocks');
 });
 
 Route::get('/blocks', function () {
@@ -55,5 +56,6 @@ Route::get('/blocks', function () {
 });
 
 Route::get('/blocks/{id}', function ($id) {
-    return Block::find($id)->load('contents');
+    return Block::find($id)
+        ->load('contents');
 });

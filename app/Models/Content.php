@@ -18,13 +18,9 @@ class Content extends Model
         return $this->belongsTo('App\Models\Block');
     }
 
-    public function post()
+    public function page()
     {
-        return $this->belongsTo('App\Models\Post');
+        return $this->belongsTo('App\Models\Page');
     }
 
-    public function scopeWherePost($query, $post_id)
-    {
-        return $query->where('post_id', $post_id)->first();
-    }
 }

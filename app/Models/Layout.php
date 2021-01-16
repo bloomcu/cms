@@ -13,9 +13,9 @@ class Layout extends Model
         'id'
     ];
 
-    public function posts()
+    public function pages()
     {
-        return $this->hasMany('App\Models\Post');
+        return $this->hasMany('App\Models\Pages');
     }
 
     public function blocks()

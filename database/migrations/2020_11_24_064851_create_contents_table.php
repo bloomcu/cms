@@ -16,7 +16,7 @@ class CreateContentsTable extends Migration
         Schema::create('contents', function (Blueprint $table) {
             $table->id();
             $table->foreignId('block_id');
-            $table->foreignId('post_id');
+            $table->foreignId('page_id');
             $table->string('title');
             $table->timestamps();
         });

@@ -23,7 +23,7 @@ class ContentFactory extends Factory
     {
         return [
             'block_id' => \App\Models\Block::factory(),
-            'post_id' => \App\Models\Post::factory(),
+            'page_id' => \App\Models\Page::factory(),
             'title' => $this->faker->sentence
         ];
     }
