@@ -22,6 +22,7 @@ class PageFactory extends Factory
     public function definition()
     {
         return [
+            'company_id' => \App\Models\Company::factory(),
             'layout_id' => \App\Models\Layout::factory(),
             'title' => $this->faker->catchPhrase
         ];

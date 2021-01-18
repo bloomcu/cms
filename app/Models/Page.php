@@ -13,6 +13,11 @@ class Page extends Model
         'id'
     ];
 
+    public function company()
+    {
+        return $this->belongsTo('App\Models\Company');
+    }
+
     public function layout()
     {
         return $this->belongsTo('App\Models\Layout');

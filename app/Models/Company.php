@@ -26,4 +26,9 @@ class Company extends Model
     {
         return $this->hasMany('App\Models\User');
     }
+
+    public function pages()
+    {
+        return $this->hasMany('App\Models\Pages');
+    }
 }
