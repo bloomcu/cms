@@ -9,9 +9,11 @@ class CreateCompanyAction
 {
     public function execute(array $data)
     {
-        $company = new Company;
-        $company->name = $data['name'];
-        $company->uuid = (string) Str::uuid();
+        $company = Company::make([
+            'name' => $data['name'],
+            'uuid' => (string) Str::uuid()
+        ]);
+
         $company->save();
 
         $company->update([
