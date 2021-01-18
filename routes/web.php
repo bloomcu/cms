@@ -1,8 +1,12 @@
 <?php
 
+use App\Models\Company;
 use App\Models\Page;
 use App\Models\Layout;
 use App\Models\Block;
+
+use App\Http\Controllers\CompanyController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +23,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Route::resource('companies', CompanyController::class);
+Route::get('/companies/create', [CompanyController::class, 'store']);
 
 Route::get('/pages', function () {
     return Page::all();
