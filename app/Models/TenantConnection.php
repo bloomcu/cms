@@ -2,14 +2,12 @@
 
 namespace App\Models;
 
-use App\Tenant\Models\Tenant;
-use App\Tenant\Traits\IsTenant;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Company extends Model implements Tenant
+class TenantConnection extends Model
 {
-    use HasFactory, IsTenant;
+    use HasFactory;
 
     protected $guarded = [
         'id'

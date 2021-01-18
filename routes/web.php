@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Company;
 use App\Models\Page;
 use App\Models\Layout;
 use App\Models\Block;
@@ -18,6 +19,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/companies/create', function () {
+    $company = Company::create([
+        'name' => 'BloomCU'
+    ]);
+
+    return $company;
 });
 
 Route::get('/pages', function () {
