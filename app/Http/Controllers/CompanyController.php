@@ -2,16 +2,60 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\CreateCompanyAction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
+use App\Models\Company;
+use App\Actions\CreateCompanyAction;
+
 class CompanyController extends Controller
 {
-    public function store(Request $request, CreateCompanyAction $action)
+    /**
+     * Display a listing of the resource.
+     *
+     */
+    public function index()
+    {
+        return Company::all();
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     */
+    public function store(Request $request, CreateCompanyAction $createCompanyAction)
     {
         // $company = $action->execute($request->all());
-        $company = $action->execute(['name' => 'BloomCU']);
+        $company = $createCompanyAction->execute(
+            ['name' => 'Yolo Dolo']
+        );
         return $company;
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     */
+    public function show(Company $company)
+    {
+        return $company;
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     */
+    public function destroy($id)
+    {
+        //
     }
 }

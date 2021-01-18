@@ -12,4 +12,18 @@ class Company extends Model
     protected $guarded = [
         'id'
     ];
+
+    /**
+     * Route key used to fetch resource
+     *
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    public function users()
+    {
+        return $this->hasMany('App\Models\User');
+    }
 }

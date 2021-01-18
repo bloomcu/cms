@@ -11,9 +11,11 @@ class CreateCompanyAction
     {
         $company = Company::make([
             'name' => $data['name'],
+            'slug' => Str::slug($data['name']),
             'uuid' => (string) Str::uuid()
         ]);
 
+        // $request->user()->companies()->save($company);
         $company->save();
 
         $company->update([
