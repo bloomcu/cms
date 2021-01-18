@@ -27,7 +27,7 @@ class CompanyController extends Controller
     {
         // $company = $action->execute($request->all());
         $company = $createCompanyAction->execute(
-            ['name' => 'Yolo Dolo']
+            ['name' => 'BloomCU']
         );
         return $company;
     }

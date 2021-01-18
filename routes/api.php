@@ -9,6 +9,7 @@ use App\Models\Layout;
 use App\Models\Block;
 
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\PageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,33 +22,12 @@ use App\Http\Controllers\CompanyController;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+// 
 Route::resource('companies', CompanyController::class);
-
-Route::get('/pages', function () {
-    return Page::all();
-});
-
-Route::get('/pages/{id}', function ($id) {
-
-    return Page::find($id)
-        ->load('layout')
-        ->load('layout.blocks')
-        ->load(['layout.blocks.contents' => function($query) use ($id) {
-            $query->where('page_id', $id);
-        }]);
-
-    // return Post::find($id)
-    //     ->with('layout')
-    //     ->with('layout.blocks')
-    //     ->with(['layout.blocks.contents' => function($query) use ($id) {
-    //         $query->where('post_id', $id);
-    //     }])
-    //     ->get();
-});
+Route::resource('companies.pages', PageController::class);
 
 Route::get('/layouts', function () {
     return Layout::all();

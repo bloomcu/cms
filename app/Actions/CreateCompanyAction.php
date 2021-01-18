@@ -9,19 +9,12 @@ class CreateCompanyAction
 {
     public function execute(array $data)
     {
-        $company = Company::make([
+        $company = Company::create([
             'name' => $data['name'],
             'slug' => Str::slug($data['name']),
-            'uuid' => (string) Str::uuid()
+            'uuid' => (string) Str::uuid(),
+            'database' => 'cms_' . $data['name']
         ]);
-
-        // $request->user()->companies()->save($company);
-        $company->save();
-
-        $company->update([
-            'database' => 'cms_' . $company->id
-        ]);
-
         return $company;
     }
 }
