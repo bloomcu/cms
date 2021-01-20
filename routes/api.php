@@ -3,11 +3,10 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-// use App\Models\Company;
-use App\Models\Page;
 use App\Models\Layout;
 use App\Models\Block;
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\PageController;
 
@@ -25,7 +24,9 @@ use App\Http\Controllers\PageController;
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
-// 
+//
+
+Route::resource('categories', CategoryController::class);
 Route::resource('companies', CompanyController::class);
 Route::resource('companies.pages', PageController::class);
 
