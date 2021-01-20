@@ -14,9 +14,12 @@ class PageController extends Controller
      * Display a listing of the resource.
      *
      */
-    public function index(Company $company)
+    public function index(Company $company, Request $request)
     {
-        return Page::where('company_id', $company->id)->get();
+        return Page::where('company_id', $company->id)
+            ->filter($request)
+            ->with('category:id,title')
+            ->get();
     }
 
     /**
@@ -25,7 +28,7 @@ class PageController extends Controller
      */
     public function store(Request $request)
     {
-
+        //
     }
 
     /**

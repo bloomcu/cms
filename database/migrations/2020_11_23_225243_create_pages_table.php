@@ -16,8 +16,10 @@ class CreatePagesTable extends Migration
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
             $table->foreignId('company_id');
-            $table->foreignId('layout_id');
+            $table->foreignId('category_id')->nullable();
+            $table->foreignId('layout_id')->nullable();
             $table->string('title');
+            $table->string('old_url')->nullable();
             $table->timestamps();
 
             $table->foreign('company_id')->references('id')->on('companies');

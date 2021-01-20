@@ -2,13 +2,16 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
+
 use App\Models\Company;
+use App\Models\Category;
 use App\Models\Page;
 use App\Models\Layout;
 use App\Models\Block;
 use App\Models\Content;
 use App\Models\User;
-use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -27,25 +30,25 @@ class DatabaseSeeder extends Seeder
             'database' => 'cms_redwood'
         ])->create();
 
-        // Seed 100 pages each with a layout and 5 blocks
-        for ($i = 0; $i < 100; $i++) {
-            $page = Page::factory()
-                ->state([
-                    'company_id' => $company->id
-                ])
-                ->for(Layout::factory()
-                    ->has(Block::factory()->count(5))
-                )->create();
-
-            // Create content for each block
-            foreach ($page->layout->blocks as $block) {
-                Content::factory()
-                    ->state([
-                        'block_id' => $block->id,
-                        'page_id' => $page->id
-                    ])->create();
-            }
-        }
+        // // Seed 100 pages each with a layout and 5 blocks
+        // for ($i = 0; $i < 100; $i++) {
+        //     $page = Page::factory()
+        //         ->state([
+        //             'company_id' => $company->id
+        //         ])
+        //         ->for(Layout::factory()
+        //             ->has(Block::factory()->count(5))
+        //         )->create();
+        //
+        //     // Create content for each block
+        //     foreach ($page->layout->blocks as $block) {
+        //         Content::factory()
+        //             ->state([
+        //                 'block_id' => $block->id,
+        //                 'page_id' => $page->id
+        //             ])->create();
+        //     }
+        // }
 
         // Almost works
         // Layout::factory()->count(100)
