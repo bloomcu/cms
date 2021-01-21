@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Models\Category;
 use App\Filters\FilterAbstract;
 
-class PageCategoryFilter extends FilterAbstract
+class PageTypeFilter extends FilterAbstract
 {
 
     public function filter(Builder $builder, $value)
@@ -15,8 +15,8 @@ class PageCategoryFilter extends FilterAbstract
         // $categories = Category::descendantsAndSelf($value)->pluck('id');
 
         // Return builder
-        // return $builder->whereIn('category_id', $categories);
-        return $builder->where('category_id', $value);
+        // return $builder->whereIn('type_id', $categories);
+        return $builder->where('type_id', $value);
     }
 
 }

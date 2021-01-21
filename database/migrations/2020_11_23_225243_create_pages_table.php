@@ -17,6 +17,7 @@ class CreatePagesTable extends Migration
             $table->id();
             $table->foreignId('company_id');
             $table->foreignId('category_id')->nullable();
+            $table->foreignId('type_id')->nullable();
             $table->foreignId('layout_id')->nullable();
             $table->string('title');
             $table->string('old_url')->nullable();

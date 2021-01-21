@@ -21,6 +21,7 @@ class PageController extends Controller
         return Page::where('company_id', $company->id)
             ->filter($request)
             ->with('category:id,title')
+            ->with('type:id,title')
             ->get();
     }
 

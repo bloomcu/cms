@@ -22,7 +22,12 @@ class Page extends Model
 
     public function category()
     {
-        return $this->belongsTo('App\Models\Category');
+        return $this->belongsTo('App\Models\Category', 'category_id');
+    }
+
+    public function type()
+    {
+        return $this->belongsTo('App\Models\Category', 'type_id');
     }
 
     public function layout()
