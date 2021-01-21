@@ -24,10 +24,10 @@ class PageStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'category_id' => 'sometimes|integer',
-            'layout_id'   => 'sometimes|integer',
+            'category_id' => 'nullable|integer',
+            'layout_id'   => 'nullable|integer',
             'title'       => 'required',
-            'old_url'     => 'sometimes|url'
+            'old_url'     => 'nullable|url'
         ];
     }
 }
