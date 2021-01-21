@@ -26,6 +26,8 @@ use App\Http\Controllers\PageController;
 // });
 //
 
+Route::put('/companies/redwood/pages-update-batch', [PageController::class, 'updateBatch']);
+
 Route::resource('categories', CategoryController::class);
 Route::resource('companies', CompanyController::class);
 Route::resource('companies.pages', PageController::class);
