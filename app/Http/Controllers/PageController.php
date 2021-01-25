@@ -61,10 +61,19 @@ class PageController extends Controller
 
     public function updateBatch(Company $company, Request $request)
     {
-        return Page::whereIn('id', $request->page_ids)
-            ->update([
-                'category_id' => $request->category_id
-            ]);
+        if ($request->category_id) {
+            return Page::whereIn('id', $request->page_ids)
+                ->update([
+                    'category_id' => $request->category_id
+                ]);
+        }
+
+        if ($request->type_id) {
+            return Page::whereIn('id', $request->page_ids)
+                ->update([
+                    'type_id' => $request->type_id
+                ]);
+        }
     }
 
     /**
