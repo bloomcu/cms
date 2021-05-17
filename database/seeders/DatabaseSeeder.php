@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
             'database' => 'cms_redwood'
         ])->create();
 
-        // // Seed 100 pages each with a layout and 5 blocks
+        // Seed 100 pages each with a layout and 5 blocks
         // for ($i = 0; $i < 100; $i++) {
         //     $page = Page::factory()
         //         ->state([
