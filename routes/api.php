@@ -4,12 +4,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Models\Layout;
-use App\Models\Block;
 
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\BlockController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,9 +43,10 @@ Route::get('/layouts/{id}', function ($id) {
         ->load('blocks');
 });
 
-Route::get('/blocks', function () {
-    return Block::all();
-});
+Route::resource('blocks', BlockController::class);
+// Route::get('/blocks', function () {
+//     return Block::all();
+// });
 
 Route::get('/blocks/{id}', function ($id) {
     return Block::find($id)
