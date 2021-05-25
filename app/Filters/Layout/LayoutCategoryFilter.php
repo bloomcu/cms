@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Filters\Page;
+namespace App\Filters\Layout;
 
 use Illuminate\Database\Eloquent\Builder;
 use App\Filters\FilterAbstract;
 
-class PageCategoryFilter extends FilterAbstract
+class LayoutCategoryFilter extends FilterAbstract
 {
 
     public function filter(Builder $builder, $value)

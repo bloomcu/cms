@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-use App\Models\Block;
+use App\Models\Layout;
 
-use App\Http\Requests\BlockStoreRequest;
+use App\Http\Requests\LayoutStoreRequest;
 
-class BlockController extends Controller
+class LayoutController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +17,7 @@ class BlockController extends Controller
      */
     public function index(Request $request)
     {
-        return Block::filter($request)
+        return Layout::filter($request)
             ->get();
     }
 
@@ -25,7 +25,7 @@ class BlockController extends Controller
      * Store a newly created resource in storage.
      *
      */
-    // public function store(Company $company, BlockStoreRequest $request)
+    // public function store(Company $company, PageStoreRequest $request)
     // {
     //     return $company->pages()
     //         ->create($request->validated());
@@ -35,19 +35,19 @@ class BlockController extends Controller
      * Display the specified resource.
      *
      */
-    public function show(Block $block)
+    public function show(Layout $layout)
     {
-        return Block::find($block->id)
-            ->load('contents');
+        return Layout::find($layout->id)
+            ->load('blocks');
     }
 
     /**
      * Update the specified resource in storage.
      *
      */
-    public function update(Block $block, BlockStoreRequest $request)
+    public function update(Layout $layout, LayoutStoreRequest $request)
     {
-        return Block::where('id', $block->id)
+        return Layout::where('id', $layout->id)
             ->update($request->validated());
     }
 

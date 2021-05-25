@@ -3,7 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use App\Filters\Layout\LayoutFilters;
 
 class Layout extends Model
 {
@@ -21,5 +23,12 @@ class Layout extends Model
     public function blocks()
     {
         return $this->belongsToMany('App\Models\Block');
+    }
+
+    public function scopeFilter(Builder $builder, $request, array $filters = [])
+    {
+        return (new LayoutFilters($request))
+            ->add($filters)
+            ->filter($builder);
     }
 }

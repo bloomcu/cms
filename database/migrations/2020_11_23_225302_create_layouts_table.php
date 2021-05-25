@@ -16,6 +16,7 @@ class CreateLayoutsTable extends Migration
         Schema::create('layouts', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('category_id')->nullable();
             $table->timestamps();
         });
     }

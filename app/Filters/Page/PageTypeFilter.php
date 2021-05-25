@@ -3,7 +3,6 @@
 namespace App\Filters\Page;
 
 use Illuminate\Database\Eloquent\Builder;
-use App\Models\Category;
 use App\Filters\FilterAbstract;
 
 class PageTypeFilter extends FilterAbstract
