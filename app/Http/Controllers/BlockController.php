@@ -37,8 +37,7 @@ class BlockController extends Controller
      */
     public function show(Block $block)
     {
-        return Block::find($block->id)
-            ->load('contents');
+        return $block->load('contents');
     }
 
     /**
@@ -47,8 +46,9 @@ class BlockController extends Controller
      */
     public function update(Block $block, BlockStoreRequest $request)
     {
-        return Block::where('id', $block->id)
-            ->update($request->validated());
+        return $block->update(
+            $request->validated()
+        );
     }
 
     // public function updateBatch(Company $company, Request $request)

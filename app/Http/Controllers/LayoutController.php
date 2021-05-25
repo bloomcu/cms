@@ -37,8 +37,7 @@ class LayoutController extends Controller
      */
     public function show(Layout $layout)
     {
-        return Layout::find($layout->id)
-            ->load('blocks');
+        return $layout->load('blocks');
     }
 
     /**
@@ -47,8 +46,9 @@ class LayoutController extends Controller
      */
     public function update(Layout $layout, LayoutStoreRequest $request)
     {
-        return Layout::where('id', $layout->id)
-            ->update($request->validated());
+        return $layout->update(
+            $request->validated()
+        );
     }
 
     // public function updateBatch(Company $company, Request $request)

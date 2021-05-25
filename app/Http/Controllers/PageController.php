@@ -31,8 +31,9 @@ class PageController extends Controller
      */
     public function store(Company $company, PageStoreRequest $request)
     {
-        return $company->pages()
-            ->create($request->validated());
+        return $company->pages()->create(
+            $request->validated()
+        );
     }
 
     /**
@@ -41,7 +42,7 @@ class PageController extends Controller
      */
     public function show(Company $company, Page $page)
     {
-        return Page::find($page->id)
+        return $page
             ->load('layout')
             ->load('layout.blocks')
             ->load(['layout.blocks.contents' => function($query) use ($page) {
@@ -55,26 +56,27 @@ class PageController extends Controller
      */
     public function update(Company $company, Page $page, PageStoreRequest $request)
     {
-        return Page::where('id', $page->id)
-            ->update($request->validated());
+        return $page->update(
+            $request->validated()
+        );
     }
 
-    public function updateBatch(Company $company, Request $request)
-    {
-        if ($request->category_id) {
-            return Page::whereIn('id', $request->page_ids)
-                ->update([
-                    'category_id' => $request->category_id
-                ]);
-        }
-
-        if ($request->type_id) {
-            return Page::whereIn('id', $request->page_ids)
-                ->update([
-                    'type_id' => $request->type_id
-                ]);
-        }
-    }
+    // public function updateBatch(Company $company, Request $request)
+    // {
+    //     if ($request->category_id) {
+    //         return Page::whereIn('id', $request->page_ids)
+    //             ->update([
+    //                 'category_id' => $request->category_id
+    //             ]);
+    //     }
+    //
+    //     if ($request->type_id) {
+    //         return Page::whereIn('id', $request->page_ids)
+    //             ->update([
+    //                 'type_id' => $request->type_id
+    //             ]);
+    //     }
+    // }
 
     /**
      * Remove the specified resource from storage.
@@ -82,6 +84,6 @@ class PageController extends Controller
      */
     public function destroy(Company $company, Page $page)
     {
-        return Page::where('id', $page->id)->delete();
+        return $page->delete();
     }
 }
