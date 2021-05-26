@@ -41,12 +41,14 @@ class PageController extends Controller
      */
     public function show(Company $company, Page $page)
     {
-        return $page
-            ->load('layout')
-            ->load('layout.blocks')
-            ->load(['layout.blocks.contents' => function($query) use ($page) {
-                $query->where('page_id', $page->id);
-            }]);
+        return $page;
+
+        // return $page
+        //     ->load('layout')
+        //     ->load('layout.blocks')
+        //     ->load(['layout.blocks.contents' => function($query) use ($page) {
+        //         $query->where('page_id', $page->id);
+        //     }]);
     }
 
     /**

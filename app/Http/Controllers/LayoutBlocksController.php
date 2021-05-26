@@ -25,9 +25,17 @@ class LayoutBlocksController extends Controller
          */
         $blocks = [];
 
+        // foreach ($request['blocks'] as $key => $block) {
+        //     $blocks[$block['id']] = ['order' => $key];
+        // }
         foreach ($request['blocks'] as $key => $block) {
-            $blocks[$block['id']] = ['order' => $key];
+            $blocks[$block['pivot']['id']] = [
+                'block_id' => $block['id'],
+                'order' => $key
+            ];
         }
+
+        // return $blocks;
 
         // Sync layout's blocks
         return $layout->blocks()->sync(

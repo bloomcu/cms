@@ -22,7 +22,10 @@ class Layout extends Model
 
     public function blocks()
     {
-        return $this->belongsToMany('App\Models\Block', 'layout_blocks')->orderBy('order');
+        return $this->belongsToMany('App\Models\Block', 'layout_blocks')
+            ->using('App\Models\LayoutBlocks')
+            ->withPivot('id')
+            ->orderBy('order');
     }
 
     public function scopeFilter(Builder $builder, $request, array $filters = [])

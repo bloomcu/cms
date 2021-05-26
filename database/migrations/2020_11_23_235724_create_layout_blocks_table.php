@@ -14,11 +14,10 @@ class CreateLayoutBlocksTable extends Migration
     public function up()
     {
         Schema::create('layout_blocks', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->foreignId('layout_id');
             $table->foreignId('block_id');
             $table->integer('order');
-            // $table->timestamps();
         });
     }
 
