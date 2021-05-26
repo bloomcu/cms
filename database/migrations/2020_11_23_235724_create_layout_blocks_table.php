@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBlockLayoutTable extends Migration
+class CreateLayoutBlocksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateBlockLayoutTable extends Migration
      */
     public function up()
     {
-        Schema::create('block_layout', function (Blueprint $table) {
+        Schema::create('layout_blocks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('block_id');
             $table->foreignId('layout_id');
-            $table->timestamps();
+            $table->foreignId('block_id');
+            $table->integer('order');
+            // $table->timestamps();
         });
     }
 
@@ -28,6 +29,6 @@ class CreateBlockLayoutTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('block_layout');
+        Schema::dropIfExists('layout_blocks');
     }
 }

@@ -8,6 +8,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\LayoutController;
+// use App\Http\Controllers\LayoutBlocksController;
 use App\Http\Controllers\BlockController;
 
 /*
@@ -50,3 +51,6 @@ Route::resource('blocks', BlockController::class);
 //     return Block::find($id)
 //         ->load('contents');
 // });
+
+// Route::get('/layouts/{layout}/blocks', 'App\Http\Controllers\LayoutBlocksController@index');
+Route::put('/layouts/{layout}/blocks', 'App\Http\Controllers\LayoutBlocksController@update');

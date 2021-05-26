@@ -17,7 +17,7 @@ class Block extends Model
 
     public function layouts()
     {
-        return $this->belongsToMany('App\Models\Layout');
+        return $this->belongsToMany('App\Models\Layout', 'layout_blocks');
     }
 
     public function contents()
