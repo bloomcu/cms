@@ -24,7 +24,7 @@ class PageStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'       => 'required',
+            'title'       => 'nullable|string',
             'category_id' => 'nullable|integer',
             'type_id'     => 'nullable|integer',
             'layout_id'   => 'nullable|integer',
