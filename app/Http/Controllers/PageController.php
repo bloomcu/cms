@@ -41,7 +41,7 @@ class PageController extends Controller
      */
     public function show(Company $company, Page $page)
     {
-        return $page;
+        return $page->load('category');
 
         // return $page
         //     ->load('layout')
