@@ -3,17 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+
 use App\Filters\Layout\LayoutFilters;
 
 class Layout extends Model
 {
     use HasFactory;
 
-    protected $guarded = [
-        'id'
-    ];
+    protected $guarded = ['id'];
 
     public function pages()
     {
@@ -22,9 +21,7 @@ class Layout extends Model
 
     public function blocks()
     {
-        return $this->belongsToMany('App\Models\Block', 'layout_blocks')
-            ->using('App\Models\LayoutBlocks')
-            ->withPivot('id')
+        return $this->hasMany('App\Models\Block')
             ->orderBy('order');
     }
 

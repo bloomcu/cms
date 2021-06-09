@@ -17,13 +17,17 @@ class CreatePagesTable extends Migration
             $table->id();
             $table->string('title');
             $table->foreignId('company_id');
+            $table->foreignId('layout_id')->nullable();
             $table->foreignId('category_id')->nullable();
             $table->foreignId('type_id')->nullable();
-            $table->foreignId('layout_id')->nullable();
             $table->string('old_url')->nullable();
             $table->timestamps();
 
+            // Foreign constraints
             $table->foreign('company_id')->references('id')->on('companies');
+            $table->foreign('layout_id')->references('id')->on('layouts');
+            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('type_id')->references('id')->on('categories');
         });
     }
 

@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 
 use App\Models\Page;
 use App\Models\Company;
-
 use App\Http\Requests\PageStoreRequest;
 
 class PageController extends Controller
@@ -18,9 +17,9 @@ class PageController extends Controller
     public function index(Company $company, Request $request)
     {
         return Page::where('company_id', $company->id)
-            ->filter($request)
             ->with('category:id,title')
             ->with('type:id,title')
+            ->filter($request)
             ->get();
     }
 
@@ -41,14 +40,18 @@ class PageController extends Controller
      */
     public function show(Company $company, Page $page)
     {
-        return $page->load('category');
-
         // return $page
+        //     ->load('category')
         //     ->load('layout')
         //     ->load('layout.blocks')
-        //     ->load(['layout.blocks.contents' => function($query) use ($page) {
-        //         $query->where('page_id', $page->id);
-        //     }]);
+        //     ->load('layout.blocks.contents');
+
+        return $page
+            ->load('layout')
+            ->load('layout.blocks')
+            ->load(['layout.blocks.contents' => function($query) use ($page) {
+                $query->where('contents.page_id', $page->id);
+            }]);
     }
 
     /**

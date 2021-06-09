@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Layout;
-
 use App\Http\Requests\LayoutStoreRequest;
 
 class LayoutController extends Controller
@@ -36,7 +35,8 @@ class LayoutController extends Controller
      */
     public function show(Layout $layout)
     {
-        return $layout->load('blocks');
+        return $layout
+            ->load('blocks');
     }
 
     /**

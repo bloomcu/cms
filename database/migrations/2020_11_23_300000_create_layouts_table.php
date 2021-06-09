@@ -18,6 +18,9 @@ class CreateLayoutsTable extends Migration
             $table->string('title');
             $table->string('category_id')->nullable();
             $table->timestamps();
+
+            // Foreign constraints
+            // $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 

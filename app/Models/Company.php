@@ -9,9 +9,7 @@ class Company extends Model
 {
     use HasFactory;
 
-    protected $guarded = [
-        'id'
-    ];
+    protected $guarded = ['id'];
 
     /**
      * Route key used to fetch resource

@@ -3,17 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+
 use App\Filters\Page\PageFilters;
 
 class Page extends Model
 {
     use HasFactory;
 
-    protected $guarded = [
-        'id'
-    ];
+    protected $guarded = ['id'];
 
     public function company()
     {
@@ -22,12 +21,12 @@ class Page extends Model
 
     public function category()
     {
-        return $this->belongsTo('App\Models\Category', 'category_id');
+        return $this->belongsTo('App\Models\Category');
     }
 
     public function type()
     {
-        return $this->belongsTo('App\Models\Category', 'type_id');
+        return $this->belongsTo('App\Models\Category');
     }
 
     public function layout()

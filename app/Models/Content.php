@@ -9,22 +9,18 @@ class Content extends Model
 {
     use HasFactory;
 
-    protected $guarded = [
-        'id'
-    ];
+    protected $guarded = ['id'];
 
-    protected $casts = [
-        'content' => 'array'
-    ];
-
-    public function block()
-    {
-        return $this->belongsTo('App\Models\Block');
-    }
+    protected $casts = ['content' => 'array'];
 
     public function page()
     {
         return $this->belongsTo('App\Models\Page');
+    }
+
+    public function blocks()
+    {
+        return $this->belongsTo('App\Models\Block');
     }
 
 }

@@ -19,6 +19,7 @@ class CreateCompanyUserTable extends Migration
             $table->bigInteger('company_id')->unsigned()->index();
             $table->timestamps();
 
+            // Foreign constraints
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('company_id')->references('id')->on('companies');
         });

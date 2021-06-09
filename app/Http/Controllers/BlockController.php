@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Block;
-
 use App\Http\Requests\BlockStoreRequest;
 
 class BlockController extends Controller
@@ -36,7 +35,8 @@ class BlockController extends Controller
      */
     public function show(Block $block)
     {
-        return $block->load('contents');
+        return $block
+            ->load('contents');
     }
 
     /**

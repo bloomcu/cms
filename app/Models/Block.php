@@ -3,21 +3,21 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+
+use App\Traits\HasUuid;
 use App\Filters\Block\BlockFilters;
 
 class Block extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuid;
 
-    protected $guarded = [
-        'id'
-    ];
+    protected $guarded = ['id'];
 
-    public function layouts()
+    public function layout()
     {
-        return $this->belongsToMany('App\Models\Layout', 'layout_blocks');
+        return $this->belongsTo('App\Models\Layout');
     }
 
     public function contents()

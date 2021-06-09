@@ -15,10 +15,14 @@ class CreateContentsTable extends Migration
     {
         Schema::create('contents', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('block_id');
             $table->foreignId('page_id');
+            $table->foreignId('block_id');
             $table->json('content');
             $table->timestamps();
+
+            // Foreign constraints
+            $table->foreign('page_id')->references('id')->on('pages');
+            $table->foreign('block_id')->references('id')->on('blocks');
         });
     }
 
