@@ -17,7 +17,7 @@ class CreateContentsTable extends Migration
             $table->id();
             $table->foreignId('block_id');
             $table->foreignId('page_id');
-            $table->string('title');
+            $table->json('content');
             $table->timestamps();
         });
     }

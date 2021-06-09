@@ -13,6 +13,10 @@ class Content extends Model
         'id'
     ];
 
+    protected $casts = [
+        'content' => 'array'
+    ];
+
     public function block()
     {
         return $this->belongsTo('App\Models\Block');
