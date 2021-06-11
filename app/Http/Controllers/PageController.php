@@ -47,6 +47,7 @@ class PageController extends Controller
         //     ->load('layout.blocks.contents');
 
         return $page
+            ->load('category')
             ->load('layout')
             ->load('layout.blocks')
             ->load(['layout.blocks.contents' => function($query) use ($page) {

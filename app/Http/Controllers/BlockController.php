@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Block;
 use App\Http\Requests\BlockStoreRequest;
+use App\Http\Requests\BlockUpdateRequest;
 
 class BlockController extends Controller
 {
@@ -23,11 +24,14 @@ class BlockController extends Controller
      * Store a newly created resource in storage.
      *
      */
-    // public function store(Company $company, BlockStoreRequest $request)
-    // {
-    //     return $company->pages()
-    //         ->create($request->validated());
-    // }
+    public function store(BlockStoreRequest $request)
+    {
+        $block = Block::create(
+            $request->validated()
+        );
+
+        return $block;
+    }
 
     /**
      * Display the specified resource.
@@ -43,11 +47,13 @@ class BlockController extends Controller
      * Update the specified resource in storage.
      *
      */
-    public function update(Block $block, BlockStoreRequest $request)
+    public function update(Block $block, BlockUpdateRequest $request)
     {
-        return $block->update(
+        $block->update(
             $request->validated()
         );
+
+        return $block;
     }
 
     // public function updateBatch(Company $company, Request $request)
