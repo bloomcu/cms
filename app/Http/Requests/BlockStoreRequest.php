@@ -26,12 +26,12 @@ class BlockStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'uuid'        => 'required',
-            'title'       => 'required|string',
-            'component'   => 'required|string',
-            'layout_id'   => 'required|exists:layouts,id',
-            'order'       => 'nullable|integer|min:0',
-            'category_id' => 'nullable|integer'
+            'title'         => 'required|string',
+            'component'     => 'required|string',
+            'layout_id'     => 'required|exists:layouts,id',
+            'order'         => 'nullable|integer|min:0',
+            'base_block_id' => 'required|exists:base_blocks,id',
+            'uuid'          => 'required'
         ];
     }
 
@@ -43,7 +43,6 @@ class BlockStoreRequest extends FormRequest
     public function messages()
     {
         return [
-            'uuid.required' => 'Uuid is required',
             'title.required' => 'Title is required',
             'title.string' => 'Title must be a string',
 
@@ -56,7 +55,10 @@ class BlockStoreRequest extends FormRequest
             'order.integer' => 'Order must be an integer',
             'order.min' => 'Order cannot be negative',
 
-            'category_id.integer' => 'Category must be an integer',
+            'base_block_id.required' => 'Base Block id is required',
+            'base_block_id.exists' => 'Base Block does not exist',
+
+            'uuid.required' => 'Uuid is required'
         ];
     }
 
