@@ -4,11 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Models\Block;
-// use App\Http\Requests\BlockStoreRequest;
-// use App\Http\Requests\BlockUpdateRequest;
+use App\Models\BaseBlock;
 
-class BlockController extends Controller
+class BaseBlockController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +14,8 @@ class BlockController extends Controller
      */
     public function index(Request $request)
     {
-        return Block::all();
+        return BaseBlock::filter($request)
+            ->get();
     }
 
     /**
@@ -25,7 +24,7 @@ class BlockController extends Controller
      */
     public function store(Request $request)
     {
-        $block = Block::create(
+        $block = BaseBlock::create(
             // $request->validated()
             $request->all()
         );
@@ -37,9 +36,9 @@ class BlockController extends Controller
      * Display the specified resource.
      *
      */
-    public function show(Block $block)
+    public function show(Baseblock $baseBlock)
     {
-        return $block;
+        return $baseBlock;
     }
 
     /**
@@ -55,13 +54,4 @@ class BlockController extends Controller
 
         return $block;
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     */
-    // public function destroy(Company $company, Page $page)
-    // {
-    //     return Page::where('id', $page->id)->delete();
-    // }
 }

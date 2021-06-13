@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Layout;
-use App\Http\Requests\LayoutStoreRequest;
+// use App\Http\Requests\LayoutStoreRequest;
 
 class LayoutController extends Controller
 {
@@ -43,11 +43,14 @@ class LayoutController extends Controller
      * Update the specified resource in storage.
      *
      */
-    public function update(Layout $layout, LayoutStoreRequest $request)
+    public function update(Layout $layout, Request $request)
     {
-        return $layout->update(
-            $request->validated()
+        $layout->update(
+            // $request->validated()
+            $request->all()
         );
+
+        return $layout;
     }
 
     // public function updateBatch(Company $company, Request $request)

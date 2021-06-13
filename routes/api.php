@@ -10,6 +10,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\LayoutController;
 // use App\Http\Controllers\LayoutBlocksController;
 use App\Http\Controllers\BlockController;
+use App\Http\Controllers\BaseBlockController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,7 @@ Route::resource('layouts', LayoutController::class);
 //         ->load('blocks');
 // });
 
+Route::resource('base-blocks', BaseBlockController::class);
 Route::resource('blocks', BlockController::class);
 // Route::get('/blocks', function () {
 //     return Block::all();

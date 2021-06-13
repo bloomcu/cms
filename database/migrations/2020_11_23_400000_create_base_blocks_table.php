@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBlocksTable extends Migration
+class CreateBaseBlocksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,15 @@ class CreateBlocksTable extends Migration
      */
     public function up()
     {
-        Schema::create('blocks', function (Blueprint $table) {
+        Schema::create('base_blocks', function (Blueprint $table) {
             $table->id();
-            $table->uuid('uuid');
             $table->string('title');
             $table->string('component');
-            $table->foreignId('layout_id')->nullable();
-            $table->integer('order')->nullable();
             $table->string('category_id')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();
 
             // Foreign constraints
-            $table->foreign('layout_id')->references('id')->on('layouts');
             // $table->foreign('category_id')->references('id')->on('categories');
         });
     }
@@ -37,6 +33,6 @@ class CreateBlocksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('blocks');
+        Schema::dropIfExists('base_blocks');
     }
 }

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Page;
 use App\Models\Company;
-use App\Http\Requests\PageStoreRequest;
+// use App\Http\Requests\PageStoreRequest;
 
 class PageController extends Controller
 {
@@ -27,10 +27,11 @@ class PageController extends Controller
      * Store a newly created resource in storage.
      *
      */
-    public function store(Company $company, PageStoreRequest $request)
+    public function store(Company $company, Request $request)
     {
         return $company->pages()->create(
-            $request->validated()
+            // $request->validated()
+            $request->all()
         );
     }
 
@@ -59,29 +60,15 @@ class PageController extends Controller
      * Update the specified resource in storage.
      *
      */
-    public function update(Company $company, Page $page, PageStoreRequest $request)
+    public function update(Company $company, Page $page, Request $request)
     {
-        return $page->update(
-            $request->validated()
+        $page->update(
+            // $request->validated()
+            $request->all()
         );
-    }
 
-    // public function updateBatch(Company $company, Request $request)
-    // {
-    //     if ($request->category_id) {
-    //         return Page::whereIn('id', $request->page_ids)
-    //             ->update([
-    //                 'category_id' => $request->category_id
-    //             ]);
-    //     }
-    //
-    //     if ($request->type_id) {
-    //         return Page::whereIn('id', $request->page_ids)
-    //             ->update([
-    //                 'type_id' => $request->type_id
-    //             ]);
-    //     }
-    // }
+        return $page;
+    }
 
     /**
      * Remove the specified resource from storage.
