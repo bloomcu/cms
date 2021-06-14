@@ -60,8 +60,8 @@ class BlockController extends Controller
      * Remove the specified resource from storage.
      *
      */
-    // public function destroy(Company $company, Page $page)
-    // {
-    //     return Page::where('id', $page->id)->delete();
-    // }
+    public function destroy(Block $block)
+    {
+        return $block->delete();
+    }
 }
