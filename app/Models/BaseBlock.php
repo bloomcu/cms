@@ -14,6 +14,8 @@ class BaseBlock extends Model
 
     protected $guarded = ['id'];
 
+    protected $casts = ['content' => 'json'];
+
     public function getRouteKeyName()
     {
         return 'component';

@@ -11,7 +11,7 @@ class Content extends Model
 
     protected $guarded = ['id'];
 
-    protected $casts = ['content' => 'array'];
+    protected $casts = ['content' => 'json'];
 
     public function page()
     {

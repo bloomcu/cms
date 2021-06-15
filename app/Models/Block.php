@@ -13,6 +13,8 @@ class Block extends Model
 
     protected $guarded = ['id'];
 
+    protected $casts = ['content' => 'json'];
+
     public function getRouteKeyName()
     {
         return 'uuid';

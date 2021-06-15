@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Layout;
+use App\Models\Block;
 // use App\Http\Requests\LayoutStoreRequest;
 
 class LayoutController extends Controller
@@ -45,10 +46,23 @@ class LayoutController extends Controller
      */
     public function update(Layout $layout, Request $request)
     {
-        $layout->update(
-            // $request->validated()
-            $request->all()
-        );
+        // $layout->update(
+        //     $request->all()
+        // );
+
+        // return $request['blocks'];
+        // $storedBlock = Block::firstWhere('uuid', 'ce7123d1-e48f-4fa1-aa00-db55bce588da');
+        // return $storedBlock;
+
+        foreach($request['blocks'] as $index => $block) {
+
+            $storedBlock = Block::firstWhere('uuid', $block['uuid']);
+
+            $storedBlock->update([
+                'content' => $block['content'],
+                'order' => $index
+            ]);
+        }
 
         return $layout;
     }

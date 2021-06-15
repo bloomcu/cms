@@ -19,6 +19,7 @@ class CreateBaseBlocksTable extends Migration
             $table->string('component');
             $table->string('category_id')->nullable();
             $table->string('image')->nullable();
+            $table->json('content')->nullable();
             $table->timestamps();
 
             // Foreign constraints

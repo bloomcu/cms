@@ -20,6 +20,7 @@ class CreateBlocksTable extends Migration
             $table->string('component');
             $table->foreignId('layout_id');
             $table->integer('order')->nullable();
+            $table->json('content')->nullable();
             $table->timestamps();
 
             // Foreign constraints
