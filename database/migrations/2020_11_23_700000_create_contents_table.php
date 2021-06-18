@@ -21,8 +21,7 @@ class CreateContentsTable extends Migration
             $table->timestamps();
 
             // Foreign constraints
-            $table->foreign('page_id')->references('id')->on('pages');
-            $table->foreign('block_id')->references('id')->on('blocks');
+            $table->foreign('block_id')->references('id')->on('blocks')->onDelete('cascade');
         });
     }
 

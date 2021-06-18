@@ -24,7 +24,7 @@ class CreateBlocksTable extends Migration
             $table->timestamps();
 
             // Foreign constraints
-            $table->foreign('layout_id')->references('id')->on('layouts');
+            $table->foreign('layout_id')->references('id')->on('layouts')->onDelete('cascade');
         });
     }
 
