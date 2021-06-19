@@ -27,8 +27,7 @@ class PageStoreRequest extends FormRequest
             'title'       => 'nullable|string',
             'category_id' => 'nullable|integer',
             'type_id'     => 'nullable|integer',
-            'layout_id'   => 'nullable|integer',
-            'old_url'     => 'nullable|url'
+            'layout_id'   => 'nullable|integer'
         ];
     }
 }

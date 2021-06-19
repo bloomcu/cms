@@ -20,7 +20,6 @@ class CreatePagesTable extends Migration
             $table->foreignId('layout_id')->nullable();
             $table->foreignId('category_id')->nullable();
             $table->foreignId('type_id')->nullable();
-            $table->string('old_url')->nullable();
             $table->timestamps();
 
             // Foreign constraints
