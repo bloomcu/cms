@@ -24,11 +24,15 @@ class LayoutController extends Controller
      * Store a newly created resource in storage.
      *
      */
-    // public function store(Company $company, PageStoreRequest $request)
-    // {
-    //     return $company->pages()
-    //         ->create($request->validated());
-    // }
+     public function store(Request $request)
+     {
+         $layout = Layout::create(
+             // $request->validated()
+             $request->all()
+         );
+
+         return $layout;
+     }
 
     /**
      * Display the specified resource.
@@ -88,8 +92,8 @@ class LayoutController extends Controller
      * Remove the specified resource from storage.
      *
      */
-    // public function destroy(Company $company, Page $page)
-    // {
-    //     return Page::where('id', $page->id)->delete();
-    // }
+    public function destroy(Layout $layout)
+    {
+        return $layout->delete();
+    }
 }
