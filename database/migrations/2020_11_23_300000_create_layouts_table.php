@@ -17,6 +17,7 @@ class CreateLayoutsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('category_id')->nullable();
+            $table->boolean('locked')->default(0);
             $table->timestamps();
 
             // Foreign constraints
