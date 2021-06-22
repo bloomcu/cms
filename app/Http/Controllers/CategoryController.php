@@ -15,7 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return Category::descendantsOf(1)->toTree();
+        return Category::defaultOrder()->descendantsOf(1)->toTree();
     }
 
     /**
