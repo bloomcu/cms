@@ -36,6 +36,9 @@ Route::resource('companies', CompanyController::class);
 Route::resource('companies.pages', PageController::class);
 
 Route::resource('layouts', LayoutController::class);
+// Route::resource('layouts/replicate', LayoutController::class);
+Route::get('/layouts/replicate/{layout}', 'App\Http\Controllers\LayoutReplicateController@replicate');
+
 // Route::get('/layouts', function () {
 //     return Layout::all();
 // });
@@ -55,4 +58,4 @@ Route::resource('blocks', BlockController::class);
 // });
 
 // Route::get('/layouts/{layout}/blocks', 'App\Http\Controllers\LayoutBlocksController@index');
-Route::put('/layouts/{layout}/blocks', 'App\Http\Controllers\LayoutBlocksController@update');
+// Route::put('/layouts/{layout}/blocks', 'App\Http\Controllers\LayoutBlocksController@update');
