@@ -16,7 +16,7 @@ class Layout extends Model
 
     public function pages()
     {
-        return $this->hasMany('App\Models\Pages');
+        return $this->hasMany('App\Models\Page');
     }
 
     public function blocks()

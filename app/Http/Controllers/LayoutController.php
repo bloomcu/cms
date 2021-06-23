@@ -41,7 +41,8 @@ class LayoutController extends Controller
     public function show(Layout $layout)
     {
         return $layout
-            ->load('blocks');
+            ->load('blocks')
+            ->load('pages');
     }
 
     /**

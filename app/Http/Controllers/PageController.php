@@ -49,11 +49,15 @@ class PageController extends Controller
 
         return $page
             ->load('category')
-            ->load('layout')
-            ->load('layout.blocks')
-            ->load(['layout.blocks.contents' => function($query) use ($page) {
-                $query->where('contents.page_id', $page->id);
-            }]);
+            ->load('layout', 'layout.pages', 'layout.blocks');
+
+        // return $page
+        //     ->load('category')
+        //     ->load('layout')
+        //     ->load('layout.blocks')
+        //     ->load(['layout.blocks.contents' => function($query) use ($page) {
+        //         $query->where('contents.page_id', $page->id);
+        //     }]);
     }
 
     /**
