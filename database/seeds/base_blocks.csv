@@ -1,0 +1,30 @@
+id,title,component,category_id,content
+1,Navigation,navigation-default,navigation,
+2,Sub Navigation,subnavigation-default,navigation,
+3,Hero,hero-default,heros,"{""label"": ""This is the label"", ""headline"": ""Lorem ipsum dolor sit amet"", ""button_url"": ""https://google.com"", ""subheadline"": ""Lorem ipsum dolor sit amet consectetur adipisicing elit."", ""button_label"": ""Call to Action""}"
+4,Hero Background,hero-background,heros,
+5,Hero Video,hero-video,heros,
+6,Hero Boxed,hero-boxed,heros,
+7,Hero Video Modal,hero-video-modal,heros,
+8,Hero Side Image,hero-side-image,heros,
+9,Hero Double,hero-double,heros,
+10,Text Block - 1 Column,text-one-column,text,"{""col_1_title"": ""Title"", ""col_1_content"": ""Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent malesuada justo ac risus dictum, ut lobortis massa facilisis. Donec risus nisl, consectetur a elementum sit amet, aliquet at magna.""}"
+11,Text Block - 2 Columns,text-two-columns,text,"{""col_1_title"": ""Title"", ""col_2_title"": ""Title"", ""col_1_content"": ""Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent malesuada justo ac risus dictum, ut lobortis massa facilisis. Donec risus nisl, consectetur a elementum sit amet, aliquet at magna."", ""col_2_content"": ""Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent malesuada justo ac risus dictum, ut lobortis massa facilisis. Donec risus nisl, consectetur a elementum sit amet, aliquet at magna.""}"
+12,Text Block - 3 Columns,text-three-columns,text,"{""col_1_title"": ""Title"", ""col_2_title"": ""Title"", ""col_3_title"": ""Title"", ""col_1_content"": ""Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent malesuada justo ac risus dictum, ut lobortis massa facilisis. Donec risus nisl, consectetur a elementum sit amet, aliquet at magna."", ""col_2_content"": ""Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent malesuada justo ac risus dictum, ut lobortis massa facilisis. Donec risus nisl, consectetur a elementum sit amet, aliquet at magna."", ""col_3_content"": ""Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent malesuada justo ac risus dictum, ut lobortis massa facilisis. Donec risus nisl, consectetur a elementum sit amet, aliquet at magna.""}"
+13,Feature,feature-default,features,"{""label"": ""This is the label"", ""invert"": false, ""headline"": ""Lorem ipsum dolor sit amet"", ""image_url"": ""https://codyhouse.co/app/assets/img/feature-img-1.jpg"", ""button_url"": ""https://google.com"", ""subheadline"": ""Lorem ipsum dolor sit amet consectetur adipisicing elit."", ""button_label"": ""Call to Action""}"
+14,Feature Boxed,feature-boxed,features,
+15,Feature Large,feature-large,features,
+16,Features Repeater,features-default-repeater,features,
+17,Feature Looping,feature-looping,features,
+18,Cards,card-default-repeater,cards,
+19,Cards Big Title,card-large-title-repeater,cards,
+20,Testimonial,testimonial-default,testimonials,
+21,Testimonials,testimonial-default-repeater,testimonials,
+22,Accordions,accordion-default-repeater,accordions,
+23,Gallery,gallery-default,galleries,
+24,Gallery Offset,gallery-offset,galleries,
+25,Details List,details-list-default,details,
+26,Process,process-default,process,
+27,Table,table-default,tables,
+28,Comparison Table,table-comparison,tables,
+29,Footer,footer-default,footers,
