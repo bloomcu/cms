@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLayoutsTable extends Migration
+class CreateFrameworksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateLayoutsTable extends Migration
      */
     public function up()
     {
-        Schema::create('layouts', function (Blueprint $table) {
+        Schema::create('frameworks', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('framework_id')->nullable();
-            $table->string('category_id')->nullable();
-            $table->boolean('locked')->default(0);
+            $table->json('parts')->nullable();
             $table->timestamps();
 
             // Foreign constraints
@@ -33,6 +31,6 @@ class CreateLayoutsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('layouts');
+        Schema::dropIfExists('frameworks');
     }
 }

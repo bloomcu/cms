@@ -8,9 +8,10 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\LayoutController;
-// use App\Http\Controllers\LayoutBlocksController;
 use App\Http\Controllers\BlockController;
 use App\Http\Controllers\BaseBlockController;
+use App\Http\Controllers\FrameworkController;
+use App\Http\Controllers\WikiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,9 @@ Route::resource('companies.pages', PageController::class);
 Route::resource('layouts', LayoutController::class);
 // Route::resource('layouts/replicate', LayoutController::class);
 Route::get('/layouts/replicate/{layout}', 'App\Http\Controllers\LayoutReplicateController@replicate');
+
+Route::resource('frameworks', FrameworkController::class);
+Route::resource('wikis', WikiController::class);
 
 // Route::get('/layouts', function () {
 //     return Layout::all();
