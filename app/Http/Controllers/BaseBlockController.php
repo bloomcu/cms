@@ -24,19 +24,19 @@ class BaseBlockController extends Controller
      */
     public function store(Request $request)
     {
-        $block = BaseBlock::create(
+        $baseBlock = BaseBlock::create(
             // $request->validated()
             $request->all()
         );
 
-        return $block;
+        return $baseBlock;
     }
 
     /**
      * Display the specified resource.
      *
      */
-    public function show(Baseblock $baseBlock)
+    public function show(BaseBlock $baseBlock)
     {
         return $baseBlock;
     }
@@ -45,13 +45,24 @@ class BaseBlockController extends Controller
      * Update the specified resource in storage.
      *
      */
-    public function update(Block $block, Request $request)
+    public function update(BaseBlock $baseBlock, Request $request)
     {
-        $block->update(
+        $baseBlock->update(
             // $request->validated()
             $request->all()
         );
 
-        return $block;
+        return $baseBlock;
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     */
+    public function destroy(BaseBlock $baseBlock)
+    {
+        $baseBlock->delete();
+
+        return $baseBlock;
     }
 }

@@ -62,6 +62,8 @@ class BlockController extends Controller
      */
     public function destroy(Block $block)
     {
-        return $block->delete();
+        $block->delete();
+
+        return $block;
     }
 }

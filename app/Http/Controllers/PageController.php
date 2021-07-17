@@ -49,7 +49,9 @@ class PageController extends Controller
 
         return $page
             ->load('category')
-            ->load('layout', 'layout.pages', 'layout.blocks');
+            ->load('layout')
+            ->load('layout.blocks')
+            ->load('wiki');
 
         // return $page
         //     ->load('category')
@@ -80,6 +82,8 @@ class PageController extends Controller
      */
     public function destroy(Company $company, Page $page)
     {
-        return $page->delete();
+        $page->delete();
+
+        return $page;
     }
 }

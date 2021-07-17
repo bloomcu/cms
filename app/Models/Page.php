@@ -34,10 +34,15 @@ class Page extends Model
         return $this->belongsTo('App\Models\Layout');
     }
 
-    public function contents()
+    public function wiki()
     {
-        return $this->hasMany('App\Models\Content');
+        return $this->belongsTo('App\Models\Wiki');
     }
+
+    // public function contents()
+    // {
+    //     return $this->hasMany('App\Models\Content');
+    // }
 
     public function scopeFilter(Builder $builder, $request, array $filters = [])
     {
