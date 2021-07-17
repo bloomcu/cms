@@ -16,10 +16,10 @@ class BaseBlock extends Model
 
     protected $casts = ['content' => 'json'];
 
-    public function getRouteKeyName()
-    {
-        return 'component';
-    }
+    // public function getRouteKeyName()
+    // {
+    //     return 'component';
+    // }
 
     // public function blocks()
     // {
