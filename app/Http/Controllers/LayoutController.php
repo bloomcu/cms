@@ -41,8 +41,7 @@ class LayoutController extends Controller
     public function show(Layout $layout)
     {
         return $layout
-            ->load('blocks')
-            ->load('pages');
+            ->load('blocks');
     }
 
     /**
@@ -51,22 +50,23 @@ class LayoutController extends Controller
      */
     public function update(Layout $layout, Request $request)
     {
-        // $layout->update(
-        //     $request->all()
-        // );
+        $layout->update(
+            $request->all()
+        );
 
         // return $request['blocks'];
         // $storedBlock = Block::firstWhere('uuid', 'ce7123d1-e48f-4fa1-aa00-db55bce588da');
         // return $storedBlock;
+        if ($request['blocks']) {
+            foreach($request['blocks'] as $index => $block) {
 
-        foreach($request['blocks'] as $index => $block) {
+                $storedBlock = Block::firstWhere('uuid', $block['uuid']);
 
-            $storedBlock = Block::firstWhere('uuid', $block['uuid']);
-
-            $storedBlock->update([
-                'content' => $block['content'],
-                'order' => $index
-            ]);
+                $storedBlock->update([
+                    'content' => $block['content'],
+                    'order' => $index
+                ]);
+            }
         }
 
         return $layout;
@@ -95,6 +95,8 @@ class LayoutController extends Controller
      */
     public function destroy(Layout $layout)
     {
-        return $layout->delete();
+        $layout->delete();
+
+        return $layout;
     }
 }
