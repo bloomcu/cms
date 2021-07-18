@@ -25,13 +25,11 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             CategoriesSeeder::class,
-            FrameworksSeeder::class,
-            LayoutsSeeder::class,
-            WikisSeeder::class,
             PagesSeeder::class,
             BaseBlocksSeeder::class,
             BlocksSeeder::class,
-            ContentsSeeder::class
+            FrameworksSeeder::class,
+            WikisSeeder::class,
         ]);
 
     }

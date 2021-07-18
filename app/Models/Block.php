@@ -20,18 +20,23 @@ class Block extends Model
         return 'uuid';
     }
 
+    public function page()
+    {
+        return $this->belongsTo('App\Models\Page');
+    }
+
     // public function baseBlock()
     // {
     //     return $this->belongsTo('App\Models\BaseBlock');
     // }
 
-    public function layout()
-    {
-        return $this->belongsTo('App\Models\Layout');
-    }
+    // public function layout()
+    // {
+    //     return $this->belongsTo('App\Models\Layout');
+    // }
 
-    public function contents()
-    {
-        return $this->hasMany('App\Models\Content');
-    }
+    // public function contents()
+    // {
+    //     return $this->hasMany('App\Models\Content');
+    // }
 }

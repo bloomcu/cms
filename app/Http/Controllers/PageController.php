@@ -41,17 +41,16 @@ class PageController extends Controller
      */
     public function show(Company $company, Page $page)
     {
+        return $page
+            ->load('category')
+            ->load('blocks')
+            ->load('wiki');
+
         // return $page
         //     ->load('category')
         //     ->load('layout')
         //     ->load('layout.blocks')
-        //     ->load('layout.blocks.contents');
-
-        return $page
-            ->load('category')
-            ->load('layout')
-            ->load('layout.blocks')
-            ->load('wiki');
+        //     ->load('wiki');
 
         // return $page
         //     ->load('category')

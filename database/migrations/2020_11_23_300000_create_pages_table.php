@@ -19,7 +19,6 @@ class CreatePagesTable extends Migration
 
             // Foreign Relationships
             $table->foreignId('company_id');
-            $table->foreignId('layout_id')->nullable();
             $table->foreignId('framework_id')->nullable();
             $table->foreignId('wiki_id')->nullable();
             $table->foreignId('category_id')->nullable();

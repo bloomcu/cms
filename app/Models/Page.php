@@ -19,6 +19,16 @@ class Page extends Model
         return $this->belongsTo('App\Models\Company');
     }
 
+    public function framework()
+    {
+        return $this->belongsTo('App\Models\Framework');
+    }
+
+    public function wiki()
+    {
+        return $this->belongsTo('App\Models\Wiki');
+    }
+
     public function category()
     {
         return $this->belongsTo('App\Models\Category');
@@ -29,20 +39,11 @@ class Page extends Model
         return $this->belongsTo('App\Models\Category');
     }
 
-    public function layout()
+    public function blocks()
     {
-        return $this->belongsTo('App\Models\Layout');
+        return $this->hasMany('App\Models\Block')
+            ->orderBy('order');
     }
-
-    public function wiki()
-    {
-        return $this->belongsTo('App\Models\Wiki');
-    }
-
-    // public function contents()
-    // {
-    //     return $this->hasMany('App\Models\Content');
-    // }
 
     public function scopeFilter(Builder $builder, $request, array $filters = [])
     {
