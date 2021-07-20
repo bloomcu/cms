@@ -7,6 +7,7 @@ use App\Http\Controllers\TypeController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\PageBlueprintController;
 use App\Http\Controllers\LayoutController;
 use App\Http\Controllers\BlockController;
 use App\Http\Controllers\BaseBlockController;
@@ -35,6 +36,7 @@ Route::resource('types', TypeController::class);
 Route::resource('categories', CategoryController::class);
 Route::resource('companies', CompanyController::class);
 Route::resource('companies.pages', PageController::class);
+Route::resource('companies.page-blueprints', PageBlueprintController::class);
 
 Route::resource('layouts', LayoutController::class);
 // Route::resource('layouts/replicate', LayoutController::class);

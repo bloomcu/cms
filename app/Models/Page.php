@@ -14,6 +14,8 @@ class Page extends Model
 
     protected $guarded = ['id'];
 
+    // protected $casts = ['is_blueprint' => 'boolean'];
+
     public function company()
     {
         return $this->belongsTo('App\Models\Company');

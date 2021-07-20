@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
-use App\Models\Page;
 use App\Models\Company;
+use App\Models\Page;
+use App\Models\Block;
 // use App\Http\Requests\PageStoreRequest;
 
 class PageController extends Controller
@@ -17,6 +19,7 @@ class PageController extends Controller
     public function index(Company $company, Request $request)
     {
         return Page::where('company_id', $company->id)
+            ->where('is_blueprint', false)
             ->with('category:id,title')
             ->with('type:id,title')
             ->filter($request)
@@ -29,10 +32,25 @@ class PageController extends Controller
      */
     public function store(Company $company, Request $request)
     {
-        return $company->pages()->create(
+        $page = $company->pages()->create(
             // $request->validated()
-            $request->all()
+            $request['page']
         );
+
+        if ($request['blocks']) {
+            foreach($request['blocks'] as $index => $block) {
+                Block::create([
+                    'uuid'      => (string) Str::uuid(),
+                    'title'     => $block['title'],
+                    'component' => $block['component'],
+                    'page_id'   => $page->id,
+                    'order'     => $index,
+                    'content'   => $block['content']
+                ]);
+            }
+        }
+
+        return $page;
     }
 
     /**
@@ -71,6 +89,18 @@ class PageController extends Controller
             // $request->validated()
             $request->all()
         );
+
+        if ($request['blocks']) {
+            foreach($request['blocks'] as $index => $block) {
+
+                $storedBlock = Block::firstWhere('uuid', $block['uuid']);
+
+                $storedBlock->update([
+                    'content' => $block['content'],
+                    'order' => $index
+                ]);
+            }
+        }
 
         return $page;
     }

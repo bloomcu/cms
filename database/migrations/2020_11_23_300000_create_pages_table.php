@@ -16,6 +16,7 @@ class CreatePagesTable extends Migration
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->boolean('is_blueprint')->default(0);
 
             // Foreign Relationships
             $table->foreignId('company_id');

@@ -1,39 +1,14 @@
-id,title,company_id,framework_id,wiki_id,category_id,type_id
-1,Homepage,1,,1,71,75
-2,Free Checking,1,,2,4,75
-3,Interest Checking,1,,3,4,75
-4,Youth Checking (Age 1-17),1,,,4,75
-5,Senior Checking (Age 55+),1,,,4,75
-6,Regular Savings,1,,,6,75
-7,Custom Savings,1,,,6,75
-8,Youth Savings (Age 1-17),1,,,6,75
-9,Money Market,1,,,7,75
-10,Certificate,1,,,8,75
-11,Traditional IRA,1,,,9,75
-12,Roth IRA,1,,,9,75
-13,Auto Loan,1,,,15,75
-14,Recreational Vehicle Loan,1,,,15,75
-15,Mortgage,1,,,17,75
-16,Home Equity Loan,1,,,18,75
-17,Home Equity Line of Credit,1,,,18,75
-18,Personal Loan,1,,,19,75
-19,Personal Line of Credit,1,,,19,75
-20,Visa Signature,1,,,22,75
-21,Visa Platinum,1,,,22,75
-22,Debit Card,1,,,23,75
-23,Prepaid Giftcard,1,,,24,75
-24,Business Free Checking,1,,,39,75
-25,Business Regular Savings,1,,,40,75
-26,SBA Loan,1,,,42,75
-27,Business Line of Credit,1,,,43,75
-28,Business Vehicle Loan,1,,,44,75
-29,Business Real Estate Loan,1,,,45,75
-30,Business Visa,1,,,47,75
-31,Business Debit Card,1,,,48,75
-32,Contact Us,1,,,60,75
-33,Branches & ATMs,1,,,60,75
-34,About Us,1,,,59,75
-35,What Makes Us Different,1,,,59,75
-36,History,1,,,59,75
-37,Careers,1,,,67,75
-38,Help Center,1,,,68,75
+id,title,is_blueprint,company_id,framework_id,wiki_id,category_id,type_id
+1,Blank Page,1,1,,,87,75
+2,Homepage,1,1,,1,71,75
+3,Free Checking Blueprint - Before-After-Bridge,1,1,3,2,4,75
+4,Interest Checking,1,1,,3,4,75
+5,Regular Savings,1,1,,,6,75
+6,Money Market,1,1,,,7,75
+7,Auto Loan,1,1,,,15,75
+8,Mortgage,1,1,,,17,75
+9,Credit Card,1,1,,,22,75
+10,Business Free Checking,1,1,,,39,75
+11,Business Regular Savings,1,1,,,40,75
+12,Contact Us,1,1,,,60,75
+13,About Us,1,1,,,59,75
