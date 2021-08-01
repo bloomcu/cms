@@ -23,6 +23,7 @@ class PageController extends Controller
             ->with('category:id,title')
             ->with('type:id,title')
             ->filter($request)
+            ->orderBy('created_at', 'DESC')
             ->get();
     }
 
@@ -90,6 +91,7 @@ class PageController extends Controller
             $request->all()
         );
 
+        // TODO: Try using Sync for this
         if ($request['blocks']) {
             foreach($request['blocks'] as $index => $block) {
 
