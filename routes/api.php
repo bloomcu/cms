@@ -7,6 +7,7 @@ use App\Http\Controllers\TypeController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\ReplicatePageController;
 use App\Http\Controllers\PageBlueprintController;
 use App\Http\Controllers\LayoutController;
 use App\Http\Controllers\BlockController;
@@ -25,43 +26,20 @@ use App\Http\Controllers\WikiController;
 |
 */
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
-//
-
-Route::put('/companies/{company}/pages-update-batch', [PageController::class, 'updateBatch']);
-
-Route::resource('types', TypeController::class);
-Route::resource('categories', CategoryController::class);
 Route::resource('companies', CompanyController::class);
 Route::resource('companies.pages', PageController::class);
+Route::resource('companies.pages.replicate', ReplicatePageController::class, ['only' => [
+    'store'
+]]);
 Route::resource('companies.page-blueprints', PageBlueprintController::class);
 
-Route::resource('layouts', LayoutController::class);
-// Route::resource('layouts/replicate', LayoutController::class);
-Route::get('/layouts/replicate/{layout}', 'App\Http\Controllers\LayoutReplicateController@replicate');
+Route::resource('types', TypeController::class);
+
+Route::resource('categories', CategoryController::class);
 
 Route::resource('frameworks', FrameworkController::class);
-Route::resource('wikis', WikiController::class);
 
-// Route::get('/layouts', function () {
-//     return Layout::all();
-// });
-// Route::get('/layouts/{id}', function ($id) {
-//     return Layout::find($id)
-//         ->load('blocks');
-// });
+Route::resource('wikis', WikiController::class);
 
 Route::resource('base-blocks', BaseBlockController::class);
 Route::resource('blocks', BlockController::class);
-// Route::get('/blocks', function () {
-//     return Block::all();
-// });
-// Route::get('/blocks/{id}', function ($id) {
-//     return Block::find($id)
-//         ->load('contents');
-// });
-
-// Route::get('/layouts/{layout}/blocks', 'App\Http\Controllers\LayoutBlocksController@index');
-// Route::put('/layouts/{layout}/blocks', 'App\Http\Controllers\LayoutBlocksController@update');

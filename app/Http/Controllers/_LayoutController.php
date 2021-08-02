@@ -54,9 +54,6 @@ class LayoutController extends Controller
             $request->all()
         );
 
-        // return $request['blocks'];
-        // $storedBlock = Block::firstWhere('uuid', 'ce7123d1-e48f-4fa1-aa00-db55bce588da');
-        // return $storedBlock;
         if ($request['blocks']) {
             foreach($request['blocks'] as $index => $block) {
 
@@ -71,23 +68,6 @@ class LayoutController extends Controller
 
         return $layout;
     }
-
-    // public function updateBatch(Company $company, Request $request)
-    // {
-    //     if ($request->category_id) {
-    //         return Page::whereIn('id', $request->page_ids)
-    //             ->update([
-    //                 'category_id' => $request->category_id
-    //             ]);
-    //     }
-    //
-    //     if ($request->type_id) {
-    //         return Page::whereIn('id', $request->page_ids)
-    //             ->update([
-    //                 'type_id' => $request->type_id
-    //             ]);
-    //     }
-    // }
 
     /**
      * Remove the specified resource from storage.
