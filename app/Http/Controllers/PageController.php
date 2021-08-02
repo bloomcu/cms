@@ -22,6 +22,11 @@ class PageController extends Controller
             ->where('is_blueprint', false)
             ->with('category:id,title')
             ->with('type:id,title')
+            //TODO: After creating dedicated replicate controller
+            //TODO: We don't need with('blocks')
+            //TODO: Becauase it just takes the page id to be replicated
+            //TODO: E.g., create(page_id, is_blueprint)
+            ->with('blocks')
             ->filter($request)
             ->orderBy('created_at', 'DESC')
             ->get();
@@ -33,13 +38,19 @@ class PageController extends Controller
      */
     public function store(Company $company, Request $request)
     {
-        $page = $company->pages()->create(
+        // TODO: Create a dedicated ReplicatePageController.php
+        // that accepts page_id, is_blueprint parameters
+        $page = $company->pages()->create([
             // $request->validated()
-            $request['page']
-        );
+            'title'        => $request['title'],
+            'category_id'  => $request['category_id'],
+            'company_id'   => $request['company_id'],
+            'is_blueprint' => $request['is_blueprint'],
+            'type_id'      => $request['type_id']
+        ]);
 
-        if ($request['blocks']) {
-            foreach($request['blocks'] as $index => $block) {
+        if ( $request['blocks'] ) {
+            foreach( $request['blocks'] as $index => $block ) {
                 Block::create([
                     'uuid'      => (string) Str::uuid(),
                     'title'     => $block['title'],
