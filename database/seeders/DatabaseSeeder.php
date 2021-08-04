@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
             BlocksSeeder::class,
             FrameworksSeeder::class,
             WikisSeeder::class,
+            FilesSeeder::class
         ]);
 
     }

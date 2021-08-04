@@ -14,6 +14,7 @@ use App\Http\Controllers\BlockController;
 use App\Http\Controllers\BaseBlockController;
 use App\Http\Controllers\FrameworkController;
 use App\Http\Controllers\WikiController;
+use App\Http\Controllers\FileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,8 @@ Route::resource('companies.pages', PageController::class);
 Route::resource('companies.pages.replicate', ReplicatePageController::class, ['only' => [
     'store'
 ]]);
+Route::resource('companies.files', FileController::class);
+
 Route::resource('companies.page-blueprints', PageBlueprintController::class);
 
 Route::resource('types', TypeController::class);

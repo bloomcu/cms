@@ -29,4 +29,9 @@ class Company extends Model
     {
         return $this->hasMany('App\Models\Page');
     }
+
+    public function files()
+    {
+        return $this->hasMany('App\Models\File');
+    }
 }
