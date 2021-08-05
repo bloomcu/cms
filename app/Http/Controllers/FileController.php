@@ -16,7 +16,10 @@ class FileController extends Controller
      */
     public function index(Company $company, Request $request)
     {
-        return FileResource::collection($company->files);
+        return FileResource::collection(
+            $company->files()
+                ->orderBy('created_at', 'DESC')->get()
+        );
     }
 
     /**
