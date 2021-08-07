@@ -14,6 +14,8 @@ use App\Http\Controllers\BlockController;
 use App\Http\Controllers\BaseBlockController;
 use App\Http\Controllers\FrameworkController;
 use App\Http\Controllers\WikiController;
+use App\Http\Controllers\FileController;
+use App\Http\Controllers\FileSignUploadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,10 +29,13 @@ use App\Http\Controllers\WikiController;
 */
 
 Route::resource('companies', CompanyController::class);
+
 Route::resource('companies.pages', PageController::class);
-Route::resource('companies.pages.replicate', ReplicatePageController::class, ['only' => [
-    'store'
-]]);
+Route::resource('companies.pages.replicate', ReplicatePageController::class, ['only' => ['store']]);
+
+Route::resource('companies.files', FileController::class);
+Route::post('/companies/{company}/files/sign', [FileSignUploadController::class, 'sign']);
+
 Route::resource('companies.page-blueprints', PageBlueprintController::class);
 
 Route::resource('types', TypeController::class);
