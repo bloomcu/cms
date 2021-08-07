@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Storage;
 
 use App\Models\Company;
 
-use Aws\S3\PostObjectv4;
+use Aws\S3\PostObjectV4;
 
 class FileSignUploadController extends Controller
 {
@@ -21,7 +21,7 @@ class FileSignUploadController extends Controller
         $filename = md5($request->name . microtime()) . '.' . $request->extension;
 
         // Create a signed upload request for AWS S3
-        $object = new PostObjectv4(
+        $object = new PostObjectV4(
             // S3 Client interface
             Storage::disk('s3')->getAdapter()->getClient(),
 
