@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-use App\Models\Company;
+use App\Models\Organization;
 use App\Models\Page;
 use App\Models\Block;
 
@@ -17,7 +17,7 @@ class ReplicatePageController extends Controller
      * Replicate a page
      *
      */
-    public function store(Company $company, Page $page, Request $request)
+    public function store(Organization $organization, Page $page, Request $request)
     {
         // Replicate page
         $appendTitle = $request['is_blueprint'] ? ' Blueprint' : ' Copy';

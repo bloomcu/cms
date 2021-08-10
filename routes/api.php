@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ReplicatePageController;
 use App\Http\Controllers\PageBlueprintController;
@@ -26,12 +26,12 @@ use App\Http\Controllers\WikiController;
 |
 */
 
-Route::resource('companies', CompanyController::class);
-Route::resource('companies.pages', PageController::class);
-Route::resource('companies.pages.replicate', ReplicatePageController::class, ['only' => [
+Route::resource('organizations', OrganizationController::class);
+Route::resource('organizations.pages', PageController::class);
+Route::resource('organizations.pages.replicate', ReplicatePageController::class, ['only' => [
     'store'
 ]]);
-Route::resource('companies.page-blueprints', PageBlueprintController::class);
+Route::resource('organizations.page-blueprints', PageBlueprintController::class);
 
 Route::resource('types', TypeController::class);
 

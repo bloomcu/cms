@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Controllers\PageController;
 
-use App\Models\Company;
+use App\Models\Organization;
 use App\Models\Page;
 use App\Models\Block;
 
@@ -16,9 +16,9 @@ class PageBlueprintController extends PageController
      * Display a listing of the resource.
      *
      */
-    public function index(Company $company, Request $request)
+    public function index(Organization $organization, Request $request)
     {
-        return Page::where('company_id', $company->id)
+        return Page::where('organization_id', $organization->id)
             ->where('is_blueprint', true)
             ->with('category:id,title')
             ->with('type:id,title')

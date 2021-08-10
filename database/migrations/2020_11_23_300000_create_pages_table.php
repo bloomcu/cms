@@ -19,7 +19,7 @@ class CreatePagesTable extends Migration
             $table->boolean('is_blueprint')->default(0);
 
             // Foreign Relationships
-            $table->foreignId('company_id');
+            $table->foreignId('organization_id');
             $table->foreignId('framework_id')->nullable();
             $table->foreignId('wiki_id')->nullable();
             $table->foreignId('category_id')->nullable();
@@ -28,7 +28,7 @@ class CreatePagesTable extends Migration
             $table->timestamps();
 
             // Foreign constraints
-            // $table->foreign('company_id')->references('id')->on('companies');
+            // $table->foreign('organization_id')->references('id')->on('organizations');
             // $table->foreign('blueprint_id')->references('id')->on('pages');
             // $table->foreign('layout_id')->references('id')->on('layouts');
             // $table->string('framework_id')->references('id')->on('frameworks');

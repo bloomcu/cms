@@ -16,9 +16,9 @@ class Page extends Model
 
     // protected $casts = ['is_blueprint' => 'boolean'];
 
-    public function company()
+    public function organization()
     {
-        return $this->belongsTo('App\Models\Company');
+        return $this->belongsTo('App\Models\Organization');
     }
 
     public function framework()
