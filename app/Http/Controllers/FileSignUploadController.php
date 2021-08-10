@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-use App\Models\Company;
+use App\Models\Organization;
 
 use Aws\S3\PostObjectV4;
 
@@ -15,7 +15,7 @@ class FileSignUploadController extends Controller
      * Create a signed upload request
      *
      */
-    public function sign(Company $company, Request $request)
+    public function sign(Organization $organization, Request $request)
     {
         // Generate a filename
         $filename = md5($request->name . microtime()) . '.' . $request->extension;

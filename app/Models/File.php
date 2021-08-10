@@ -22,9 +22,9 @@ class File extends Model
 
     protected $guarded = ['id'];
 
-    // public function company()
+    // public function organization()
     // {
-    //     return $this->belongsTo('App\Models\Company');
+    //     return $this->belongsTo('App\Models\Organization');
     // }
 
     // public function user()

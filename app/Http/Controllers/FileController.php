@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Models\Company;
+use App\Models\Organization;
 
 use App\Http\Resources\FileResource;
 
@@ -14,10 +14,10 @@ class FileController extends Controller
      * List files.
      *
      */
-    public function index(Company $company, Request $request)
+    public function index(Organization $organization, Request $request)
     {
         return FileResource::collection(
-            $company->files()
+            $organization->files()
                 ->orderBy('created_at', 'DESC')->get()
         );
     }
@@ -26,9 +26,9 @@ class FileController extends Controller
      * Store a file.
      *
      */
-    public function store(Company $company, Request $request)
+    public function store(Organization $organization, Request $request)
     {
-        $file = $company->files()->firstOrCreate(
+        $file = $organization->files()->firstOrCreate(
             $request->only('path'),
             $request->only(['name', 'size'])
         );

@@ -35,6 +35,9 @@ Route::resource('organizations.pages.replicate', ReplicatePageController::class,
 ]]);
 Route::resource('organizations.page-blueprints', PageBlueprintController::class);
 
+Route::resource('organizations.files', FileController::class);
+Route::post('organizations/{organization}/files/sign', [FileSignUploadController::class, 'sign']);
+
 Route::resource('types', TypeController::class);
 
 Route::resource('categories', CategoryController::class);
