@@ -41,9 +41,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function companies()
+    public function organizations()
     {
-        return $this->belongsToMany('App\Models\Company');
+        return $this->belongsToMany('App\Models\Organization');
     }
 
     public function files()

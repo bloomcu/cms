@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-use App\Models\Company;
+use App\Models\Organization;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,8 +15,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // Seed 1 company
-        $company = Company::factory()
+        // Seed 1 Organization
+        $organization = Organization::factory()
             ->state([
                 'name' => 'Redwood',
                 'slug' => 'redwood',

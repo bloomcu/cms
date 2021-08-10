@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-use App\Models\Company;
-use App\Actions\CreateCompanyAction;
+use App\Models\Organization;
+use App\Actions\CreateOrganizationAction;
 
-class CompanyController extends Controller
+class OrganizationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,29 +16,29 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        return Company::all();
+        return Organization::all();
     }
 
     /**
      * Store a newly created resource in storage.
      *
      */
-    public function store(Request $request, CreateCompanyAction $createCompanyAction)
+    public function store(Request $request, CreateOrganizationAction $createOrganizationAction)
     {
-        // $company = $action->execute($request->all());
-        $company = $createCompanyAction->execute(
+        // $organization = $action->execute($request->all());
+        $organization = $createOrganizationAction->execute(
             ['name' => 'BloomCU']
         );
-        return $company;
+        return $organization;
     }
 
     /**
      * Display the specified resource.
      *
      */
-    public function show(Company $company)
+    public function show(Organization $organization)
     {
-        return $company;
+        return $organization;
     }
 
     /**
