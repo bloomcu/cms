@@ -16,7 +16,7 @@ class CreateFilesTable extends Migration
         Schema::create('files', function (Blueprint $table) {
             $table->id();
             $table->uuid('uuid')->unique();
-            $table->foreignId('company_id')->constrained();
+            $table->foreignId('organization_id')->constrained();
             // $table->foreignId('user_id')->constrained();
             $table->string('name');
             $table->string('path');

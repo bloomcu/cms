@@ -1,4 +1,4 @@
-id,uuid,company_id,name,path,size
+id,uuid,files_id,name,path,size
 1,8800e31c-2d51-413f-be3a-41b908500a6c,1,photo-1.jpg,files/photo-1.jpg,50000
 2,fcc3449a-9930-496e-94a5-a4544a504e58,1,photo-2.jpg,files/photo-2.jpg,30000
 3,f624ec38-b32e-45ca-b7f0-ed04df91a657,1,photo-3.jpg,files/photo-3.jpg,90000

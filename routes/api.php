@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ReplicatePageController;
 use App\Http\Controllers\PageBlueprintController;
@@ -28,15 +28,15 @@ use App\Http\Controllers\FileSignUploadController;
 |
 */
 
-Route::resource('companies', CompanyController::class);
+Route::resource('organizations', OrganizationController::class);
+Route::resource('organizations.pages', PageController::class);
+Route::resource('organizations.pages.replicate', ReplicatePageController::class, ['only' => [
+    'store'
+]]);
+Route::resource('organizations.page-blueprints', PageBlueprintController::class);
 
-Route::resource('companies.pages', PageController::class);
-Route::resource('companies.pages.replicate', ReplicatePageController::class, ['only' => ['store']]);
-
-Route::resource('companies.files', FileController::class);
-Route::post('/companies/{company}/files/sign', [FileSignUploadController::class, 'sign']);
-
-Route::resource('companies.page-blueprints', PageBlueprintController::class);
+Route::resource('organizations.files', FileController::class);
+Route::post('organizations/{organization}/files/sign', [FileSignUploadController::class, 'sign']);
 
 Route::resource('types', TypeController::class);
 

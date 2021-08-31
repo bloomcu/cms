@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "aws/aws-sdk-php": "^3.188",
         "fideloper/proxy": "^4.4",
         "flynsarmy/csv-seeder": "2.*",
         "fruitcake/laravel-cors": "^2.0",
