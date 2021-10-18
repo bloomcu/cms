@@ -4,8 +4,6 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-use App\Models\Organization;
-
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -15,15 +13,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // Seed 1 Organization
-        $organization = Organization::factory()
-            ->state([
-                'name' => 'Redwood',
-                'slug' => 'redwood',
-                'database' => 'cms_redwood'
-            ])->create();
-
         $this->call([
+            OrganizationsSeeder::class,
             CategoriesSeeder::class,
             PagesSeeder::class,
             BaseBlocksSeeder::class,
@@ -32,6 +23,5 @@ class DatabaseSeeder extends Seeder
             WikisSeeder::class,
             FilesSeeder::class
         ]);
-
     }
 }

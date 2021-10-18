@@ -2,8 +2,9 @@
 
 namespace Database\Factories;
 
-use App\Models\File;
 use Illuminate\Database\Eloquent\Factories\Factory;
+
+use Cms\Domain\Files\File;
 
 class FileFactory extends Factory
 {

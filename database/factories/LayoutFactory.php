@@ -2,8 +2,9 @@
 
 namespace Database\Factories;
 
-use App\Models\Layout;
 use Illuminate\Database\Eloquent\Factories\Factory;
+
+use Cms\Domain\Layouts\Layout;
 
 class LayoutFactory extends Factory
 {

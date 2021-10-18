@@ -23,7 +23,7 @@ class CreatePagesTable extends Migration
             $table->foreignId('framework_id')->nullable();
             $table->foreignId('wiki_id')->nullable();
             $table->foreignId('category_id')->nullable();
-            $table->foreignId('type_id')->nullable();
+            // $table->foreignId('type_id')->nullable();
 
             $table->timestamps();
 

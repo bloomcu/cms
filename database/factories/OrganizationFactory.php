@@ -2,9 +2,10 @@
 
 namespace Database\Factories;
 
-use App\Models\Organization;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
+
+use Cms\Domain\Organizations\Organization;
 
 class OrganizationFactory extends Factory
 {

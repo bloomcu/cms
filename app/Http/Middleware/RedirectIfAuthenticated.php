@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace Cms\Http\Middleware;
 
-use App\Providers\RouteServiceProvider;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
+use Cms\App\Providers\RouteServiceProvider;
 
 class RedirectIfAuthenticated
 {

@@ -2,8 +2,9 @@
 
 namespace Database\Factories;
 
-use App\Models\Block;
 use Illuminate\Database\Eloquent\Factories\Factory;
+
+use Cms\Domain\Blocks\Block;
 
 class BlockFactory extends Factory
 {

@@ -3,19 +3,18 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\TypeController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\OrganizationController;
-use App\Http\Controllers\PageController;
-use App\Http\Controllers\ReplicatePageController;
-use App\Http\Controllers\PageBlueprintController;
-use App\Http\Controllers\LayoutController;
-use App\Http\Controllers\BlockController;
-use App\Http\Controllers\BaseBlockController;
-use App\Http\Controllers\FrameworkController;
-use App\Http\Controllers\WikiController;
-use App\Http\Controllers\FileController;
-use App\Http\Controllers\FileSignUploadController;
+use Categories\CategoryController;
+use Organizations\OrganizationController;
+use Pages\PageController;
+use Pages\ReplicatePageController;
+use Pages\PageBlueprintController;
+use Layouts\LayoutController;
+use Blocks\BlockController;
+use Blocks\BaseBlockController;
+use Frameworks\FrameworkController;
+use Wikis\WikiController;
+use Files\FileController;
+use Cms\Http\Files\FileSignUploadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,15 +29,11 @@ use App\Http\Controllers\FileSignUploadController;
 
 Route::resource('organizations', OrganizationController::class);
 Route::resource('organizations.pages', PageController::class);
-Route::resource('organizations.pages.replicate', ReplicatePageController::class, ['only' => [
-    'store'
-]]);
+Route::resource('organizations.pages.replicate', ReplicatePageController::class, ['only' => ['store']]);
 Route::resource('organizations.page-blueprints', PageBlueprintController::class);
 
-Route::resource('organizations.files', FileController::class);
+Route::resource('organizations.files', FileController::class, ['only' => ['index', 'store']]);
 Route::post('organizations/{organization}/files/sign', [FileSignUploadController::class, 'sign']);
-
-Route::resource('types', TypeController::class);
 
 Route::resource('categories', CategoryController::class);
 

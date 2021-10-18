@@ -2,8 +2,9 @@
 
 namespace Database\Factories;
 
-use App\Models\Page;
 use Illuminate\Database\Eloquent\Factories\Factory;
+
+use Cms\Domain\Pages\Page;
 
 class PageFactory extends Factory
 {
@@ -22,8 +23,8 @@ class PageFactory extends Factory
     public function definition()
     {
         return [
-            'organization_id' => \App\Models\Organization::factory(),
-            'layout_id' => \App\Models\Layout::factory(),
+            'organization_id' => \Cms\Domain\Organizations\Organization::factory(),
+            'layout_id' => \Cms\Domain\Layouts\Layout::factory(),
             'title' => $this->faker->catchPhrase
         ];
     }
