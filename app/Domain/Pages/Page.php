@@ -14,16 +14,14 @@ class Page extends Model
 
     protected $guarded = ['id'];
 
-    // protected $casts = ['is_blueprint' => 'boolean'];
-
     public function organization()
     {
         return $this->belongsTo('Cms\Domain\Organizations\Organization');
     }
 
-    public function framework()
+    public function layouts()
     {
-        return $this->belongsTo('Cms\Domain\Frameworks\Framework');
+        return $this->hasMany('Cms\Domain\Layouts\Layout');
     }
 
     public function wiki()
@@ -34,17 +32,6 @@ class Page extends Model
     public function category()
     {
         return $this->belongsTo('Cms\Domain\Categories\Category');
-    }
-
-    // public function type()
-    // {
-    //     return $this->belongsTo('Cms\Domain\Categories\Category');
-    // }
-
-    public function blocks()
-    {
-        return $this->hasMany('Cms\Domain\Blocks\Block')
-            ->orderBy('order');
     }
 
     public function scopeFilter(Builder $builder, $request, array $filters = [])

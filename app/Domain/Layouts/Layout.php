@@ -14,15 +14,29 @@ class Layout extends Model
 
     protected $guarded = ['id'];
 
-    public function pages()
+    public function organization()
     {
-        return $this->hasMany('Cms\Domain\Pages\Page');
+        return $this->belongsTo('Cms\Domain\Organizations\Organization');
+    }
+
+    public function page()
+    {
+        return $this->belongsTo('Cms\Domain\Pages\Page');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo('Cms\Domain\Categories\Category');
+    }
+
+    public function framework()
+    {
+        return $this->belongsTo('Cms\Domain\Frameworks\Framework');
     }
 
     public function blocks()
     {
-        return $this->hasMany('Cms\Domain\Blocks\Block')
-            ->orderBy('order');
+        return $this->hasMany('Cms\Domain\Blocks\Block')->orderBy('order');
     }
 
     public function scopeFilter(Builder $builder, $request, array $filters = [])
