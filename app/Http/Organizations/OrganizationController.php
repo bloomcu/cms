@@ -26,9 +26,14 @@ class OrganizationController extends Controller
     public function store(Request $request, CreateOrganizationAction $createOrganizationAction)
     {
         // $organization = $action->execute($request->all());
-        $organization = $createOrganizationAction->execute(
-            ['name' => 'BloomCU']
-        );
+        // $organization = $createOrganizationAction->execute(
+        //     ['name' => 'BloomCU']
+        // );
+
+        $organization = Organization::create([
+            'title' => $request['title']
+        ]);
+
         return $organization;
     }
 

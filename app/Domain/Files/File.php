@@ -7,30 +7,43 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 
+use Cms\App\Traits\HasUuid;
 // use Cms\Domain\Files\Filters\FileFilters;
 
 class File extends Model
 {
-    use HasFactory;
+    use HasFactory, hasUuid;
 
-    public static function booted()
+    // public static function booted()
+    // {
+    //     static::creating(function ($file) {
+    //         $file->uuid = Str::uuid();
+    //     });
+    // }
+
+    protected $guarded = [
+        'id'
+    ];
+
+    /**
+     * Get the organization associated with the file.
+     *
+     * @return BelongsTo
+     */
+    public function organization()
     {
-        static::creating(function ($file) {
-            $file->uuid = Str::uuid();
-        });
+        return $this->belongsTo('Cms\Domain\Organizations\Organization');
     }
 
-    protected $guarded = ['id'];
-
-    // public function organization()
-    // {
-    //     return $this->belongsTo('Cms\Domain\Organizations\Organization');
-    // }
-
-    // public function user()
-    // {
-    //     return $this->belongsTo('Cms\Domain\Users\User');
-    // }
+    /**
+     * Get the user associated with the file.
+     *
+     * @return BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo('Cms\Domain\Users\User');
+    }
 
     // public function scopeFilter(Builder $builder, $request, array $filters = [])
     // {

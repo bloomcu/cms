@@ -5,26 +5,30 @@ namespace Cms\Http\Layouts;
 use Illuminate\Http\Request;
 
 use Cms\App\Controllers\Controller;
+
+use Cms\Domain\Organizations\Organization;
 use Cms\Domain\Layouts\Layout;
 use Cms\Domain\Blocks\Block;
+
+use Cms\Http\Layouts\Resources\LayoutCollection;
+use Cms\Http\Layouts\Resources\LayoutResource;
+
 // use App\Http\Requests\LayoutStoreRequest;
 
 class LayoutController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     */
-    public function index(Request $request)
+
+    public function index(Organization $organization, Request $request)
     {
-        return Layout::filter($request)
+        $layouts = $organization->layouts()
+            ->with('category')
+            ->filter($request)
+            ->latest()
             ->get();
+
+        return new LayoutCollection($layouts);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     */
      public function store(Request $request)
      {
          $layout = Layout::create(
@@ -32,23 +36,16 @@ class LayoutController extends Controller
              $request->all()
          );
 
-         return $layout;
+         return new LayoutResource($layout);
      }
 
-    /**
-     * Display the specified resource.
-     *
-     */
-    public function show(Layout $layout)
+    public function show(Organization $organization, Layout $layout)
     {
-        return $layout
-            ->load('blocks');
+        return new LayoutResource(
+            $layout->load(['category', 'blocks'])
+        );
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     */
     public function update(Layout $layout, Request $request)
     {
         $layout->update(
@@ -67,17 +64,11 @@ class LayoutController extends Controller
             }
         }
 
-        return $layout;
+        return new LayoutResource($layout);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     */
     public function destroy(Layout $layout)
     {
         $layout->delete();
-
-        return $layout;
     }
 }

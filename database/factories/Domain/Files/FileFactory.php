@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Domain\Files;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -23,10 +23,10 @@ class FileFactory extends Factory
     public function definition()
     {
         return [
-            'uuid' => $this->faker->unique()->uuid,
-            'title' => $this->faker->word,
+            'organization_id' => \Cms\Domain\Organizations\Organization::factory(),
+            'user_id' => \Cms\Domain\Users\User::factory(),
             'name' => $this->faker->word . '.jpg',
-            'path' => 'files/abc.jpg',
+            'path' => 'files/6689921281927008bd747a13a29bd2da.jpg',
             'size' => 50000
         ];
     }

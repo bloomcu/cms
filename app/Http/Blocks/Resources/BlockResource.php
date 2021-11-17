@@ -1,10 +1,10 @@
 <?php
 
-namespace Cms\Http\Files\Resources;
+namespace Cms\Http\Blocks\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class FileResource extends JsonResource
+class BlockResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,9 +16,11 @@ class FileResource extends JsonResource
     {
         return [
             'uuid' => $this->uuid,
-            'name' => $this->name,
-            'path' => $this->path,
-            'size' => round($this->size / 125000, 2) . ' MB'
+            'title' => $this->title,
+            'component' => $this->component,
+            'layout_id' => $this->layout_id,
+            'order' => $this->order,
+            'content' => $this->content,
         ];
     }
 }

@@ -3,9 +3,11 @@
 namespace Cms\Http\Categories;
 
 use Illuminate\Http\Request;
-
 use Cms\App\Controllers\Controller;
+
 use Cms\Domain\Categories\Category;
+
+use Cms\Http\Categories\Resources\CategoryResource;
 
 class CategoryController extends Controller
 {
@@ -15,7 +17,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return Category::defaultOrder()->descendantsOf(1)->toTree();
+        return CategoryResource::collection(
+            Category::defaultOrder()->descendantsOf(1)->toTree()
+        );
     }
 
     /**

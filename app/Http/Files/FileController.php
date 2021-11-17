@@ -3,9 +3,11 @@
 namespace Cms\Http\Files;
 
 use Illuminate\Http\Request;
-
 use Cms\App\Controllers\Controller;
+
 use Cms\Domain\Organizations\Organization;
+
+use Cms\Http\Files\Resources\FileCollection;
 use Cms\Http\Files\Resources\FileResource;
 
 class FileController extends Controller
@@ -16,10 +18,11 @@ class FileController extends Controller
      */
     public function index(Organization $organization, Request $request)
     {
-        return FileResource::collection(
-            $organization->files()
-                ->orderBy('created_at', 'DESC')->get()
-        );
+        $organization = $organization->files()
+            ->latest()
+            ->get();
+
+        return new FileCollection($organization);
     }
 
     /**

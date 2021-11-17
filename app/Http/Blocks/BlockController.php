@@ -3,69 +3,53 @@
 namespace Cms\Http\Blocks;
 
 use Illuminate\Http\Request;
-
 use Cms\App\Controllers\Controller;
+
+use Cms\Domain\Organizations\Organization;
 use Cms\Domain\Blocks\Block;
+
+use Cms\Http\Blocks\Resources\BlockCollection;
+use Cms\Http\Blocks\Resources\BlockResource;
 
 // use Cms\Http\Blocks\Requests\BlockStoreRequest;
 // use Cms\Http\Blocks\Requests\BlockUpdateRequest;
 
 class BlockController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     */
-    public function index(Request $request)
+    public function index(Organization $organization)
     {
-        return Block::all();
+        return new BlockCollection(
+            Block::all()
+        );
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     */
-    public function store(Request $request)
+    public function store(Organization $organization, Request $request)
     {
         $block = Block::create(
             // $request->validated()
             $request->all()
         );
 
-        return $block;
+        return new BlockResource($block);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     */
-    public function show(Block $block)
+    public function show(Organization $organization, Block $block)
     {
-        return $block;
+        return new BlockResource($block);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     */
-    public function update(Block $block, Request $request)
+    public function update(Organization $organization, Block $block, Request $request)
     {
         $block->update(
             // $request->validated()
             $request->all()
         );
 
-        return $block;
+        return new BlockResource($block);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     */
-    public function destroy(Block $block)
+    public function destroy(Organization $organization, Block $block)
     {
         $block->delete();
-
-        return $block;
     }
 }
