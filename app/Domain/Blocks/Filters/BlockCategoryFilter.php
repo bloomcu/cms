@@ -16,7 +16,7 @@ class BlockCategoryFilter extends FilterAbstract
 
         // Return builder
         // return $builder->whereIn('category_id', $categories);
-        return $builder->where('category_id', $value);
+        return $builder->where('category_id', '=', $value);
     }
 
 }

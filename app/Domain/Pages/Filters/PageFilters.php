@@ -15,9 +15,8 @@ class PageFilters extends FiltersAbstract
 
     // Filters we want to apply to builder
     protected $filters = [
-        'is_blueprint' => PageBlueprintFilter::class,
+        // 'blueprint' => PageBlueprintFilter::class,
         'category' => PageCategoryFilter::class,
-        'type' => PageTypeFilter::class,
     ];
 
 }
