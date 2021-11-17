@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePagesTable extends Migration
+class CreateLayoutsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,23 +13,24 @@ class CreatePagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('pages', function (Blueprint $table) {
+        Schema::create('layouts', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('type');
 
             // Foreign Relationships
             $table->foreignId('organization_id');
-            $table->foreignId('wiki_id')->nullable();
+            $table->foreignId('page_id');
             $table->foreignId('category_id')->nullable();
+            $table->foreignId('framework_id')->nullable();
 
             $table->timestamps();
 
             // Foreign constraints
             // $table->foreign('organization_id')->references('id')->on('organizations');
-            // $table->foreign('blueprint_id')->references('id')->on('pages');
-            // $table->foreign('layout_id')->references('id')->on('layouts');
-            // $table->string('wiki_id')->references('id')->on('wikis');
+            // $table->foreign('page_id')->references('id')->on('pages');
             // $table->foreign('category_id')->references('id')->on('categories');
+            // $table->string('framework_id')->references('id')->on('frameworks');
         });
     }
 
@@ -40,6 +41,6 @@ class CreatePagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pages');
+        Schema::dropIfExists('layouts');
     }
 }

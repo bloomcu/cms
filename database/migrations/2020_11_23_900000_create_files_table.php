@@ -17,7 +17,7 @@ class CreateFilesTable extends Migration
             $table->id();
             $table->uuid('uuid')->unique();
             $table->foreignId('organization_id')->constrained();
-            // $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained();
             $table->string('name');
             $table->string('path');
             $table->unsignedBigInteger('size');

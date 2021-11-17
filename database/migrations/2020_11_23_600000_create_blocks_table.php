@@ -17,14 +17,15 @@ class CreateBlocksTable extends Migration
             $table->id();
             $table->uuid('uuid');
             $table->string('title');
+            $table->string('type');
             $table->string('component');
-            $table->foreignId('page_id');
+            $table->foreignId('layout_id');
             $table->integer('order')->nullable();
             $table->json('content')->nullable();
             $table->timestamps();
 
             // Foreign constraints
-            $table->foreign('page_id')->references('id')->on('pages')->onDelete('cascade');
+            $table->foreign('layout_id')->references('id')->on('layouts')->onDelete('cascade');
         });
     }
 
