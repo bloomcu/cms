@@ -5,6 +5,8 @@ namespace Cms\Domain\Blocks;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+use Spatie\Translatable\HasTranslations;
+
 use Cms\App\Traits\HasUuid;
 
 /**
@@ -12,10 +14,14 @@ use Cms\App\Traits\HasUuid;
  */
 class Block extends Model
 {
-    use HasFactory, HasUuid;
+    use HasFactory, HasUuid, HasTranslations;
 
     protected $guarded = [
         'id'
+    ];
+
+    public $translatable = [
+        'content'
     ];
 
     protected $casts = [

@@ -16,6 +16,12 @@ use Cms\Http\Blocks\Resources\BlockResource;
 
 class BlockController extends Controller
 {
+    public function __construct(Request $request)
+    {
+        $locale = $request['locale'];
+        $this->middleware("setLocale:$locale");
+    }
+
     public function index(Organization $organization)
     {
         return new BlockCollection(
