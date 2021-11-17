@@ -1,0 +1,4 @@
+{
+    "intelephense.completion.triggerParameterHints": false,
+    "editor.matchBrackets": "never"
+}
