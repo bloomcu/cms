@@ -2,16 +2,12 @@
 
 namespace Database\Seeders;
 
-use Flynsarmy\CsvSeeder\CsvSeeder;
+use Illuminate\Database\Seeder;
 
-class OrganizationsSeeder extends CsvSeeder
+use Cms\Domain\Organizations\Organization;
+
+class OrganizationsSeeder extends Seeder
 {
-    public function __construct()
-    {
-        $this->table = 'organizations';
-		$this->filename = base_path().'/database/seeds/organizations.csv';
-    }
-
     /**
      * Run the database seeds.
      *
@@ -19,6 +15,6 @@ class OrganizationsSeeder extends CsvSeeder
      */
     public function run()
     {
-        parent::run();
+        Organization::factory()->count(1)->state(['title' => 'BloomCU'])->create();
     }
 }

@@ -2,16 +2,12 @@
 
 namespace Database\Seeders;
 
-use Flynsarmy\CsvSeeder\CsvSeeder;
+use Illuminate\Database\Seeder;
 
-class FrameworksSeeder extends CsvSeeder
+use Cms\Domain\Frameworks\Framework;
+
+class FrameworksSeeder extends Seeder
 {
-    public function __construct()
-    {
-        $this->table = 'frameworks';
-		$this->filename = base_path().'/database/seeds/frameworks.csv';
-    }
-
     /**
      * Run the database seeds.
      *
@@ -19,6 +15,6 @@ class FrameworksSeeder extends CsvSeeder
      */
     public function run()
     {
-        parent::run();
+        Framework::factory()->count(3)->create();
     }
 }

@@ -1,19 +1,19 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Domain\Blocks;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-use Cms\Domain\Pages\Page;
+use Cms\Domain\Blocks\Block;
 
-class PageFactory extends Factory
+class BlockFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Page::class;
+    protected $model = Block::class;
 
     /**
      * Define the model's default state.
@@ -23,9 +23,12 @@ class PageFactory extends Factory
     public function definition()
     {
         return [
-            'organization_id' => \Cms\Domain\Organizations\Organization::factory(),
+            'title' => $this->faker->company,
+            'type' => $this->faker->word,
+            'component' => $this->faker->word,
             'layout_id' => \Cms\Domain\Layouts\Layout::factory(),
-            'title' => $this->faker->catchPhrase
+            'order' => $this->faker->randomDigit,
+            // 'content' =>
         ];
     }
 }

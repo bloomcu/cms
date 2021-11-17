@@ -2,16 +2,15 @@
 
 namespace Database\Seeders;
 
-use Flynsarmy\CsvSeeder\CsvSeeder;
+use Illuminate\Database\Seeder;
 
-class PagesSeeder extends CsvSeeder
+use Cms\Domain\Pages\Page;
+use Cms\Domain\Layouts\Layout;
+use Cms\Domain\Blocks\Block;
+use Cms\Domain\Organizations\Organization;
+
+class PagesSeeder extends Seeder
 {
-    public function __construct()
-    {
-        $this->table = 'pages';
-		$this->filename = base_path().'/database/seeds/pages.csv';
-    }
-
     /**
      * Run the database seeds.
      *
@@ -19,6 +18,16 @@ class PagesSeeder extends CsvSeeder
      */
     public function run()
     {
-        parent::run();
+        $pages = ['Homepage', 'About', 'Contact'];
+
+        foreach ($pages as $page) {
+            Page::factory()->state([
+                'title' => $page,
+                'organization_id' => 1
+            ])
+            ->has(Layout::factory()->state(['organization_id' => 1])
+                ->has(Block::factory()->count(3)))
+            ->create();
+        }
     }
 }

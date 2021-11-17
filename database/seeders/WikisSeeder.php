@@ -2,16 +2,12 @@
 
 namespace Database\Seeders;
 
-use Flynsarmy\CsvSeeder\CsvSeeder;
+use Illuminate\Database\Seeder;
 
-class WikisSeeder extends CsvSeeder
+use Cms\Domain\Wikis\Wiki;
+
+class WikisSeeder extends Seeder
 {
-    public function __construct()
-    {
-        $this->table = 'wikis';
-		$this->filename = base_path().'/database/seeds/wikis.csv';
-    }
-
     /**
      * Run the database seeds.
      *
@@ -19,6 +15,6 @@ class WikisSeeder extends CsvSeeder
      */
     public function run()
     {
-        parent::run();
+        Wiki::factory()->count(3)->create();
     }
 }

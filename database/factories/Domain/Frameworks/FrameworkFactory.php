@@ -1,19 +1,19 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Domain\Frameworks;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-use Cms\Domain\Categories\Category;
+use Cms\Domain\Frameworks\Framework;
 
-class CategoryFactory extends Factory
+class FrameworkFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Category::class;
+    protected $model = Framework::class;
 
     /**
      * Define the model's default state.
@@ -23,7 +23,7 @@ class CategoryFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->organization
+            'title' => $this->faker->word,
         ];
     }
 }

@@ -2,16 +2,12 @@
 
 namespace Database\Seeders;
 
-use Flynsarmy\CsvSeeder\CsvSeeder;
+use Illuminate\Database\Seeder;
 
-class LayoutsSeeder extends CsvSeeder
+use Cms\Domain\Layouts\Layout;
+
+class LayoutsSeeder extends Seeder
 {
-    public function __construct()
-    {
-        $this->table = 'layouts';
-		$this->filename = base_path().'/database/seeds/layouts.csv';
-    }
-
     /**
      * Run the database seeds.
      *
@@ -19,6 +15,6 @@ class LayoutsSeeder extends CsvSeeder
      */
     public function run()
     {
-        parent::run();
+        Layout::factory()->count(3)->create();
     }
 }

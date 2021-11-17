@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\Domain\Organizations;
 
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -23,14 +23,8 @@ class OrganizationFactory extends Factory
      */
     public function definition()
     {
-        $name = $this->faker->company;
-        $slug = Str::slug($name);
-
         return [
-            'name' => $name,
-            'slug' => $slug,
-            'uuid' => (string) Str::uuid(),
-            'database' => 'cms_' . $slug
+            'title' => $this->faker->company
         ];
     }
 }

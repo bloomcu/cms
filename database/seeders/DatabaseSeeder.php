@@ -15,12 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             OrganizationsSeeder::class,
-            CategoriesSeeder::class,
             PagesSeeder::class,
-            BaseBlocksSeeder::class,
-            BlocksSeeder::class,
-            FrameworksSeeder::class,
-            WikisSeeder::class,
             FilesSeeder::class
         ]);
     }

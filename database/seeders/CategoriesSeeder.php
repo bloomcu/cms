@@ -2,16 +2,12 @@
 
 namespace Database\Seeders;
 
-use Flynsarmy\CsvSeeder\CsvSeeder;
+use Illuminate\Database\Seeder;
 
-class CategoriesSeeder extends CsvSeeder
+use Cms\Domain\Categories\Category;
+
+class CategoriesSeeder extends Seeder
 {
-    public function __construct()
-    {
-        $this->table = 'categories';
-		$this->filename = base_path().'/database/seeds/categories.csv';
-    }
-
     /**
      * Run the database seeds.
      *
@@ -19,6 +15,6 @@ class CategoriesSeeder extends CsvSeeder
      */
     public function run()
     {
-        parent::run();
+        Category::factory()->count(3)->create();
     }
 }

@@ -2,16 +2,12 @@
 
 namespace Database\Seeders;
 
-use Flynsarmy\CsvSeeder\CsvSeeder;
+use Illuminate\Database\Seeder;
 
-class BlocksSeeder extends CsvSeeder
+use Cms\Domain\Blocks\Block;
+
+class BlocksSeeder extends Seeder
 {
-    public function __construct()
-    {
-        $this->table = 'blocks';
-		$this->filename = base_path().'/database/seeds/blocks.csv';
-    }
-
     /**
      * Run the database seeds.
      *
@@ -19,6 +15,6 @@ class BlocksSeeder extends CsvSeeder
      */
     public function run()
     {
-        parent::run();
+        Block::factory()->count(3)->create();
     }
 }
