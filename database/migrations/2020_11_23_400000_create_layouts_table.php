@@ -22,7 +22,6 @@ class CreateLayoutsTable extends Migration
             $table->foreignId('organization_id');
             $table->foreignId('page_id');
             $table->foreignId('category_id')->nullable();
-            $table->foreignId('framework_id')->nullable();
 
             $table->timestamps();
 
@@ -30,7 +29,6 @@ class CreateLayoutsTable extends Migration
             // $table->foreign('organization_id')->references('id')->on('organizations');
             // $table->foreign('page_id')->references('id')->on('pages');
             // $table->foreign('category_id')->references('id')->on('categories');
-            // $table->string('framework_id')->references('id')->on('frameworks');
         });
     }
 

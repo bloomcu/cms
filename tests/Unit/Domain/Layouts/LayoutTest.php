@@ -6,7 +6,6 @@ use Tests\TestCase;
 use Cms\Domain\Pages\Page;
 use Cms\Domain\Organizations\Organization;
 use Cms\Domain\Layouts\Layout;
-use Cms\Domain\Frameworks\Framework;
 use Cms\Domain\Categories\Category;
 use Cms\Domain\Blocks\Block;
 
@@ -37,16 +36,6 @@ class LayoutTest extends TestCase
         ]);
 
         $this->assertInstanceOf(Category::class, $page->category);
-    }
-
-    /** @test */
-    public function it_belongs_to_a_framework()
-    {
-        $layout = Layout::factory()->create([
-            'framework_id' => Framework::factory()->create()->id
-        ]);
-
-        $this->assertInstanceOf(Framework::class, $layout->framework);
     }
 
     /** @test */

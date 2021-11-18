@@ -24,7 +24,6 @@ class LayoutResource extends JsonResource
             'page_id' => $this->page_id,
             'organization_id' => $this->organization_id,
             'category' => new CategoryResource($this->whenLoaded('category')),
-            // 'framework' => new FrameworkResource($this->whenLoaded('framework')),
             'blocks' => new BlockCollection($this->whenLoaded('blocks'))
         ];
     }

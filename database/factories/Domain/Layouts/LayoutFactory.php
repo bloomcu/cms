@@ -30,7 +30,6 @@ class LayoutFactory extends Factory
             'organization_id' => \Cms\Domain\Organizations\Organization::factory(),
             'page_id' => \Cms\Domain\Pages\Page::factory(),
             'category_id' => \Cms\Domain\Categories\Category::factory(),
-            'framework_id' => \Cms\Domain\Frameworks\Framework::factory(),
         ];
     }
 }

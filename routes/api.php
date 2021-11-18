@@ -17,7 +17,6 @@ use Blocks\BlockController;
 // use Blocks\BlockUpdateController;
 
 use Blocks\BaseBlockController;
-use Frameworks\FrameworkController;
 use Files\FileController;
 use Cms\Http\Files\FileSignUploadController;
 
@@ -45,8 +44,6 @@ Route::resource('organizations.files', FileController::class, ['only' => ['index
 Route::post('organizations/{organization}/files/sign', [FileSignUploadController::class, 'sign']);
 
 Route::resource('categories', CategoryController::class);
-
-Route::resource('frameworks', FrameworkController::class);
 
 // Route::resource('base-blocks', BaseBlockController::class);
 
