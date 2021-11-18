@@ -29,8 +29,6 @@ class PageFactory extends Factory
                 'Contact'
             ]),
             'organization_id' => \Cms\Domain\Organizations\Organization::factory(),
-            // 'organization_id' => \Cms\Domain\Organizations\Organization::inRandomOrder()->first()->id,
-            'wiki_id' => \Cms\Domain\Wikis\Wiki::factory(),
             'category_id' => \Cms\Domain\Categories\Category::factory(),
         ];
     }

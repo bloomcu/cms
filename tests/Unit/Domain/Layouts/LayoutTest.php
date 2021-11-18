@@ -7,7 +7,6 @@ use Cms\Domain\Pages\Page;
 use Cms\Domain\Organizations\Organization;
 use Cms\Domain\Layouts\Layout;
 use Cms\Domain\Frameworks\Framework;
-use Cms\Domain\Wikis\Wiki;
 use Cms\Domain\Categories\Category;
 use Cms\Domain\Blocks\Block;
 

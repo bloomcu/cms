@@ -45,7 +45,7 @@ class PageController extends Controller
     public function show(Organization $organization, Page $page)
     {
         return new PageResource(
-            $page->load(['category', 'wiki'])
+            $page->load(['category'])
         );
     }
 

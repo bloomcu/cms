@@ -19,7 +19,6 @@ class CreatePagesTable extends Migration
 
             // Foreign Relationships
             $table->foreignId('organization_id');
-            $table->foreignId('wiki_id')->nullable();
             $table->foreignId('category_id')->nullable();
 
             $table->timestamps();
@@ -28,7 +27,6 @@ class CreatePagesTable extends Migration
             // $table->foreign('organization_id')->references('id')->on('organizations');
             // $table->foreign('blueprint_id')->references('id')->on('pages');
             // $table->foreign('layout_id')->references('id')->on('layouts');
-            // $table->string('wiki_id')->references('id')->on('wikis');
             // $table->foreign('category_id')->references('id')->on('categories');
         });
     }

@@ -24,11 +24,6 @@ class Page extends Model
         return $this->hasMany('Cms\Domain\Layouts\Layout');
     }
 
-    public function wiki()
-    {
-        return $this->belongsTo('Cms\Domain\Wikis\Wiki');
-    }
-
     public function category()
     {
         return $this->belongsTo('Cms\Domain\Categories\Category');

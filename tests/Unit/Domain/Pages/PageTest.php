@@ -7,7 +7,6 @@ use Cms\Domain\Pages\Page;
 use Cms\Domain\Organizations\Organization;
 use Cms\Domain\Layouts\Layout;
 use Cms\Domain\Categories\Category;
-use Cms\Domain\Wikis\Wiki;
 
 class PageTest extends TestCase
 {
@@ -46,15 +45,5 @@ class PageTest extends TestCase
         ]);
 
         $this->assertInstanceOf(Category::class, $page->category);
-    }
-
-    /** @test */
-    public function it_belongs_to_a_wiki()
-    {
-        $page = Page::factory()->create([
-            'wiki_id' => Wiki::factory()->create()->id
-        ]);
-
-        $this->assertInstanceOf(Wiki::class, $page->wiki);
     }
 }

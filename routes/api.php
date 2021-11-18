@@ -18,7 +18,6 @@ use Blocks\BlockController;
 
 use Blocks\BaseBlockController;
 use Frameworks\FrameworkController;
-use Wikis\WikiController;
 use Files\FileController;
 use Cms\Http\Files\FileSignUploadController;
 
@@ -48,8 +47,6 @@ Route::post('organizations/{organization}/files/sign', [FileSignUploadController
 Route::resource('categories', CategoryController::class);
 
 Route::resource('frameworks', FrameworkController::class);
-
-Route::resource('wikis', WikiController::class);
 
 // Route::resource('base-blocks', BaseBlockController::class);
 
