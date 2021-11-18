@@ -19,7 +19,7 @@ class Block extends Model
     ];
 
     protected $casts = [
-        'content' => 'json'
+        'data' => 'json'
     ];
 
     public function getRouteKeyName()

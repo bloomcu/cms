@@ -25,10 +25,13 @@ class BlockFactory extends Factory
         return [
             'title' => $this->faker->company,
             'type' => $this->faker->word,
-            'component' => $this->faker->word,
+            // 'component' => $this->faker->word,
+            'component' => $this->faker->randomElement([
+                'hero',
+                'feature'
+            ]),
             'layout_id' => \Cms\Domain\Layouts\Layout::factory(),
             'order' => $this->faker->randomDigit,
-            // 'content' =>
         ];
     }
 }
