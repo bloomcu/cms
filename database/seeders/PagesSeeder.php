@@ -26,7 +26,7 @@ class PagesSeeder extends Seeder
                 'organization_id' => 1
             ])
             ->has(Layout::factory()->state(['organization_id' => 1])
-                ->has(Block::factory()->count(3)))
+                ->has(Block::factory()->count(3)->state(['component' => 'hero'])))
             ->create();
         }
     }

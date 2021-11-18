@@ -15,6 +15,6 @@ class BlocksSeeder extends Seeder
      */
     public function run()
     {
-        Block::factory()->count(3)->create();
+        Block::factory()->count(3)->state(['component' => 'hero'])->create();
     }
 }
