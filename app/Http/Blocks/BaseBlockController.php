@@ -3,67 +3,53 @@
 namespace Cms\Http\Blocks;
 
 use Illuminate\Http\Request;
-
 use Cms\App\Controllers\Controller;
-use Cms\Domain\Blocks\BaseBlock;
+
+use Cms\Domain\Organizations\Organization;
+use Cms\Domain\Blocks\Block;
+
+use Cms\Http\Blocks\Resources\BlockCollection;
+use Cms\Http\Blocks\Resources\BlockResource;
+
+// use Cms\Http\Blocks\Requests\BlockStoreRequest;
+// use Cms\Http\Blocks\Requests\BlockUpdateRequest;
 
 class BaseBlockController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     */
-    public function index(Request $request)
+    public function index(Organization $organization)
     {
-        return BaseBlock::filter($request)
-            ->get();
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     */
-    public function store(Request $request)
-    {
-        $baseBlock = BaseBlock::create(
-            // $request->validated()
-            $request->all()
+        return new BlockCollection(
+            Block::base()->get()
         );
-
-        return $baseBlock;
     }
-
-    /**
-     * Display the specified resource.
-     *
-     */
-    public function show(BaseBlock $baseBlock)
-    {
-        return $baseBlock;
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     */
-    public function update(BaseBlock $baseBlock, Request $request)
-    {
-        $baseBlock->update(
-            // $request->validated()
-            $request->all()
-        );
-
-        return $baseBlock;
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     */
-    public function destroy(BaseBlock $baseBlock)
-    {
-        $baseBlock->delete();
-
-        return $baseBlock;
-    }
+    //
+    // public function store(Organization $organization, Request $request)
+    // {
+    //     $block = Block::create(
+    //         // $request->validated()
+    //         $request->all()
+    //     );
+    //
+    //     return new BlockResource($block);
+    // }
+    //
+    // public function show(Organization $organization, Block $block)
+    // {
+    //     return new BlockResource($block);
+    // }
+    //
+    // public function update(Organization $organization, Block $block, Request $request)
+    // {
+    //     $block->update(
+    //         // $request->validated()
+    //         $request->all()
+    //     );
+    //
+    //     return new BlockResource($block);
+    // }
+    //
+    // public function destroy(Organization $organization, Block $block)
+    // {
+    //     $block->delete();
+    // }
 }

@@ -15,6 +15,32 @@ class LayoutsSeeder extends Seeder
      */
     public function run()
     {
-        Layout::factory()->count(3)->create();
+        $layouts = [
+            [
+                'title' => 'Homepage Layout',
+                'type' => 'layout',
+                'organization_id' => 1,
+                'page_id' => 1,
+                'category_id' => 2,
+            ],
+            [
+                'title' => 'Checking Layout',
+                'type' => 'layout',
+                'organization_id' => 1,
+                'page_id' => 2,
+                'category_id' => 4,
+            ],
+            [
+                'title' => 'About Layout',
+                'type' => 'layout',
+                'organization_id' => 1,
+                'page_id' => 3,
+                'category_id' => 60,
+            ]
+        ];
+
+        foreach ($layouts as $layout) {
+            Layout::create($layout);
+        }
     }
 }

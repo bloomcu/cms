@@ -15,6 +15,8 @@ class OrganizationsSeeder extends Seeder
      */
     public function run()
     {
-        Organization::factory()->count(1)->state(['title' => 'BloomCU'])->create();
+        Organization::create([
+            'title' => 'BloomCU'
+        ]);
     }
 }

@@ -17,9 +17,10 @@ class CreateBlocksTable extends Migration
             $table->id();
             $table->uuid('uuid');
             $table->string('title');
-            $table->string('type');
             $table->string('component');
-            $table->foreignId('layout_id');
+            $table->string('type')->nullable();
+            $table->string('category_id')->nullable();
+            $table->foreignId('layout_id')->nullable();
             $table->integer('order')->nullable();
             $table->json('data')->nullable();
             $table->timestamps();

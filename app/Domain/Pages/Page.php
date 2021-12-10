@@ -24,6 +24,11 @@ class Page extends Model
         return $this->hasMany('Cms\Domain\Layouts\Layout');
     }
 
+    public function layout()
+    {
+        return $this->hasOne('Cms\Domain\Layouts\Layout')->latest();
+    }
+
     public function category()
     {
         return $this->belongsTo('Cms\Domain\Categories\Category');

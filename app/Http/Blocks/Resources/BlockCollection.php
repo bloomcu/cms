@@ -16,11 +16,6 @@ class BlockCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return [
-            'data' => BlockResource::collection($this->collection),
-            'meta' => [
-                'total' => $this->collection->count()
-            ]
-        ];
+        return BlockResource::collection($this->collection);
     }
 }

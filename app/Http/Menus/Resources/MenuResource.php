@@ -1,10 +1,12 @@
 <?php
 
-namespace Cms\Http\Categories\Resources;
+namespace Cms\Http\Menus\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CategoryResource extends JsonResource
+use Cms\Http\Menus\Resources\MenuItemResource;
+
+class MenuResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,8 +19,7 @@ class CategoryResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'children' => new CategoryCollection($this->whenLoaded('children'))
-            // 'children' => new CategoryCollection($this->children)
+            'items' => new MenuItemCollection($this->whenLoaded('items'))
         ];
     }
 }

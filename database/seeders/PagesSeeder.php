@@ -18,16 +18,38 @@ class PagesSeeder extends Seeder
      */
     public function run()
     {
-        $pages = ['Homepage', 'About', 'Contact'];
+        $pages = [
+            [
+                'title' => 'Homepage',
+                'organization_id' => 1,
+                'category_id' => 2,
+            ],
+            [
+                'title' => 'Free Checking',
+                'organization_id' => 1,
+                'category_id' => 4,
+            ],
+            [
+                'title' => 'About Us',
+                'organization_id' => 1,
+                'category_id' => 60,
+            ]
+        ];
 
         foreach ($pages as $page) {
-            Page::factory()->state([
-                'title' => $page,
-                'organization_id' => 1
-            ])
-            ->has(Layout::factory()->state(['organization_id' => 1])
-                ->has(Block::factory()->count(3)->state(['component' => 'hero'])))
-            ->create();
+            Page::create($page);
         }
+
+        // $pages = ['Homepage', 'About', 'Contact'];
+        //
+        // foreach ($pages as $page) {
+        //     Page::factory()->state([
+        //         'title' => $page,
+        //         'organization_id' => 1
+        //     ])
+        //     ->has(Layout::factory()->state(['organization_id' => 1])
+        //         ->has(Block::factory()->count(3)->state(['component' => 'hero'])))
+        //     ->create();
+        // }
     }
 }

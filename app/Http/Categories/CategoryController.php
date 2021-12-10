@@ -18,7 +18,8 @@ class CategoryController extends Controller
     public function index()
     {
         return CategoryResource::collection(
-            Category::get()->toTree()
+            // Category::whereIsRoot()->get()
+            Category::parents()->get()
         );
     }
 
@@ -28,25 +29,32 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = Category::create(
+            // $request->validated()
+            $request->all()
+        );
+
+        return new CategoryResource($category);
     }
 
     /**
      * Display the specified resource.
      *
      */
-    public function show($id)
+    public function show(Category $category)
     {
-        //
+        return CategoryResource::collection(
+            Category::descendantsAndSelf($category->id)->toTree()
+        );
     }
 
     /**
      * Update the specified resource in storage.
      *
      */
-    public function update(Request $request, $id)
+    public function update(Category $category, Request $request)
     {
-        //
+        return Category::rebuildSubtree($category, $request['children']);
     }
 
     /**

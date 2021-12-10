@@ -16,10 +16,10 @@ use Cms\Http\Blocks\Resources\BlockResource;
 
 class BlockController extends Controller
 {
-    public function index(Organization $organization)
+    public function index(Organization $organization, Request $request)
     {
         return new BlockCollection(
-            Block::all()
+            Block::base()->filter($request)->get()
         );
     }
 

@@ -33,7 +33,7 @@ class BlockTest extends TestCase
     }
 
     /** @test */
-    public function it_belongs_to_a_layout()
+    public function it_can_belong_to_a_layout()
     {
         $block = Block::factory()->create([
             'layout_id' => Layout::factory()->create()->id

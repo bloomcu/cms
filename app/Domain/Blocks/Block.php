@@ -4,7 +4,9 @@ namespace Cms\Domain\Blocks;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
+use Cms\Domain\Blocks\Filters\BlockFilters;
 use Cms\App\Traits\HasUuid;
 
 /**
@@ -35,5 +37,27 @@ class Block extends Model
     public function layout()
     {
         return $this->belongsTo('Cms\Domain\Layouts\Layout');
+    }
+
+    /**
+     * Apply filters.
+     *
+     * @return \Illuminate\Database\Query\Builder
+     */
+    public function scopeFilter(Builder $builder, $request, array $filters = [])
+    {
+        return (new BlockFilters($request))
+            ->add($filters)
+            ->filter($builder);
+    }
+
+    /**
+     * Get only base blocks.
+     *
+     * @return \Illuminate\Database\Query\Builder
+     */
+    public function scopeBase(Builder $builder)
+    {
+        $builder->whereNull('layout_id')->whereType('base');
     }
 }

@@ -45,7 +45,11 @@ class PageController extends Controller
     public function show(Organization $organization, Page $page)
     {
         return new PageResource(
-            $page->load(['category'])
+            $page->load([
+                'category',
+                'layout',
+                'layout.blocks'
+            ])
         );
     }
 
@@ -55,19 +59,6 @@ class PageController extends Controller
             // $request->validated()
             $request->all()
         );
-
-        // TODO: Try using Sync for this
-        if ($request['blocks']) {
-            foreach($request['blocks'] as $index => $block) {
-
-                $storedBlock = Block::firstWhere('uuid', $block['uuid']);
-
-                $storedBlock->update([
-                    'content' => $block['content'],
-                    'order' => $index
-                ]);
-            }
-        }
 
         return new PageResource($page);
     }

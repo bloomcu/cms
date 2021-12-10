@@ -46,28 +46,31 @@ class LayoutController extends Controller
         );
     }
 
-    public function update(Layout $layout, Request $request)
+    public function update(Organization $organization, Layout $layout, Request $request)
     {
         $layout->update(
             $request->all()
         );
 
-        if ($request['blocks']) {
-            foreach($request['blocks'] as $index => $block) {
+        // TODO: Try using Sync for this?
+        // if ($request['blocks']) {
+        //     foreach($request['blocks'] as $index => $block) {
+        //
+        //         $storedBlock = Block::firstWhere('uuid', $block['uuid']);
+        //
+        //         $storedBlock->update([
+        //             'data' => $block['data'],
+        //             'order' => $index
+        //         ]);
+        //     }
+        // }
 
-                $storedBlock = Block::firstWhere('uuid', $block['uuid']);
-
-                $storedBlock->update([
-                    'content' => $block['content'],
-                    'order' => $index
-                ]);
-            }
-        }
-
-        return new LayoutResource($layout);
+        return new LayoutResource(
+            $layout->load(['category', 'blocks'])
+        );
     }
 
-    public function destroy(Layout $layout)
+    public function destroy(Organization $organization, Layout $layout)
     {
         $layout->delete();
     }

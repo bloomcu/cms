@@ -10,11 +10,11 @@ trait HasUuid {
     {
 
         static::creating(function ($model) {
-            $model->uuid = Str::uuid();
+            // $model->uuid = Str::uuid();
 
-            // if (!$model->uuid) {
-            //     $model->uuid = Str::uuid();
-            // }
+            if (!$model->uuid) {
+                $model->uuid = Str::uuid();
+            }
         });
 
         // static::creating(function ($model) {

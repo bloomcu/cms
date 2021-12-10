@@ -4,6 +4,7 @@ namespace Cms\Domain\Categories;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 use Kalnoy\Nestedset\NodeTrait;
 
@@ -21,5 +22,15 @@ class Category extends Model
     public function pages()
     {
         return $this->hasMany('Cms\Domain\Pages\Page');
+    }
+
+    /**
+     * Get only parent (top level) categories.
+     *
+     * @return \Illuminate\Database\Query\Builder
+     */
+    public function scopeParents(Builder $builder)
+    {
+        $builder->whereNull('parent_id');
     }
 }
