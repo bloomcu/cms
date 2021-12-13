@@ -20,7 +20,10 @@ class BlockIndexTest extends TestCase
     /** @test */
     public function it_shows_a_collection_of_blocks()
     {
-        $blocks = Block::factory()->count(3)->create();
+        $blocks = Block::factory()->count(3)->create([
+            'type' => 'base',
+            'layout_id' => null
+        ]);
 
         $response = $this->get("/api/organizations/{$this->organization->slug}/blocks");
 

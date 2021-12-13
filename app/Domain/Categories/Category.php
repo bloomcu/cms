@@ -6,18 +6,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
-use Kalnoy\Nestedset\NodeTrait;
+use Staudenmeir\LaravelAdjacencyList\Eloquent\HasRecursiveRelationships;
 
 class Category extends Model
 {
-    use HasFactory, NodeTrait;
+    use HasFactory, HasRecursiveRelationships;
 
     protected $guarded = ['id'];
 
-    public function children()
-    {
-        return $this->hasMany('Cms\Domain\Categories\Category', 'parent_id');
-    }
+    // public function children()
+    // {
+    //     return $this->hasMany('Cms\Domain\Categories\Category', 'parent_id');
+    // }
 
     public function pages()
     {

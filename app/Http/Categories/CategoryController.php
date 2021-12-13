@@ -43,8 +43,11 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
+        // return $category->tree()->get()->toTree();
+
         return CategoryResource::collection(
-            Category::descendantsAndSelf($category->id)->toTree()
+            // $category->tree()->get()->toTree()
+            $category->descendantsAndSelf()->get()->toTree()
         );
     }
 
