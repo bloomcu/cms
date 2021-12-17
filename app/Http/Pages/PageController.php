@@ -32,12 +32,17 @@ class PageController extends Controller
 
     public function store(Organization $organization, Request $request)
     {
-        $page = $organization->pages()->create([
-            'title'           => $request['title'],
-            'category_id'     => $request['category_id'],
-            'organization_id' => $request['organization_id'],
-            'is_blueprint'    => $request['is_blueprint'],
-        ]);
+        // $page = $organization->pages()->create([
+        //     'title'           => $request['title'],
+        //     'is_published'    => $request['is_published'],
+        //     'category_id'     => $request['category_id'],
+        //     'organization_id' => $request['organization_id'],
+        // ]);
+
+        $page = $organization->pages()->create(
+            // $request->validated()
+            $request->all()
+        );
 
         return new PageResource($page);
     }

@@ -21,16 +21,19 @@ class PagesSeeder extends Seeder
         $pages = [
             [
                 'title' => 'Homepage',
+                'is_published' => true,
                 'organization_id' => 1,
                 'category_id' => 2,
             ],
             [
                 'title' => 'Free Checking',
+                'is_published' => true,
                 'organization_id' => 1,
                 'category_id' => 4,
             ],
             [
                 'title' => 'About Us',
+                'is_published' => false,
                 'organization_id' => 1,
                 'category_id' => 60,
             ]
