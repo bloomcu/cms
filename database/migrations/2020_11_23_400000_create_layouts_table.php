@@ -16,7 +16,7 @@ class CreateLayoutsTable extends Migration
         Schema::create('layouts', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('type');
+            // $table->string('type');
 
             // Foreign Relationships
             $table->foreignId('organization_id');
