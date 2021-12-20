@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Organizations\OrganizationController;
 
 use Pages\PageController;
-use Pages\ReplicatePageController;
+use Pages\PageReplicateController;
 use Pages\PageBlueprintController;
 
 use Layouts\LayoutController;
@@ -24,6 +24,7 @@ use Files\FileController;
 use Cms\Http\Files\FileSignUploadController;
 
 use Categories\CategoryController;
+use Categories\CategoryItemController;
 
 use Menus\MenuController;
 
@@ -39,9 +40,11 @@ use Menus\MenuController;
 */
 
 Route::resource('organizations', OrganizationController::class);
+
+// Pages
 Route::resource('organizations.pages', PageController::class);
-Route::resource('organizations.pages.replicate', ReplicatePageController::class, ['only' => ['store']]);
-Route::resource('organizations.page-blueprints', PageBlueprintController::class);
+Route::resource('organizations.pages.replicate', PageReplicateController::class, ['only' => ['store']]);
+Route::resource('organizations.page-blueprints', PageBlueprintController::class, ['only' => ['index']]);
 
 Route::resource('organizations.layouts', LayoutController::class);
 
@@ -54,6 +57,7 @@ Route::resource('organizations.files', FileController::class, ['only' => ['index
 Route::post('organizations/{organization}/files/sign', [FileSignUploadController::class, 'sign']);
 
 Route::resource('categories', CategoryController::class);
+Route::resource('categories.items', CategoryItemController::class);
 
 // TODO: Use apiResource on all routes
 Route::apiResource('menus', MenuController::class);
