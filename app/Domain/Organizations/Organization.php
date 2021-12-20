@@ -7,22 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 use Cms\App\Traits\HasUuid;
-// use Cms\App\Traits\HasSlug;
+use Cms\App\Traits\HasSlug;
 
 class Organization extends Model
 {
-    use HasFactory, HasUuid;
+    use HasFactory, HasUuid, HasSlug;
 
-    protected $guarded = ['id'];
-
-    public static function boot()
-    {
-        parent::boot();
-
-        static::creating(function($organization) {
-            $organization->slug = Str::slug($organization->title);
-        });
-    }
+    protected $guarded = ['id', 'slug'];
 
     /**
      * Route key used to fetch resource
