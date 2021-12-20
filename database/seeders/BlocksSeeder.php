@@ -19,8 +19,9 @@ class BlocksSeeder extends Seeder
             [
                 'title' => 'Hero',
                 'component' => 'hero',
-                'type' => 'base',
+                // 'type' => 'base',
                 'category_id' => 'heros',
+                'layout_id' => 2,
                 'data' => [
                     'label' => 'The label',
                     'title' => 'This is the title',
@@ -30,8 +31,9 @@ class BlocksSeeder extends Seeder
             [
                 'title' => 'Feature',
                 'component' => 'feature',
-                'type' => 'base',
+                // 'type' => 'base',
                 'category_id' => 'features',
+                'layout_id' => 2,
                 'data' => [
                     'title' => 'This is the title',
                     'subtitle' => 'And this is the subtitle, it is longer',

@@ -18,12 +18,16 @@ class CreateBlocksTable extends Migration
             $table->uuid('uuid');
             $table->string('title');
             $table->string('component');
-            $table->string('type')->nullable();
             $table->string('category_id')->nullable();
+            // $table->boolean('is_blueprint')->default(false);
+            // $table->string('type')->nullable();
             $table->foreignId('layout_id')->nullable();
             $table->integer('order')->nullable();
             $table->json('data')->nullable();
             $table->timestamps();
+
+            // Indexes
+            // $table->index(['is_blueprint']);
 
             // Foreign constraints
             $table->foreign('layout_id')->references('id')->on('layouts')->onDelete('cascade');
