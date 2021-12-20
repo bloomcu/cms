@@ -3,17 +3,17 @@
 namespace Cms\Http\Pages;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-
 use Cms\App\Controllers\Controller;
 
-use Cms\Domain\Organizations\Organization;
+// Domains
 use Cms\Domain\Pages\Page;
-use Cms\Domain\Blocks\Block;
+use Cms\Domain\Organizations\Organization;
 
-use Cms\Http\Pages\Resources\PageCollection;
+// Resources
 use Cms\Http\Pages\Resources\PageResource;
+use Cms\Http\Pages\Resources\PageCollection;
 
+// Requests
 // use App\Http\Requests\PageStoreRequest;
 
 class PageController extends Controller
@@ -22,6 +22,7 @@ class PageController extends Controller
     public function index(Organization $organization, Request $request)
     {
         $pages = $organization->pages()
+            ->withoutBlueprints()
             ->with('category')
             ->filter($request)
             ->latest()
@@ -32,13 +33,6 @@ class PageController extends Controller
 
     public function store(Organization $organization, Request $request)
     {
-        // $page = $organization->pages()->create([
-        //     'title'           => $request['title'],
-        //     'is_published'    => $request['is_published'],
-        //     'category_id'     => $request['category_id'],
-        //     'organization_id' => $request['organization_id'],
-        // ]);
-
         $page = $organization->pages()->create(
             // $request->validated()
             $request->all()
@@ -49,6 +43,8 @@ class PageController extends Controller
 
     public function show(Organization $organization, Page $page)
     {
+        // return Page::onlyBlueprints()->find(1);
+
         return new PageResource(
             $page->load([
                 'category',
@@ -71,5 +67,7 @@ class PageController extends Controller
     public function destroy(Organization $organization, Page $page)
     {
         $page->delete();
+
+        return new PageResource($page);
     }
 }

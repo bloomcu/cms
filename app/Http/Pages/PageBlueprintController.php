@@ -3,33 +3,30 @@
 namespace Cms\Http\Pages;
 
 use Illuminate\Http\Request;
+use Cms\App\Controllers\Controller;
 
-use Cms\Http\Pages\PageController;
-
-use Cms\Domain\Organizations\Organization;
+// Domains
 use Cms\Domain\Pages\Page;
-use Cms\Domain\Blocks\Block;
+use Cms\Domain\Organizations\Organization;
 
-class PageBlueprintController extends PageController
+// Resources
+use Cms\Http\Pages\Resources\PageCollection;
+
+// Requests
+// use App\Http\Requests\PageStoreRequest;
+
+class PageBlueprintController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     */
+
     public function index(Organization $organization, Request $request)
     {
-        return Page::where('organization_id', $organization->id)
-            ->where('is_blueprint', true)
-            ->with('category:id,title')
-            // ->with('type:id,title')
-            //TODO: After creating dedicated replicate controller
-            //TODO: We don't need with('blocks')
-            //TODO: Becauase it just takes the page id to be replicated
-            //TODO: E.g., create(page_id, is_blueprint)
-            ->with('blocks')
+        $pages = $organization->pages()
+            ->onlyBlueprints()
+            ->with('category')
             ->filter($request)
-            ->orderBy('created_at', 'DESC')
+            ->latest()
             ->get();
-    }
 
+        return new PageCollection($pages);
+    }
 }

@@ -6,13 +6,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
+// Traits
+use Cms\App\Traits\IsBlueprint;
+
+// Filters
 use Cms\Domain\Pages\Filters\PageFilters;
 
 class Page extends Model
 {
-    use HasFactory;
+    use HasFactory, IsBlueprint;
 
     protected $guarded = ['id'];
+
+    protected $table = 'pages';
 
     public function organization()
     {
@@ -40,4 +46,5 @@ class Page extends Model
             ->add($filters)
             ->filter($builder);
     }
+
 }

@@ -16,13 +16,14 @@ class CreatePagesTable extends Migration
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->boolean('is_published')->default(false);
-
-            // Foreign Relationships
             $table->foreignId('organization_id');
             $table->foreignId('category_id')->nullable();
-
+            $table->boolean('is_published')->default(false);
+            $table->boolean('is_blueprint')->default(false);
             $table->timestamps();
+
+            // Indexes
+            $table->index(['is_published', 'is_blueprint']);
 
             // Foreign constraints
             // $table->foreign('organization_id')->references('id')->on('organizations');
