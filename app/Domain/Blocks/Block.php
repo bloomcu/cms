@@ -51,13 +51,13 @@ class Block extends Model
             ->filter($builder);
     }
 
-    /**
-     * Get only base blocks.
-     *
-     * @return \Illuminate\Database\Query\Builder
-     */
-    public function scopeBase(Builder $builder)
-    {
-        $builder->whereNull('layout_id')->whereType('base');
-    }
+    // /**
+    //  * Get only base blocks.
+    //  *
+    //  * @return \Illuminate\Database\Query\Builder
+    //  */
+    // public function scopeBase(Builder $builder)
+    // {
+    //     $builder->whereNull('layout_id')->whereType('base');
+    // }
 }

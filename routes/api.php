@@ -3,29 +3,29 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+// Organizations
 use Organizations\OrganizationController;
 
+// Pages
 use Pages\PageController;
-use Pages\PageReplicateController;
-use Pages\PageBlueprintController;
+use Cms\Http\Pages\PageBlueprintController;
+use Cms\Http\Pages\PageReplicateController;
 
+// Layouts
 use Layouts\LayoutController;
 
+// Blocks
 use Blocks\BlockController;
 use Cms\Http\Blocks\BlockReorderController;
-// use Blocks\BlockIndexController;
-// use Blocks\BlockStoreController;
-// use Blocks\BlockShowController;
-// use Blocks\BlockUpdateController;
 
-use Blocks\BaseBlockController;
-
+// Files
 use Files\FileController;
 use Cms\Http\Files\FileSignUploadController;
 
+// Categories
 use Categories\CategoryController;
-use Categories\CategoryItemController;
 
+// Menus
 use Menus\MenuController;
 
 /*
@@ -39,30 +39,30 @@ use Menus\MenuController;
 |
 */
 
-Route::resource('organizations', OrganizationController::class);
+// Organizations
+Route::apiResource('organizations', OrganizationController::class);
 
 // Pages
-Route::resource('organizations.pages', PageController::class);
-Route::resource('organizations.pages.replicate', PageReplicateController::class, ['only' => ['store']]);
-Route::resource('organizations.page-blueprints', PageBlueprintController::class, ['only' => ['index']]);
+Route::apiResource('organizations.pages', PageController::class);
+Route::get('organizations/{organization}/page-blueprints', [PageBlueprintController::class, 'index']);
+Route::post('organizations/{organization}/pages/{page}/replicate', [PageReplicateController::class, 'replicate']);
 
-Route::resource('organizations.layouts', LayoutController::class);
+// Layouts
+Route::apiResource('organizations.layouts', LayoutController::class);
 
+// Blocks
 Route::apiResource('organizations.blocks', BlockController::class);
-// Route::apiResource('organizations.blocks.reorder', BlockReorderController::class, ['only' => ['store']]);
 Route::post('organizations/{organization}/blocks/reorder', [BlockReorderController::class, 'reorder']);
 
-
-Route::resource('organizations.files', FileController::class, ['only' => ['index', 'store']]);
+// Files
+Route::apiResource('organizations.files', FileController::class, ['only' => ['index', 'store']]);
 Route::post('organizations/{organization}/files/sign', [FileSignUploadController::class, 'sign']);
 
-Route::resource('categories', CategoryController::class);
-Route::resource('categories.items', CategoryItemController::class);
+// Categories
+Route::apiResource('categories', CategoryController::class);
 
-// TODO: Use apiResource on all routes
+// Menus
 Route::apiResource('menus', MenuController::class);
-
-// Route::resource('base-blocks', BaseBlockController::class);
 
 // Route::get('/blocks', BlockIndexController::class);
 // Route::post('/blocks', BlockStoreController::class);

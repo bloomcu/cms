@@ -18,9 +18,18 @@ class BlockController extends Controller
 {
     public function index(Organization $organization, Request $request)
     {
-        return new BlockCollection(
-            Block::base()->filter($request)->get()
-        );
+        // $blocks = $organization->blocks()
+        //     ->filter($request)
+        //     ->latest()
+        //     ->get();
+        //
+        // return new BlockCollection($blocks);
+
+        $blocks = Block::filter($request)
+            ->latest()
+            ->get();
+
+        return new BlockCollection($blocks);
     }
 
     public function store(Organization $organization, Request $request)

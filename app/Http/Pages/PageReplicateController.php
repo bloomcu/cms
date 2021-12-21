@@ -19,7 +19,7 @@ use Cms\Http\Pages\Resources\PageResource;
 class PageReplicateController extends Controller
 {
 
-    public function store(Organization $organization, Page $page, Request $request)
+    public function replicate(Organization $organization, Page $page, Request $request)
     {
 
         // Replicate page
