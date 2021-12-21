@@ -16,8 +16,7 @@ class CategoriesSeeder extends Seeder
     public function run()
     {
         $categories = [
-            ['title' => 'Page Categories', 'children' => [
-                ['title' => 'Homepage'],
+            ['title' => 'Pages', 'children' => [
                 ['title' => 'Accounts', 'children' => [
                     ['title' => 'Checking'],
                     ['title' => 'Savings', 'children' => [

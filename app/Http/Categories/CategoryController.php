@@ -44,7 +44,7 @@ class CategoryController extends Controller
     public function show(Category $category)
     {
         return CategoryResource::collection(
-            Category::descendantsAndSelf($category->id)->toTree()
+            Category::defaultOrder()->descendantsAndSelf($category->id)->toTree()
         );
     }
 
@@ -54,7 +54,7 @@ class CategoryController extends Controller
      */
     public function update(Category $category, Request $request)
     {
-        return Category::rebuildSubtree($category, $request['children']);
+        Category::rebuildSubtree($category, $request['children']);
     }
 
     /**
