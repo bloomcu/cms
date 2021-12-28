@@ -25,6 +25,7 @@ class FileFactory extends Factory
         return [
             'organization_id' => \Cms\Domain\Organizations\Organization::factory(),
             'user_id' => \Cms\Domain\Users\User::factory(),
+            'type' => 'image'
             'name' => $this->faker->word . '.jpg',
             'path' => 'files/6689921281927008bd747a13a29bd2da.jpg',
             'size' => 50000
