@@ -5,9 +5,12 @@ namespace Cms\Domain\Blocks;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Str;
 
 use Cms\Domain\Blocks\Filters\BlockFilters;
 use Cms\App\Traits\HasUuid;
+
+use Cms\Domain\Blocks\Casts\BlockData;
 
 /**
  * [Block description]
@@ -20,8 +23,12 @@ class Block extends Model
         'id'
     ];
 
+    // protected $casts = [
+    //     'data' => 'json'
+    // ];
+
     protected $casts = [
-        'data' => 'json'
+        'data' => BlockData::class
     ];
 
     public function getRouteKeyName()
@@ -37,6 +44,12 @@ class Block extends Model
     public function layout()
     {
         return $this->belongsTo('Cms\Domain\Layouts\Layout');
+    }
+
+    public function dataClass()
+    {
+        // TODO: Rename 'component' attribute to 'block'
+        return 'Cms\\Domain\\Blocks\\BlockData\\' . Str::studly($this['component']);
     }
 
     /**
