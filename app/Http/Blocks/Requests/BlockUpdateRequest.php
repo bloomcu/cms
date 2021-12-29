@@ -24,11 +24,13 @@ class BlockUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'         => 'nullable|string',
-            'component'     => 'nullable|string',
-            'layout_id'     => 'nullable|exists:layouts,id',
-            'order'         => 'nullable|integer|min:0',
-            'base_block_id' => 'nullable|exists:base_blocks,id'
+            'title'         => ['nullable', 'string'],
+            'component'     => ['nullable', 'string'],
+            'order'         => ['nullable', 'integer', 'min:0'],
+
+            'data.label'    => ['nullable', 'string'],
+            'data.title'    => ['nullable', 'string'],
+            'data.subtitle' => ['nullable', 'string'],
         ];
     }
 
@@ -40,16 +42,18 @@ class BlockUpdateRequest extends FormRequest
     public function messages()
     {
         return [
+            'title.required' => 'Title is required',
             'title.string' => 'Title must be a string',
 
+            'component.required' => 'Component is required',
             'component.string' => 'Component must be a string',
-
-            'layout_id.exists' => 'Layout does not exist',
 
             'order.integer' => 'Order must be an integer',
             'order.min' => 'Order cannot be negative',
 
-            'base_block_id.exists' => 'Base Block does not exist'
+            'data.label.string' => 'Label must be a string',
+            'data.label.title' => 'Title must be a string',
+            'data.label.subtitle' => 'Subtitle must be a string',
         ];
     }
 }

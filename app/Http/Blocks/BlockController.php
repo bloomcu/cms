@@ -11,8 +11,8 @@ use Cms\Domain\Blocks\Block;
 use Cms\Http\Blocks\Resources\BlockCollection;
 use Cms\Http\Blocks\Resources\BlockResource;
 
-// use Cms\Http\Blocks\Requests\BlockStoreRequest;
-// use Cms\Http\Blocks\Requests\BlockUpdateRequest;
+use Cms\Http\Blocks\Requests\BlockStoreRequest;
+use Cms\Http\Blocks\Requests\BlockUpdateRequest;
 
 class BlockController extends Controller
 {
@@ -32,11 +32,14 @@ class BlockController extends Controller
         return new BlockCollection($blocks);
     }
 
-    public function store(Organization $organization, Request $request)
+    public function store(Organization $organization, BlockStoreRequest $request)
     {
+        // dd($request->all());
+        // dd($request->validated());
+
         $block = Block::create(
-            // $request->validated()
-            $request->all()
+            $request->validated()
+            // $request->all()
         );
 
         return new BlockResource($block);
@@ -47,11 +50,11 @@ class BlockController extends Controller
         return new BlockResource($block);
     }
 
-    public function update(Organization $organization, Block $block, Request $request)
+    public function update(Organization $organization, Block $block, BlockUpdateRequest $request)
     {
         $block->update(
-            // $request->validated()
-            $request->all()
+            $request->validated()
+            // $request->all()
         );
 
         return new BlockResource($block);

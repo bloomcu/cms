@@ -26,12 +26,13 @@ class BlockStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'uuid'          => 'nullable|uuid|unique:blocks',
-            'title'         => 'required|string',
-            'component'     => 'required|string',
-            'page_id'       => 'required|exists:pages,id',
-            'order'         => 'nullable|integer|min:0',
-            // 'base_block_id' => 'required|exists:base_blocks,id',
+            'title'         => ['required', 'string'],
+            'component'     => ['required', 'string'],
+            'layout_id'     => ['required', 'integer', 'exists:layouts,id'],
+
+            'data.label'    => ['nullable', 'string'],
+            'data.title'    => ['nullable', 'string'],
+            'data.subtitle' => ['nullable', 'string'],
         ];
     }
 
@@ -43,7 +44,7 @@ class BlockStoreRequest extends FormRequest
     public function messages()
     {
         return [
-            'uuid.uuid' => 'Uuid must be a valid RFC universally unique identifier (UUID)',
+            // 'uuid.uuid' => 'Uuid must be a valid RFC universally unique identifier (UUID)',
 
             'title.required' => 'Title is required',
             'title.string' => 'Title must be a string',
@@ -51,14 +52,13 @@ class BlockStoreRequest extends FormRequest
             'component.required' => 'Component is required',
             'component.string' => 'Component must be a string',
 
-            'page_id.required' => 'Page id is required',
-            'page_id.exists' => 'Page does not exist',
+            'layout_id.required' => 'Layout id is required',
+            'layout_id.integer' => 'Layout id must be an integer',
+            'layout_id.exists' => 'Layout does not exist',
 
-            'order.integer' => 'Order must be an integer',
-            'order.min' => 'Order cannot be negative',
-
-            // 'base_block_id.required' => 'Base Block id is required',
-            // 'base_block_id.exists' => 'Base Block does not exist',
+            'data.label.string' => 'Label must be a string',
+            'data.label.title' => 'Title must be a string',
+            'data.label.subtitle' => 'Subtitle must be a string',
         ];
     }
 
