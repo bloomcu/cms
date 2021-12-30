@@ -14,6 +14,8 @@ use Cms\Http\Blocks\Resources\BlockResource;
 use Cms\Http\Blocks\Requests\StoreBlockRequest;
 use Cms\Http\Blocks\Requests\UpdateBlockRequest;
 
+use Cms\Domain\Blocks\DTO\BlockDTO;
+
 use Cms\Domain\Blocks\Actions\StoreBlockAction;
 
 class BlockController extends Controller
@@ -36,9 +38,17 @@ class BlockController extends Controller
 
     public function store(Organization $organization, StoreBlockRequest $request, StoreBlockAction $action)
     {
+        // DTO is created here, in controller
+        $dto = BlockDTO::fromRequest($request->validated());
+
         return new BlockResource(
-            $action->execute($request->toDTO())
+            $action->execute($dto)
         );
+
+        // Request provides the DTO
+        // return new BlockResource(
+        //     $action->execute($request->toDTO())
+        // );
     }
 
     public function show(Organization $organization, Block $block)

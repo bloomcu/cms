@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-use Cms\Domain\Blocks\DTO\StoreBlockDTO;
+use Cms\Domain\Blocks\DTO\BlockDTO;
 
 class StoreBlockRequest extends FormRequest
 {
@@ -28,6 +28,7 @@ class StoreBlockRequest extends FormRequest
     public function rules()
     {
         return [
+            'uuid'          => ['nullable', 'uuid', 'unique:blocks,uuid'],
             'title'         => ['required', 'string'],
             'component'     => ['required', 'string'],
             'layout_id'     => ['required', 'integer', 'exists:layouts,id'],
@@ -46,7 +47,8 @@ class StoreBlockRequest extends FormRequest
     public function messages()
     {
         return [
-            // 'uuid.uuid' => 'Uuid must be a valid RFC universally unique identifier (UUID)',
+            'uuid.uuid' => 'UUID must be a valid RFC universally unique identifier (UUID)',
+            'uuid.unique' => 'The UUID provided is already in use',
 
             'title.required' => 'Title is required',
             'title.string' => 'Title must be a string',
@@ -77,20 +79,20 @@ class StoreBlockRequest extends FormRequest
     /**
      * Build and return a DTO.
      *
-     * @return StoreBlockDTO
+     * @return BlockDTO
      */
-    public function toDTO(): StoreBlockDTO
-    {
-        dd($this->validated());
-        return new StoreBlockDTO([
-            'title'     => $this->title,
-            'component' => $this->component,
-            'layout_id' => intval($this->layout_id),
-            'data'      => [
-                'label'    => $this->data['label'] ?? null,
-                'title'    => $this->data['title'] ?? null,
-                'subtitle' => $this->data['subtitle'] ?? null,
-            ]
-        ]);
-    }
+    // public function toDTO(): BlockDTO
+    // {
+    //     return new BlockDTO([
+    //         'title'     => $this->uuid ?? null,
+    //         'title'     => $this->title,
+    //         'component' => $this->component,
+    //         'layout_id' => intval($this->layout_id),
+    //         'data'      => [
+    //             'label'    => $this->data['label'] ?? null,
+    //             'title'    => $this->data['title'] ?? null,
+    //             'subtitle' => $this->data['subtitle'] ?? null,
+    //         ]
+    //     ]);
+    // }
 }
