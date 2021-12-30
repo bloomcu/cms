@@ -6,6 +6,8 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
+use Cms\Domain\Blocks\DTO\StoreBlockDTO;
+
 class StoreBlockRequest extends FormRequest
 {
     /**
@@ -70,5 +72,25 @@ class StoreBlockRequest extends FormRequest
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response()->json($validator->errors(), 422));
+    }
+
+    /**
+     * Build and return a DTO.
+     *
+     * @return StoreBlockDTO
+     */
+    public function toDTO(): StoreBlockDTO
+    {
+        dd($this->validated());
+        return new StoreBlockDTO([
+            'title'     => $this->title,
+            'component' => $this->component,
+            'layout_id' => intval($this->layout_id),
+            'data'      => [
+                'label'    => $this->data['label'] ?? null,
+                'title'    => $this->data['title'] ?? null,
+                'subtitle' => $this->data['subtitle'] ?? null,
+            ]
+        ]);
     }
 }

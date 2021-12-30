@@ -14,6 +14,8 @@ use Cms\Http\Blocks\Resources\BlockResource;
 use Cms\Http\Blocks\Requests\StoreBlockRequest;
 use Cms\Http\Blocks\Requests\UpdateBlockRequest;
 
+use Cms\Domain\Blocks\Actions\StoreBlockAction;
+
 class BlockController extends Controller
 {
     public function index(Organization $organization, Request $request)
@@ -32,17 +34,11 @@ class BlockController extends Controller
         return new BlockCollection($blocks);
     }
 
-    public function store(Organization $organization, StoreBlockRequest $request)
+    public function store(Organization $organization, StoreBlockRequest $request, StoreBlockAction $action)
     {
-        // dd($request->all());
-        // dd($request->validated());
-
-        $block = Block::create(
-            $request->validated()
-            // $request->all()
+        return new BlockResource(
+            $action->execute($request->toDTO())
         );
-
-        return new BlockResource($block);
     }
 
     public function show(Organization $organization, Block $block)
