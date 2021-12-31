@@ -23,13 +23,13 @@ class Block extends Model
         'id'
     ];
 
-    // protected $casts = [
-    //     'data' => 'json'
-    // ];
-
     protected $casts = [
-        'data' => BlockData::class
+        'data' => 'json'
     ];
+
+    // protected $casts = [
+    //     'data' => BlockData::class
+    // ];
 
     public function getRouteKeyName()
     {
