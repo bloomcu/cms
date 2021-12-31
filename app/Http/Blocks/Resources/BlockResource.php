@@ -18,14 +18,13 @@ class BlockResource extends JsonResource
      */
     public function toArray($request)
     {
-
         return [
             'uuid' => $this->uuid,
             'title' => $this->title,
             'component' => $this->component,
             'order' => $this->order,
-            // TODO: Rename 'data' attribute to 'content'
-            'data' => ($this->dataClass())::get($this->data)
+            // 'data' => ($this->dataClass())::get($this->data)
+            'data' => $this->data
         ];
     }
 }

@@ -36,18 +36,32 @@ class BlockController extends Controller
         return new BlockCollection($blocks);
     }
 
-    public function store(Organization $organization, StoreBlockRequest $request, StoreBlockAction $action)
+    public function store(Organization $organization, StoreBlockRequest $request, StoreBlockAction $storeBlock)
     {
-        // DTO is created here, in controller
-        $dto = BlockDTO::fromRequest($request->validated());
+        // dd($request->validated());
+
+        // Block created only from validated re1uest data
+        // return new BlockResource(
+        //     $storeBlock->execute($request->validated())
+        // );
+
+        // Block created from DTO
+        $block = new BlockDTO($request->validated());
 
         return new BlockResource(
-            $action->execute($dto)
+            $storeBlock->execute($block)
         );
 
-        // Request provides the DTO
+        // Block created from DTO static method
+        // $block = BlockDTO::fromRequest($request->validated());
+        //
         // return new BlockResource(
-        //     $action->execute($request->toDTO())
+        //     $storeBlock->execute($block)
+        // );
+
+        // Block created from DTO via the FormRequest
+        // return new BlockResource(
+        //     $storeBlock->execute($request->toDTO())
         // );
     }
 
