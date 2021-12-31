@@ -36,6 +36,8 @@ class StoreBlockRequest extends FormRequest
             'data.label'    => ['nullable', 'string'],
             'data.title'    => ['nullable', 'string'],
             'data.subtitle' => ['nullable', 'string'],
+
+            'data.image.id' => ['nullable', 'integer', 'exists:files,id'],
         ];
     }
 
@@ -47,22 +49,9 @@ class StoreBlockRequest extends FormRequest
     public function messages()
     {
         return [
-            'uuid.uuid' => 'UUID must be a valid RFC universally unique identifier (UUID)',
             'uuid.unique' => 'The UUID provided is already in use',
-
-            'title.required' => 'Title is required',
-            'title.string' => 'Title must be a string',
-
-            'component.required' => 'Component is required',
-            'component.string' => 'Component must be a string',
-
-            'layout_id.required' => 'Layout id is required',
-            'layout_id.integer' => 'Layout id must be an integer',
-            'layout_id.exists' => 'Layout does not exist',
-
-            'data.label.string' => 'Label must be a string',
-            'data.label.title' => 'Title must be a string',
-            'data.label.subtitle' => 'Subtitle must be a string',
+            'layout_id.exists' => 'A layout with this id does not exist',
+            'data.image.id.exists' => 'A file with this id does not exist',
         ];
     }
 
@@ -76,15 +65,15 @@ class StoreBlockRequest extends FormRequest
         throw new HttpResponseException(response()->json($validator->errors(), 422));
     }
 
-    /**
-     * Build and return a DTO.
-     *
-     * @return BlockDTO
-     */
+    // /**
+    //  * Build and return a DTO.
+    //  *
+    //  * @return BlockDTO
+    //  */
     // public function toDTO(): BlockDTO
     // {
-    //     return new BlockDTO([
-    //         'title'     => $this->uuid ?? null,
+    //     return new BlockDTO([ // TODO: rename to StoreBlockDTO
+    //         'uuid'      => $this->uuid ?? null,
     //         'title'     => $this->title,
     //         'component' => $this->component,
     //         'layout_id' => intval($this->layout_id),
@@ -92,6 +81,10 @@ class StoreBlockRequest extends FormRequest
     //             'label'    => $this->data['label'] ?? null,
     //             'title'    => $this->data['title'] ?? null,
     //             'subtitle' => $this->data['subtitle'] ?? null,
+    //             // 'image_id' => isset($this->data['image']) ? intval($this->data['image']['id']) : null,
+    //             'image'    => [
+    //                 'id' => isset($this->data['image']) ? intval($this->data['image']['id']) : null,
+    //             ]
     //         ]
     //     ]);
     // }
