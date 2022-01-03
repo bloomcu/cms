@@ -18,13 +18,16 @@ class BlockResource extends JsonResource
      */
     public function toArray($request)
     {
+        $dataResource = 'Cms\\Http\\Blocks\\Resources\\Data\\' . Str::studly($this->component) . 'Resource';
+
         return [
-            'uuid' => $this->uuid,
-            'title' => $this->title,
+            'uuid'      => $this->uuid,
+            'title'     => $this->title,
             'component' => $this->component,
-            'order' => $this->order,
-            // 'data' => ($this->dataClass())::get($this->data)
-            'data' => $this->data
+            'order'     => $this->order,
+            'data'      => new $dataResource($this),
+            // 'data' => ($this->dataClass())::get($this->data) // Using DTO
+            // 'data' => $this->data
         ];
     }
 }

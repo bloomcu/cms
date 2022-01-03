@@ -17,17 +17,15 @@ class HeroResource extends JsonResource
      */
     public function toArray($request)
     {
+        $data = $this->data;
+
         return [
-            'center'     => isset($this['center']) ? $this['center'] : false,
-            'fullscreen' => isset($this['fullscreen']) ? $this['fullscreen'] : false,
-            'label'      => isset($this['label']) ? $this['label'] : 'The label',
-            'title'      => isset($this['title']) ? $this['title'] : 'The title',
-            'subtitle'   => isset($this['subtitle']) ? $this['subtitle'] : 'The subtitle',
-            'image'      => new ImageResource(isset($this['image']) ? $this['image'] : []),
-            'buttons'    => new ButtonCollection(isset($this['buttons']) ? $this['buttons'] : [
-                ['text' => 'Button One', 'href' => ''],
-                ['text' => 'Button Two', 'href' => '']
-            ])
+            'center'     => isset($data['center'])     ? $data['center'] : false,
+            'fullscreen' => isset($data['fullscreen']) ? $data['fullscreen'] : false,
+            'label'      => isset($data['label'])      ? $data['label'] : null,
+            'title'      => isset($data['title'])      ? $data['title'] : null,
+            'subtitle'   => isset($data['subtitle'])   ? $data['subtitle'] : null,
+            'image'      => new ImageResource(isset($this->image) ? $this->image : []),
         ];
     }
 }
