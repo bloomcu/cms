@@ -67,7 +67,17 @@ class BlockController extends Controller
 
     public function show(Organization $organization, Block $block)
     {
-        return new BlockResource($block);
+        // return $block->load([
+        //     'image'
+        // ]);
+
+        return new BlockResource(
+            $block->load([
+                'image'
+            ])
+        );
+
+        // return new BlockResource($block);
     }
 
     public function update(Organization $organization, Block $block, UpdateBlockRequest $request)

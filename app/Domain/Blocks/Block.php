@@ -10,6 +10,8 @@ use Illuminate\Support\Str;
 use Cms\Domain\Blocks\Filters\BlockFilters;
 use Cms\App\Traits\HasUuid;
 
+use Staudenmeir\EloquentJsonRelations\HasJsonRelationships;;
+
 use Cms\Domain\Blocks\Casts\BlockData;
 
 /**
@@ -17,7 +19,9 @@ use Cms\Domain\Blocks\Casts\BlockData;
  */
 class Block extends Model
 {
-    use HasFactory, HasUuid;
+    use HasFactory,
+        HasUuid,
+        HasJsonRelationships;
 
     protected $guarded = [
         'id'
@@ -46,11 +50,16 @@ class Block extends Model
         return $this->belongsTo('Cms\Domain\Layouts\Layout');
     }
 
-    public function dataClass()
+    public function image()
     {
-        // TODO: Rename 'component' attribute to 'block'
-        return 'Cms\\Domain\\Blocks\\BlockData\\' . Str::studly($this['component']);
+        return $this->belongsTo('Cms\Domain\Files\File', 'data->image->id');
     }
+
+    // public function dataClass()
+    // {
+    //     // TODO: Rename 'component' attribute to 'block'
+    //     return 'Cms\\Domain\\Blocks\\BlockData\\' . Str::studly($this['component']);
+    // }
 
     /**
      * Apply filters.
