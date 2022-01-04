@@ -11,7 +11,7 @@ use Cms\Domain\Layouts\Filters\LayoutCategoryFilter;
 class LayoutFilters extends FiltersAbstract
 {
 
-    // Filters we want to apply to builder
+    // Filters to be applied to model
     protected $filters = [
         'category' => LayoutCategoryFilter::class
     ];

@@ -17,8 +17,5 @@ class ButtonCollection extends ResourceCollection
     public function toArray($request)
     {
         return ButtonResource::collection($this->collection);
-        // return ButtonResource::collection(
-        //     isset($this->collection ? $this->collection : new ButtonResource([])
-        // );
     }
 }

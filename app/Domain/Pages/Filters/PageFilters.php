@@ -11,7 +11,7 @@ use Cms\Domain\Pages\Filters\PageCategoryFilter;
 class PageFilters extends FiltersAbstract
 {
 
-    // Filters we want to apply to builder
+    // Filters to be applied to model
     protected $filters = [
         'category' => PageCategoryFilter::class,
     ];

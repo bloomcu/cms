@@ -1,11 +1,12 @@
 <?php
-// In tinker, test by
+// TODO: This is a work in progress. To finish, create a base class of "Post".
+// Extend Article and Page with the base class.
+
+// In tinker, test with:
 // $post = Cms\Domain\Posts\Article::create(['title' => 'New Article', 'organization_id' => 1])
 
 namespace Cms\Domain\Pages;
-// namespace Cms\Domain\Posts;
 
-// use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 

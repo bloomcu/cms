@@ -14,13 +14,6 @@ class File extends Model
 {
     use HasFactory, hasUuid;
 
-    // public static function booted()
-    // {
-    //     static::creating(function ($file) {
-    //         $file->uuid = Str::uuid();
-    //     });
-    // }
-
     protected $guarded = [
         'id'
     ];

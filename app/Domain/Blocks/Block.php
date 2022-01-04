@@ -9,9 +9,6 @@ use Illuminate\Database\Eloquent\Builder;
 use Cms\Domain\Blocks\Filters\BlockFilters;
 use Cms\App\Traits\HasUuid;
 
-/**
- * [Block description]
- */
 class Block extends Model
 {
     use HasFactory, HasUuid;
@@ -50,14 +47,4 @@ class Block extends Model
             ->add($filters)
             ->filter($builder);
     }
-
-    // /**
-    //  * Get only base blocks.
-    //  *
-    //  * @return \Illuminate\Database\Query\Builder
-    //  */
-    // public function scopeBase(Builder $builder)
-    // {
-    //     $builder->whereNull('layout_id')->whereType('base');
-    // }
 }

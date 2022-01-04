@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 
 use Cms\App\Controllers\Controller;
 use Cms\Domain\Organizations\Organization;
-use Cms\Domain\Organizations\Actions\CreateOrganizationAction;
 
 class OrganizationController extends Controller
 {
@@ -23,17 +22,13 @@ class OrganizationController extends Controller
      * Store a newly created resource in storage.
      *
      */
-    public function store(Request $request, CreateOrganizationAction $createOrganizationAction)
+    public function store(Request $request)
     {
-        // $organization = $action->execute($request->all());
-        // $organization = $createOrganizationAction->execute(
-        //     ['name' => 'BloomCU']
-        // );
-
         $organization = Organization::create([
             'title' => $request['title']
         ]);
 
+        // TODO: Use an API Resource to return this
         return $organization;
     }
 
@@ -43,6 +38,7 @@ class OrganizationController extends Controller
      */
     public function show(Organization $organization)
     {
+        // TODO: Use an API Resource to return this
         return $organization;
     }
 

@@ -32,14 +32,18 @@ class FileController extends Controller
      */
     public function store(Organization $organization, Request $request)
     {
+        // TODO: If user uploads a duplicate, do we just update it's name and size?
+        // TODO: This will likely require more check to be sure it's a duplicate.
         // $file = $organization->files()->firstOrCreate(
         //     $request->only('path'),
         //     $request->only(['name', 'size'])
         // );
 
+        // TODO: Use a FormRequest to validate request before creating file.
         $file = File::create([
             'organization_id' => 1,
             'user_id' => 1,
+            'type' => $request['type'],
             'name' => $request['name'],
             'path' => $request['path'],
             'size' => $request['size']

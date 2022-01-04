@@ -34,6 +34,7 @@ class PageController extends Controller
     public function store(Organization $organization, Request $request)
     {
         $page = $organization->pages()->create(
+            // TODO: Use FormRequest for request validation
             // $request->validated()
             $request->all()
         );
@@ -43,8 +44,6 @@ class PageController extends Controller
 
     public function show(Organization $organization, Page $page)
     {
-        // return Page::onlyBlueprints()->find(1);
-
         return new PageResource(
             $page->load([
                 'category',
@@ -57,6 +56,7 @@ class PageController extends Controller
     public function update(Organization $organization, Page $page, Request $request)
     {
         $page->update(
+            // TODO: Use FormRequest for request validation
             // $request->validated()
             $request->all()
         );

@@ -19,9 +19,6 @@ class MenuItemResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'parent_id' => $this->parent_id,
-            // 'link' => new LinkResource($this->whenLoaded('link')),
-            // 'children' => new MenuItemCollection($this->whenLoaded('children'))
-            // 'children' => new MenuItemCollection($this->children)
         ];
     }
 }

@@ -13,9 +13,6 @@ use Cms\Domain\Organizations\Organization;
 // Resources
 use Cms\Http\Pages\Resources\PageResource;
 
-// Requests
-// use Cms\Http\Pages\Requests\ReplicatePageStoreRequest;
-
 class PageReplicateController extends Controller
 {
 

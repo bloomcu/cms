@@ -24,7 +24,6 @@ class BlockResource extends JsonResource
             'uuid' => $this->uuid,
             'title' => $this->title,
             'component' => $this->component,
-            // 'layout_id' => $this->layout_id,
             'order' => $this->order,
             'data' => new $dataResource($this->data),
         ];

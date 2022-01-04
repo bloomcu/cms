@@ -18,6 +18,8 @@ class BlockController extends Controller
 {
     public function index(Organization $organization, Request $request)
     {
+        // TODO: Add Organization relationship to blocks, then
+        // get blocks through the organization.
         // $blocks = $organization->blocks()
         //     ->filter($request)
         //     ->latest()
@@ -35,6 +37,7 @@ class BlockController extends Controller
     public function store(Organization $organization, Request $request)
     {
         $block = Block::create(
+            // TODO: Use FormRequest for request validation
             // $request->validated()
             $request->all()
         );
@@ -50,6 +53,7 @@ class BlockController extends Controller
     public function update(Organization $organization, Block $block, Request $request)
     {
         $block->update(
+            // TODO: Use FormRequest for request validation
             // $request->validated()
             $request->all()
         );

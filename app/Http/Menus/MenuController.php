@@ -25,12 +25,5 @@ class MenuController extends Controller
         return new MenuResource(
             $menu->load(['items'])
         );
-
-        // return new MenuResource(
-        //     $menu->load([
-        //         'items',
-        //         'items.children'
-        //     ])
-        // );
     }
 }

@@ -18,7 +18,6 @@ class CategoryController extends Controller
     public function index()
     {
         return CategoryResource::collection(
-            // Category::whereIsRoot()->get()
             Category::parents()->get()
         );
     }
@@ -30,6 +29,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $category = Category::create(
+            // TODO: Use FormRequest for request validation
             // $request->validated()
             $request->all()
         );

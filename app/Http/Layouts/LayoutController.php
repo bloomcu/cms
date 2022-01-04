@@ -32,6 +32,7 @@ class LayoutController extends Controller
      public function store(Request $request)
      {
          $layout = Layout::create(
+             // TODO: Use FormRequest for request validation
              // $request->validated()
              $request->all()
          );

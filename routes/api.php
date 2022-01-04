@@ -63,8 +63,3 @@ Route::apiResource('categories', CategoryController::class);
 
 // Menus
 Route::apiResource('menus', MenuController::class);
-
-// Route::get('/blocks', BlockIndexController::class);
-// Route::post('/blocks', BlockStoreController::class);
-// Route::get('/blocks/{block:uuid}', BlockShowController::class);
-// Route::patch('/blocks/{block:uuid}', BlockUpdateController::class);

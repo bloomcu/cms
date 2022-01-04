@@ -22,9 +22,7 @@ class FeatureResource extends JsonResource
             'label'      => isset($this['label']) ? $this['label'] : 'The label',
             'title'      => isset($this['title']) ? $this['title'] : 'The title',
             'subtitle'   => isset($this['subtitle']) ? $this['subtitle'] : 'The subtitle',
-            'image'      => new ImageResource(isset($this['image']) ? $this['image'] : [
-                'src' => 'files/b91c769fd41d8f5091e0dc86e14e4ea4.jpg'
-            ]),
+            'image'      => new ImageResource(isset($this['image']) ? $this['image'] : []),
             'buttons'    => new ButtonCollection(isset($this['buttons']) ? $this['buttons'] : [
                 ['text' => 'Button One', 'href' => ''],
                 ['text' => 'Button Two', 'href' => '']

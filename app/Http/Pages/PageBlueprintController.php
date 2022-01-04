@@ -12,9 +12,6 @@ use Cms\Domain\Organizations\Organization;
 // Resources
 use Cms\Http\Pages\Resources\PageCollection;
 
-// Requests
-// use App\Http\Requests\PageStoreRequest;
-
 class PageBlueprintController extends Controller
 {
 

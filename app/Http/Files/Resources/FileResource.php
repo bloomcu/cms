@@ -16,8 +16,11 @@ class FileResource extends JsonResource
     {
         return [
             'uuid' => $this->uuid,
+            'type' => $this->type,
             'name' => $this->name,
             'path' => $this->path,
+
+            // TODO: Make a "Size" value object class for this.
             'size' => round($this->size / 125000, 2) . ' MB'
         ];
     }

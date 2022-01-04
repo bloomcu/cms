@@ -11,7 +11,7 @@ use Cms\Domain\Blocks\Filters\BlockCategoryFilter;
 class BlockFilters extends FiltersAbstract
 {
 
-    // Filters we want to apply to builder
+    // Filters to be applied to model
     protected $filters = [
         'category' => BlockCategoryFilter::class
     ];

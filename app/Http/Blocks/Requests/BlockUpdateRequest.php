@@ -28,7 +28,6 @@ class BlockUpdateRequest extends FormRequest
             'component'     => 'nullable|string',
             'layout_id'     => 'nullable|exists:layouts,id',
             'order'         => 'nullable|integer|min:0',
-            'base_block_id' => 'nullable|exists:base_blocks,id'
         ];
     }
 
@@ -48,8 +47,6 @@ class BlockUpdateRequest extends FormRequest
 
             'order.integer' => 'Order must be an integer',
             'order.min' => 'Order cannot be negative',
-
-            'base_block_id.exists' => 'Base Block does not exist'
         ];
     }
 }

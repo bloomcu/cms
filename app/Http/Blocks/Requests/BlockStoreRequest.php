@@ -31,7 +31,6 @@ class BlockStoreRequest extends FormRequest
             'component'     => 'required|string',
             'page_id'       => 'required|exists:pages,id',
             'order'         => 'nullable|integer|min:0',
-            // 'base_block_id' => 'required|exists:base_blocks,id',
         ];
     }
 
@@ -56,9 +55,6 @@ class BlockStoreRequest extends FormRequest
 
             'order.integer' => 'Order must be an integer',
             'order.min' => 'Order cannot be negative',
-
-            // 'base_block_id.required' => 'Base Block id is required',
-            // 'base_block_id.exists' => 'Base Block does not exist',
         ];
     }
 
