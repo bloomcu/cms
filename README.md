@@ -1,6 +1,6 @@
 
 
-# CMS - Api
+# CMS - API
 
 A CMS built with Laravel.
 
@@ -11,7 +11,7 @@ A CMS built with Laravel.
 **Step 1:** Clone this repository
 
 ```
-git clone https://github.com/bloomcu/cms-api.git
+git clone https://github.com/bloomcu/cms.git
 ```
 
 <br>
@@ -19,7 +19,7 @@ git clone https://github.com/bloomcu/cms-api.git
 **Step 2:** Change directory into application
 
 ```
-cd cms-api
+cd cms
 ```
 
 <br>
@@ -38,10 +38,12 @@ composer install
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=laravel_ddd
+DB_DATABASE=cms
 DB_USERNAME=root
 DB_PASSWORD=
 ```
+
+<br>
 
 **Step 5:** Add AWS access keys to **.env**
 > Get this from Harmon
@@ -63,6 +65,7 @@ php artisan key:generate
 <br>
 
 **Step 7:** Migrate and seed database
+> Make sure you have a local database called "cms"
 ```php
 php artisan migrate --seed
 ```
@@ -70,17 +73,27 @@ php artisan migrate --seed
 <br>
 
 **Step 8:** Serve application
-> Using Valet, run:
+> If you use Valet, run within project:
 ```
-valet link cms-api
+valet link cms
 ```
-Then visit: http://cms-api.test/api/organizations/bloomcu/pages
+Then visit: http://cms.test/api/organizations/bloomcu/pages
+
+<br>
+
+> If you just use Artisan CLI, run within project:
+```
+php artisan serve
+```
+Then visit: http://127.0.0.1:8000
 
 ## Get started
 
 ### Authentication
 
 [WIP] - How to get access token for API. Currently, no routes are protected.
+
+<br>
 
 ### API
 
