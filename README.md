@@ -43,6 +43,11 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
+If using MYSQL in MAMP, set the DB_SOCKET param in .env to path to MAMP's mysql.sock
+```
+DB_SOCKET=/Applications/MAMP/tmp/mysql/mysql.sock
+```
+
 <br>
 
 **Step 5:** Add AWS access keys to **.env**
