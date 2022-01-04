@@ -4,6 +4,7 @@ namespace Cms\Http\Blocks;
 
 use Illuminate\Http\Request;
 use Cms\App\Controllers\Controller;
+use Cms\App\DataTransferObjects\ResponseData;
 
 use Cms\Domain\Organizations\Organization;
 use Cms\Domain\Blocks\Block;
@@ -15,6 +16,7 @@ use Cms\Http\Blocks\Requests\StoreBlockRequest;
 use Cms\Http\Blocks\Requests\UpdateBlockRequest;
 
 use Cms\Domain\Blocks\DTO\BlockDTO;
+use Cms\Domain\Blocks\DTO\SetBlockDTO;
 
 use Cms\Domain\Blocks\Actions\StoreBlockAction;
 
@@ -22,13 +24,6 @@ class BlockController extends Controller
 {
     public function index(Organization $organization, Request $request)
     {
-        // $blocks = $organization->blocks()
-        //     ->filter($request)
-        //     ->latest()
-        //     ->get();
-        //
-        // return new BlockCollection($blocks);
-
         $blocks = Block::filter($request)
             ->latest()
             ->get();
@@ -36,55 +31,30 @@ class BlockController extends Controller
         return new BlockCollection($blocks);
     }
 
-    public function store(Organization $organization, StoreBlockRequest $request, StoreBlockAction $storeBlock)
+    public function store(Organization $organization, StoreBlockRequest $request)
     {
-        // dd($request->validated());
-
-        // Block created only from validated re1uest data
-        // return new BlockResource(
-        //     $storeBlock->execute($request->validated())
-        // );
-
-        // Block created from DTO
-        $block = new BlockDTO($request->validated());
-
-        return new BlockResource(
-            $storeBlock->execute($block)
+        $block = StoreBlockAction::execute(
+            $request->toDTO()
         );
 
-        // Block created from DTO static method
-        // $block = BlockDTO::fromRequest($request->validated());
-        //
-        // return new BlockResource(
-        //     $storeBlock->execute($block)
-        // );
-
-        // Block created from DTO via the FormRequest
-        // return new BlockResource(
-        //     $storeBlock->execute($request->toDTO())
-        // );
+        return new BlockResource(
+            BlockDTO::fromModel($block)
+        );
     }
 
     public function show(Organization $organization, Block $block)
     {
-        // return $block->load([
-        //     'image'
-        // ]);
+        dd(BlockDTO::fromModel($block));
 
         return new BlockResource(
-            $block->load([
-                'image'
-            ])
+            BlockDTO::fromModel($block)
         );
-
-        // return new BlockResource($block);
     }
 
     public function update(Organization $organization, Block $block, UpdateBlockRequest $request)
     {
         $block->update(
             $request->validated()
-            // $request->all()
         );
 
         return new BlockResource($block);

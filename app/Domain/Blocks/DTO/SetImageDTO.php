@@ -4,10 +4,9 @@ namespace Cms\Domain\Blocks\DTO;
 
 use Spatie\DataTransferObject\DataTransferObject;
 
-class ImageDTO extends DataTransferObject
+class SetImageDTO extends DataTransferObject
 {
-    public string $src;
-    public string $name;
+    public ?string $id;
 
     // public static function fromRequest(array $request): self
     // {

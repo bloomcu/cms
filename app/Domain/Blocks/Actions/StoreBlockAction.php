@@ -4,29 +4,36 @@ namespace Cms\Domain\Blocks\Actions;
 
 use Cms\Domain\Blocks\Block;
 
-use Cms\Domain\Blocks\DTO\BlockDTO;
+use Cms\Domain\Blocks\DTO\SetBlockDTO;
 
 class StoreBlockAction
 {
-    // public function execute(array $request): Block
+    public static function execute(SetBlockDTO $dto): Block
+    {
+        $block = Block::create(
+            $dto->toArray()
+        );
+
+        return $block->fresh();
+    }
+
+    // public function execute(SetBlockDTO $dto): Block
     // {
-    //     return Block::create([
-    //         'uuid'      => $request['uuid'] ?? null,
-    //         'title'     => $request['title'],
-    //         'component' => $request['component'],
-    //         'layout_id' => $request['layout_id'],
-    //         'data'      => $request['data'],
-    //     ]);
+    //     return Block::create(
+    //         $dto->toArray()
+    //     );
     // }
 
-    public function execute(BlockDTO $dto): Block
-    {
-        return Block::create([
-            'uuid'      => $dto->uuid,
-            'title'     => $dto->title,
-            'component' => $dto->component,
-            'layout_id' => $dto->layout_id,
-            'data'      => $dto->data,
-        ]);
-    }
+    // public function execute(array $data): Block
+    // {
+    //     $block = Block::create([
+    //         'uuid'      => $data['uuid'],
+    //         'title'     => $data['title'],
+    //         'component' => $data['component'],
+    //         'layout_id' => $data['layout_id'],
+    //         'data'      => $data['data'],
+    //     ]);
+    //     return $block;
+    //     // return $block->fresh();
+    // }
 }

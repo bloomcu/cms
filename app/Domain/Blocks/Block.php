@@ -31,6 +31,10 @@ class Block extends Model
         'data' => 'json'
     ];
 
+    public $with = [
+        'image'
+    ];
+
     // protected $casts = [
     //     'data' => BlockData::class
     // ];
@@ -54,12 +58,6 @@ class Block extends Model
     {
         return $this->belongsTo('Cms\Domain\Files\File', 'data->image->id');
     }
-
-    // public function dataClass()
-    // {
-    //     // TODO: Rename 'component' attribute to 'block'
-    //     return 'Cms\\Domain\\Blocks\\BlockData\\' . Str::studly($this['component']);
-    // }
 
     /**
      * Apply filters.

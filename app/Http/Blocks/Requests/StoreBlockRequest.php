@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-use Cms\Domain\Blocks\DTO\BlockDTO;
+use Cms\Domain\Blocks\DTO\SetBlockDTO;
 
 class StoreBlockRequest extends FormRequest
 {
@@ -65,27 +65,15 @@ class StoreBlockRequest extends FormRequest
         throw new HttpResponseException(response()->json($validator->errors(), 422));
     }
 
-    // /**
-    //  * Build and return a DTO.
-    //  *
-    //  * @return BlockDTO
-    //  */
-    // public function toDTO(): BlockDTO
-    // {
-    //     return new BlockDTO([ // TODO: rename to StoreBlockDTO
-    //         'uuid'      => $this->uuid ?? null,
-    //         'title'     => $this->title,
-    //         'component' => $this->component,
-    //         'layout_id' => intval($this->layout_id),
-    //         'data'      => [
-    //             'label'    => $this->data['label'] ?? null,
-    //             'title'    => $this->data['title'] ?? null,
-    //             'subtitle' => $this->data['subtitle'] ?? null,
-    //             // 'image_id' => isset($this->data['image']) ? intval($this->data['image']['id']) : null,
-    //             'image'    => [
-    //                 'id' => isset($this->data['image']) ? intval($this->data['image']['id']) : null,
-    //             ]
-    //         ]
-    //     ]);
-    // }
+    /**
+     * Build and return a DTO.
+     *
+     * @return SetBlockDTO
+     */
+    public function toDTO(): SetBlockDTO
+    {
+        return new SetBlockDTO(
+            $this->validated()
+        );
+    }
 }
