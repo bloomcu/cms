@@ -4,6 +4,8 @@
 
 A CMS built with Laravel.
 
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/1241377-f9df69bb-99bb-4b14-94db-091e123e18cf?action=collection%2Ffork&collection-url=entityId%3D1241377-f9df69bb-99bb-4b14-94db-091e123e18cf%26entityType%3Dcollection%26workspaceId%3Da8e39e6f-193c-49f5-8474-38b7e2bfe224)
+
 ## Install Locally
 
 **Step 1:** Clone this repository
