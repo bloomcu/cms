@@ -22,7 +22,8 @@ class PageResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'slug' => $this->slug,
-            'is_blueprint' => $this->is_blueprint,
+            'path' => $this->path,
+            'uri' => $this->uri,
             'is_published' => $this->is_published,
             'category' => new CategoryResource($this->whenLoaded('category')),
             'layout' => new LayoutResource($this->whenLoaded('layout'))
