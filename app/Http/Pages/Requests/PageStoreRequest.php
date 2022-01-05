@@ -3,6 +3,8 @@
 namespace Cms\Http\Pages\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class PageStoreRequest extends FormRequest
 {
@@ -24,10 +26,17 @@ class PageStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'       => 'nullable|string',
-            'category_id' => 'nullable|integer',
-            'type_id'     => 'nullable|integer',
-            'layout_id'   => 'nullable|integer'
+            'title' => 'required|string'
         ];
+    }
+
+    /**
+     * Return exception as json
+     *
+     * @return Exception
+     */
+    protected function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json($validator->errors(), 422));
     }
 }

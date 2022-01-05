@@ -11,17 +11,20 @@ trait HasSlug {
     {
         static::creating(function (Model $model) {
             $slug = Str::slug($model->title);
-            $model->slug = $model->makeSlugUnique($slug);
+            $model->slug = $model->generateUniqueSlug($slug);
         });
+
+        // TODO: After "updated" event, we might check that the slug is still unique
+        // static::updated(function (Model $model) {});
     }
 
-    protected function makeSlugUnique(string $slug): string
+    protected function generateUniqueSlug(string $slug): string
     {
-        $original_slug = $slug;
-        $i = 2;
+        $baseSlug = $slug;
 
+        $i = 2;
         while ($this->otherRecordsExistWithSlug($slug)) {
-            $slug = $original_slug . '-' . $i++;
+            $slug = $baseSlug . '-' . $i++;
         }
 
         return $slug;
