@@ -21,9 +21,9 @@ class PageResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'slug' => $this->slug,
             'path' => $this->path,
-            'uri' => $this->uri,
+            'slug' => $this->slug,
+            'url' => $this->url,
             'is_published' => $this->is_published,
             'category' => new CategoryResource($this->whenLoaded('category')),
             'layout' => new LayoutResource($this->whenLoaded('layout'))

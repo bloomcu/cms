@@ -26,9 +26,14 @@ class PageUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'        => 'nullable|string',
-            'slug'         => 'nullable|string|unique:pages,slug', // TODO: Create custom slug rule (foo-bar)
-            'path'         => 'nullable|string', // TODO: Create custom path rule (foo/bar)
+            'title' => 'nullable|string',
+
+            // TODO: Create custom path rule to enforce format "foo/bar"
+            'path' => 'nullable|string',
+
+            // TODO: Create custom slug rule to enforce format "foo-bar"
+            'slug' => 'nullable|string|unique:pages,slug',
+
             'category_id'  => 'nullable|integer',
             'is_published' => 'nullable|integer'
         ];

@@ -18,9 +18,9 @@ class CreatePagesTable extends Migration
             $table->string('title');
 
             // URL
-            $table->string('slug')->unique();
             $table->string('path')->nullable();
-            $table->string('uri')->nullable();
+            $table->string('slug')->unique();
+            $table->string('url')->nullable();
 
             // Relations
             $table->foreignId('organization_id');
