@@ -20,19 +20,19 @@ trait HasSlug {
 
     protected function generateUniqueSlug(string $slug): string
     {
-        $baseSlug = $slug;
+        $originalSlug = $slug;
+        $counter = 2;
 
-        $i = 2;
-        while ($this->otherRecordsExistWithSlug($slug)) {
-            $slug = $baseSlug . '-' . $i++;
+        while ($this->slugExists($slug)) {
+            $slug = $originalSlug . '-' . $counter++;
         }
 
         return $slug;
     }
 
-    protected function otherRecordsExistWithSlug(string $slug): bool
+    protected function slugExists(string $slug): bool
     {
-        $query = static::where('slug', '=', $slug);
+        $query = $this->where('slug', '=', $slug);
 
         if ($this->usesSoftDeletes()) {
             $query->withTrashed();
