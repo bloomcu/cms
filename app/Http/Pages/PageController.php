@@ -14,7 +14,8 @@ use Cms\Http\Pages\Resources\PageResource;
 use Cms\Http\Pages\Resources\PageCollection;
 
 // Requests
-// use App\Http\Requests\PageStoreRequest;
+use Cms\Http\Pages\Requests\PageStoreRequest;
+use Cms\Http\Pages\Requests\PageUpdateRequest;
 
 class PageController extends Controller
 {
@@ -31,12 +32,10 @@ class PageController extends Controller
         return new PageCollection($pages);
     }
 
-    public function store(Organization $organization, Request $request)
+    public function store(Organization $organization, PageStoreRequest $request)
     {
         $page = $organization->pages()->create(
-            // TODO: Use FormRequest for request validation
-            // $request->validated()
-            $request->all()
+            $request->validated()
         );
 
         return new PageResource($page);
@@ -53,12 +52,10 @@ class PageController extends Controller
         );
     }
 
-    public function update(Organization $organization, Page $page, Request $request)
+    public function update(Organization $organization, Page $page, PageUpdateRequest $request)
     {
         $page->update(
-            // TODO: Use FormRequest for request validation
-            // $request->validated()
-            $request->all()
+            $request->validated()
         );
 
         return new PageResource($page);

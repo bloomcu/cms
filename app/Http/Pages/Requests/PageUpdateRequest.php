@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class ReplicatePageStoreRequest extends FormRequest
+class PageUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,16 @@ class ReplicatePageStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'is_blueprint' => 'required|boolean'
+            'title' => 'nullable|string',
+
+            // TODO: Create custom path rule to enforce format "foo/bar"
+            'path' => 'nullable|string',
+
+            // TODO: Create custom slug rule to enforce format "foo-bar"
+            'slug' => 'nullable|string|unique:pages,slug',
+
+            'category_id'  => 'nullable|integer',
+            'is_published' => 'nullable|integer'
         ];
     }
 

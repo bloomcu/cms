@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 // Traits
 use Cms\App\Traits\HasSlug;
+use Cms\App\Traits\HasUrl;
 use Cms\App\Traits\IsBlueprint;
 
 // Filters
@@ -15,9 +16,12 @@ use Cms\Domain\Pages\Filters\PageFilters;
 
 class Page extends Model
 {
-    use HasFactory, HasSlug, IsBlueprint;
+    use HasFactory,
+        HasSlug,
+        HasUrl,
+        IsBlueprint;
 
-    protected $guarded = ['id', 'slug'];
+    protected $guarded = ['id', 'url'];
 
     protected $table = 'pages';
 

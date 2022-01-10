@@ -8,8 +8,9 @@ use Organizations\OrganizationController;
 
 // Pages
 use Pages\PageController;
-use Cms\Http\Pages\PageBlueprintController;
 use Cms\Http\Pages\PageReplicateController;
+use Cms\Http\Pages\PageBlueprintController;
+use Cms\Http\Pages\PageCheckSlugController;
 
 // Layouts
 use Layouts\LayoutController;
@@ -44,8 +45,9 @@ Route::apiResource('organizations', OrganizationController::class);
 
 // Pages
 Route::apiResource('organizations.pages', PageController::class);
-Route::get('organizations/{organization}/page-blueprints', [PageBlueprintController::class, 'index']);
 Route::post('organizations/{organization}/pages/{page}/replicate', [PageReplicateController::class, 'replicate']);
+Route::get('organizations/{organization}/page-blueprints', [PageBlueprintController::class, 'index']);
+Route::get('organizations/{organization}/page/check-slug', [PageCheckSlugController::class, 'show']);
 
 // Layouts
 Route::apiResource('organizations.layouts', LayoutController::class);

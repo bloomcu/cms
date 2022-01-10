@@ -11,25 +11,28 @@ trait HasSlug {
     {
         static::creating(function (Model $model) {
             $slug = Str::slug($model->title);
-            $model->slug = $model->makeSlugUnique($slug);
+            $model->slug = $model->generateUniqueSlug($slug);
         });
+
+        // TODO: After "updated" event, we might check that the slug is still unique
+        // static::updated(function (Model $model) {});
     }
 
-    protected function makeSlugUnique(string $slug): string
+    protected function generateUniqueSlug(string $slug): string
     {
-        $original_slug = $slug;
-        $i = 2;
+        $originalSlug = $slug;
+        $counter = 2;
 
-        while ($this->otherRecordsExistWithSlug($slug)) {
-            $slug = $original_slug . '-' . $i++;
+        while ($this->slugExists($slug)) {
+            $slug = $originalSlug . '-' . $counter++;
         }
 
         return $slug;
     }
 
-    protected function otherRecordsExistWithSlug(string $slug): bool
+    protected function slugExists(string $slug): bool
     {
-        $query = static::where('slug', '=', $slug);
+        $query = $this->where('slug', '=', $slug);
 
         if ($this->usesSoftDeletes()) {
             $query->withTrashed();
