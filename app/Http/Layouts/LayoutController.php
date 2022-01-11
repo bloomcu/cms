@@ -41,7 +41,11 @@ class LayoutController extends Controller
     public function show(Organization $organization, Layout $layout)
     {
         return new LayoutResource(
-            $layout->load(['category', 'blocks'])
+            $layout->load([
+                'category',
+                'blocks',
+                'draft'
+            ])
         );
     }
 

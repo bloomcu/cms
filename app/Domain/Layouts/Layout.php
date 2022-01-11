@@ -8,11 +8,16 @@ use Illuminate\Database\Eloquent\Builder;
 
 use Cms\Domain\Layouts\Filters\LayoutFilters;
 
+use Cms\App\Traits\IsPublishable;
+
 class Layout extends Model
 {
-    use HasFactory;
+    use HasFactory,
+        IsPublishable;
 
     protected $guarded = ['id'];
+
+    protected $dates = ['drafted_at'];
 
     public function organization()
     {

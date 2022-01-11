@@ -14,6 +14,8 @@ use Cms\Http\Pages\PageCheckSlugController;
 
 // Layouts
 use Layouts\LayoutController;
+use Cms\Http\Layouts\LayoutDraftController;
+use Cms\Http\Layouts\LayoutPublishController;
 
 // Blocks
 use Blocks\BlockController;
@@ -51,6 +53,13 @@ Route::get('organizations/{organization}/page/check-slug', [PageCheckSlugControl
 
 // Layouts
 Route::apiResource('organizations.layouts', LayoutController::class);
+
+// Layout Draft
+Route::post('organizations/{organization}/layouts/{layout}/draft', [LayoutDraftController::class, 'store']);
+Route::get('organizations/{organization}/layouts/{layout}/draft', [LayoutDraftController::class, 'show']);
+
+// Layout Publish
+Route::post('organizations/{organization}/layouts/{layout}/publish', [LayoutPublishController::class, 'store']);
 
 // Blocks
 Route::apiResource('organizations.blocks', BlockController::class);
