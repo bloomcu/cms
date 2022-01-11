@@ -30,14 +30,14 @@ class Page extends Model
         return $this->belongsTo('Cms\Domain\Organizations\Organization');
     }
 
+    public function layout()
+    {
+        return $this->hasOne('Cms\Domain\Layouts\Layout')->latestOfMany();
+    }
+
     public function layouts()
     {
         return $this->hasMany('Cms\Domain\Layouts\Layout');
-    }
-
-    public function layout()
-    {
-        return $this->hasOne('Cms\Domain\Layouts\Layout')->latest();
     }
 
     public function category()
