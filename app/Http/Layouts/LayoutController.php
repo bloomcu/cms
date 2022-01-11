@@ -13,7 +13,7 @@ use Cms\Domain\Blocks\Block;
 use Cms\Http\Layouts\Resources\LayoutCollection;
 use Cms\Http\Layouts\Resources\LayoutResource;
 
-// use App\Http\Requests\LayoutStoreRequest;
+use Cms\Http\Layouts\Requests\LayoutStoreRequest;
 
 class LayoutController extends Controller
 {
@@ -29,12 +29,10 @@ class LayoutController extends Controller
         return new LayoutCollection($layouts);
     }
 
-     public function store(Request $request)
+     public function store(Organization $organization, LayoutStoreRequest $request)
      {
-         $layout = Layout::create(
-             // TODO: Use FormRequest for request validation
-             // $request->validated()
-             $request->all()
+         $layout = $organization->layouts()->create(
+             $request->validated()
          );
 
          return new LayoutResource($layout);
