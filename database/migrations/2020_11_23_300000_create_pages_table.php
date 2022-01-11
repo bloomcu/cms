@@ -26,19 +26,15 @@ class CreatePagesTable extends Migration
             $table->foreignId('organization_id');
             $table->foreignId('category_id')->nullable();
 
-            // State
-            $table->boolean('is_published')->default(false);
-            $table->boolean('is_blueprint')->default(false);
+            // States
+            // $table->boolean('is_published')->default(false)->index();
+            $table->boolean('is_blueprint')->default(false)->index();
+
             $table->timestamps();
 
-            // Indexes
-            $table->index(['is_published', 'is_blueprint']);
-
             // Foreign constraints
-            // $table->foreign('organization_id')->references('id')->on('organizations');
-            // $table->foreign('blueprint_id')->references('id')->on('pages');
-            // $table->foreign('layout_id')->references('id')->on('layouts');
-            // $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('organization_id')->references('id')->on('organizations');
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 
