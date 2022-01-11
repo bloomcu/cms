@@ -21,6 +21,7 @@ class BlockResource extends JsonResource
         $dataResource = 'Cms\\Http\\Blocks\\Resources\\Data\\' . Str::studly($this->component) . 'Resource';
 
         return [
+            'id' => $this->id,
             'uuid' => $this->uuid,
             'title' => $this->title,
             'component' => $this->component,
