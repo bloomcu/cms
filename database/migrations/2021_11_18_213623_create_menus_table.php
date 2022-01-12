@@ -16,7 +16,15 @@ class CreateMenusTable extends Migration
         Schema::create('menus', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+
+            // Relations
+            $table->foreignId('organization_id');
+
+            // Timestamps
             $table->timestamps();
+
+            // Foreign constraints
+            $table->foreign('organization_id')->references('id')->on('organizations');
         });
     }
 

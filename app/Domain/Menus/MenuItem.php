@@ -4,11 +4,21 @@ namespace Cms\Domain\Menus;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
+
+// Vendors
+use Kalnoy\Nestedset\NodeTrait;
 
 class MenuItem extends Model
 {
-    use HasFactory;
+    use HasFactory,
+        NodeTrait;
+
+    protected $guarded = ['id'];
+
+    protected function getScopeAttributes()
+    {
+        return ['menu_id'];
+    }
 
     public function menu()
     {

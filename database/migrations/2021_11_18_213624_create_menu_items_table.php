@@ -16,14 +16,23 @@ class CreateMenuItemsTable extends Migration
         Schema::create('menu_items', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+
+            // Relations
             $table->foreignId('menu_id')->index();
-            $table->foreignId('parent_id')->index()->nullable();
-            $table->integer('sort_order');
+
+            // Kalnoy Nestedset
+            $table->nestedSet();
+
+            // TODO: We don't need these if using nestedset package
+            // $table->foreignId('parent_id')->index()->nullable();
+            // $table->integer('sort_order');
+
+            // Timestamps
             $table->timestamps();
 
             // Foreign constraints
             $table->foreign('menu_id')->references('id')->on('menus')->onDelete('cascade');
-            $table->foreign('parent_id')->references('id')->on('menu_items')->onDelete('cascade');
+            // $table->foreign('parent_id')->references('id')->on('menu_items')->onDelete('cascade');
         });
     }
 

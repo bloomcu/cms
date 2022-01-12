@@ -64,4 +64,14 @@ class Organization extends Model
     {
         return $this->hasMany('Cms\Domain\Files\File');
     }
+
+    /**
+     * Get the menus associated with the organization.
+     *
+     * @return hasMany
+     */
+    public function menus()
+    {
+        return $this->hasMany('Cms\Domain\Menus\Menu');
+    }
 }

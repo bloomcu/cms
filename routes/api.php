@@ -73,4 +73,4 @@ Route::post('organizations/{organization}/files/sign', [FileSignUploadController
 Route::apiResource('categories', CategoryController::class);
 
 // Menus
-Route::apiResource('menus', MenuController::class);
+Route::apiResource('organizations.menus', MenuController::class);

@@ -19,6 +19,9 @@ class MenuResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
+
+            // TODO: Can we just use the static collection method on MenuItemResource here
+            // and then delete MenuItemCollection resource?
             'items' => new MenuItemCollection($this->whenLoaded('items'))
         ];
     }
