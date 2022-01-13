@@ -15,17 +15,16 @@ class CreateMenuItemsTable extends Migration
     {
         Schema::create('menu_items', function (Blueprint $table) {
             $table->id();
+            // $table->uuid('uuid'); // TODO: Use UUID for model primary key
             $table->string('title');
+            $table->string('component')->nullable(); // E.g, dropdown, column-dropdown, search-dropdown
 
             // Relations
             $table->foreignId('menu_id')->index();
 
-            // Kalnoy Nestedset
-            $table->nestedSet();
-
-            // TODO: We don't need these if using nestedset package
-            // $table->foreignId('parent_id')->index()->nullable();
-            // $table->integer('sort_order');
+            // Nesting
+            $table->foreignId('parent_id')->index()->nullable();
+            $table->integer('order');
 
             // Timestamps
             $table->timestamps();
