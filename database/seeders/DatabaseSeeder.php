@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
             PagesSeeder::class,
             LayoutsSeeder::class,
             BlocksSeeder::class,
-            FilesSeeder::class
+            FilesSeeder::class,
+            MenusSeeder::class
         ]);
     }
 }
