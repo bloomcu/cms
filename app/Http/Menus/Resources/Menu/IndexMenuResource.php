@@ -1,10 +1,10 @@
 <?php
 
-namespace Cms\Http\Menus\Resources;
+namespace Cms\Http\Menus\Resources\Menu;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class MenuItemResource extends JsonResource
+class IndexMenuResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,7 +17,6 @@ class MenuItemResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'children' => MenuItemResource::collection($this->children),
         ];
     }
 }

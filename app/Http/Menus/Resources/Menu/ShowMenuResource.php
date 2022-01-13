@@ -1,12 +1,13 @@
 <?php
 
-namespace Cms\Http\Menus\Resources;
+namespace Cms\Http\Menus\Resources\Menu;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
+// Resources
 use Cms\Http\Menus\Resources\MenuItemResource;
 
-class MenuResource extends JsonResource
+class ShowMenuResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -19,10 +20,7 @@ class MenuResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
-
-            // TODO: Can we just use the static collection method on MenuItemResource here
-            // and then delete MenuItemCollection resource?
-            'items' => new MenuItemCollection($this->whenLoaded('items'))
+            'items' => MenuItemResource::collection($this->itemsTree()),
         ];
     }
 }
