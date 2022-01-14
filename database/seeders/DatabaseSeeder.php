@@ -20,7 +20,10 @@ class DatabaseSeeder extends Seeder
             PagesSeeder::class,
             LayoutsSeeder::class,
             BlocksSeeder::class,
-            FilesSeeder::class
+            FilesSeeder::class,
+            RateTableGroupsSeeder::class,
+            RateTablesSeeder::class,
+            RatesSeeder::class,
         ]);
     }
 }
