@@ -26,6 +26,11 @@ use Cms\Http\Files\FileSignUploadController;
 // Categories
 use Categories\CategoryController;
 
+// Rates 
+use Cms\Http\Rates\RateController;
+use Cms\Http\Rates\RateCellController;
+use Cms\Http\Rates\RateTableGroupController;
+
 // Menus
 use Menus\MenuController;
 
@@ -65,3 +70,8 @@ Route::apiResource('categories', CategoryController::class);
 
 // Menus
 Route::apiResource('menus', MenuController::class);
+
+//Rates
+// Route::apiResource('rates', RateController::class);
+Route::get('rate-groups', [RateTableGroupController::class, 'show']);
+Route::get('rate-cells', [RateCellController::class, 'show']);
