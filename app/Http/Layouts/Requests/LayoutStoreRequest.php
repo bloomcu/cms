@@ -24,8 +24,9 @@ class LayoutStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
-            'category_id' => 'nullable|integer'
+            'title' => 'required|string',
+            'page_id' => 'required|integer',
+            'category_id' => 'nullable|integer',
         ];
     }
 }

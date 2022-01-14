@@ -39,6 +39,29 @@ class BlocksSeeder extends Seeder
                     'subtitle' => 'And this is the subtitle, it is longer',
                 ]
             ],
+            [
+                'title' => 'Hero',
+                'component' => 'hero',
+                // 'type' => 'base',
+                'category_id' => 'heros',
+                'layout_id' => 3,
+                'data' => [
+                    'label' => 'The label',
+                    'title' => 'This is the title',
+                    'subtitle' => 'And this is the subtitle, it is longer',
+                ]
+            ],
+            [
+                'title' => 'Feature',
+                'component' => 'feature',
+                // 'type' => 'base',
+                'category_id' => 'features',
+                'layout_id' => 3,
+                'data' => [
+                    'title' => 'This is the title',
+                    'subtitle' => 'And this is the subtitle, it is longer',
+                ]
+            ],
         ];
 
         foreach ($blocks as $block) {
