@@ -27,6 +27,7 @@ class MenuUpdateRequest extends FormRequest
     {
         return [
             'title' => 'nullable|string',
+            'component' => 'nullable|string',
             'items' => 'nullable|array',
             'items.*.id' => 'required|integer',
             'items.*.title' => 'required|string',
