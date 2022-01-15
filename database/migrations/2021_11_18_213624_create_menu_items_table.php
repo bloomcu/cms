@@ -15,7 +15,7 @@ class CreateMenuItemsTable extends Migration
     {
         Schema::create('menu_items', function (Blueprint $table) {
             $table->id();
-            // $table->uuid('uuid'); // TODO: Use UUID for model primary key
+            $table->uuid('uuid');
             $table->string('title');
             $table->string('component')->nullable(); // E.g, dropdown, column-dropdown, search-dropdown
 

@@ -29,40 +29,79 @@ class MenusSeeder extends Seeder
 
         $items = [
             [
-                'id' => 1,
+                'uuid' => '1dabeb79-d22a-49f2-925f-0b3141a66285',
                 'title' => 'Accounts',
-                'parent_id' => null,
                 'component' => 'dropdown-1',
                 'menu_id' => 1,
                 'order' => 0,
                 'children' => [
-                    ['id' => 2, 'title' => 'Checking', 'parent_id' => 1, 'component' => null, 'menu_id' => 1, 'order' => 0],
-                    ['id' => 3, 'title' => 'Savings', 'parent_id' => 1, 'component' => null, 'menu_id' => 1, 'order' => 1],
+                    [
+                        'uuid' => '2dabeb79-d22a-49f2-925f-0b3141a66026',
+                        'title' => 'Checking',
+                        'parent_id' => 1,
+                        'menu_id' => 1,
+                        'order' => 0
+                    ],
+                    [
+                        'uuid' => '3dabeb79-d22a-49f2-925f-0b3141a66025',
+                        'title' => 'Savings',
+                        'parent_id' => 1,
+                        'menu_id' => 1,
+                        'order' => 1
+                    ],
                 ]
             ],
             [
-                'id' => 4,
+                'uuid' => '4dabeb79-d22a-49f2-925f-0b3141a66437',
                 'title' => 'Loans',
-                'parent_id' => null,
                 'component' => 'dropdown-1',
                 'menu_id' => 1,
                 'order' => 2,
                 'children' => [
-                    ['id' => 5, 'title' => 'Vehicle', 'parent_id' => 4, 'component' => null, 'menu_id' => 1, 'order' => 0],
-                    ['id' => 6, 'title' => 'Home', 'parent_id' => 4, 'component' => null, 'menu_id' => 1, 'order' => 1],
-                    ['id' => 7, 'title' => 'Personal', 'parent_id' => 4, 'component' => null, 'menu_id' => 1, 'order' => 2],
+                    [
+                        'uuid' => '5dabeb79-d22a-49f2-925f-0b3141a66987',
+                        'title' => 'Vehicle',
+                        'parent_id' => 4,
+                        'menu_id' => 1,
+                        'order' => 0
+                    ],
+                    [
+                        'uuid' => '6dabeb79-d22a-49f2-925f-0b3141a66144',
+                        'title' => 'Home',
+                        'parent_id' => 4,
+                        'menu_id' => 1,
+                        'order' => 1
+                    ],
+                    [
+                        'uuid' => '7dabeb79-d22a-49f2-925f-0b3141a66037',
+                        'title' => 'Personal',
+                        'parent_id' => 4,
+                        'menu_id' => 1,
+                        'order' => 2
+                    ],
                 ]
             ],
             [
-                'id' => 8,
+                'uuid' => '8dabeb79-d22a-49f2-925f-0b3141a66998',
                 'title' => 'Cards',
-                'parent_id' => null,
                 'component' => 'dropdown-1',
                 'menu_id' => 1,
                 'order' => 3,
                 'children' => [
-                    ['id' => 9, 'title' => 'Credit', 'parent_id' => 8, 'component' => null, 'menu_id' => 1, 'order' => 0],
-                    ['id' => 10, 'title' => 'Debit', 'parent_id' => 8, 'component' => null, 'menu_id' => 1, 'order' => 1],
+                    [
+                        'uuid' => '9dabeb79-d22a-49f2-925f-0b3141a66558',
+                        'title' => 'Credit',
+                        'parent_id' => 8,
+                        'menu_id' => 1,
+                        'order' => 0
+                    ],
+                    [
+                        'uuid' => '0dabeb79-d22a-49f2-925f-0b3141a66881',
+                        'title' => 'Debit',
+                        'parent_id' => 8,
+                        'menu_id' => 1,
+                        'order' => 1
+                    ],
                 ]
             ]
         ];

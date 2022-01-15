@@ -29,12 +29,15 @@ class MenuUpdateRequest extends FormRequest
             'title' => 'nullable|string',
             'component' => 'nullable|string',
             'items' => 'nullable|array',
-            'items.*.id' => 'required|integer',
+            'items.*.uuid' => 'required|uuid',
             'items.*.title' => 'required|string',
             'items.*.parent_id' => 'nullable|integer',
             'items.*.menu_id' => 'required|integer',
             'items.*.order' => 'required|integer',
             'items.*.children' => 'nullable|array',
+
+            // TODO: Nested item properties which are not listed in rules
+            // are making it through the request validation. Such as UUID.
 
             // TODO: Use a custom Request Validator to validate each item in items array.
             // Currently, we're only validating "items" and not recursively nested children.

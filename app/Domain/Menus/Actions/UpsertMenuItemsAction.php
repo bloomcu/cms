@@ -15,12 +15,10 @@ class UpsertMenuItemsAction
         $itemsFlat = ArrayHelpers::flatten($items);
 
         foreach ($itemsFlat as $item) {
-            MenuItem::upsert($item, ['id'], [
-                'title',
-                'menu_id',
-                'parent_id',
-                'order',
-            ]);
+            $new = MenuItem::updateOrCreate(
+                ['uuid' => $item['uuid']],
+                $item
+            );
         }
     }
 }
