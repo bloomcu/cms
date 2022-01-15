@@ -93,5 +93,5 @@ Route::get('rate-tables/{id}', [RateTableController::class, 'show']);
 
 Route::post('rate-table-rates/', [RateTableRatesController::class, 'store']);
 
-Route::get('rate-cells', [RateCellController::class, 'show']);
+Route::get('rates/{id}', [RateController::class, 'show']);
 
