@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class RateTable extends Model
 {
     use HasFactory;
+    public $fillable = ['name'];
 
     public function rates() {
         return $this->hasMany('Cms\Domain\Rates\Rate');
