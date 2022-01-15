@@ -4,6 +4,7 @@ namespace Cms\Http\Rates;
 
 use Illuminate\Http\Request;
 use Cms\App\Controllers\Controller;
+use Cms\Domain\Organizations\Organization;
 use Cms\Domain\Rates\RateTableGroup;
 
 class RateTableGroupController extends Controller
@@ -13,9 +14,10 @@ class RateTableGroupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Organization $organization, Request $request)
     {
-        //
+        $rate_table_groups = RateTableGroup::where('organization_id', '=', $organization->id)->get();
+        return $rate_table_groups;
     }
 
     /**
@@ -42,7 +44,7 @@ class RateTableGroupController extends Controller
         //     ->orderBy('rates.row_id')
         //     ->orderBy('rates.col_id')
         //     ->get();
-        return RateTableGroup::leftJoin('rates', 'rates.rate_table_group_id', '=', 'rate_table_group_id.id')
+        return RateTableGroup::leftJoin('rates', 'rates.rate_group_id', '=', 'rate_groups.id')
             ->with('rates')
             ->orderBy('rates.row_id', 'asc')
             ->orderBy('rates.col_id', 'asc')

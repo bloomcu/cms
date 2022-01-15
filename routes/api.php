@@ -31,7 +31,10 @@ use Categories\CategoryController;
 // Rates 
 use Cms\Http\Rates\RateController;
 use Cms\Http\Rates\RateCellController;
+use Cms\Http\Rates\RateTableController;
 use Cms\Http\Rates\RateTableGroupController;
+use Cms\Http\Rates\RateTableRatesController;
+
 
 // Menus
 use Menus\MenuController;
@@ -82,5 +85,13 @@ Route::apiResource('menus', MenuController::class);
 
 //Rates
 // Route::apiResource('rates', RateController::class);
-Route::get('rate-groups', [RateTableGroupController::class, 'show']);
+Route::get('organizations/{organization}/rate-table-groups', [RateTableGroupController::class, 'index']);
+
+Route::get('rate-tables', [RateTableController::class, 'index']);
+Route::get('rate-tables/{id}', [RateTableController::class, 'show']);
+
+
+Route::post('rate-table-rates/', [RateTableRatesController::class, 'store']);
+
 Route::get('rate-cells', [RateCellController::class, 'show']);
+

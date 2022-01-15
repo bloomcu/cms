@@ -64,4 +64,13 @@ class Organization extends Model
     {
         return $this->hasMany('Cms\Domain\Files\File');
     }
+    /**
+     * Get the rate table groups associated with the organization
+     *
+     * @return hasMany
+     */
+    public function rate_table_groups() 
+    {
+        return $this->hasMany('Cms\Domain\Rates\RateTableGroups');
+    }
 }
