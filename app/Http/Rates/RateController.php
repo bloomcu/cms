@@ -3,6 +3,7 @@
 namespace Cms\Http\Rates;
 use Cms\App\Controllers\Controller;
 use Cms\Domain\Rates\Rate;
+use Cms\Http\Rates\Resources\RateResource;
 use Illuminate\Http\Request;
 
 class RateController extends Controller
@@ -45,8 +46,8 @@ class RateController extends Controller
             ->where('row_id', $row_id)
             ->where('col_id', $col_id)
             ->first();
-            
-        return $rate;
+        
+        return new RateResource($rate);
     }
 
     /**
