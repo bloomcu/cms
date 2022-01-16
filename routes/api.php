@@ -91,7 +91,7 @@ Route::get('rate-tables', [RateTableController::class, 'index']);
 Route::get('rate-tables/{id}', [RateTableController::class, 'show']);
 
 
-Route::post('rate-table-rates/', [RateTableRatesController::class, 'store']);
+Route::post('organizations/{organization}/rate-table-rates/', [RateTableRatesController::class, 'store']);
 
 Route::get('rates/{id}', [RateController::class, 'show']);
 
