@@ -31,4 +31,9 @@ class Menu extends Model
             ->get()
             ->toTree();
     }
+
+    public function scopeLocation($query, $value)
+    {
+        return $query->where('location', $value);
+    }
 }
