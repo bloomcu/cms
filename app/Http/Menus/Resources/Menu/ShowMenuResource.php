@@ -20,6 +20,7 @@ class ShowMenuResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
+            'location' => $this->location,
             'component' => $this->component,
             'items' => MenuItemResource::collection($this->itemsTree()),
         ];

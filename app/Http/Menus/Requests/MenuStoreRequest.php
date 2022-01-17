@@ -27,6 +27,7 @@ class MenuStoreRequest extends FormRequest
     {
         return [
             'title' => 'required|string',
+            'location' => 'nullable|string',
             'component' => 'nullable|string',
         ];
     }
