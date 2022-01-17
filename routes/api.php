@@ -31,6 +31,9 @@ use Categories\CategoryController;
 // Menus
 use Menus\MenuController;
 
+// Globals
+use Cms\Http\Globals\GlobalsController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -74,3 +77,6 @@ Route::apiResource('categories', CategoryController::class);
 
 // Menus
 Route::apiResource('organizations.menus', MenuController::class);
+
+// Globals
+Route::get('organizations/{organization}/globals', [GlobalsController::class, 'show']);
