@@ -35,6 +35,9 @@ class Organization extends Model
         return $this->belongsToMany('Cms\Domain\Users\User');
     }
 
+    // TODO: The following relationships should be scoped to a "site/project" domain
+    // Files may belong to the organization so files can be accesses across sites/projects.
+
     /**
      * Get the pages associated with the organization.
      *
@@ -73,5 +76,15 @@ class Organization extends Model
     public function menus()
     {
         return $this->hasMany('Cms\Domain\Menus\Menu');
+    }
+
+    public function globalHeader()
+    {
+        return $this->hasOne('Cms\Domain\Menus\Menu')->location('header');
+    }
+
+    public function globalFooter()
+    {
+        return $this->hasOne('Cms\Domain\Menus\Menu')->location('footer');
     }
 }
