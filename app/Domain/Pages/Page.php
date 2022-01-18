@@ -31,15 +31,12 @@ class Page extends Model
         'article' => Article::class
     ];
 
-    // public static function booted()
-    // {
-    //     // Add 'Cms\Domain\Pages\PageBlueprint' scope to this model
-    //     // This gives us single table inheritence
-    //     static::addGlobalScope('page', function(Builder $builder) {
-    //         // $builder->where('type', self::class);
-    //         $builder->where('type', null);
-    //     });
-    // }
+    public static function booted()
+    {
+        static::addGlobalScope('page', function(Builder $builder) {
+            $builder->where('type', null);
+        });
+    }
 
     public function organization()
     {
