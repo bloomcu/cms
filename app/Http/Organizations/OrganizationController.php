@@ -46,17 +46,23 @@ class OrganizationController extends Controller
      * Update the specified resource in storage.
      *
      */
-    public function update(Request $request, $id)
+    public function update(Organization $organization, Request $request)
     {
-        //
+        $organization->update(
+            $request->all()
+        );
+
+        return $organization;
     }
 
     /**
      * Remove the specified resource from storage.
      *
      */
-    public function destroy($id)
+    public function destroy(Organization $organization)
     {
-        //
+        $organization->delete();
+        
+        return $organization;
     }
 }

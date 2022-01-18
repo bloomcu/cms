@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Route;
 // Organizations
 use Organizations\OrganizationController;
 
+// Properties
+use Properties\PropertyController;
+
 // Pages
 use Pages\PageController;
 use Cms\Http\Pages\PageReplicateController;
@@ -48,7 +51,10 @@ use Cms\Http\Globals\GlobalsController;
 // Organizations
 Route::apiResource('organizations', OrganizationController::class);
 
-// Pages
+// Organization > Properties
+Route::apiResource('organizations.properties', PropertyController::class);
+
+// Property > Pages
 Route::apiResource('organizations.pages', PageController::class);
 Route::post('organizations/{organization}/pages/{page}/replicate', [PageReplicateController::class, 'replicate']);
 Route::get('organizations/{organization}/page-blueprints', [PageBlueprintController::class, 'index']);

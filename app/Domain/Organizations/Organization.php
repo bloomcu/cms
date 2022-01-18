@@ -13,7 +13,7 @@ class Organization extends Model
 {
     use HasFactory, HasUuid, HasSlug;
 
-    protected $guarded = ['id', 'slug'];
+    protected $guarded = ['id'];
 
     /**
      * Route key used to fetch resource
@@ -34,57 +34,14 @@ class Organization extends Model
     {
         return $this->belongsToMany('Cms\Domain\Users\User');
     }
-
-    // TODO: The following relationships should be scoped to a "site/project" domain
-    // Files may belong to the organization so files can be accesses across sites/projects.
-
+    
     /**
-     * Get the pages associated with the organization.
+     * Get the properties associated with this organization.
      *
      * @return hasMany
      */
-    public function pages()
+    public function properties()
     {
-        return $this->hasMany('Cms\Domain\Pages\Page');
-    }
-
-    /**
-     * Get the pages associated with the organization.
-     *
-     * @return hasMany
-     */
-    public function layouts()
-    {
-        return $this->hasMany('Cms\Domain\Layouts\Layout');
-    }
-
-    /**
-     * Get the files associated with the organization.
-     *
-     * @return hasMany
-     */
-    public function files()
-    {
-        return $this->hasMany('Cms\Domain\Files\File');
-    }
-
-    /**
-     * Get the menus associated with the organization.
-     *
-     * @return hasMany
-     */
-    public function menus()
-    {
-        return $this->hasMany('Cms\Domain\Menus\Menu');
-    }
-
-    public function globalHeader()
-    {
-        return $this->hasOne('Cms\Domain\Menus\Menu')->location('header');
-    }
-
-    public function globalFooter()
-    {
-        return $this->hasOne('Cms\Domain\Menus\Menu')->location('footer');
+        return $this->hasMany('Cms\Domain\Properties\Property');
     }
 }
