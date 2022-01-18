@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
+// Vendors
+use Parental\HasChildren;
+
 // Traits
 use Cms\App\Traits\HasSlug;
 use Cms\App\Traits\HasUrl;
@@ -17,13 +20,26 @@ use Cms\Domain\Pages\Filters\PageFilters;
 class Page extends Model
 {
     use HasFactory,
+        HasChildren,
         HasSlug,
         HasUrl,
         IsBlueprint;
 
     protected $guarded = ['id', 'url'];
 
-    protected $table = 'pages';
+    protected $childTypes = [
+        'article' => Article::class
+    ];
+
+    // public static function booted()
+    // {
+    //     // Add 'Cms\Domain\Pages\PageBlueprint' scope to this model
+    //     // This gives us single table inheritence
+    //     static::addGlobalScope('page', function(Builder $builder) {
+    //         // $builder->where('type', self::class);
+    //         $builder->where('type', null);
+    //     });
+    // }
 
     public function organization()
     {

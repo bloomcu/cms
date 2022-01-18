@@ -10,29 +10,32 @@ namespace Cms\Domain\Pages;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
-use Cms\Domain\Posts\Post;
+// Vendors
+use Parental\HasParent;
 
-class Article extends Post
+// Domains
+use Cms\Domain\Pages\Page;
+
+class Article extends Page
 {
-    public static function boot()
-    {
-        parent::boot();
+    Use HasParent;
 
-        // When this model is first created
-        // Add the 'Cms\Domain\Pages\Article' type
-        static::creating(function (Model $model) {
-            // $model->type = self::class;
-            $model->type = 'Cms\Domain\Posts\Article';
-        });
-    }
+    // public static function boot()
+    // {
+    //     parent::boot();
+    //
+    //     // When this model is first created
+    //     // Add the 'Cms\Domain\Pages\Article' type
+    //     static::creating(function (Model $model) {
+    //         $model->type = self::class;
+    //         // $model->type = 'Cms\Domain\Posts\Article';
+    //     });
+    // }
 
     public static function booted()
     {
-        // Add 'Cms\Domain\Pages\PageBlueprint' scope to this model
-        // This gives us single table inheritence
         static::addGlobalScope('article', function(Builder $builder) {
-            // $builder->where('type', self::class);
-            $builder->where('type', 'Cms\Domain\Posts\Article');
+            $builder->whereType(self::class);
         });
     }
 }
