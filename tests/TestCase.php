@@ -20,11 +20,5 @@ abstract class TestCase extends BaseTestCase
         $this->organization = Organization::factory()->create();
         
         $this->property = Property::factory()->for($this->organization)->create();
-
-        // Our codebase is structured by domain, so we must
-        // tell the Factory builder where to find our factories
-        // Factory::guessFactoryNamesUsing(function (string $modelName) {
-        //     return 'Database\\Factories\\Domain\\' . class_basename($modelName) . 'Factory';
-        // });
     }
 }
