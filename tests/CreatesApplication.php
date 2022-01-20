@@ -19,7 +19,7 @@ trait CreatesApplication
         $app->make(Kernel::class)->bootstrap();
 
         // Add macro to Illuminate\Testing\TestResponse
-        // Macro accepts an API Resource to be asserted
+        // Assert response uses the API resource provided
         TestResponse::macro('assertResource', function ($resource) {
             $this->assertJson($resource->response()->getData(true));
         });

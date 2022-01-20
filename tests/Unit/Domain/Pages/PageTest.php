@@ -3,8 +3,9 @@
 namespace Tests\Unit\Domain\Pages;
 
 use Tests\TestCase;
+
 use Cms\Domain\Pages\Page;
-use Cms\Domain\Organizations\Organization;
+use Cms\Domain\Properties\Property;
 use Cms\Domain\Layouts\Layout;
 use Cms\Domain\Categories\Category;
 
@@ -16,33 +17,39 @@ class PageTest extends TestCase
 
         $this->page = Page::factory()->create();
     }
-
+    
+    // TODO: Test it has a slug
+    
+    // TODO: Test it has a URL
+    
     /** @test */
-    public function it_belongs_to_an_organization()
+    public function it_belongs_to_a_property()
     {
-        $page = Page::factory()->create([
-            'organization_id' => Organization::factory()->create()->id
-        ]);
+        $page = Page::factory()
+            ->has(Property::factory())
+            ->create();
 
-        $this->assertInstanceOf(Organization::class, $page->organization);
+        $this->assertInstanceOf(Property::class, $page->property);
     }
 
     /** @test */
     public function it_has_many_layouts()
     {
-        $this->page->layouts()->save(
-            Layout::factory()->create()
-        );
+        $page = Page::factory()
+            ->has(Layout::factory())
+            ->create();
 
-        $this->assertInstanceOf(Layout::class, $this->page->layouts->first());
+        $this->assertInstanceOf(Layout::class, $page->layouts->first());
     }
+    
+    // TODO: Test latest single layout relationship
 
     /** @test */
     public function it_belongs_to_a_category()
     {
-        $page = Page::factory()->create([
-            'category_id' => Category::factory()->create()->id
-        ]);
+        $page = Page::factory()
+            ->has(Category::factory())
+            ->create();
 
         $this->assertInstanceOf(Category::class, $page->category);
     }

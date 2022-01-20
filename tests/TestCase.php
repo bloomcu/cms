@@ -7,8 +7,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 use Cms\Domain\Organizations\Organization;
-use Cms\Domain\Pages\Page;
-use Cms\Domain\Blocks\Block;
+use Cms\Domain\Properties\Property;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -17,11 +16,15 @@ abstract class TestCase extends BaseTestCase
     public function setUp(): void
     {
         parent::setup();
+        
+        $this->organization = Organization::factory()->create();
+        
+        $this->property = Property::factory()->for($this->organization)->create();
 
         // Our codebase is structured by domain, so we must
         // tell the Factory builder where to find our factories
         // Factory::guessFactoryNamesUsing(function (string $modelName) {
-        //     return 'Database\\Factories\\' . class_basename($modelName) . 'Factory';
+        //     return 'Database\\Factories\\Domain\\' . class_basename($modelName) . 'Factory';
         // });
     }
 }

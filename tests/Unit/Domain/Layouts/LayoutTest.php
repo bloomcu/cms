@@ -3,9 +3,10 @@
 namespace Tests\Unit\Domain\Layouts;
 
 use Tests\TestCase;
-use Cms\Domain\Pages\Page;
-use Cms\Domain\Organizations\Organization;
+
 use Cms\Domain\Layouts\Layout;
+use Cms\Domain\Properties\Property;
+use Cms\Domain\Pages\Page;
 use Cms\Domain\Categories\Category;
 use Cms\Domain\Blocks\Block;
 
@@ -19,46 +20,58 @@ class LayoutTest extends TestCase
     }
 
     /** @test */
-    public function it_belongs_to_an_organization()
+    public function it_belongs_to_a_property()
     {
-        $layout = Layout::factory()->create([
-            'organization_id' => Organization::factory()->create()->id
-        ]);
+        $layout = Layout::factory()
+            ->has(Property::factory())
+            ->create();
 
-        $this->assertInstanceOf(Organization::class, $layout->organization);
+        $this->assertInstanceOf(Property::class, $layout->property);
+    }
+    
+    /** @test */
+    public function it_belongs_to_a_page()
+    {
+        $layout = Layout::factory()
+            ->has(Page::factory())
+            ->create();
+
+        $this->assertInstanceOf(Page::class, $layout->page);
     }
 
     /** @test */
     public function it_belongs_to_a_category()
     {
-        $page = Page::factory()->create([
-            'category_id' => Category::factory()->create()->id
-        ]);
+        $layout = Layout::factory()
+            ->has(Category::factory())
+            ->create();
 
-        $this->assertInstanceOf(Category::class, $page->category);
+        $this->assertInstanceOf(Category::class, $layout->category);
     }
 
     /** @test */
     public function it_has_many_blocks()
     {
-        $this->layout->blocks()->save(
-            Block::factory()->create()
-        );
+        $layout = Layout::factory()
+            ->has(Block::factory()->count(3))
+            ->create();
 
-        $this->assertInstanceOf(Block::class, $this->layout->blocks->first());
+        $this->assertInstanceOf(Block::class, $layout->blocks->first());
     }
 
     /** @test */
-    public function its_blocks_are_retrieved_in_order()
+    public function its_blocks_are_ordered()
     {
-        $this->layout->blocks()->save(
+        $layout = Layout::factory()->create();
+            
+        $layout->blocks()->save(
             Block::factory()->create(['title' => 'Block Two', 'order' => 2])
         );
 
-        $this->layout->blocks()->save(
+        $layout->blocks()->save(
             Block::factory()->create(['title' => 'Block One', 'order' => 1])
         );
 
-        $this->assertStringContainsString('Block Two', $this->layout->blocks()->pluck('title'));
+        $this->assertStringContainsString('Block Two', $layout->blocks()->pluck('title'));
     }
 }

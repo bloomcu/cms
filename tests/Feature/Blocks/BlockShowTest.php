@@ -5,38 +5,37 @@ namespace Tests\Feature\Blocks;
 use Tests\TestCase;
 
 use Cms\Domain\Blocks\Block;
-use Cms\Domain\Layouts\Layout;
-use Cms\Domain\Organizations\Organization;
+
+use Cms\Http\Blocks\Resources\BlockResource;
 
 class BlockShowTest extends TestCase
 {
     public function setUp(): void
     {
         parent::setUp();
-
-        $this->organization = Organization::factory()->create();
-        $this->layout = Layout::factory()->create();
     }
 
     /** @test */
     public function it_fails_if_a_block_cant_be_found()
     {
-        $this->get("/api/organizations/{$this->organization->slug}/blocks/nope")
-            ->assertStatus(404);
+        $response = $this->get("/api/organizations/{$this->organization->slug}/properties/{$this->property->slug}/blocks/123");
+        
+        $response->assertStatus(404);
     }
 
     /** @test */
     public function test_it_shows_a_block()
     {
-        $block = Block::factory()->create([
-            'title' => 'Test block title',
-            'layout_id' => $this->layout->id
-        ]);
+        $block = Block::factory()
+            ->for($this->property)
+            ->state(['title' => 'Test block title'])
+            ->create();
+        
+        $response = $this->get("/api/organizations/{$this->organization->slug}/properties/{$this->property->slug}/blocks/{$block->uuid}");
 
-        $this->get("/api/organizations/{$this->organization->slug}/blocks/{$block->uuid}")
+        $response
             ->assertStatus(200)
-            ->assertJsonFragment([
-               'title' => 'Test block title'
-           ]);
+            ->assertJsonFragment(['title' => 'Test block title'])
+            ->assertResource(new BlockResource($block));
     }
 }
