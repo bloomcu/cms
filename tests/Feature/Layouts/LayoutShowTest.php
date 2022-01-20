@@ -18,7 +18,7 @@ class LayoutShowTest extends TestCase
     /** @test */
     public function it_fails_if_a_layout_cant_be_found()
     {
-        $response = $this->get("/api/organizations/{$this->organization->slug}/properties/{$this->property->slug}/layouts/123");
+        $response = $this->get("/api/{$this->organization->slug}/{$this->property->slug}/layouts/123");
         
         $response->assertStatus(404);
     }
@@ -31,7 +31,7 @@ class LayoutShowTest extends TestCase
             ->state(['title' => 'Test layout title'])
             ->create();
         
-        $response = $this->get("/api/organizations/{$this->organization->slug}/properties/{$this->property->slug}/layouts/{$layout->id}");
+        $response = $this->get("/api/{$this->organization->slug}/{$this->property->slug}/layouts/{$layout->id}");
         
         $response
             ->assertStatus(200)

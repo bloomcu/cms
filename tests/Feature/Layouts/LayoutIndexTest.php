@@ -23,7 +23,7 @@ class LayoutIndexTest extends TestCase
             ->count(3)
             ->create();
 
-        $response = $this->get("/api/organizations/{$this->organization->slug}/properties/{$this->property->slug}/layouts");
+        $response = $this->get("/api/{$this->organization->slug}/{$this->property->slug}/layouts");
         
         $response
             ->assertStatus(200)

@@ -57,17 +57,18 @@ use Cms\Http\Categories\CategoryController;
 // TODO: When a route model binding is not found (e.g., organization in property > pages)
 // we need to return a helpful error, rather than a generic 404
 
+// TODO: Move these organization endpoints to a "super" namespace
+// only to be used by super admins.
+
 // Organizations
-Route::prefix('organizations')->group(function () {
-    Route::get('',                  [OrganizationController::class, 'index']);
-    Route::post('',                 [OrganizationController::class, 'store']);
-    Route::get('{organization}',    [OrganizationController::class, 'show']);
-    Route::put('{organization}',    [OrganizationController::class, 'update']);
-    Route::delete('{organization}', [OrganizationController::class, 'destroy']);
-});
+Route::get('organizations',                   [OrganizationController::class, 'index']);
+Route::post('organizations',                  [OrganizationController::class, 'store']);
+Route::get('organizations/{organization}',    [OrganizationController::class, 'show']);
+Route::put('organizations/{organization}',    [OrganizationController::class, 'update']);
+Route::delete('organizations/{organization}', [OrganizationController::class, 'destroy']);
 
 // Properties
-Route::prefix('organizations/{organization}')->group(function () {
+Route::prefix('{organization}')->group(function () {
     Route::get('properties',               [PropertyController::class, 'index']);
     Route::post('properties',              [PropertyController::class, 'store']);
     Route::get('properties/{property}',    [PropertyController::class, 'show']);
@@ -76,7 +77,7 @@ Route::prefix('organizations/{organization}')->group(function () {
 });
 
 // Pages
-Route::prefix('organizations/{organization}/properties/{property}')->group(function () {
+Route::prefix('{organization}/{property}')->group(function () {
     Route::get('pages',           [PageController::class, 'index']);
     Route::post('pages',          [PageController::class, 'store']);
     Route::get('pages/{page}',    [PageController::class, 'show']);
@@ -95,7 +96,7 @@ Route::prefix('organizations/{organization}/properties/{property}')->group(funct
 });
 
 // Layouts
-Route::prefix('organizations/{organization}/properties/{property}')->group(function () {
+Route::prefix('{organization}/{property}')->group(function () {
     Route::get('layouts',             [LayoutController::class, 'index']);
     Route::post('layouts',            [LayoutController::class, 'store']);
     Route::get('layouts/{layout}',    [LayoutController::class, 'show']);
@@ -111,7 +112,7 @@ Route::prefix('organizations/{organization}/properties/{property}')->group(funct
 });
 
 // Blocks
-Route::prefix('organizations/{organization}/properties/{property}')->group(function () {
+Route::prefix('{organization}/{property}')->group(function () {
     Route::get('blocks',            [BlockController::class, 'index']);
     Route::post('blocks',           [BlockController::class, 'store']);
     Route::get('blocks/{block}',    [BlockController::class, 'show']);
@@ -125,7 +126,7 @@ Route::prefix('organizations/{organization}/properties/{property}')->group(funct
 });
 
 // Files
-Route::prefix('organizations/{organization}/properties/{property}')->group(function () {
+Route::prefix('{organization}/{property}')->group(function () {
     Route::get('files',           [FileController::class, 'index']);
     Route::post('files',          [FileController::class, 'store']);
     
@@ -139,7 +140,7 @@ Route::prefix('organizations/{organization}/properties/{property}')->group(funct
 });
 
 // Menus
-Route::prefix('organizations/{organization}/properties/{property}')->group(function () {
+Route::prefix('{organization}/{property}')->group(function () {
     Route::get('menus',           [MenuController::class, 'index']);
     Route::post('menus',          [MenuController::class, 'store']);
     Route::get('menus/{menu}',    [MenuController::class, 'show']);
@@ -148,7 +149,7 @@ Route::prefix('organizations/{organization}/properties/{property}')->group(funct
 });
 
 // Globals
-Route::prefix('organizations/{organization}/properties/{property}')->group(function () {
+Route::prefix('{organization}/{property}')->group(function () {
     Route::get('globals', [GlobalsController::class, 'index']);
 });
 

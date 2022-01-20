@@ -18,7 +18,7 @@ class BlockShowTest extends TestCase
     /** @test */
     public function it_fails_if_a_block_cant_be_found()
     {
-        $response = $this->get("/api/organizations/{$this->organization->slug}/properties/{$this->property->slug}/blocks/123");
+        $response = $this->get("/api/{$this->organization->slug}/{$this->property->slug}/blocks/123");
         
         $response->assertStatus(404);
     }
@@ -31,7 +31,7 @@ class BlockShowTest extends TestCase
             ->state(['title' => 'Test block title'])
             ->create();
         
-        $response = $this->get("/api/organizations/{$this->organization->slug}/properties/{$this->property->slug}/blocks/{$block->uuid}");
+        $response = $this->get("/api/{$this->organization->slug}/{$this->property->slug}/blocks/{$block->uuid}");
 
         $response
             ->assertStatus(200)

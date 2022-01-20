@@ -23,7 +23,7 @@ class BlockIndexTest extends TestCase
             ->count(3)
             ->create();
         
-        $response = $this->get("/api/organizations/{$this->organization->slug}/properties/{$this->property->slug}/blocks");
+        $response = $this->get("/api/{$this->organization->slug}/{$this->property->slug}/blocks");
         
         $response
             ->assertStatus(200)

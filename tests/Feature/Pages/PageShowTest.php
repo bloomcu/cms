@@ -18,7 +18,7 @@ class PageShowTest extends TestCase
     /** @test */
     public function it_fails_if_a_page_cant_be_found()
     {
-        $response = $this->get("/api/organizations/{$this->organization->slug}/properties/{$this->property->slug}/pages/123");
+        $response = $this->get("/api/{$this->organization->slug}/{$this->property->slug}/pages/123");
         
         $response->assertStatus(404);
     }
@@ -31,7 +31,7 @@ class PageShowTest extends TestCase
             ->state(['title' => 'Test page title'])
             ->create();
 
-        $this->get("/api/organizations/{$this->organization->slug}/properties/{$this->property->slug}/pages/{$page->id}")
+        $this->get("/api/{$this->organization->slug}/{$this->property->slug}/pages/{$page->id}")
             ->assertStatus(200)
             ->assertJsonFragment(['title' => 'Test page title'])
             ->assertResource(new PageResource($page));
