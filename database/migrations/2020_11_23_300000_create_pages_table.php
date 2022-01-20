@@ -23,17 +23,21 @@ class CreatePagesTable extends Migration
             $table->string('url')->nullable();
 
             // Relations
-            $table->foreignId('organization_id');
+            $table->foreignId('property_id');
             $table->foreignId('category_id')->nullable();
 
             // States
             // $table->boolean('is_published')->default(false)->index();
             $table->boolean('is_blueprint')->default(false)->index();
-
+            
+            // Timestamps
             $table->timestamps();
+            
+            // Indexes
+            $table->index(['property_id']);
 
             // Foreign constraints
-            $table->foreign('organization_id')->references('id')->on('organizations');
+            $table->foreign('property_id')->references('id')->on('properties');
             $table->foreign('category_id')->references('id')->on('categories');
         });
     }

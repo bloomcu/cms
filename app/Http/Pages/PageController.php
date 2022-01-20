@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 use Cms\App\Controllers\Controller;
 
 // Domains
-use Cms\Domain\Pages\Page;
 use Cms\Domain\Organizations\Organization;
+use Cms\Domain\Properties\Property;
+use Cms\Domain\Pages\Page;
 
 // Resources
 use Cms\Http\Pages\Resources\PageResource;
@@ -20,9 +21,9 @@ use Cms\Http\Pages\Requests\PageUpdateRequest;
 class PageController extends Controller
 {
 
-    public function index(Organization $organization, Request $request)
+    public function index(Organization $organization, Property $property, Request $request)
     {
-        $pages = $organization->pages()
+        $pages = $property->pages()
             ->withoutBlueprints()
             ->with('category')
             ->filter($request)
@@ -32,16 +33,16 @@ class PageController extends Controller
         return new PageCollection($pages);
     }
 
-    public function store(Organization $organization, PageStoreRequest $request)
+    public function store(Organization $organization, Property $property, PageStoreRequest $request)
     {
-        $page = $organization->pages()->create(
+        $page = $property->pages()->create(
             $request->validated()
         );
 
         return new PageResource($page);
     }
 
-    public function show(Organization $organization, Page $page)
+    public function show(Organization $organization, Property $property, Page $page)
     {
         return new PageResource(
             $page->load([
@@ -52,7 +53,7 @@ class PageController extends Controller
         );
     }
 
-    public function update(Organization $organization, Page $page, PageUpdateRequest $request)
+    public function update(Organization $organization, Property $property, Page $page, PageUpdateRequest $request)
     {
         $page->update(
             $request->validated()
@@ -61,7 +62,7 @@ class PageController extends Controller
         return new PageResource($page);
     }
 
-    public function destroy(Organization $organization, Page $page)
+    public function destroy(Organization $organization, Property $property, Page $page)
     {
         $page->delete();
 

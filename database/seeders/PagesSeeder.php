@@ -23,21 +23,21 @@ class PagesSeeder extends Seeder
                 'title' => 'Blank Page',
                 // 'is_published' => false,
                 'is_blueprint' => true,
-                'organization_id' => 1,
+                'property_id' => 1,
                 'category_id' => null,
             ],
             [
                 'title' => 'Homepage',
                 // 'is_published' => true,
                 'is_blueprint' => false,
-                'organization_id' => 1,
+                'property_id' => 1,
                 'category_id' => 2,
             ],
             [
                 'title' => 'Checking',
                 // 'is_published' => true,
                 'is_blueprint' => false,
-                'organization_id' => 1,
+                'property_id' => 1,
                 'category_id' => 4,
             ],
         ];
@@ -45,17 +45,5 @@ class PagesSeeder extends Seeder
         foreach ($pages as $page) {
             Page::create($page);
         }
-
-        // $pages = ['Homepage', 'About', 'Contact'];
-        //
-        // foreach ($pages as $page) {
-        //     Page::factory()->state([
-        //         'title' => $page,
-        //         'organization_id' => 1
-        //     ])
-        //     ->has(Layout::factory()->state(['organization_id' => 1])
-        //         ->has(Block::factory()->count(3)->state(['component' => 'hero'])))
-        //     ->create();
-        // }
     }
 }

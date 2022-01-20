@@ -15,7 +15,6 @@ class CreateOrganizationsTable extends Migration
     {
         Schema::create('organizations', function (Blueprint $table) {
             $table->id();
-            $table->uuid('uuid')->nullable();
             
             // Title and Slug
             $table->string('title');

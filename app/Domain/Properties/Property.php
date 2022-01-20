@@ -6,16 +6,14 @@ use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-use Cms\App\Traits\HasUuid;
 use Cms\App\Traits\HasSlug;
 
 class Property extends Model
 {
-    use HasFactory, 
-        HasUuid, 
+    use HasFactory,
         HasSlug;
 
-    protected $guarded = ['id'];
+    protected $guarded = ['id', 'slug'];
 
     /**
      * Route key used to fetch resource
@@ -35,6 +33,17 @@ class Property extends Model
     {
         return $this->belongsTo('Cms\Domain\Organizations\Organization');
     }
+    
+    // TODO: Associate with a user
+    // /**
+    //  * Get the user who owns this property.
+    //  *
+    //  * @return BelongsTo
+    //  */
+    // public function user()
+    // {
+    //     return $this->belongsTo('Cms\Domain\Users\User');
+    // }
 
     /**
      * Get the pages associated with this property.
@@ -54,6 +63,16 @@ class Property extends Model
     public function layouts()
     {
         return $this->hasMany('Cms\Domain\Layouts\Layout');
+    }
+    
+    /**
+     * Get the blocks associated with this property.
+     *
+     * @return hasMany
+     */
+    public function blocks()
+    {
+        return $this->hasMany('Cms\Domain\Blocks\Block');
     }
 
     /**

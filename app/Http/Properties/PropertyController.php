@@ -5,8 +5,9 @@ namespace Cms\Http\Properties;
 use Illuminate\Http\Request;
 use Cms\App\Controllers\Controller;
 
-use Cms\Domain\Properties\Property;
+// Domains
 use Cms\Domain\Organizations\Organization;
+use Cms\Domain\Properties\Property;
 
 class PropertyController extends Controller
 {
@@ -47,9 +48,9 @@ class PropertyController extends Controller
      */
     public function update(Organization $organization, Property $property, Request $request)
     {
-        $property->update(
-            $request->all()
-        );
+        $property->update([
+            'title' => $request['title']
+        ]);
 
         return $property;
     }

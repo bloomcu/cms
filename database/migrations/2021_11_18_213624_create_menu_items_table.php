@@ -15,23 +15,26 @@ class CreateMenuItemsTable extends Migration
     {
         Schema::create('menu_items', function (Blueprint $table) {
             $table->id();
-            $table->uuid('uuid');
+            $table->uuid('uuid')->unique();
             $table->string('title');
             $table->string('component')->nullable(); // E.g, dropdown, column-dropdown, search-dropdown
 
             // Relations
-            $table->foreignId('menu_id')->index();
-
-            // Nesting
-            $table->foreignId('parent_id')->index()->nullable();
+            $table->foreignId('menu_id');
+            $table->foreignId('parent_id')->nullable();
+            
+            // Ordering
             $table->integer('order');
 
             // Timestamps
             $table->timestamps();
+            
+            // Indexes
+            $table->index(['menu_id']);
 
             // Foreign constraints
             $table->foreign('menu_id')->references('id')->on('menus')->onDelete('cascade');
-            // $table->foreign('parent_id')->references('id')->on('menu_items')->onDelete('cascade');
+            $table->foreign('parent_id')->references('id')->on('menu_items')->onDelete('cascade');
         });
     }
 

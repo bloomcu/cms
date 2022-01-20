@@ -15,21 +15,31 @@ class CreateBlocksTable extends Migration
     {
         Schema::create('blocks', function (Blueprint $table) {
             $table->id();
-            $table->uuid('uuid');
+            $table->uuid('uuid')->unique();
             $table->string('title');
             $table->string('component');
-            $table->string('category_id')->nullable();
-            // $table->boolean('is_blueprint')->default(false);
-            // $table->string('type')->nullable();
+            
+            // Relations
+            $table->foreignId('property_id');
+            // TODO: Setup block categories
+            // $table->foreignId('category_id')->nullable();
             $table->foreignId('layout_id')->nullable();
+            
+            // Ordering
             $table->integer('order')->nullable();
+            
+            // Content
             $table->json('data')->nullable();
+            
+            // Timestamps
             $table->timestamps();
 
             // Indexes
-            // $table->index(['is_blueprint']);
+            $table->index(['property_id', 'layout_id']);
 
             // Foreign constraints
+            $table->foreign('property_id')->references('id')->on('properties');
+            // $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('layout_id')->references('id')->on('layouts')->onDelete('cascade');
         });
     }

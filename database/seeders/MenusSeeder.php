@@ -24,7 +24,7 @@ class MenusSeeder extends Seeder
                 'title' => 'Header',
                 'location' => 'header',
                 'component' => 'navbar-1',
-                'organization_id' => 1,
+                'property_id' => 1,
             ]
         ];
 

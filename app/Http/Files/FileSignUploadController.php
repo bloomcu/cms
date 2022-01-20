@@ -4,10 +4,13 @@ namespace Cms\Http\Files;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
 use Cms\App\Controllers\Controller;
-use Cms\Domain\Organizations\Organization;
 
+// Domains
+use Cms\Domain\Organizations\Organization;
+use Cms\Domain\Properties\Property;
+
+// Vendors
 use Aws\S3\PostObjectV4;
 
 class FileSignUploadController extends Controller
@@ -16,7 +19,7 @@ class FileSignUploadController extends Controller
      * Create a signed upload request
      *
      */
-    public function sign(Organization $organization, Request $request)
+    public function sign(Organization $organization, Property $property, Request $request)
     {
         // Generate a filename
         $filename = md5($request->name . microtime()) . '.' . $request->extension;
@@ -31,7 +34,6 @@ class FileSignUploadController extends Controller
 
             // Form inputs
             ['key' => 'files/' . $filename],
-            // ['key' => $filename],
 
             // Policy condition options
             [

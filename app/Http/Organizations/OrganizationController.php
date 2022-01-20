@@ -3,8 +3,9 @@
 namespace Cms\Http\Organizations;
 
 use Illuminate\Http\Request;
-
 use Cms\App\Controllers\Controller;
+
+// Domains
 use Cms\Domain\Organizations\Organization;
 
 class OrganizationController extends Controller
@@ -15,6 +16,7 @@ class OrganizationController extends Controller
      */
     public function index()
     {
+        // TODO: Use an API Resource to return this
         return Organization::all();
     }
 
@@ -48,10 +50,11 @@ class OrganizationController extends Controller
      */
     public function update(Organization $organization, Request $request)
     {
-        $organization->update(
-            $request->all()
-        );
-
+        $organization->update([
+            'title' => $request['title']
+        ]);
+        
+        // TODO: Use an API Resource to return this
         return $organization;
     }
 
@@ -63,6 +66,7 @@ class OrganizationController extends Controller
     {
         $organization->delete();
         
+        // TODO: Use an API Resource to return this
         return $organization;
     }
 }

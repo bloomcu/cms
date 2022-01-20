@@ -15,9 +15,6 @@ class CreatePropertiesTable extends Migration
     {
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
-            $table->uuid('uuid')->nullable();
-            
-            // Title and Slug
             $table->string('title');
             $table->string('slug')->unique();
             
@@ -26,6 +23,9 @@ class CreatePropertiesTable extends Migration
             
             // Timestamps
             $table->timestamps();
+            
+            // Indexes
+            $table->index(['organization_id']);
             
             // Foreign constraints
             $table->foreign('organization_id')->references('id')->on('organizations');
