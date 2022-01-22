@@ -5,8 +5,12 @@ namespace Cms\Http\Categories;
 use Illuminate\Http\Request;
 use Cms\App\Controllers\Controller;
 
+// Domains
+use Cms\Domain\Organizations\Organization;
+use Cms\Domain\Properties\Property;
 use Cms\Domain\Categories\Category;
 
+// Resources
 use Cms\Http\Categories\Resources\CategoryResource;
 
 class CategoryController extends Controller
@@ -15,9 +19,11 @@ class CategoryController extends Controller
      * Display a listing of the resource.
      *
      */
-    public function index()
+    public function index(Organization $organization, Property $property)
     {
-        $parents = Category::parents()->get();
+        $parents = $property->categories()
+            ->parents()
+            ->get();
         
         return CategoryResource::collection($parents);
     }
@@ -26,9 +32,9 @@ class CategoryController extends Controller
      * Store a newly created resource in storage.
      *
      */
-    public function store(Request $request)
+    public function store(Organization $organization, Property $property, Request $request)
     {
-        $category = Category::create(
+        $category = $property->categories()->create(
             // TODO: Use FormRequest for request validation
             // $request->validated()
             $request->all()
@@ -41,7 +47,7 @@ class CategoryController extends Controller
      * Display the specified resource.
      *
      */
-    public function show(Category $category)
+    public function show(Organization $organization, Property $property, Category $category)
     {
         $category = Category::defaultOrder()->descendantsAndSelf($category->id)->toTree();
         
@@ -52,7 +58,7 @@ class CategoryController extends Controller
      * Update the specified resource in storage.
      *
      */
-    public function update(Category $category, Request $request)
+    public function update(Organization $organization, Property $property, Category $category, Request $request)
     {
         Category::rebuildSubtree($category, $request['children']);
         
@@ -67,7 +73,7 @@ class CategoryController extends Controller
      * Remove the specified resource from storage.
      *
      */
-    public function destroy(Category $category)
+    public function destroy(Organization $organization, Property $property, Category $category)
     {
         // TODO: Categories in use cannot be destroyed unless
         // models using category are uncategorized. Let's make a

@@ -16,8 +16,18 @@ class CreateCategoriesTable extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            
+            // Relations
+            $table->foreignId('property_id')->nullable();
+            
+            // Vendor - kalnoy/nestedset
             $table->nestedSet();
+            
+            // Timestamps
             $table->timestamps();
+            
+            // Foreign constraints
+            $table->foreign('property_id')->references('id')->on('properties');
         });
     }
 

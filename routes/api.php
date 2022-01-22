@@ -154,11 +154,10 @@ Route::prefix('{organization}/{property}')->group(function () {
 });
 
 // Categories
-// TODO: Rewrite categories to the same way menus are written
-Route::prefix('categories')->group(function () {
-    Route::get('/',              [CategoryController::class, 'index']);
-    Route::post('/',             [CategoryController::class, 'store']);
-    Route::get('/{category}',    [CategoryController::class, 'show']);
-    Route::put('/{category}',    [CategoryController::class, 'update']);
-    Route::delete('/{category}', [CategoryController::class, 'destroy']);
+Route::prefix('{organization}/{property}')->group(function () {
+    Route::get('categories',               [CategoryController::class, 'index']);
+    Route::post('categories',              [CategoryController::class, 'store']);
+    Route::get('categories/{category}',    [CategoryController::class, 'show']);
+    Route::put('categories/{category}',    [CategoryController::class, 'update']);
+    Route::delete('categories/{category}', [CategoryController::class, 'destroy']);
 });
