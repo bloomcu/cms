@@ -156,11 +156,9 @@ Route::prefix('{organization}/{property}')->group(function () {
 // Categories
 // TODO: Rewrite categories to the same way menus are written
 Route::prefix('categories')->group(function () {
-    Route::get('/',           [CategoryController::class, 'index']);
-    Route::post('/',          [CategoryController::class, 'store']);
-    Route::get('/{category}', [CategoryController::class, 'show']);
-    Route::put('/{category}', [CategoryController::class, 'update']);
-    
-    // TODO: Finish up the destroy action in the CategoryController
-    // Route::delete('/{category}', [CategoryController::class, 'destroy']);
+    Route::get('/',              [CategoryController::class, 'index']);
+    Route::post('/',             [CategoryController::class, 'store']);
+    Route::get('/{category}',    [CategoryController::class, 'show']);
+    Route::put('/{category}',    [CategoryController::class, 'update']);
+    Route::delete('/{category}', [CategoryController::class, 'destroy']);
 });

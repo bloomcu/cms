@@ -17,9 +17,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return CategoryResource::collection(
-            Category::parents()->get()
-        );
+        $parents = Category::parents()->get();
+        
+        return CategoryResource::collection($parents);
     }
 
     /**
@@ -43,9 +43,9 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return CategoryResource::collection(
-            Category::defaultOrder()->descendantsAndSelf($category->id)->toTree()
-        );
+        $category = Category::defaultOrder()->descendantsAndSelf($category->id)->toTree();
+        
+        return CategoryResource::collection($category);
     }
 
     /**
@@ -55,14 +55,27 @@ class CategoryController extends Controller
     public function update(Category $category, Request $request)
     {
         Category::rebuildSubtree($category, $request['children']);
+        
+        $category = Category::defaultOrder()
+            ->descendantsAndSelf($category->id)
+            ->toTree();
+        
+        return CategoryResource::collection($category);
     }
 
     /**
      * Remove the specified resource from storage.
      *
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        //
+        // TODO: Categories in use cannot be destroyed unless
+        // models using category are uncategorized. Let's make a
+        // trait "IsCategorizable" that can be assigned to models.
+        // Trait sets up a polymorphic relation. That way, when
+        // a category is destroyed we can can remove the relationships
+        // associated with the category.
+        
+        $category->delete();
     }
 }
