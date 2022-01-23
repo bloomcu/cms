@@ -23,7 +23,7 @@ class LayoutController extends Controller
     public function index(Organization $organization, Property $property, Request $request)
     {
         $layouts = $property->layouts()
-            ->with('category')
+            ->with('categories')
             ->filter($request)
             ->latest()
             ->get();
@@ -44,7 +44,7 @@ class LayoutController extends Controller
     {
         return new LayoutResource(
             $layout->load([
-                'category',
+                'categories',
                 'blocks',
                 'draft'
             ])
@@ -71,7 +71,10 @@ class LayoutController extends Controller
         // }
 
         return new LayoutResource(
-            $layout->load(['category', 'blocks'])
+            $layout->load([
+                'categories', 
+                'blocks'
+            ])
         );
     }
 

@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Builder;
 // Traits
 use Cms\App\Traits\HasSlug;
 use Cms\App\Traits\HasUrl;
+use Cms\App\Traits\IsCategorizable;
 use Cms\App\Traits\IsBlueprint;
 
 // Filters
@@ -19,6 +20,7 @@ class Page extends Model
     use HasFactory,
         HasSlug,
         HasUrl,
+        IsCategorizable,
         IsBlueprint;
 
     protected $guarded = ['id', 'url'];
@@ -49,11 +51,6 @@ class Page extends Model
     public function layouts()
     {
         return $this->hasMany('Cms\Domain\Layouts\Layout');
-    }
-
-    public function category()
-    {
-        return $this->belongsTo('Cms\Domain\Categories\Category');
     }
 
     public function scopeFilter(Builder $builder, $request, array $filters = [])

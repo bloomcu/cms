@@ -29,7 +29,6 @@ class PageFactory extends Factory
                 'Contact'
             ]),
             'property_id' => \Cms\Domain\Properties\Property::factory(),
-            'category_id' => \Cms\Domain\Categories\Category::factory(),
         ];
     }
 }

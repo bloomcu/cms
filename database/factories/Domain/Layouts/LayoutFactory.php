@@ -28,7 +28,6 @@ class LayoutFactory extends Factory
             'title' => $this->faker->sentence,
             'property_id' => \Cms\Domain\Properties\Property::factory(),
             'page_id' => \Cms\Domain\Pages\Page::factory(),
-            'category_id' => \Cms\Domain\Categories\Category::factory(),
         ];
     }
 }

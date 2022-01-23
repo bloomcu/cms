@@ -20,7 +20,7 @@ class CreateLayoutsTable extends Migration
             // Foreign Relationships
             $table->foreignId('property_id');
             $table->foreignId('page_id');
-            $table->foreignId('category_id')->nullable();
+            // $table->foreignId('category_id')->nullable();
 
             // Publishable
             $table->foreignId('drafted_id')->nullable();
@@ -38,7 +38,7 @@ class CreateLayoutsTable extends Migration
             // Foreign constraints
             $table->foreign('property_id')->references('id')->on('properties')->onDelete('cascade');
             $table->foreign('page_id')->references('id')->on('pages')->onDelete('cascade');
-            $table->foreign('category_id')->references('id')->on('categories');
+            // $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 

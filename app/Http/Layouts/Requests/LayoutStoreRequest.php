@@ -26,7 +26,7 @@ class LayoutStoreRequest extends FormRequest
         return [
             'title' => 'required|string',
             'page_id' => 'required|integer',
-            'category_id' => 'nullable|integer',
+            'category' => 'nullable|integer'
         ];
     }
 }

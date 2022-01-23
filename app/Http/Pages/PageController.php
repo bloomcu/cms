@@ -25,7 +25,7 @@ class PageController extends Controller
     {
         $pages = $property->pages()
             ->withoutBlueprints()
-            ->with('category')
+            ->with('categories')
             ->filter($request)
             ->latest()
             ->get();
@@ -38,15 +38,19 @@ class PageController extends Controller
         $page = $property->pages()->create(
             $request->validated()
         );
-
+        
+        if ($request->category) {
+            $page->syncCategories($request->category);
+        }
+        
         return new PageResource($page);
     }
 
     public function show(Organization $organization, Property $property, Page $page)
-    {
+    {        
         return new PageResource(
             $page->load([
-                'category',
+                'categories',
                 'layout',
                 'layout.blocks'
             ])
@@ -58,8 +62,14 @@ class PageController extends Controller
         $page->update(
             $request->validated()
         );
+        
+        if ($request->category) {
+            $page->syncCategories($request->category);
+        }
 
-        return new PageResource($page);
+        return new PageResource(
+            $layout->load(['categories'])
+        );
     }
 
     public function destroy(Organization $organization, Property $property, Page $page)

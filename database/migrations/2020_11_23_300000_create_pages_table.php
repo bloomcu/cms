@@ -24,7 +24,7 @@ class CreatePagesTable extends Migration
 
             // Relations
             $table->foreignId('property_id');
-            $table->foreignId('category_id')->nullable();
+            // $table->foreignId('category_id')->nullable();
 
             // States
             // $table->boolean('is_published')->default(false)->index();
@@ -38,7 +38,7 @@ class CreatePagesTable extends Migration
 
             // Foreign constraints
             $table->foreign('property_id')->references('id')->on('properties');
-            $table->foreign('category_id')->references('id')->on('categories');
+            // $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 

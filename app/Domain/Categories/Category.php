@@ -19,10 +19,10 @@ class Category extends Model
         return $this->hasMany('Cms\Domain\Categories\Category', 'parent_id');
     }
 
-    public function pages()
-    {
-        return $this->hasMany('Cms\Domain\Pages\Page');
-    }
+    // public function pages()
+    // {
+    //     return $this->hasMany('Cms\Domain\Pages\Page');
+    // }
 
     /**
      * Get only parent (top level) categories.

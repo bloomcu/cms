@@ -45,12 +45,12 @@ class PageTest extends TestCase
     // TODO: Test latest single layout relationship
 
     /** @test */
-    public function it_belongs_to_a_category()
-    {
-        $page = Page::factory()
-            ->has(Category::factory())
-            ->create();
-
-        $this->assertInstanceOf(Category::class, $page->category);
-    }
+    // public function it_belongs_to_a_category()
+    // {
+    //     $page = Page::factory()
+    //         ->has(Category::factory())
+    //         ->create();
+    // 
+    //     $this->assertInstanceOf(Category::class, $page->category);
+    // }
 }
