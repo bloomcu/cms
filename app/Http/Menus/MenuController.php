@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 use Cms\App\Controllers\Controller;
 
 // Domains
-use Cms\Domain\Menus\Menu;
-use Cms\Domain\Menus\MenuItem;
 use Cms\Domain\Organizations\Organization;
+use Cms\Domain\Properties\Property;
+use Cms\Domain\Menus\Menu;
 
 // Resources
 use Cms\Http\Menus\Resources\Menu\IndexMenuResource;
@@ -24,33 +24,37 @@ use Cms\Domain\Menus\Actions\UpsertMenuItemsAction;
 class MenuController extends Controller
 {
 
-    public function index(Organization $organization, Request $request)
+    public function index(Organization $organization, Property $property, Request $request)
     {
-        $menus = $organization->menus()
+        $menus = $property->menus()
             ->latest()
             ->get();
 
         return IndexMenuResource::collection($menus);
     }
 
-    public function store(Organization $organization, MenuStoreRequest $request)
+    public function store(Organization $organization, Property $property, MenuStoreRequest $request)
     {
-        $menu = $organization->menus()->create(
+        $menu = $property->menus()->create(
             $request->validated()
         );
 
         return new ShowMenuResource($menu);
     }
 
-    public function show(Organization $organization, Menu $menu)
+    public function show(Organization $organization, Property $property, Menu $menu)
     {
         return new ShowMenuResource($menu);
     }
 
-    public function update(Organization $organization, Menu $menu, MenuUpdateRequest $request)
+    public function update(Organization $organization, Property $property, Menu $menu, MenuUpdateRequest $request)
     {
         $menu->update(
-            $request->except(['items'])
+            $request->only([
+                'title',
+                'location',
+                'component'
+            ])
         );
 
         UpsertMenuItemsAction::execute(
@@ -60,7 +64,7 @@ class MenuController extends Controller
         return new ShowMenuResource($menu);
     }
 
-    public function destroy(Organization $organization, Menu $menu)
+    public function destroy(Organization $organization, Property $property, Menu $menu)
     {
         $menu->delete();
 

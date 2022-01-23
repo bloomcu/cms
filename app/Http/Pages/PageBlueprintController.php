@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 use Cms\App\Controllers\Controller;
 
 // Domains
-use Cms\Domain\Pages\Page;
 use Cms\Domain\Organizations\Organization;
+use Cms\Domain\Properties\Property;
+use Cms\Domain\Pages\Page;
 
 // Resources
 use Cms\Http\Pages\Resources\PageCollection;
@@ -15,9 +16,9 @@ use Cms\Http\Pages\Resources\PageCollection;
 class PageBlueprintController extends Controller
 {
 
-    public function index(Organization $organization, Request $request)
+    public function index(Organization $organization, Property $property, Request $request)
     {
-        $pages = $organization->pages()
+        $pages = $property->pages()
             ->onlyBlueprints()
             ->with('category')
             ->filter($request)

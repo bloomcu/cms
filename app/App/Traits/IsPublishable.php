@@ -10,6 +10,8 @@ use Cms\App\Exceptions\DraftDoesNotExist;
 
 use Cms\Domain\Layouts\Actions\ReplicateLayoutAction;
 
+// TODO: Consider renaming this trait IsDraftable and creating
+// another trait, IsPublishable to handle publishing.
 trait IsPublishable {
 
     protected static function bootIsDraftable(): void

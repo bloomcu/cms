@@ -7,8 +7,9 @@ use Illuminate\Support\Str;
 use Cms\App\Controllers\Controller;
 
 // Domains
-use Cms\Domain\Pages\Page;
 use Cms\Domain\Organizations\Organization;
+use Cms\Domain\Properties\Property;
+use Cms\Domain\Pages\Page;
 
 // Resources
 use Cms\Http\Pages\Resources\PageResource;
@@ -16,41 +17,44 @@ use Cms\Http\Pages\Resources\PageResource;
 class PageReplicateController extends Controller
 {
 
-    public function replicate(Organization $organization, Page $page, Request $request)
+    public function replicate(Organization $organization, Property $property, Page $page, Request $request)
     {
-
-        // Replicate page
-        $new_page = $page->replicate()->fill([
+        // TODO: Create a trait canDuplicate which implements an action belonging
+        // to the model called "duplicate[ModelBasename]Action" passing title
+        // overide into action.
+        
+        // Replicate page 
+        $newPage = $page->replicate()->fill([
             'title' => $page->title . ' Copy',
         ]);
-        $new_page->save();
-
-
-        if ( $page->layout()->exists() ) {
-
-            // Replicate page's layout
-            $new_layout = $page->layout->replicate()->fill([
+        $newPage->save();
+        
+        // TODO: The afermentioned "duplicatePageAction" will implement a "duplicateLayoutAction"
+        
+        // Replicate page layout
+        if ($page->layout()->exists()) {
+            $newLayout = $page->layout->replicate()->fill([
                 'title' => $page->layout->title . ' Copy',
-                'page_id' => $new_page->id,
+                'page_id' => $newPage->id,
             ]);
-            $new_layout->save();
-
-            if ( $page->layout->blocks()->exists() ) {
-
-                // Replicate layout's blocks
+            $newLayout->save();
+            
+            // TODO: The afermentioned "duplicateLayoutAction" will implement the "duplicateBlockAction"
+            
+            // Replicate layout blocks
+            if ($page->layout->blocks()->exists()) {
                 foreach( $page->layout->blocks as $block ) {
-                    $new_block = $block->replicate()->fill([
+                    $newBlock = $block->replicate()->fill([
                         'uuid' => Str::uuid(),
-                        'layout_id' => $new_layout->id,
+                        'layout_id' => $newLayout->id,
                     ]);
-                    $new_block->save();
+                    $newBlock->save();
                 }
             }
-
         }
 
         return new PageResource(
-            $new_page->load([
+            $newPage->load([
                 'category',
                 'layout',
                 'layout.blocks'

@@ -38,10 +38,21 @@ class Page extends Model
         });
     }
 
-    public function organization()
+    public function property()
     {
-        return $this->belongsTo('Cms\Domain\Organizations\Organization');
+        return $this->belongsTo('Cms\Domain\Properties\Property');
     }
+    
+    // TODO: Associate with a user
+    // /**
+    //  * Get the user who owns this page.
+    //  *
+    //  * @return BelongsTo
+    //  */
+    // public function user()
+    // {
+    //     return $this->belongsTo('Cms\Domain\Users\User');
+    // }
 
     public function layout()
     {

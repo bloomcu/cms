@@ -18,9 +18,9 @@ class BlocksSeeder extends Seeder
         $blocks = [
             [
                 'title' => 'Hero',
+                'property_id' => 1,
                 'component' => 'hero',
-                // 'type' => 'base',
-                'category_id' => 'heros',
+                // 'category_id' => 'heros',
                 'layout_id' => 2,
                 'data' => [
                     'label' => 'The label',
@@ -30,9 +30,9 @@ class BlocksSeeder extends Seeder
             ],
             [
                 'title' => 'Feature',
+                'property_id' => 1,
                 'component' => 'feature',
-                // 'type' => 'base',
-                'category_id' => 'features',
+                // 'category_id' => 'features',
                 'layout_id' => 2,
                 'data' => [
                     'title' => 'This is the title',
@@ -41,9 +41,9 @@ class BlocksSeeder extends Seeder
             ],
             [
                 'title' => 'Hero',
+                'property_id' => 1,
                 'component' => 'hero',
-                // 'type' => 'base',
-                'category_id' => 'heros',
+                // 'category_id' => 'heros',
                 'layout_id' => 3,
                 'data' => [
                     'label' => 'The label',
@@ -53,9 +53,9 @@ class BlocksSeeder extends Seeder
             ],
             [
                 'title' => 'Feature',
+                'property_id' => 1,
                 'component' => 'feature',
-                // 'type' => 'base',
-                'category_id' => 'features',
+                // 'category_id' => 'features',
                 'layout_id' => 3,
                 'data' => [
                     'title' => 'This is the title',
@@ -67,58 +67,5 @@ class BlocksSeeder extends Seeder
         foreach ($blocks as $block) {
             Block::create($block);
         }
-
-        // $layoutBlocks = [
-        //     [
-        //         'title' => 'Hero',
-        //         'type' => 'block',
-        //         'component' => 'hero',
-        //         'layout_id' => 1,
-        //         'order' => 1,
-        //         'data' => [
-        //             'label' => 'The label',
-        //             'title' => 'This is the title',
-        //             'subtitle' => 'And this is the subtitle, it is longer',
-        //         ]
-        //     ],
-        //     [
-        //         'title' => 'Feature',
-        //         'type' => 'block',
-        //         'component' => 'feature',
-        //         'layout_id' => 1,
-        //         'order' => 2,
-        //         'data' => [
-        //             'title' => 'This is the title',
-        //             'subtitle' => 'And this is the subtitle, it is longer',
-        //         ]
-        //     ],
-        //     [
-        //         'title' => 'Hero',
-        //         'type' => 'block',
-        //         'component' => 'hero',
-        //         'layout_id' => 2,
-        //         'order' => 1,
-        //         'data' => [
-        //             'label' => 'The label',
-        //             'title' => 'This is the title',
-        //             'subtitle' => 'And this is the subtitle, it is longer',
-        //         ]
-        //     ],
-        //     [
-        //         'title' => 'Feature',
-        //         'type' => 'block',
-        //         'component' => 'feature',
-        //         'layout_id' => 2,
-        //         'order' => 2,
-        //         'data' => [
-        //             'title' => 'This is the title',
-        //             'subtitle' => 'And this is the subtitle, it is longer',
-        //         ]
-        //     ],
-        // ];
-        //
-        // foreach ($layoutBlocks as $block) {
-        //     Block::create($block);
-        // }
     }
 }

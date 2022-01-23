@@ -20,13 +20,16 @@ class CreateMenusTable extends Migration
             $table->string('component')->nullable(); // E.g, navbar, sub-navbar, footer
 
             // Relations
-            $table->foreignId('organization_id');
+            $table->foreignId('property_id');
 
             // Timestamps
             $table->timestamps();
+            
+            // Indexes
+            $table->index(['property_id']);
 
             // Foreign constraints
-            $table->foreign('organization_id')->references('id')->on('organizations');
+            $table->foreign('property_id')->references('id')->on('properties');
         });
     }
 

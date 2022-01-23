@@ -7,19 +7,20 @@ use Cms\App\Controllers\Controller;
 
 // Domains
 use Cms\Domain\Organizations\Organization;
+use Cms\Domain\Properties\Property;
 
 // Resources
 use Cms\Http\Globals\Resources\GlobalsResource;
 
 class GlobalsController extends Controller
 {
-    public function show(Organization $organization)
+    public function index(Organization $organization, Property $property)
     {
-        $organization->load([
+        $globals = $property->load([
             'globalHeader',
             'globalFooter',
         ]);
 
-        return new GlobalsResource($organization);
+        return new GlobalsResource($globals);
     }
 }

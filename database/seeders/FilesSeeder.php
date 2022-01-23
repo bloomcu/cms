@@ -17,7 +17,7 @@ class FilesSeeder extends Seeder
     {
         $files = [
             [
-                'organization_id' => 1,
+                'property_id' => 1,
                 'user_id' => 1,
                 'type' => 'image',
                 'name' => 'image-1.jpg',
@@ -25,7 +25,7 @@ class FilesSeeder extends Seeder
                 'size' => 5000
             ],
             [
-                'organization_id' => 1,
+                'property_id' => 1,
                 'user_id' => 1,
                 'type' => 'image',
                 'name' => 'image-2.jpg',
@@ -33,7 +33,7 @@ class FilesSeeder extends Seeder
                 'size' => 5000
             ],
             [
-                'organization_id' => 1,
+                'property_id' => 1,
                 'user_id' => 1,
                 'type' => 'image',
                 'name' => 'image-3.jpg',
@@ -44,11 +44,6 @@ class FilesSeeder extends Seeder
 
         foreach ($files as $file) {
             File::create($file);
-            // File::factory()->state([
-            //     'organization_id' => 1,
-            //     'path' => $file
-            // ])
-            // ->create();
         }
     }
 }

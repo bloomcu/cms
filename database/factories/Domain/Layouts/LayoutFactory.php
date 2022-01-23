@@ -26,8 +26,7 @@ class LayoutFactory extends Factory
 
         return [
             'title' => $this->faker->sentence,
-            'type' => $this->faker->word,
-            'organization_id' => \Cms\Domain\Organizations\Organization::factory(),
+            'property_id' => \Cms\Domain\Properties\Property::factory(),
             'page_id' => \Cms\Domain\Pages\Page::factory(),
             'category_id' => \Cms\Domain\Categories\Category::factory(),
         ];
