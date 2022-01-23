@@ -25,7 +25,7 @@ class PageResource extends JsonResource
             'slug' => $this->slug,
             'url' => $this->url,
             'is_published' => $this->is_published,
-            'category' => new CategoryResource($this->whenLoaded('categories')->first()),
+            'categories' => CategoryResource::collection($this->whenLoaded('categories')),
             'layout' => new LayoutResource($this->whenLoaded('layout'))
         ];
     }

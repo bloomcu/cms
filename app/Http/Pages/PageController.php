@@ -43,7 +43,9 @@ class PageController extends Controller
             $page->syncCategories($request->category);
         }
         
-        return new PageResource($page);
+        return new PageResource(
+            $page->load(['categories'])
+        );
     }
 
     public function show(Organization $organization, Property $property, Page $page)
@@ -68,7 +70,7 @@ class PageController extends Controller
         }
 
         return new PageResource(
-            $layout->load(['categories'])
+            $page->load(['categories'])
         );
     }
 
@@ -76,6 +78,8 @@ class PageController extends Controller
     {
         $page->delete();
 
-        return new PageResource($page);
+        return new PageResource(
+            $page->load(['categories'])
+        );
     }
 }

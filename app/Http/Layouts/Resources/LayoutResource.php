@@ -21,7 +21,7 @@ class LayoutResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'category' => new CategoryResource($this->whenLoaded('categories')->first()),
+            'categories' => CategoryResource::collection($this->whenLoaded('categories')),
             'blocks' => new BlockCollection($this->whenLoaded('blocks')),
             'draft' => new LayoutResource($this->whenLoaded('draft')),
         ];
