@@ -18,12 +18,12 @@ class ArticlesSeeder extends Seeder
         $articles = [
             [
                 'title' => 'Blank Article',
-                'organization_id' => 1,
+                'property_id' => 1,
                 'category_id' => null,
             ],
             [
                 'title' => 'Hello world!',
-                'organization_id' => 1,
+                'property_id' => 1,
                 'category_id' => 2,
             ]
         ];
