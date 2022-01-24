@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 // Vendors
 use Parental\HasChildren;
+use Laravel\Scout\Searchable;
 
 // Domains
 use Cms\Domain\Pages\Page;
@@ -29,7 +30,8 @@ class Post extends Model
         HasSlug,
         HasUrl,
         IsBlueprint,
-        IsCategorizable;
+        IsCategorizable,
+        Searchable;
 
     protected $guarded = ['id', 'url'];
 
@@ -37,6 +39,41 @@ class Post extends Model
         'page' => Page::class,
         'article' => Article::class
     ];
+    
+    /**
+     * Get the name of the index associated with the model.
+     * 
+     * Format: [orgnization-slug][property-slug]_posts
+     * Example output: 'bloomcu_website_posts'
+     * 
+     * @return string
+     */
+    public function searchableAs()
+    {
+        return implode('_',
+            [
+                $this->property->organization->slug,
+                $this->property->slug,
+                'posts'
+            ]
+        );
+    }
+    
+    /**
+     * Get the indexable data array for the model.
+     *
+     * @return array
+     */
+    public function toSearchableArray()
+    {
+        $array = $this->toArray();
+        
+        $array['blocks'] = isset($this->layout->blocks) ? $this->layout->blocks->toArray() : [];
+        
+        unset($array['updated_at']);
+
+        return $array;
+    }
 
     public function property()
     {
@@ -70,5 +107,4 @@ class Post extends Model
             ->add($filters)
             ->filter($builder);
     }
-
 }
