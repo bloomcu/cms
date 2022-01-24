@@ -32,7 +32,7 @@ trait HasSlug {
 
     protected function slugExists(string $slug): bool
     {
-        $query = $this->where('slug', '=', $slug);
+        $query = (new self)->where('slug', '=', $slug);
 
         if ($this->usesSoftDeletes()) {
             $query->withTrashed();

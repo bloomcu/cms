@@ -31,12 +31,12 @@ class Post extends Model
         'article' => Article::class
     ];
 
-    public static function booted()
-    {
-        static::addGlobalScope('post', function(Builder $builder) {
-            $builder->where('type', null);
-        });
-    }
+    // public static function booted()
+    // {
+    //     static::addGlobalScope('post', function(Builder $builder) {
+    //         $builder->where('type', null);
+    //     });
+    // }
 
     public function property()
     {

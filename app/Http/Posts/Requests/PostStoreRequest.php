@@ -26,7 +26,8 @@ class PostStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|string'
+            'title' => 'required|string',
+            'type' => 'nullable|string|in:article'
         ];
     }
 

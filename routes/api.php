@@ -84,15 +84,15 @@ Route::prefix('{organization}/{property}')->group(function () {
     Route::put('posts/{post}',    [PostController::class, 'update']);
     Route::delete('posts/{post}', [PostController::class, 'destroy']);
     
+    // Posts - Replicate
+    // TODO: Rename this "duplicate" and use store method
+    Route::post('posts/{post}/replicate', [PostReplicateController::class, 'replicate']);
+    
     // Posts - Blueprints Only
     Route::get('post/blueprints', [PostBlueprintController::class, 'index']);
     
     // Posts - Check Slug
     Route::get('post/check-slug', [PostCheckSlugController::class, 'show']);
-    
-    // Posts - Replicate
-    // TODO: Rename this "duplicate" and use store method
-    Route::post('posts/{post}/replicate', [PostReplicateController::class, 'replicate']);
 });
 
 // Layouts
