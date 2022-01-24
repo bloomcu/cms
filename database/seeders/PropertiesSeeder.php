@@ -17,11 +17,11 @@ class PropertiesSeeder extends Seeder
     {
         $properties = [
             [
-                'title' => 'Primary Website',
+                'title' => 'Website',
                 'organization_id' => 1,
             ],
             [
-                'title' => 'Community Website',
+                'title' => 'Community Site',
                 'organization_id' => 1,
             ],
         ];
