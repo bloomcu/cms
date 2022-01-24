@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "algolia/algoliasearch-client-php": "^3.2",
         "aws/aws-sdk-php": "^3.188",
         "calebporzio/parental": "^1.0",
         "fideloper/proxy": "^4.4",
@@ -16,6 +17,7 @@
         "guzzlehttp/guzzle": "^7.0.1",
         "kalnoy/nestedset": "^5.0",
         "laravel/framework": "^8.12",
+        "laravel/scout": "^9.4",
         "laravel/tinker": "^2.5",
         "league/flysystem-aws-s3-v3": "^1.0"
     },
