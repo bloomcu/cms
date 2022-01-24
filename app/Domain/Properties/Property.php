@@ -104,6 +104,16 @@ class Property extends Model
     {
         return $this->hasMany('Cms\Domain\Files\File');
     }
+    
+    /**
+     * Get the categories associated with this property.
+     *
+     * @return hasMany
+     */
+    public function categories()
+    {
+        return $this->hasMany('Cms\Domain\Categories\Category');
+    }
 
     /**
      * Get the menus associated with this property.

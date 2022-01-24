@@ -23,7 +23,7 @@ class LayoutController extends Controller
     public function index(Organization $organization, Property $property, Request $request)
     {
         $layouts = $property->layouts()
-            ->with('category')
+            ->with('categories')
             ->filter($request)
             ->latest()
             ->get();
@@ -36,15 +36,21 @@ class LayoutController extends Controller
          $layout = $property->layouts()->create(
              $request->validated()
          );
+         
+         if ($request->category) {
+             $layout->syncCategories($request->category);
+         }
 
-         return new LayoutResource($layout);
+         return new LayoutResource(
+             $layout->load(['categories'])
+         );
      }
 
     public function show(Organization $organization, Property $property, Layout $layout)
     {
         return new LayoutResource(
             $layout->load([
-                'category',
+                'categories',
                 'blocks',
                 'draft'
             ])
@@ -56,6 +62,10 @@ class LayoutController extends Controller
         $layout->update(
             $request->all()
         );
+        
+        if ($request->category) {
+            $layout->syncCategories($request->category);
+        }
 
         // TODO: Try using Sync for this?
         // if ($request['blocks']) {
@@ -71,12 +81,19 @@ class LayoutController extends Controller
         // }
 
         return new LayoutResource(
-            $layout->load(['category', 'blocks'])
+            $layout->load([
+                'categories', 
+                'blocks'
+            ])
         );
     }
 
     public function destroy(Organization $organization, Property $property, Layout $layout)
     {
         $layout->delete();
+        
+        return new LayoutResource(
+            $layout->load(['categories'])
+        );
     }
 }

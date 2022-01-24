@@ -27,6 +27,8 @@ class LayoutStoreRequest extends FormRequest
             'title' => 'required|string',
             'post_id' => 'required|integer',
             'category_id' => 'nullable|integer',
+            'page_id' => 'required|integer',
+            'category' => 'nullable|integer'
         ];
     }
 }

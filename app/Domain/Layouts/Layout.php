@@ -6,14 +6,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
+// Filters
 use Cms\Domain\Layouts\Filters\LayoutFilters;
 
+// Traits
 use Cms\App\Traits\IsPublishable;
+use Cms\App\Traits\IsCategorizable;
 
 class Layout extends Model
 {
     use HasFactory,
-        IsPublishable;
+        IsPublishable,
+        IsCategorizable;
 
     protected $guarded = ['id'];
 

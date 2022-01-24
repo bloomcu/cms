@@ -34,7 +34,7 @@ class PostUpdateRequest extends FormRequest
             // TODO: Create custom slug rule to enforce format "foo-bar"
             'slug' => 'nullable|string|unique:posts,slug',
 
-            'category_id'  => 'nullable|integer',
+            'category'  => 'nullable|integer',
             'is_published' => 'nullable|integer'
         ];
     }

@@ -19,7 +19,7 @@ class PageController extends Controller
     {        
         $pages = $property->pages()
             ->withoutBlueprints()
-            ->with('category')
+            ->with('categories')
             ->filter($request)
             ->latest()
             ->get();

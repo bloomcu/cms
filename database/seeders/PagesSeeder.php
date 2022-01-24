@@ -21,21 +21,21 @@ class PagesSeeder extends Seeder
                 // 'is_published' => false,
                 'is_blueprint' => true,
                 'property_id' => 1,
-                'category_id' => null,
+                // 'category_id' => null,
             ],
             [
                 'title' => 'Homepage',
                 // 'is_published' => true,
                 'is_blueprint' => false,
                 'property_id' => 1,
-                'category_id' => 2,
+                // 'category_id' => 2,
             ],
             [
                 'title' => 'Checking',
                 // 'is_published' => true,
                 'is_blueprint' => false,
                 'property_id' => 1,
-                'category_id' => 4,
+                // 'category_id' => 4,
             ],
         ];
 
