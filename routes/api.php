@@ -15,6 +15,12 @@ use Cms\Http\Posts\PostBlueprintController;
 use Cms\Http\Posts\PostCheckSlugController;
 use Cms\Http\Posts\PostReplicateController;
 
+// Pages
+use Cms\Http\Pages\PageController;
+
+// Articles
+use Cms\Http\Articles\ArticleController;
+
 // Layouts
 use Cms\Http\Layouts\LayoutController;
 use Cms\Http\Layouts\LayoutDraftController;
@@ -93,6 +99,16 @@ Route::prefix('{organization}/{property}')->group(function () {
     
     // Posts - Check Slug
     Route::get('post/check-slug', [PostCheckSlugController::class, 'show']);
+});
+
+// Pages
+Route::prefix('{organization}/{property}')->group(function () {
+    Route::get('pages', [PageController::class, 'index']);
+});
+
+// Articles
+Route::prefix('{organization}/{property}')->group(function () {
+    Route::get('articles', [ArticleController::class, 'index']);
 });
 
 // Layouts

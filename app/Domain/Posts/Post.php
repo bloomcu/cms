@@ -9,6 +9,10 @@ use Illuminate\Database\Eloquent\Builder;
 // Vendors
 use Parental\HasChildren;
 
+// Domains
+use Cms\Domain\Pages\Page;
+use Cms\Domain\Articles\Article;
+
 // Traits
 use Cms\App\Traits\HasSlug;
 use Cms\App\Traits\HasUrl;
@@ -28,15 +32,9 @@ class Post extends Model
     protected $guarded = ['id', 'url'];
 
     protected $childTypes = [
+        'page' => Page::class,
         'article' => Article::class
     ];
-
-    // public static function booted()
-    // {
-    //     static::addGlobalScope('post', function(Builder $builder) {
-    //         $builder->where('type', null);
-    //     });
-    // }
 
     public function property()
     {

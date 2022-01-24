@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-use Cms\Domain\Posts\Article;
+use Cms\Domain\Articles\Article;
 
 class ArticlesSeeder extends Seeder
 {
@@ -17,7 +17,7 @@ class ArticlesSeeder extends Seeder
     {
         $articles = [
             [
-                'title' => 'Blank Article',
+                'title' => 'Blank Article Blueprint',
                 // 'is_published' => false,
                 'property_id' => 1,
                 'category_id' => null,

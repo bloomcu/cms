@@ -54,6 +54,26 @@ class Property extends Model
     {
         return $this->hasMany('Cms\Domain\Posts\Post');
     }
+    
+    /**
+     * Get the pages associated with this property.
+     *
+     * @return hasMany
+     */
+    public function pages()
+    {
+        return $this->posts()->whereType('page');
+    }
+    
+    /**
+     * Get the articles associated with this property.
+     *
+     * @return hasMany
+     */
+    public function articles()
+    {
+        return $this->posts()->whereType('article');
+    }
 
     /**
      * Get the posts associated with this property.
