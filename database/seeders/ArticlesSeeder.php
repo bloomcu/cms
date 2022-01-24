@@ -18,13 +18,17 @@ class ArticlesSeeder extends Seeder
         $articles = [
             [
                 'title' => 'Blank Article',
+                // 'is_published' => false,
                 'property_id' => 1,
                 'category_id' => null,
+                'is_blueprint' => true,
             ],
             [
-                'title' => 'Hello world!',
+                'title' => 'My first article!',
+                // 'is_published' => false,
                 'property_id' => 1,
                 'category_id' => 2,
+                'is_blueprint' => false,
             ]
         ];
 

@@ -5,9 +5,6 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 
 use Cms\Domain\Pages\Page;
-// use Cms\Domain\Layouts\Layout;
-// use Cms\Domain\Blocks\Block;
-// use Cms\Domain\Organizations\Organization;
 
 class PagesSeeder extends Seeder
 {
