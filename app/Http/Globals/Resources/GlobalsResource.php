@@ -18,10 +18,11 @@ class GlobalsResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'site_title' => 'BloomCU',
             'logo' => 'https://amazon.s3.bloom/bucket/logo.svg',
             'favicon_url' => 'https://amazon.s3.bloom/bucket/favicon.png',
-            'gtm_container' => '123456',
             'noindex_all' => false,
+            'gtm_container' => '123456',
             'socials' => [
                 'facebook' => 'bloomcu',
                 'twitter' => '@bloomcu',
