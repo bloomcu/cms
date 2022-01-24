@@ -1,19 +1,19 @@
 <?php
 
-namespace Database\Factories\Domain\Pages;
+namespace Database\Factories\Domain\Posts;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-use Cms\Domain\Pages\Page;
+use Cms\Domain\Posts\Post;
 
-class PageFactory extends Factory
+class PostFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Page::class;
+    protected $model = Post::class;
 
     /**
      * Define the model's default state.

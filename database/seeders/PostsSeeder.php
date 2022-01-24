@@ -4,9 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-use Cms\Domain\Pages\Page;
+use Cms\Domain\Posts\Post;
 
-class PagesSeeder extends Seeder
+class PostsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,9 +15,9 @@ class PagesSeeder extends Seeder
      */
     public function run()
     {
-        $pages = [
+        $posts = [
             [
-                'title' => 'Blank Page',
+                'title' => 'Blank Post',
                 // 'is_published' => false,
                 'is_blueprint' => true,
                 'property_id' => 1,
@@ -39,8 +39,8 @@ class PagesSeeder extends Seeder
             ],
         ];
 
-        foreach ($pages as $page) {
-            Page::create($page);
+        foreach ($posts as $post) {
+            Post::create($post);
         }
     }
 }

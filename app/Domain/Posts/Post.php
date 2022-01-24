@@ -1,6 +1,6 @@
 <?php
 
-namespace Cms\Domain\Pages;
+namespace Cms\Domain\Posts;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -15,9 +15,9 @@ use Cms\App\Traits\HasUrl;
 use Cms\App\Traits\IsBlueprint;
 
 // Filters
-use Cms\Domain\Pages\Filters\PageFilters;
+use Cms\Domain\Posts\Filters\PostFilters;
 
-class Page extends Model
+class Post extends Model
 {
     use HasFactory,
         HasChildren,
@@ -33,7 +33,7 @@ class Page extends Model
 
     public static function booted()
     {
-        static::addGlobalScope('page', function(Builder $builder) {
+        static::addGlobalScope('post', function(Builder $builder) {
             $builder->where('type', null);
         });
     }
@@ -45,7 +45,7 @@ class Page extends Model
     
     // TODO: Associate with a user
     // /**
-    //  * Get the user who owns this page.
+    //  * Get the user who owns this post.
     //  *
     //  * @return BelongsTo
     //  */
@@ -71,7 +71,7 @@ class Page extends Model
 
     public function scopeFilter(Builder $builder, $request, array $filters = [])
     {
-        return (new PageFilters($request))
+        return (new PostFilters($request))
             ->add($filters)
             ->filter($builder);
     }

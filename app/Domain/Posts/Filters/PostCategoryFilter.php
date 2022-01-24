@@ -1,12 +1,12 @@
 <?php
 
-namespace Cms\Domain\Pages\Filters;
+namespace Cms\Domain\Posts\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
 
 use Cms\App\Filters\FilterAbstract;
 
-class PageCategoryFilter extends FilterAbstract
+class PostCategoryFilter extends FilterAbstract
 {
 
     public function filter(Builder $builder, $value)

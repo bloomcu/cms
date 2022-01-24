@@ -33,7 +33,7 @@ class LayoutDraftController extends Controller
     */
     public function show(Organization $organization, Property $property, Layout $layout)
     {
-        // TODO: We probably don't need this show method, as a page might load
+        // TODO: We probably don't need this show method, as a post might load
         // it's layout draft by default in the Admin controller.
 
         $draft = $layout->showDraft();

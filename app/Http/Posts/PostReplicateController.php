@@ -1,6 +1,6 @@
 <?php
 
-namespace Cms\Http\Pages;
+namespace Cms\Http\Posts;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -9,41 +9,41 @@ use Cms\App\Controllers\Controller;
 // Domains
 use Cms\Domain\Organizations\Organization;
 use Cms\Domain\Properties\Property;
-use Cms\Domain\Pages\Page;
+use Cms\Domain\Posts\Post;
 
 // Resources
-use Cms\Http\Pages\Resources\PageResource;
+use Cms\Http\Posts\Resources\PostResource;
 
-class PageReplicateController extends Controller
+class PostReplicateController extends Controller
 {
 
-    public function replicate(Organization $organization, Property $property, Page $page, Request $request)
+    public function replicate(Organization $organization, Property $property, Post $post, Request $request)
     {
         // TODO: Create a trait canDuplicate which implements an action belonging
         // to the model called "duplicate[ModelBasename]Action" passing title
         // overide into action.
         
-        // Replicate page 
-        $newPage = $page->replicate()->fill([
-            'title' => $page->title . ' Copy',
+        // Replicate post 
+        $newPost = $post->replicate()->fill([
+            'title' => $post->title . ' Copy',
         ]);
-        $newPage->save();
+        $newPost->save();
         
-        // TODO: The afermentioned "duplicatePageAction" will implement a "duplicateLayoutAction"
+        // TODO: The afermentioned "duplicatePostAction" will implement a "duplicateLayoutAction"
         
-        // Replicate page layout
-        if ($page->layout()->exists()) {
-            $newLayout = $page->layout->replicate()->fill([
-                'title' => $page->layout->title . ' Copy',
-                'page_id' => $newPage->id,
+        // Replicate post layout
+        if ($post->layout()->exists()) {
+            $newLayout = $post->layout->replicate()->fill([
+                'title' => $post->layout->title . ' Copy',
+                'post_id' => $newPost->id,
             ]);
             $newLayout->save();
             
             // TODO: The afermentioned "duplicateLayoutAction" will implement the "duplicateBlockAction"
             
             // Replicate layout blocks
-            if ($page->layout->blocks()->exists()) {
-                foreach( $page->layout->blocks as $block ) {
+            if ($post->layout->blocks()->exists()) {
+                foreach( $post->layout->blocks as $block ) {
                     $newBlock = $block->replicate()->fill([
                         'uuid' => Str::uuid(),
                         'layout_id' => $newLayout->id,
@@ -53,8 +53,8 @@ class PageReplicateController extends Controller
             }
         }
 
-        return new PageResource(
-            $newPage->load([
+        return new PostResource(
+            $newPost->load([
                 'category',
                 'layout',
                 'layout.blocks'

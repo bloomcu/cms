@@ -19,7 +19,7 @@ class CreateLayoutsTable extends Migration
 
             // Foreign Relationships
             $table->foreignId('property_id');
-            $table->foreignId('page_id');
+            $table->foreignId('post_id');
             $table->foreignId('category_id')->nullable();
 
             // Publishable
@@ -33,11 +33,11 @@ class CreateLayoutsTable extends Migration
             $table->timestamps();
             
             // Indexes
-            $table->index(['property_id', 'page_id']);
+            $table->index(['property_id', 'post_id']);
 
             // Foreign constraints
             $table->foreign('property_id')->references('id')->on('properties')->onDelete('cascade');
-            $table->foreign('page_id')->references('id')->on('pages')->onDelete('cascade');
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('categories');
         });
     }

@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
             OrganizationsSeeder::class,
             PropertiesSeeder::class,
             CategoriesSeeder::class,
-            PagesSeeder::class,
+            PostsSeeder::class,
             ArticlesSeeder::class,
             LayoutsSeeder::class,
             BlocksSeeder::class,

@@ -1,19 +1,19 @@
 <?php
 
-namespace Cms\Domain\Pages\Filters;
+namespace Cms\Domain\Posts\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 use Cms\App\Filters\FiltersAbstract;
-use Cms\Domain\Pages\Filters\PageCategoryFilter;
+use Cms\Domain\Posts\Filters\PostCategoryFilter;
 
-class PageFilters extends FiltersAbstract
+class PostFilters extends FiltersAbstract
 {
 
     // Filters to be applied to model
     protected $filters = [
-        'category' => PageCategoryFilter::class,
+        'category' => PostCategoryFilter::class,
     ];
 
 }

@@ -35,9 +35,9 @@ class Layout extends Model
     //     return $this->belongsTo('Cms\Domain\Users\User');
     // }
 
-    public function page()
+    public function post()
     {
-        return $this->belongsTo('Cms\Domain\Pages\Page');
+        return $this->belongsTo('Cms\Domain\Posts\Post');
     }
 
     public function category()

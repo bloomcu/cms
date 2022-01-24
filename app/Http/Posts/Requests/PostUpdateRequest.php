@@ -1,12 +1,12 @@
 <?php
 
-namespace Cms\Http\Pages\Requests;
+namespace Cms\Http\Posts\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class PageUpdateRequest extends FormRequest
+class PostUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -32,7 +32,7 @@ class PageUpdateRequest extends FormRequest
             'path' => 'nullable|string',
 
             // TODO: Create custom slug rule to enforce format "foo-bar"
-            'slug' => 'nullable|string|unique:pages,slug',
+            'slug' => 'nullable|string|unique:posts,slug',
 
             'category_id'  => 'nullable|integer',
             'is_published' => 'nullable|integer'

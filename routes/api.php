@@ -9,11 +9,11 @@ use Cms\Http\Organizations\OrganizationController;
 // Properties
 use Cms\Http\Properties\PropertyController;
 
-// Pages
-use Cms\Http\Pages\PageController;
-use Cms\Http\Pages\PageBlueprintController;
-use Cms\Http\Pages\PageCheckSlugController;
-use Cms\Http\Pages\PageReplicateController;
+// Posts
+use Cms\Http\Posts\PostController;
+use Cms\Http\Posts\PostBlueprintController;
+use Cms\Http\Posts\PostCheckSlugController;
+use Cms\Http\Posts\PostReplicateController;
 
 // Layouts
 use Cms\Http\Layouts\LayoutController;
@@ -54,7 +54,7 @@ use Cms\Http\Categories\CategoryController;
 // E.g., Route::prefix('organizations/{organization}')->group(function () {});
 // https://laravel.com/docs/8.x/routing#route-groups
 
-// TODO: When a route model binding is not found (e.g., organization in property > pages)
+// TODO: When a route model binding is not found (e.g., organization in property > posts)
 // we need to return a helpful error, rather than a generic 404
 
 // TODO: Move these organization endpoints to a "super" namespace
@@ -76,23 +76,23 @@ Route::prefix('{organization}')->group(function () {
     Route::delete('properties/{property}', [PropertyController::class, 'destroy']);
 });
 
-// Pages
+// Posts
 Route::prefix('{organization}/{property}')->group(function () {
-    Route::get('pages',           [PageController::class, 'index']);
-    Route::post('pages',          [PageController::class, 'store']);
-    Route::get('pages/{page}',    [PageController::class, 'show']);
-    Route::put('pages/{page}',    [PageController::class, 'update']);
-    Route::delete('pages/{page}', [PageController::class, 'destroy']);
+    Route::get('posts',           [PostController::class, 'index']);
+    Route::post('posts',          [PostController::class, 'store']);
+    Route::get('posts/{post}',    [PostController::class, 'show']);
+    Route::put('posts/{post}',    [PostController::class, 'update']);
+    Route::delete('posts/{post}', [PostController::class, 'destroy']);
     
-    // Pages - Blueprints Only
-    Route::get('page/blueprints', [PageBlueprintController::class, 'index']);
+    // Posts - Blueprints Only
+    Route::get('post/blueprints', [PostBlueprintController::class, 'index']);
     
-    // Pages - Check Slug
-    Route::get('page/check-slug', [PageCheckSlugController::class, 'show']);
+    // Posts - Check Slug
+    Route::get('post/check-slug', [PostCheckSlugController::class, 'show']);
     
-    // Pages - Replicate
+    // Posts - Replicate
     // TODO: Rename this "duplicate" and use store method
-    Route::post('pages/{page}/replicate', [PageReplicateController::class, 'replicate']);
+    Route::post('posts/{post}/replicate', [PostReplicateController::class, 'replicate']);
 });
 
 // Layouts

@@ -29,7 +29,7 @@ class BlockStoreRequest extends FormRequest
             'uuid'          => 'nullable|uuid|unique:blocks',
             'title'         => 'required|string',
             'component'     => 'required|string',
-            'page_id'       => 'required|exists:pages,id',
+            'post_id'       => 'required|exists:posts,id',
             'order'         => 'nullable|integer|min:0',
         ];
     }
@@ -50,8 +50,8 @@ class BlockStoreRequest extends FormRequest
             'component.required' => 'Component is required',
             'component.string' => 'Component must be a string',
 
-            'page_id.required' => 'Page id is required',
-            'page_id.exists' => 'Page does not exist',
+            'post_id.required' => 'Page id is required',
+            'post_id.exists' => 'Page does not exist',
 
             'order.integer' => 'Order must be an integer',
             'order.min' => 'Order cannot be negative',

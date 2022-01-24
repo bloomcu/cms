@@ -1,21 +1,21 @@
 <?php
 
-namespace Tests\Unit\Domain\Pages;
+namespace Tests\Unit\Domain\Posts;
 
 use Tests\TestCase;
 
-use Cms\Domain\Pages\Page;
 use Cms\Domain\Properties\Property;
+use Cms\Domain\Posts\Post;
 use Cms\Domain\Layouts\Layout;
 use Cms\Domain\Categories\Category;
 
-class PageTest extends TestCase
+class PostTest extends TestCase
 {
     public function setUp(): void
     {
         parent::setUp();
 
-        $this->page = Page::factory()->create();
+        $this->post = Post::factory()->create();
     }
     
     // TODO: Test it has a slug
@@ -25,21 +25,21 @@ class PageTest extends TestCase
     /** @test */
     public function it_belongs_to_a_property()
     {
-        $page = Page::factory()
+        $post = Post::factory()
             ->has(Property::factory())
             ->create();
 
-        $this->assertInstanceOf(Property::class, $page->property);
+        $this->assertInstanceOf(Property::class, $post->property);
     }
 
     /** @test */
     public function it_has_many_layouts()
     {
-        $page = Page::factory()
+        $post = Post::factory()
             ->has(Layout::factory())
             ->create();
 
-        $this->assertInstanceOf(Layout::class, $page->layouts->first());
+        $this->assertInstanceOf(Layout::class, $post->layouts->first());
     }
     
     // TODO: Test latest single layout relationship
@@ -47,10 +47,10 @@ class PageTest extends TestCase
     /** @test */
     public function it_belongs_to_a_category()
     {
-        $page = Page::factory()
+        $post = Post::factory()
             ->has(Category::factory())
             ->create();
 
-        $this->assertInstanceOf(Category::class, $page->category);
+        $this->assertInstanceOf(Category::class, $post->category);
     }
 }

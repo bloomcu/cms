@@ -46,17 +46,17 @@ class Property extends Model
     // }
 
     /**
-     * Get the pages associated with this property.
+     * Get the posts associated with this property.
      *
      * @return hasMany
      */
-    public function pages()
+    public function posts()
     {
-        return $this->hasMany('Cms\Domain\Pages\Page');
+        return $this->hasMany('Cms\Domain\Posts\Post');
     }
 
     /**
-     * Get the pages associated with this property.
+     * Get the posts associated with this property.
      *
      * @return hasMany
      */

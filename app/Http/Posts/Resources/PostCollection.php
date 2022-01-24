@@ -1,12 +1,12 @@
 <?php
 
-namespace Cms\Http\Pages\Resources;
+namespace Cms\Http\Posts\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-use Cms\Http\Pages\Resources\PageResource;
+use Cms\Http\Posts\Resources\PostResource;
 
-class PageCollection extends ResourceCollection
+class PostCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -17,7 +17,7 @@ class PageCollection extends ResourceCollection
     public function toArray($request)
     {
         return [
-            'data' => PageResource::collection($this->collection),
+            'data' => PostResource::collection($this->collection),
             'meta' => [
                 'total' => $this->collection->count()
             ]

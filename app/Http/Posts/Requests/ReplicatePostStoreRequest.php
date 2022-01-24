@@ -1,12 +1,12 @@
 <?php
 
-namespace Cms\Http\Pages\Requests;
+namespace Cms\Http\Posts\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class PageCheckSlugRequest extends FormRequest
+class ReplicatePostStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,7 @@ class PageCheckSlugRequest extends FormRequest
     public function rules()
     {
         return [
-            'slug' => 'required|string',
+            'is_blueprint' => 'required|boolean'
         ];
     }
 

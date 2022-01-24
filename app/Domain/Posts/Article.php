@@ -1,11 +1,11 @@
 <?php
 // TODO: This is a work in progress. To finish, create a base class of "Post".
-// Extend Article and Page with the base class.
+// Extend Article and Post with the base class.
 
 // In tinker, test with:
 // $post = Cms\Domain\Posts\Article::create(['title' => 'New Article', 'organization_id' => 1])
 
-namespace Cms\Domain\Pages;
+namespace Cms\Domain\Posts;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
@@ -14,9 +14,9 @@ use Illuminate\Database\Eloquent\Builder;
 use Parental\HasParent;
 
 // Domains
-use Cms\Domain\Pages\Page;
+use Cms\Domain\Posts\Post;
 
-class Article extends Page
+class Article extends Post
 {
     Use HasParent;
 
@@ -25,7 +25,7 @@ class Article extends Page
     //     parent::boot();
     //
     //     // When this model is first created
-    //     // Add the 'Cms\Domain\Pages\Article' type
+    //     // Add the 'Cms\Domain\Posts\Article' type
     //     static::creating(function (Model $model) {
     //         $model->type = self::class;
     //         // $model->type = 'Cms\Domain\Posts\Article';

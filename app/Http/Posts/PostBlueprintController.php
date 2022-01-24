@@ -1,6 +1,6 @@
 <?php
 
-namespace Cms\Http\Pages;
+namespace Cms\Http\Posts;
 
 use Illuminate\Http\Request;
 use Cms\App\Controllers\Controller;
@@ -8,23 +8,23 @@ use Cms\App\Controllers\Controller;
 // Domains
 use Cms\Domain\Organizations\Organization;
 use Cms\Domain\Properties\Property;
-use Cms\Domain\Pages\Page;
+use Cms\Domain\Posts\Post;
 
 // Resources
-use Cms\Http\Pages\Resources\PageCollection;
+use Cms\Http\Posts\Resources\PostCollection;
 
-class PageBlueprintController extends Controller
+class PostBlueprintController extends Controller
 {
 
     public function index(Organization $organization, Property $property, Request $request)
     {
-        $pages = $property->pages()
+        $posts = $property->posts()
             ->onlyBlueprints()
             ->with('category')
             ->filter($request)
             ->latest()
             ->get();
 
-        return new PageCollection($pages);
+        return new PostCollection($posts);
     }
 }

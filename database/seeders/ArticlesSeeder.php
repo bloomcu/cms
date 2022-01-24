@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-use Cms\Domain\Pages\Article;
+use Cms\Domain\Posts\Article;
 
 class ArticlesSeeder extends Seeder
 {

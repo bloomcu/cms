@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 use Cms\Domain\Layouts\Layout;
 use Cms\Domain\Properties\Property;
-use Cms\Domain\Pages\Page;
+use Cms\Domain\Posts\Post;
 use Cms\Domain\Categories\Category;
 use Cms\Domain\Blocks\Block;
 
@@ -30,13 +30,13 @@ class LayoutTest extends TestCase
     }
     
     /** @test */
-    public function it_belongs_to_a_page()
+    public function it_belongs_to_a_post()
     {
         $layout = Layout::factory()
-            ->has(Page::factory())
+            ->has(Post::factory())
             ->create();
 
-        $this->assertInstanceOf(Page::class, $layout->page);
+        $this->assertInstanceOf(Post::class, $layout->post);
     }
 
     /** @test */
