@@ -44,11 +44,6 @@ class Layout extends Model
         return $this->belongsTo('Cms\Domain\Posts\Post');
     }
 
-    public function category()
-    {
-        return $this->belongsTo('Cms\Domain\Categories\Category');
-    }
-
     public function blocks()
     {
         return $this->hasMany('Cms\Domain\Blocks\Block')->orderBy('order');

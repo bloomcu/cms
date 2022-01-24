@@ -27,7 +27,7 @@ class PostStoreRequest extends FormRequest
     {
         return [
             'title' => 'required|string',
-            'type' => 'nullable|string|in:page,article'
+            'type' => 'nullable|string|in:page,article',
             'category' => 'nullable|integer'
         ];
     }

@@ -17,6 +17,7 @@ use Cms\Domain\Articles\Article;
 use Cms\App\Traits\HasSlug;
 use Cms\App\Traits\HasUrl;
 use Cms\App\Traits\IsBlueprint;
+use Cms\App\Traits\IsCategorizable;
 
 // Filters
 use Cms\Domain\Posts\Filters\PostFilters;
@@ -27,7 +28,8 @@ class Post extends Model
         HasChildren,
         HasSlug,
         HasUrl,
-        IsBlueprint;
+        IsBlueprint,
+        IsCategorizable;
 
     protected $guarded = ['id', 'url'];
 
@@ -60,11 +62,6 @@ class Post extends Model
     public function layouts()
     {
         return $this->hasMany('Cms\Domain\Layouts\Layout');
-    }
-
-    public function category()
-    {
-        return $this->belongsTo('Cms\Domain\Categories\Category');
     }
 
     public function scopeFilter(Builder $builder, $request, array $filters = [])

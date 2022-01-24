@@ -25,7 +25,7 @@ class PostController extends Controller
     {
         $posts = $property->posts()
             ->withoutBlueprints()
-            ->with('category')
+            ->with('categories')
             ->filter($request)
             ->latest()
             ->get();
@@ -38,15 +38,21 @@ class PostController extends Controller
         $post = $property->posts()->create(
             $request->validated()
         );
+        
+        if ($request->category) {
+            $post->syncCategories($request->category);
+        }
 
-        return new PostResource($post);
+        return new PostResource(
+            $post->load(['categories'])
+        );
     }
 
     public function show(Organization $organization, Property $property, Post $post)
     {
         return new PostResource(
             $post->load([
-                'category',
+                'categories',
                 'layout',
                 'layout.blocks'
             ])
@@ -59,13 +65,17 @@ class PostController extends Controller
             $request->validated()
         );
 
-        return new PostResource($post);
+        return new PostResource(
+            $post->load(['categories'])
+        );
     }
 
     public function destroy(Organization $organization, Property $property, Post $post)
     {
         $post->delete();
 
-        return new PostResource($post);
+        return new PostResource(
+            $post->load(['categories'])
+        );
     }
 }

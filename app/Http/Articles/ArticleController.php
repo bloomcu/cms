@@ -19,7 +19,7 @@ class ArticleController extends Controller
     {        
         $pages = $property->articles()
             ->withoutBlueprints()
-            ->with('category')
+            ->with('categories')
             ->filter($request)
             ->latest()
             ->get();
