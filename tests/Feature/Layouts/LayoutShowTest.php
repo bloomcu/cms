@@ -5,39 +5,43 @@ namespace Tests\Feature\Layouts;
 use Tests\TestCase;
 
 use Cms\Domain\Layouts\Layout;
-use Cms\Domain\Pages\Page;
-use Cms\Domain\Organizations\Organization;
+
+use Cms\Http\Layouts\Resources\LayoutResource;
 
 class LayoutShowTest extends TestCase
 {
     public function setUp(): void
     {
         parent::setUp();
-
-        $this->organization = Organization::factory()->create();
-        $this->page = Page::factory()->create();
     }
 
     /** @test */
     public function it_fails_if_a_layout_cant_be_found()
     {
-        $this->get("/api/organizations/{$this->organization->slug}/layouts/nope")
-            ->assertStatus(404);
+        $response = $this->get("/api/{$this->organization->slug}/{$this->property->slug}/layouts/123");
+        
+        $response->assertStatus(404);
     }
 
     /** @test */
     public function test_it_shows_a_layout()
     {
-        $layout = Layout::factory()->create([
-            'title' => 'Test layout title',
-            'organization_id' => $this->organization->id,
-            'page_id' => $this->organization->id
-        ]);
-
-        $this->get("/api/organizations/{$this->organization->slug}/layouts/{$layout->id}")
+        $layout = Layout::factory()
+            ->for($this->property)
+            ->state(['title' => 'Test layout title'])
+            ->create();
+        
+        $response = $this->get("/api/{$this->organization->slug}/{$this->property->slug}/layouts/{$layout->id}");
+        
+        $response
             ->assertStatus(200)
-            ->assertJsonFragment([
-               'title' => 'Test layout title'
-           ]);
+            ->assertJsonFragment(['title' => 'Test layout title'])
+            ->assertResource(new LayoutResource($layout));
     }
+    
+    // TODO: Test it shows a layout with its category relationship
+    
+    // TODO: Test it shows a layout with its blocks relationship
+    
+    // TODO: Test it shows a layout with its draft relationship
 }

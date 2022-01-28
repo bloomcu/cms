@@ -15,13 +15,23 @@ class CreateFilesTable extends Migration
     {
         Schema::create('files', function (Blueprint $table) {
             $table->id();
-            $table->uuid('uuid')->unique();
-            $table->foreignId('organization_id')->constrained();
-            $table->foreignId('user_id')->constrained();
             $table->string('type');
             $table->string('name');
             $table->string('path');
             $table->unsignedBigInteger('size');
+            
+            // Relations
+            $table->foreignId('property_id');
+            $table->foreignId('user_id');
+            
+            // Indexes
+            $table->index(['property_id']);
+            
+            // Foreign constraints
+            $table->foreign('property_id')->references('id')->on('properties');
+            $table->foreign('user_id')->references('id')->on('users');
+            
+            // Timestamps
             $table->timestamps();
         });
     }

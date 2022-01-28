@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Cms\App\Controllers\Controller;
 
 use Cms\Domain\Organizations\Organization;
+use Cms\Domain\Properties\Property;
 use Cms\Domain\Blocks\Block;
 
 use Cms\Http\Blocks\Resources\BlockCollection;
@@ -16,27 +17,22 @@ use Cms\Http\Blocks\Resources\BlockResource;
 
 class BlockController extends Controller
 {
-    public function index(Organization $organization, Request $request)
+    public function index(Organization $organization, Property $property, Request $request)
     {
-        // TODO: Add Organization relationship to blocks, then
-        // get blocks through the organization.
-        // $blocks = $organization->blocks()
-        //     ->filter($request)
-        //     ->latest()
-        //     ->get();
-        //
-        // return new BlockCollection($blocks);
-
-        $blocks = Block::filter($request)
+        $blocks = $property->blocks()
+            ->filter($request)
             ->latest()
             ->get();
-
+        
+        // TODO: Currently this returns blocks with each block's content
+        // Let's create a resource specifically for indexing blocks.
+        // See the Menus resources for example.
         return new BlockCollection($blocks);
     }
 
-    public function store(Organization $organization, Request $request)
+    public function store(Organization $organization, Property $property, Request $request)
     {
-        $block = Block::create(
+        $block = $property->blocks()->create(
             // TODO: Use FormRequest for request validation
             // $request->validated()
             $request->all()
@@ -45,12 +41,12 @@ class BlockController extends Controller
         return new BlockResource($block);
     }
 
-    public function show(Organization $organization, Block $block)
+    public function show(Organization $organization, Property $property, Block $block)
     {
         return new BlockResource($block);
     }
 
-    public function update(Organization $organization, Block $block, Request $request)
+    public function update(Organization $organization, Property $property, Block $block, Request $request)
     {
         $block->update(
             // TODO: Use FormRequest for request validation
@@ -61,7 +57,7 @@ class BlockController extends Controller
         return new BlockResource($block);
     }
 
-    public function destroy(Organization $organization, Block $block)
+    public function destroy(Organization $organization, Property $property, Block $block)
     {
         $block->delete();
     }

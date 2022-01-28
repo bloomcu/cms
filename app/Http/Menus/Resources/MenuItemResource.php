@@ -3,7 +3,6 @@
 namespace Cms\Http\Menus\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use Cms\Http\Menus\Resources\MenuItemCollection;
 
 class MenuItemResource extends JsonResource
 {
@@ -16,9 +15,10 @@ class MenuItemResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
+            'uuid' => $this->uuid,
             'title' => $this->title,
-            'parent_id' => $this->parent_id,
+            'component' => $this->component,
+            'children' => MenuItemResource::collection($this->children),
         ];
     }
 }

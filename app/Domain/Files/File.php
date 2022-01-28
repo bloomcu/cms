@@ -7,12 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Str;
 
-use Cms\App\Traits\HasUuid;
 // use Cms\Domain\Files\Filters\FileFilters;
 
 class File extends Model
 {
-    use HasFactory, hasUuid;
+    use HasFactory;
 
     protected $guarded = [
         'id'
@@ -23,13 +22,13 @@ class File extends Model
      *
      * @return BelongsTo
      */
-    public function organization()
+    public function property()
     {
-        return $this->belongsTo('Cms\Domain\Organizations\Organization');
+        return $this->belongsTo('Cms\Domain\Properties\Property');
     }
 
     /**
-     * Get the user associated with the file.
+     * Get the user who owns this file.
      *
      * @return BelongsTo
      */

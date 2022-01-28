@@ -16,7 +16,20 @@ class CreateMenusTable extends Migration
         Schema::create('menus', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('location')->nullable(); // E.g, header, footer
+            $table->string('component')->nullable(); // E.g, navbar, sub-navbar, footer
+
+            // Relations
+            $table->foreignId('property_id');
+
+            // Timestamps
             $table->timestamps();
+            
+            // Indexes
+            $table->index(['property_id']);
+
+            // Foreign constraints
+            $table->foreign('property_id')->references('id')->on('properties');
         });
     }
 

@@ -20,23 +20,20 @@ class LayoutsSeeder extends Seeder
         $layouts = [
             [
                 'title' => 'Blank Layout',
-                'organization_id' => 1,
-                'page_id' => 1,
-                'category_id' => null,
+                'property_id' => 1,
+                'post_id' => 1,
                 'created_at' => $now->addSecond()->toDateTimeString(),
             ],
             [
                 'title' => 'Homepage Layout',
-                'organization_id' => 1,
-                'page_id' => 2,
-                'category_id' => 2,
+                'property_id' => 1,
+                'post_id' => 2,
                 'created_at' => $now->addSecond()->toDateTimeString(),
             ],
             [
                 'title' => 'Checking Layout',
-                'organization_id' => 1,
-                'page_id' => 3,
-                'category_id' => 4,
+                'property_id' => 1,
+                'post_id' => 3,
                 'created_at' => $now->addSecond()->toDateTimeString(),
             ]
         ];

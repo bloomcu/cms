@@ -19,9 +19,9 @@ class Category extends Model
         return $this->hasMany('Cms\Domain\Categories\Category', 'parent_id');
     }
 
-    public function pages()
+    public function posts()
     {
-        return $this->hasMany('Cms\Domain\Pages\Page');
+        return $this->hasMany('Cms\Domain\Posts\Post');
     }
 
     /**

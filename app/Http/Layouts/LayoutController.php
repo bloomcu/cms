@@ -3,57 +3,69 @@
 namespace Cms\Http\Layouts;
 
 use Illuminate\Http\Request;
-
 use Cms\App\Controllers\Controller;
 
+// Domains
 use Cms\Domain\Organizations\Organization;
+use Cms\Domain\Properties\Property;
 use Cms\Domain\Layouts\Layout;
-use Cms\Domain\Blocks\Block;
 
+// Resources
 use Cms\Http\Layouts\Resources\LayoutCollection;
 use Cms\Http\Layouts\Resources\LayoutResource;
 
+// Requests
 use Cms\Http\Layouts\Requests\LayoutStoreRequest;
 
 class LayoutController extends Controller
 {
 
-    public function index(Organization $organization, Request $request)
+    public function index(Organization $organization, Property $property, Request $request)
     {
-        $layouts = $organization->layouts()
-            ->with('category')
+        $layouts = $property->layouts()
+            ->with('categories')
             ->filter($request)
             ->latest()
             ->get();
-
+        
         return new LayoutCollection($layouts);
     }
 
-     public function store(Organization $organization, LayoutStoreRequest $request)
+     public function store(Organization $organization, Property $property, LayoutStoreRequest $request)
      {
-         $layout = $organization->layouts()->create(
+         $layout = $property->layouts()->create(
              $request->validated()
          );
+         
+         if ($request->category) {
+             $layout->syncCategories($request->category);
+         }
 
-         return new LayoutResource($layout);
+         return new LayoutResource(
+             $layout->load(['categories'])
+         );
      }
 
-    public function show(Organization $organization, Layout $layout)
+    public function show(Organization $organization, Property $property, Layout $layout)
     {
         return new LayoutResource(
             $layout->load([
-                'category',
+                'categories',
                 'blocks',
                 'draft'
             ])
         );
     }
 
-    public function update(Organization $organization, Layout $layout, Request $request)
+    public function update(Organization $organization, Property $property, Layout $layout, Request $request)
     {
         $layout->update(
             $request->all()
         );
+        
+        if ($request->category) {
+            $layout->syncCategories($request->category);
+        }
 
         // TODO: Try using Sync for this?
         // if ($request['blocks']) {
@@ -69,12 +81,19 @@ class LayoutController extends Controller
         // }
 
         return new LayoutResource(
-            $layout->load(['category', 'blocks'])
+            $layout->load([
+                'categories', 
+                'blocks'
+            ])
         );
     }
 
-    public function destroy(Organization $organization, Layout $layout)
+    public function destroy(Organization $organization, Property $property, Layout $layout)
     {
         $layout->delete();
+        
+        return new LayoutResource(
+            $layout->load(['categories'])
+        );
     }
 }

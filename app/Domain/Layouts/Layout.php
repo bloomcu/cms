@@ -6,32 +6,42 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
+// Filters
 use Cms\Domain\Layouts\Filters\LayoutFilters;
 
+// Traits
 use Cms\App\Traits\IsPublishable;
+use Cms\App\Traits\IsCategorizable;
 
 class Layout extends Model
 {
     use HasFactory,
-        IsPublishable;
+        IsPublishable,
+        IsCategorizable;
 
     protected $guarded = ['id'];
 
     protected $dates = ['drafted_at'];
 
-    public function organization()
+    public function property()
     {
-        return $this->belongsTo('Cms\Domain\Organizations\Organization');
+        return $this->belongsTo('Cms\Domain\Properties\Property');
     }
+    
+    // TODO: Associate with a user
+    // /**
+    //  * Get the user who owns this layout.
+    //  *
+    //  * @return BelongsTo
+    //  */
+    // public function user()
+    // {
+    //     return $this->belongsTo('Cms\Domain\Users\User');
+    // }
 
-    public function page()
+    public function post()
     {
-        return $this->belongsTo('Cms\Domain\Pages\Page');
-    }
-
-    public function category()
-    {
-        return $this->belongsTo('Cms\Domain\Categories\Category');
+        return $this->belongsTo('Cms\Domain\Posts\Post');
     }
 
     public function blocks()
