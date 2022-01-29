@@ -43,6 +43,9 @@ use Cms\Http\Globals\GlobalsController;
 // Categories
 use Cms\Http\Categories\CategoryController;
 
+// Tables
+use Cms\Http\Tables\TableController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -177,3 +180,9 @@ Route::prefix('{organization}/{property}')->group(function () {
     Route::put('categories/{category}',    [CategoryController::class, 'update']);
     Route::delete('categories/{category}', [CategoryController::class, 'destroy']);
 });
+
+Route::get('tables', [TableController::class, 'index']);
+Route::post('tables', [TableController::class, 'store']);
+Route::get('tables/{table}', [TableController::class, 'show']);
+Route::put('tables/{table}',    [TableController::class, 'update']);
+Route::delete('tables/{table}', [TableController::class, 'destroy']);
