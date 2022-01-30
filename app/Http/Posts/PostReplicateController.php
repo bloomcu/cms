@@ -55,7 +55,7 @@ class PostReplicateController extends Controller
 
         return new PostResource(
             $newPost->load([
-                'category',
+                'categories',
                 'layout',
                 'layout.blocks'
             ])
