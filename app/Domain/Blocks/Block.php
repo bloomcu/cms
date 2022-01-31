@@ -6,12 +6,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
-use Cms\Domain\Blocks\Filters\BlockFilters;
+// Traits
 use Cms\App\Traits\HasUuid;
+use Cms\App\Traits\IsBlueprint;
+
+// Filters
+use Cms\Domain\Blocks\Filters\BlockFilters;
 
 class Block extends Model
 {
-    use HasFactory, HasUuid;
+    use HasFactory, 
+        HasUuid,
+        IsBlueprint;
 
     protected $guarded = [
         'id'
