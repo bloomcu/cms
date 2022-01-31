@@ -31,6 +31,9 @@ class CreatePostsTable extends Migration
             // $table->boolean('is_published')->default(false)->index();
             $table->boolean('is_blueprint')->default(false)->index();
             
+            // Meta
+            $table->json('meta')->nullable();
+            
             // Timestamps
             $table->timestamps();
             

@@ -40,7 +40,10 @@ class PostUpdateRequest extends FormRequest
             ],
 
             'category'  => 'nullable|integer',
-            'is_published' => 'nullable|integer'
+            'is_published' => 'nullable|integer',
+            'meta.title' => 'nullable|string',
+            'meta.description' => 'nullable|string',
+            'meta.image' => 'nullable|url'
         ];
     }
 
