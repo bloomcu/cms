@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 use Cms\Domain\Blocks\Block;
 
-use Cms\Http\Blocks\Resources\BlockResource;
+use Cms\Http\Blocks\Resources\ShowBlockResource;
 
 class BlockShowTest extends TestCase
 {
@@ -36,6 +36,6 @@ class BlockShowTest extends TestCase
         $response
             ->assertStatus(200)
             ->assertJsonFragment(['title' => 'Test block title'])
-            ->assertResource(new BlockResource($block));
+            ->assertResource(new ShowBlockResource($block));
     }
 }

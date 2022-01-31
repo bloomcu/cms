@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 use Cms\Domain\Blocks\Block;
 
-use Cms\Http\Blocks\Resources\BlockCollection;
+use Cms\Http\Blocks\Resources\IndexBlockResource;
 
 class BlockIndexTest extends TestCase
 {
@@ -28,7 +28,7 @@ class BlockIndexTest extends TestCase
         $response
             ->assertStatus(200)
             ->assertJsonCount(3, 'data')
-            ->assertResource(new BlockCollection($blocks));
+            ->assertResource(IndexBlockResource::collection($blocks));
     }
     
     // TODO: Test it applies filters
