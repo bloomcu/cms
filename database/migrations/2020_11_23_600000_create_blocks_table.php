@@ -25,6 +25,9 @@ class CreateBlocksTable extends Migration
             // $table->foreignId('category_id')->nullable();
             $table->foreignId('layout_id')->nullable();
             
+            // States
+            $table->boolean('is_blueprint')->default(false);
+            
             // Ordering
             $table->integer('order')->nullable();
             
@@ -35,7 +38,7 @@ class CreateBlocksTable extends Migration
             $table->timestamps();
 
             // Indexes
-            $table->index(['property_id', 'layout_id']);
+            $table->index(['property_id', 'layout_id', 'is_blueprint']);
 
             // Foreign constraints
             $table->foreign('property_id')->references('id')->on('properties');

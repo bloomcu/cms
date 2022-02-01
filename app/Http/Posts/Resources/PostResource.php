@@ -20,13 +20,19 @@ class PostResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'type' => $this->type,
             'title' => $this->title,
             'path' => $this->path,
             'slug' => $this->slug,
             'url' => $this->url,
             'is_published' => $this->is_published,
             'categories' => CategoryResource::collection($this->whenLoaded('categories')),
-            'layout' => new LayoutResource($this->whenLoaded('layout'))
+            'layout' => new LayoutResource($this->whenLoaded('layout')),
+            'meta' => [
+                'title' => $this->meta['title'] ?? '',
+                'description' => $this->meta['description'] ?? '',
+                'image' => $this->meta['image'] ?? ''
+            ]
         ];
     }
 }

@@ -34,6 +34,10 @@ class Post extends Model
         Searchable;
 
     protected $guarded = ['id', 'url'];
+    
+    protected $casts = [
+        'meta' => 'json'
+    ];
 
     protected $childTypes = [
         'page' => Page::class,

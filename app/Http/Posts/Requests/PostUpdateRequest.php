@@ -5,6 +5,7 @@ namespace Cms\Http\Posts\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Validation\Rule;
 
 class PostUpdateRequest extends FormRequest
 {
@@ -32,10 +33,17 @@ class PostUpdateRequest extends FormRequest
             'path' => 'nullable|string',
 
             // TODO: Create custom slug rule to enforce format "foo-bar"
-            'slug' => 'nullable|string|unique:posts,slug',
+            'slug' => [
+                'nullable',
+                'string',
+                Rule::unique('posts')->ignore($this->post->id)
+            ],
 
             'category'  => 'nullable|integer',
-            'is_published' => 'nullable|integer'
+            'is_published' => 'nullable|integer',
+            'meta.title' => 'nullable|string',
+            'meta.description' => 'nullable|string',
+            'meta.image' => 'nullable|url'
         ];
     }
 

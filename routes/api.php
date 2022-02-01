@@ -29,6 +29,7 @@ use Cms\Http\Layouts\LayoutPublishController;
 
 // Blocks
 use Cms\Http\Blocks\BlockController;
+use Cms\Http\Blocks\BlockBlueprintController;
 use Cms\Http\Blocks\BlockReorderController;
 
 // Files
@@ -96,12 +97,12 @@ Route::prefix('{organization}/{property}')->group(function () {
     Route::put('posts/{post}',    [PostController::class, 'update']);
     Route::delete('posts/{post}', [PostController::class, 'destroy']);
     
+    // Posts - Blueprints Only
+    Route::get('post/blueprints', [PostBlueprintController::class, 'index']);
+    
     // Posts - Replicate
     // TODO: Rename this "duplicate" and use store method
     Route::post('posts/{post}/replicate', [PostReplicateController::class, 'replicate']);
-    
-    // Posts - Blueprints Only
-    Route::get('post/blueprints', [PostBlueprintController::class, 'index']);
     
     // Posts - Check Slug
     Route::get('post/check-slug', [PostCheckSlugController::class, 'show']);
@@ -140,6 +141,9 @@ Route::prefix('{organization}/{property}')->group(function () {
     Route::get('blocks/{block}',    [BlockController::class, 'show']);
     Route::put('blocks/{block}',    [BlockController::class, 'update']);
     Route::delete('blocks/{block}', [BlockController::class, 'destroy']);
+
+    // Blocks - Blueprints Only
+    Route::get('block/blueprints', [BlockBlueprintController::class, 'index']);
     
     // Blocks - Reorder
     // TODO: This should probably be scoped to the layout these blocks belong to.

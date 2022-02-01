@@ -28,14 +28,17 @@ class CreatePostsTable extends Migration
             // $table->foreignId('category_id')->nullable();
 
             // States
-            // $table->boolean('is_published')->default(false)->index();
-            $table->boolean('is_blueprint')->default(false)->index();
+            // $table->boolean('is_published')->default(false);
+            $table->boolean('is_blueprint')->default(false);
+            
+            // Meta
+            $table->json('meta')->nullable();
             
             // Timestamps
             $table->timestamps();
             
             // Indexes
-            $table->index(['property_id']);
+            $table->index(['property_id', 'is_blueprint']);
 
             // Foreign constraints
             $table->foreign('property_id')->references('id')->on('properties');

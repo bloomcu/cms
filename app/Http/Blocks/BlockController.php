@@ -5,29 +5,32 @@ namespace Cms\Http\Blocks;
 use Illuminate\Http\Request;
 use Cms\App\Controllers\Controller;
 
+// Domains
 use Cms\Domain\Organizations\Organization;
 use Cms\Domain\Properties\Property;
 use Cms\Domain\Blocks\Block;
 
-use Cms\Http\Blocks\Resources\BlockCollection;
-use Cms\Http\Blocks\Resources\BlockResource;
+// Resources
+use Cms\Http\Blocks\Resources\IndexBlockResource;
+use Cms\Http\Blocks\Resources\ShowBlockResource;
 
+// Requests
 // use Cms\Http\Blocks\Requests\BlockStoreRequest;
 // use Cms\Http\Blocks\Requests\BlockUpdateRequest;
 
 class BlockController extends Controller
 {
+    // TODO: Do we need this endpoint? 
+    // When would we index all blocks used across layouts?
     public function index(Organization $organization, Property $property, Request $request)
     {
         $blocks = $property->blocks()
+            ->withoutBlueprints()
             ->filter($request)
             ->latest()
             ->get();
         
-        // TODO: Currently this returns blocks with each block's content
-        // Let's create a resource specifically for indexing blocks.
-        // See the Menus resources for example.
-        return new BlockCollection($blocks);
+        return IndexBlockResource::collection($blocks);
     }
 
     public function store(Organization $organization, Property $property, Request $request)
@@ -38,12 +41,12 @@ class BlockController extends Controller
             $request->all()
         );
 
-        return new BlockResource($block);
+        return new ShowBlockResource($block);
     }
 
     public function show(Organization $organization, Property $property, Block $block)
     {
-        return new BlockResource($block);
+        return new ShowBlockResource($block);
     }
 
     public function update(Organization $organization, Property $property, Block $block, Request $request)
@@ -54,11 +57,13 @@ class BlockController extends Controller
             $request->all()
         );
 
-        return new BlockResource($block);
+        return new ShowBlockResource($block);
     }
 
     public function destroy(Organization $organization, Property $property, Block $block)
     {
         $block->delete();
+        
+        return new ShowBlockResource($block);
     }
 }

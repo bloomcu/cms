@@ -20,6 +20,29 @@ class BlocksSeeder extends Seeder
                 'title' => 'Hero',
                 'property_id' => 1,
                 'component' => 'hero',
+                'is_blueprint' => true,
+                // 'category_id' => 'heros',
+                'data' => [
+                    'label' => 'The label',
+                    'title' => 'This is the title',
+                    'subtitle' => 'And this is the subtitle, it is longer',
+                ]
+            ],
+            [
+                'title' => 'Feature',
+                'property_id' => 1,
+                'component' => 'feature',
+                'is_blueprint' => true,
+                // 'category_id' => 'features',
+                'data' => [
+                    'title' => 'This is the title',
+                    'subtitle' => 'And this is the subtitle, it is longer',
+                ]
+            ],
+            [
+                'title' => 'Hero',
+                'property_id' => 1,
+                'component' => 'hero',
                 // 'category_id' => 'heros',
                 'layout_id' => 2,
                 'data' => [
