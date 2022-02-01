@@ -1,5 +1,6 @@
 <?php
 
+use Cms\Domain\Table\TableGroup;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -45,6 +46,8 @@ use Cms\Http\Categories\CategoryController;
 
 // Tables
 use Cms\Http\Tables\TableController;
+use Cms\Http\Tables\TableGroupsController;
+use Cms\Http\Tables\TableGroupTablesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -186,3 +189,14 @@ Route::post('tables', [TableController::class, 'store']);
 Route::get('tables/{table}', [TableController::class, 'show']);
 Route::put('tables/{table}',    [TableController::class, 'update']);
 Route::delete('tables/{table}', [TableController::class, 'destroy']);
+
+Route::get('table-groups', [TableGroupsController::class, 'index']);
+Route::post('table-groups', [TableGroupsController::class, 'store']);
+Route::get('table-groups/{table_group}', [TableGroupsController::class, 'show']);
+Route::put('table-groups/{table_group}', [TableGroupsController::class, 'update']);
+Route::delete('table-groups/{table_group}', [TableGroupsController::class, 'destroy']);
+
+Route::get('table-group-tables/{table_group}', [TableGroupTablesController::class, 'index']);
+Route::post('table-group-tables/{table_group}/{table}', [TableGroupTablesController::class, 'store']);
+
+Route::delete('table-group-tables/{table_group}/{table}', [TableGroupTablesController::class, 'destroy']);
