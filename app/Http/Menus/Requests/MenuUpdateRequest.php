@@ -34,13 +34,9 @@ class MenuUpdateRequest extends FormRequest
                 Rule::unique('menus')->ignore($this->menu->id)
             ],
             'component' => 'nullable|string',
-            'items' => 'nullable|array',
-            'items.*.uuid' => 'required|uuid',
-            'items.*.title' => 'required|string',
-            'items.*.parent_id' => 'nullable|integer',
-            'items.*.menu_id' => 'required|integer',
-            'items.*.order' => 'required|integer',
-            'items.*.children' => 'nullable|array',
+            'children' => 'nullable|array',
+            'children.*.title' => 'required|string',
+            'children.*.children' => 'nullable|array',
 
             // TODO: Nested item properties which are not listed in rules
             // are making it through the request validation. Such as UUID.

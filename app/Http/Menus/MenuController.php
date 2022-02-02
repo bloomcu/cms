@@ -11,26 +11,22 @@ use Cms\Domain\Properties\Property;
 use Cms\Domain\Menus\Menu;
 
 // Resources
-use Cms\Http\Menus\Resources\Menu\IndexMenuResource;
-use Cms\Http\Menus\Resources\Menu\ShowMenuResource;
+use Cms\Http\Menus\Resources\MenuResource;
 
 // Requests
 use Cms\Http\Menus\Requests\MenuStoreRequest;
 use Cms\Http\Menus\Requests\MenuUpdateRequest;
 
-// Actions
-use Cms\Domain\Menus\Actions\UpsertMenuItemsAction;
-
 class MenuController extends Controller
 {
 
-    public function index(Organization $organization, Property $property, Request $request)
+    public function index(Organization $organization, Property $property)
     {
         $menus = $property->menus()
-            ->latest()
+            ->parents()
             ->get();
 
-        return IndexMenuResource::collection($menus);
+        return MenuResource::collection($menus);
     }
 
     public function store(Organization $organization, Property $property, MenuStoreRequest $request)
@@ -39,35 +35,29 @@ class MenuController extends Controller
             $request->validated()
         );
 
-        return new ShowMenuResource($menu);
+        return new MenuResource($menu);
     }
 
     public function show(Organization $organization, Property $property, Menu $menu)
     {
-        return new ShowMenuResource($menu);
+        $menu = Menu::defaultOrder()->descendantsAndSelf($menu->id)->toTree();
+        
+        return MenuResource::collection($menu);
     }
 
     public function update(Organization $organization, Property $property, Menu $menu, MenuUpdateRequest $request)
     {
-        $menu->update(
-            $request->only([
-                'title',
-                'location',
-                'component'
-            ])
-        );
+        Menu::rebuildSubtree($menu, $request['children']);
+        
+        $menu = Menu::defaultOrder()
+            ->descendantsAndSelf($menu->id)
+            ->toTree();
 
-        UpsertMenuItemsAction::execute(
-            $request->only(['items'])
-        );
-
-        return new ShowMenuResource($menu);
+        return MenuResource::collection($menu);
     }
 
     public function destroy(Organization $organization, Property $property, Menu $menu)
     {
         $menu->delete();
-
-        return new ShowMenuResource($menu);
     }
 }

@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
             LayoutsSeeder::class,
             BlocksSeeder::class,
             FilesSeeder::class,
-            // MenusSeeder::class
+            MenusSeeder::class
         ]);
     }
 }

@@ -4,13 +4,14 @@ namespace Cms\Domain\Menus;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
-// Domains
-use Cms\Domain\Menus\MenuItem;
+// Vendors
+use Kalnoy\Nestedset\NodeTrait;
 
 class Menu extends Model
 {
-    use HasFactory;
+    use HasFactory, NodeTrait;
 
     protected $guarded = ['id'];
 
@@ -30,19 +31,21 @@ class Menu extends Model
     //     return $this->belongsTo('Cms\Domain\Users\User');
     // }
 
-    public function items()
+    public function children()
     {
-        return $this->hasMany('Cms\Domain\Menus\MenuItem');
+        return $this->hasMany('Cms\Domain\Menus\Menu', 'parent_id');
     }
-
-    public function itemsTree()
+    
+    /**
+     * Get only parent (top level) categories.
+     *
+     * @return \Illuminate\Database\Query\Builder
+     */
+    public function scopeParents(Builder $builder)
     {
-        return MenuItem::where('menu_id', $this->id)
-            ->tree()
-            ->get()
-            ->toTree();
+        $builder->whereNull('parent_id');
     }
-
+    
     public function scopeLocation($query, $value)
     {
         return $query->where('location', $value);

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
+// Domains
 use Cms\Domain\Categories\Category;
 
 class CategoriesSeeder extends Seeder

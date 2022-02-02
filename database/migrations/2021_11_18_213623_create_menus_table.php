@@ -20,13 +20,13 @@ class CreateMenusTable extends Migration
             $table->string('component')->nullable(); // E.g, navbar, sub-navbar, footer
 
             // Relations
-            $table->foreignId('property_id');
+            $table->foreignId('property_id')->nullable();
+            
+            // Vendor - kalnoy/nestedset
+            $table->nestedSet();
 
             // Timestamps
             $table->timestamps();
-            
-            // Indexes
-            $table->index(['property_id']);
 
             // Foreign constraints
             $table->foreign('property_id')->references('id')->on('properties');
