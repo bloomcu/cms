@@ -5,6 +5,7 @@ namespace Cms\Http\Menus\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Validation\Rule;
 
 class MenuStoreRequest extends FormRequest
 {
@@ -28,6 +29,12 @@ class MenuStoreRequest extends FormRequest
         return [
             'title' => 'required|string',
             'location' => 'nullable|string',
+            // TODO: Create custom location rule to enforce format "foo-bar"
+            'location' => [
+                'nullable',
+                'string',
+                Rule::unique('menus')
+            ],
             'component' => 'nullable|string',
         ];
     }

@@ -5,6 +5,7 @@ namespace Cms\Http\Menus\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Validation\Rule;
 
 class MenuUpdateRequest extends FormRequest
 {
@@ -27,7 +28,11 @@ class MenuUpdateRequest extends FormRequest
     {
         return [
             'title' => 'nullable|string',
-            'location' => 'nullable|string',
+            'location' => [
+                'nullable',
+                'string',
+                Rule::unique('menus')->ignore($this->menu->id)
+            ],
             'component' => 'nullable|string',
             'items' => 'nullable|array',
             'items.*.uuid' => 'required|uuid',
