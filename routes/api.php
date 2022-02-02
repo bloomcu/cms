@@ -47,6 +47,7 @@ use Cms\Http\Categories\CategoryController;
 
 // Tables
 use Cms\Http\Tables\TableController;
+use Cms\Http\Tables\TableCSVController;
 use Cms\Http\Tables\TableGroupsController;
 use Cms\Http\Tables\TableGroupTablesController;
 
@@ -193,6 +194,8 @@ Route::post('tables', [TableController::class, 'store']);
 Route::get('tables/{table}', [TableController::class, 'show']);
 Route::put('tables/{table}',    [TableController::class, 'update']);
 Route::delete('tables/{table}', [TableController::class, 'destroy']);
+
+Route::post('table-csv/', [TableCSVController::class, 'store']);
 
 Route::get('table-groups', [TableGroupsController::class, 'index']);
 Route::post('table-groups', [TableGroupsController::class, 'store']);

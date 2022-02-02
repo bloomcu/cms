@@ -12,10 +12,12 @@ class Table extends Model
 
     public $name;
     public $data;
+    public $orgnization_ud;
     
     protected $fillable = [
         'name',
-        'data'
+        'data',
+        'organization_id'
     ];
 
     protected $casts = [
