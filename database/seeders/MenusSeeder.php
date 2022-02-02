@@ -49,6 +49,46 @@ class MenusSeeder extends Seeder
                         ]
                     ]
                 ]
+            ],
+            [
+                'title' => 'Footer',
+                'location' => 'footer',
+                'component' => 'footer-1',
+                'property_id' => 1,
+                'children' => [
+                    [
+                        'title' => 'Accounts',
+                        'component' => 'menu-link',
+                    ],
+                    [
+                        'title' => 'Loans',
+                        'component' => 'menu-link',
+                    ],
+                    [
+                        'title' => 'Cards',
+                        'component' => 'menu-link',
+                    ]
+                ]
+            ],
+            [
+                'title' => 'Blog Menu',
+                'location' => 'blog',
+                'component' => 'subnav-1',
+                'property_id' => 1,
+                'children' => [
+                    [
+                        'title' => 'Spending',
+                        'component' => 'menu-link',
+                    ],
+                    [
+                        'title' => 'Saving',
+                        'component' => 'menu-link',
+                    ],
+                    [
+                        'title' => 'Borrowing',
+                        'component' => 'menu-link',
+                    ]
+                ]
             ]
         ];
 

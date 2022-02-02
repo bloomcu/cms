@@ -17,6 +17,13 @@ class BlocksSeeder extends Seeder
     {
         $blocks = [
             [
+                'title' => 'Navbar',
+                'property_id' => 1,
+                'component' => 'navbar',
+                'is_blueprint' => true,
+                // 'category_id' => 'heros',
+            ],
+            [
                 'title' => 'Hero',
                 'property_id' => 1,
                 'component' => 'hero',
@@ -38,6 +45,76 @@ class BlocksSeeder extends Seeder
                     'title' => 'This is the title',
                     'subtitle' => 'And this is the subtitle, it is longer',
                 ]
+            ],
+            [
+                'title' => 'Text',
+                'property_id' => 1,
+                'component' => 'text',
+                'is_blueprint' => true,
+                // 'category_id' => 'heros',
+            ],
+            [
+                'title' => 'Feature',
+                'property_id' => 1,
+                'component' => 'feature',
+                'is_blueprint' => true,
+                // 'category_id' => 'heros',
+            ],
+            [
+                'title' => 'Card',
+                'property_id' => 1,
+                'component' => 'card',
+                'is_blueprint' => true,
+                // 'category_id' => 'heros',
+            ],
+            [
+                'title' => 'Testimonial',
+                'property_id' => 1,
+                'component' => 'testimonial',
+                'is_blueprint' => true,
+                // 'category_id' => 'heros',
+            ],
+            [
+                'title' => 'Accordion',
+                'property_id' => 1,
+                'component' => 'accordion',
+                'is_blueprint' => true,
+                // 'category_id' => 'heros',
+            ],
+            [
+                'title' => 'Gallery',
+                'property_id' => 1,
+                'component' => 'gallery',
+                'is_blueprint' => true,
+                // 'category_id' => 'heros',
+            ],
+            [
+                'title' => 'Details',
+                'property_id' => 1,
+                'component' => 'details',
+                'is_blueprint' => true,
+                // 'category_id' => 'heros',
+            ],
+            [
+                'title' => 'Steps',
+                'property_id' => 1,
+                'component' => 'steps',
+                'is_blueprint' => true,
+                // 'category_id' => 'heros',
+            ],
+            [
+                'title' => 'Table',
+                'property_id' => 1,
+                'component' => 'table',
+                'is_blueprint' => true,
+                // 'category_id' => 'heros',
+            ],
+            [
+                'title' => 'Footer',
+                'property_id' => 1,
+                'component' => 'footer',
+                'is_blueprint' => true,
+                // 'category_id' => 'heros',
             ],
             [
                 'title' => 'Hero',

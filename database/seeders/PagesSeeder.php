@@ -18,20 +18,67 @@ class PagesSeeder extends Seeder
         $pages = [
             [
                 'title' => 'Blank Page Blueprint',
-                // 'is_published' => false,
                 'is_blueprint' => true,
                 'property_id' => 1,
                 // 'category_id' => null,
             ],
             [
                 'title' => 'Homepage',
-                // 'is_published' => true,
                 'property_id' => 1,
                 // 'category_id' => 2,
             ],
             [
-                'title' => 'Checking',
-                // 'is_published' => true,
+                'title' => 'Regular Checking',
+                'property_id' => 1,
+                // 'category_id' => 4,
+            ],
+            [
+                'title' => 'Gold Checking',
+                'property_id' => 1,
+                // 'category_id' => 4,
+            ],
+            [
+                'title' => 'Savings Account',
+                'property_id' => 1,
+                // 'category_id' => 4,
+            ],
+            [
+                'title' => 'Money Market',
+                'property_id' => 1,
+                // 'category_id' => 4,
+            ],
+            [
+                'title' => 'Auto Loan',
+                'property_id' => 1,
+                // 'category_id' => 4,
+            ],
+            [
+                'title' => 'Mortgage',
+                'property_id' => 1,
+                // 'category_id' => 4,
+            ],
+            [
+                'title' => 'Credit Card',
+                'property_id' => 1,
+                // 'category_id' => 4,
+            ],
+            [
+                'title' => 'Business Checking',
+                'property_id' => 1,
+                // 'category_id' => 4,
+            ],
+            [
+                'title' => 'Business Savings',
+                'property_id' => 1,
+                // 'category_id' => 4,
+            ],
+            [
+                'title' => 'Contact Us',
+                'property_id' => 1,
+                // 'category_id' => 4,
+            ],
+            [
+                'title' => 'About Us',
                 'property_id' => 1,
                 // 'category_id' => 4,
             ],
