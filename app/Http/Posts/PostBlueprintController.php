@@ -20,7 +20,7 @@ class PostBlueprintController extends Controller
     {
         $posts = $property->posts()
             ->onlyBlueprints()
-            ->with('category')
+            ->with('categories')
             ->filter($request)
             ->latest()
             ->get();
