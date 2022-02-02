@@ -22,9 +22,8 @@ class ArticlesSeeder extends Seeder
                 'is_blueprint' => true,
             ],
             [
-                'title' => 'My first article!',
+                'title' => 'My First Article!',
                 'property_id' => 1,
-                'is_blueprint' => false,
             ]
         ];
 

@@ -26,14 +26,12 @@ class PagesSeeder extends Seeder
             [
                 'title' => 'Homepage',
                 // 'is_published' => true,
-                'is_blueprint' => false,
                 'property_id' => 1,
                 // 'category_id' => 2,
             ],
             [
                 'title' => 'Checking',
                 // 'is_published' => true,
-                'is_blueprint' => false,
                 'property_id' => 1,
                 // 'category_id' => 4,
             ],
