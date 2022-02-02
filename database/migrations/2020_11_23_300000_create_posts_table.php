@@ -38,7 +38,7 @@ class CreatePostsTable extends Migration
             $table->timestamps();
             
             // Indexes
-            $table->index(['property_id', 'is_blueprint']);
+            $table->index(['is_blueprint']);
 
             // Foreign constraints
             $table->foreign('property_id')->references('id')->on('properties');

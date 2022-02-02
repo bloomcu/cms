@@ -38,7 +38,7 @@ class CreateBlocksTable extends Migration
             $table->timestamps();
 
             // Indexes
-            $table->index(['property_id', 'layout_id', 'is_blueprint']);
+            $table->index(['layout_id', 'is_blueprint']);
 
             // Foreign constraints
             $table->foreign('property_id')->references('id')->on('properties');

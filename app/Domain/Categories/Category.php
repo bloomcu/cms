@@ -14,7 +14,24 @@ class Category extends Model
     use HasFactory, NodeTrait;
 
     protected $guarded = ['id'];
-
+    
+    // TODO: Associaate with a property
+    // public function property()
+    // {
+    //     return $this->belongsTo('Cms\Domain\Properties\Property');
+    // }
+    
+    // TODO: Associate with a user
+    // /**
+    //  * Get the user who owns this menu.
+    //  *
+    //  * @return BelongsTo
+    //  */
+    // public function user()
+    // {
+    //     return $this->belongsTo('Cms\Domain\Users\User');
+    // }
+    
     public function children()
     {
         return $this->hasMany('Cms\Domain\Categories\Category', 'parent_id');

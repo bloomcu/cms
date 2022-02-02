@@ -32,7 +32,7 @@ class CreateLayoutsTable extends Migration
             $table->timestamps();
             
             // Indexes
-            $table->index(['property_id', 'post_id']);
+            $table->index(['post_id']);
 
             // Foreign constraints
             $table->foreign('property_id')->references('id')->on('properties')->onDelete('cascade');

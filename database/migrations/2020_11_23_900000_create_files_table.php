@@ -24,9 +24,6 @@ class CreateFilesTable extends Migration
             $table->foreignId('property_id');
             $table->foreignId('user_id');
             
-            // Indexes
-            $table->index(['property_id']);
-            
             // Foreign constraints
             $table->foreign('property_id')->references('id')->on('properties');
             $table->foreign('user_id')->references('id')->on('users');
