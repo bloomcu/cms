@@ -64,14 +64,14 @@ class BlocksSeeder extends Seeder
             //     'is_blueprint' => true,
             //     'data' => []
             // ],
-            // [
-            //     'title' => 'Text Columns',
-            //     'property_id' => 1,
-            //     'component' => 'TextColumns',
-            //     'group' => 'text',
-            //     'is_blueprint' => true,
-            //     'data' => []
-            // ],
+            [
+                'title' => 'Text Columns',
+                'property_id' => 1,
+                'component' => 'TextColumns',
+                'group' => 'text-columns',
+                'is_blueprint' => true,
+                'data' => []
+            ],
             // [
             //     'title' => 'Cards',
             //     'property_id' => 1,
