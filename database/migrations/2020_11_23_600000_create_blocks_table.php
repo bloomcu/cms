@@ -18,11 +18,10 @@ class CreateBlocksTable extends Migration
             $table->uuid('uuid')->unique();
             $table->string('title');
             $table->string('component');
+            $table->string('group');
             
             // Relations
             $table->foreignId('property_id');
-            // TODO: Setup block categories
-            // $table->foreignId('category_id')->nullable();
             $table->foreignId('layout_id')->nullable();
             
             // States
@@ -42,7 +41,6 @@ class CreateBlocksTable extends Migration
 
             // Foreign constraints
             $table->foreign('property_id')->references('id')->on('properties');
-            // $table->foreign('category_id')->references('id')->on('categories');
             $table->foreign('layout_id')->references('id')->on('layouts')->onDelete('cascade');
         });
     }

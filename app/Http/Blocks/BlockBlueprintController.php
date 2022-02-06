@@ -11,7 +11,7 @@ use Cms\Domain\Properties\Property;
 use Cms\Domain\Blocks\Block;
 
 // Resources
-use Cms\Http\Blocks\Resources\IndexBlockResource;
+use Cms\Http\Blocks\Resources\ShowBlockResource;
 
 class BlockBlueprintController extends Controller
 {
@@ -23,6 +23,6 @@ class BlockBlueprintController extends Controller
             ->latest()
             ->get();
         
-        return IndexBlockResource::collection($blocks);
+        return ShowBlockResource::collection($blocks);
     }
 }

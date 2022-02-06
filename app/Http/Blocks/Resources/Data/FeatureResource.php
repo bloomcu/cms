@@ -20,12 +20,12 @@ class FeatureResource extends JsonResource
         return [
             'invert'     => isset($this['invert']) ? $this['invert'] : false,
             'label'      => isset($this['label']) ? $this['label'] : 'The label',
-            'title'      => isset($this['title']) ? $this['title'] : 'The title',
-            'subtitle'   => isset($this['subtitle']) ? $this['subtitle'] : 'The subtitle',
+            'title'      => isset($this['title']) ? $this['title'] : 'The feature title',
+            'subtitle'   => isset($this['subtitle']) ? $this['subtitle'] : 'The feature subtitle',
             'image'      => new ImageResource(isset($this['image']) ? $this['image'] : []),
             'buttons'    => new ButtonCollection(isset($this['buttons']) ? $this['buttons'] : [
-                ['text' => 'Button One', 'href' => ''],
-                ['text' => 'Button Two', 'href' => '']
+                ['text' => 'Primary Button'],
+                ['text' => 'Secondary Button', 'variant' => 'accent']
             ])
         ];
     }

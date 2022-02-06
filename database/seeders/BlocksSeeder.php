@@ -14,157 +14,182 @@ class BlocksSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
-        $blocks = [
-            [
-                'title' => 'Navbar',
-                'property_id' => 1,
-                'component' => 'navbar',
-                'is_blueprint' => true,
-                // 'category_id' => 'heros',
-            ],
+    {        
+        $blueprintBlocks = [
             [
                 'title' => 'Hero',
                 'property_id' => 1,
-                'component' => 'hero',
+                'component' => 'Hero',
+                'group' => 'hero',
                 'is_blueprint' => true,
-                // 'category_id' => 'heros',
-                'data' => [
-                    'label' => 'The label',
-                    'title' => 'This is the title',
-                    'subtitle' => 'And this is the subtitle, it is longer',
-                ]
+                'data' => []
+            ],
+            [
+                'title' => 'Boxed Hero',
+                'property_id' => 1,
+                'component' => 'BoxedHero',
+                'group' => 'hero',
+                'is_blueprint' => true,
+                'data' => []
+            ],
+            [
+                'title' => 'Video Background Hero',
+                'property_id' => 1,
+                'component' => 'VideoBackgroundHero',
+                'group' => 'video-background-hero',
+                'is_blueprint' => true,
+                'data' => []
             ],
             [
                 'title' => 'Feature',
                 'property_id' => 1,
-                'component' => 'feature',
+                'component' => 'Feature',
+                'group' => 'feature',
                 'is_blueprint' => true,
-                // 'category_id' => 'features',
-                'data' => [
-                    'title' => 'This is the title',
-                    'subtitle' => 'And this is the subtitle, it is longer',
-                ]
+                'data' => []
             ],
-            [
-                'title' => 'Text',
-                'property_id' => 1,
-                'component' => 'text',
-                'is_blueprint' => true,
-                // 'category_id' => 'heros',
-            ],
-            [
-                'title' => 'Feature',
-                'property_id' => 1,
-                'component' => 'feature',
-                'is_blueprint' => true,
-                // 'category_id' => 'heros',
-            ],
-            [
-                'title' => 'Card',
-                'property_id' => 1,
-                'component' => 'card',
-                'is_blueprint' => true,
-                // 'category_id' => 'heros',
-            ],
+            // [
+            //     'title' => 'Feature V7',
+            //     'property_id' => 1,
+            //     'component' => 'FeatureV7',
+            //     'group' => 'feature',
+            //     'is_blueprint' => true,
+            //     'data' => []
+            // ],
+            // [
+            //     'title' => 'Feature V9',
+            //     'property_id' => 1,
+            //     'component' => 'FeatureV7=9',
+            //     'group' => 'feature',
+            //     'is_blueprint' => true,
+            //     'data' => []
+            // ],
+            // [
+            //     'title' => 'Text Columns',
+            //     'property_id' => 1,
+            //     'component' => 'TextColumns',
+            //     'group' => 'text',
+            //     'is_blueprint' => true,
+            //     'data' => []
+            // ],
+            // [
+            //     'title' => 'Cards',
+            //     'property_id' => 1,
+            //     'component' => 'CardRepeater',
+            //     'group' => 'cards',
+            //     'is_blueprint' => true,
+            //     'data' => []
+            // ],
             [
                 'title' => 'Testimonial',
                 'property_id' => 1,
-                'component' => 'testimonial',
+                'component' => 'Testimonial',
+                'group' => 'testimonial',
                 'is_blueprint' => true,
-                // 'category_id' => 'heros',
+                'data' => []
             ],
-            [
-                'title' => 'Accordion',
-                'property_id' => 1,
-                'component' => 'accordion',
-                'is_blueprint' => true,
-                // 'category_id' => 'heros',
-            ],
-            [
-                'title' => 'Gallery',
-                'property_id' => 1,
-                'component' => 'gallery',
-                'is_blueprint' => true,
-                // 'category_id' => 'heros',
-            ],
-            [
-                'title' => 'Details',
-                'property_id' => 1,
-                'component' => 'details',
-                'is_blueprint' => true,
-                // 'category_id' => 'heros',
-            ],
-            [
-                'title' => 'Steps',
-                'property_id' => 1,
-                'component' => 'steps',
-                'is_blueprint' => true,
-                // 'category_id' => 'heros',
-            ],
-            [
-                'title' => 'Table',
-                'property_id' => 1,
-                'component' => 'table',
-                'is_blueprint' => true,
-                // 'category_id' => 'heros',
-            ],
-            [
-                'title' => 'Footer',
-                'property_id' => 1,
-                'component' => 'footer',
-                'is_blueprint' => true,
-                // 'category_id' => 'heros',
-            ],
-            [
-                'title' => 'Hero',
-                'property_id' => 1,
-                'component' => 'hero',
-                // 'category_id' => 'heros',
-                'layout_id' => 2,
-                'data' => [
-                    'label' => 'The label',
-                    'title' => 'This is the title',
-                    'subtitle' => 'And this is the subtitle, it is longer',
-                ]
-            ],
-            [
-                'title' => 'Feature',
-                'property_id' => 1,
-                'component' => 'feature',
-                // 'category_id' => 'features',
-                'layout_id' => 2,
-                'data' => [
-                    'title' => 'This is the title',
-                    'subtitle' => 'And this is the subtitle, it is longer',
-                ]
-            ],
-            [
-                'title' => 'Hero',
-                'property_id' => 1,
-                'component' => 'hero',
-                // 'category_id' => 'heros',
-                'layout_id' => 3,
-                'data' => [
-                    'label' => 'The label',
-                    'title' => 'This is the title',
-                    'subtitle' => 'And this is the subtitle, it is longer',
-                ]
-            ],
-            [
-                'title' => 'Feature',
-                'property_id' => 1,
-                'component' => 'feature',
-                // 'category_id' => 'features',
-                'layout_id' => 3,
-                'data' => [
-                    'title' => 'This is the title',
-                    'subtitle' => 'And this is the subtitle, it is longer',
-                ]
-            ],
+            // [
+            //     'title' => 'Accordion',
+            //     'property_id' => 1,
+            //     'component' => 'Accordion',
+            //     'group' => 'accordion',
+            //     'is_blueprint' => true,
+            //     'data' => []
+            // ],
+            // [
+            //     'title' => 'Gallery',
+            //     'property_id' => 1,
+            //     'component' => 'Gallery',
+            //     'group' => 'gallery',
+            //     'is_blueprint' => true,
+            //     'data' => []
+            // ],
+            // [
+            //     'title' => 'Details List',
+            //     'property_id' => 1,
+            //     'component' => 'DetailsList',
+            //     'group' => 'heros',
+            //     'is_blueprint' => true,
+            //     'data' => []
+            // ],
+            // [
+            //     'title' => 'Steps',
+            //     'property_id' => 1,
+            //     'component' => 'Steps',
+            //     'group' => 'steps',
+            //     'is_blueprint' => true,
+            //     'data' => []
+            // ],
+            // [
+            //     'title' => 'Table',
+            //     'property_id' => 1,
+            //     'component' => 'Table',
+            //     'group' => 'table',
+            //     'is_blueprint' => true,
+            //     'data' => []
+            // ],
+            // [
+            //     'title' => 'Navbar',
+            //     'property_id' => 1,
+            //     'component' => 'Navbar',
+            //     'group' => 'navigation',
+            //     'is_blueprint' => true,
+            //     'data' => []
+            // ],
+            // [
+            //     'title' => 'Footer',
+            //     'property_id' => 1,
+            //     'component' => 'Footer',
+            //     'group' => 'navigation',
+            //     'is_blueprint' => true,
+            //     'data' => []
+            // ],
+        ];
+        
+        foreach ($blueprintBlocks as $block) {
+            Block::create($block);
+        }
+        
+        $blocksForLayouts = [
+            // [
+            //     'title' => 'Hero',
+            //     'property_id' => 1,
+            //     'component' => 'Hero',
+            //     'group' => 'hero',
+            //     'layout_id' => 2,
+            //     'data' => [
+            //         'label' => 'The hero label',
+            //         'title' => 'This is the hero title',
+            //         'subtitle' => 'And this is the hero subtitle, it is longer',
+            //     ]
+            // ],
+            // [
+            //     'title' => 'Video Background Hero',
+            //     'property_id' => 1,
+            //     'component' => 'VideoBackgroundHero',
+            //     'layout_id' => 2,
+            //     'group' => 'video-background-hero',
+            //     'data' => [
+            //         'label' => 'The video hero label',
+            //         'title' => 'This is the video hero title',
+            //         'subtitle' => 'And this is the video hero subtitle, it is longer',
+            //     ]
+            // ],
+            // [
+            //     'title' => 'Feature',
+            //     'property_id' => 1,
+            //     'component' => 'Feature',
+            //     'group' => 'feature',
+            //     'layout_id' => 2,
+            //     'data' => [
+            //         'label' => 'The feature label',
+            //         'title' => 'This is the feature title',
+            //         'subtitle' => 'And this is the feature subtitle, it is longer',
+            //     ]
+            // ],
         ];
 
-        foreach ($blocks as $block) {
+        foreach ($blocksForLayouts as $block) {
             Block::create($block);
         }
     }
