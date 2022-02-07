@@ -11,7 +11,8 @@ use Cms\Domain\Properties\Property;
 use Cms\Domain\Menus\Menu;
 
 // Resources
-use Cms\Http\Menus\Resources\MenuResource;
+use Cms\Http\Menus\Resources\IndexMenuResource;
+use Cms\Http\Menus\Resources\ShowMenuResource;
 
 // Requests
 use Cms\Http\Menus\Requests\MenuStoreRequest;
@@ -26,7 +27,7 @@ class MenuController extends Controller
             ->parents()
             ->get();
 
-        return MenuResource::collection($menus);
+        return IndexMenuResource::collection($menus);
     }
 
     public function store(Organization $organization, Property $property, MenuStoreRequest $request)
@@ -35,14 +36,14 @@ class MenuController extends Controller
             $request->validated()
         );
 
-        return new MenuResource($menu);
+        return new ShowMenuResource($menu);
     }
 
     public function show(Organization $organization, Property $property, Menu $menu)
     {
         $menu = Menu::defaultOrder()->descendantsAndSelf($menu->id)->toTree();
         
-        return MenuResource::collection($menu);
+        return ShowMenuResource::collection($menu);
     }
 
     public function update(Organization $organization, Property $property, Menu $menu, MenuUpdateRequest $request)
@@ -53,7 +54,7 @@ class MenuController extends Controller
             ->descendantsAndSelf($menu->id)
             ->toTree();
 
-        return MenuResource::collection($menu);
+        return ShowMenuResource::collection($menu);
     }
 
     public function destroy(Organization $organization, Property $property, Menu $menu)

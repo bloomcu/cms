@@ -4,7 +4,7 @@ namespace Cms\Http\Menus\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class MenuResource extends JsonResource
+class IndexMenuResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -19,7 +19,6 @@ class MenuResource extends JsonResource
             'title' => $this->title,
             'location' => $this->location,
             'component' => $this->component,
-            'children' => MenuResource::collection($this->whenLoaded('children')),
         ];
     }
 }
