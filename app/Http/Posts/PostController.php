@@ -9,6 +9,7 @@ use Cms\App\Controllers\Controller;
 use Cms\Domain\Organizations\Organization;
 use Cms\Domain\Properties\Property;
 use Cms\Domain\Posts\Post;
+use Cms\Domain\Blocks\Block; // TODO: Remove
 
 // Resources
 use Cms\Http\Posts\Resources\PostResource;
@@ -64,6 +65,18 @@ class PostController extends Controller
         $post->update(
             $request->validated()
         );
+        
+        // TODO: Remove once layouts and blocks are updated via their own endpoints from the admin ui
+        foreach($request['layout']['blocks'] as $key => $block) {
+            $b = Block::firstOrNew(['uuid' => $block['uuid']], $block);
+            
+            $b->property_id = $property->id;
+            $b->layout_id = $request['layout']['id'];
+            $b->order = $key;
+            $b->data = $block['data'];
+            
+            $b->save();
+        }
 
         return new PostResource(
             $post->load(['categories'])

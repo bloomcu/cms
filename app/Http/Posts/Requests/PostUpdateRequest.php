@@ -43,7 +43,7 @@ class PostUpdateRequest extends FormRequest
             'is_published' => 'nullable|integer',
             'meta.title' => 'nullable|string',
             'meta.description' => 'nullable|string',
-            'meta.image' => 'nullable|url'
+            'meta.image' => 'nullable|url',
         ];
     }
 
