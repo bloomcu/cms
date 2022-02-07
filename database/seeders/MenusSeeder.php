@@ -19,8 +19,8 @@ class MenusSeeder extends Seeder
         $menus = [
             [
                 'title' => 'Main Navigation',
-                'location' => 'navbar',
-                'component' => 'navbar-1',
+                'location' => 'header',
+                'component' => 'navbar',
                 'property_id' => 1,
                 'children' => [
                     [

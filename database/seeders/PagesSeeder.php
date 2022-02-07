@@ -32,7 +32,7 @@ class PagesSeeder extends Seeder
                 'created_at' => $now->addSecond()->toDateTimeString(),
             ],
             [
-                'title' => 'Regular Checking',
+                'title' => 'Checking',
                 'property_id' => 1,
                 // 'category_id' => 4,
                 'created_at' => $now->addSecond()->toDateTimeString(),
@@ -44,7 +44,7 @@ class PagesSeeder extends Seeder
             //     'created_at' => $now->addSecond()->toDateTimeString(),
             // ],
             // [
-            //     'title' => 'Savings Account',
+            //     'title' => 'Savings',
             //     'property_id' => 1,
             //     // 'category_id' => 4,
             //     'created_at' => $now->addSecond()->toDateTimeString(),
