@@ -19,6 +19,7 @@ class ShowMenuResource extends JsonResource
             'title' => $this->title,
             'location' => $this->location,
             'component' => $this->component,
+            'href' => $this->href,
             'children' => ShowMenuResource::collection($this->children),
         ];
     }

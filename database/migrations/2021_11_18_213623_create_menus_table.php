@@ -18,6 +18,7 @@ class CreateMenusTable extends Migration
             $table->string('title');
             $table->string('location')->nullable()->unique(); // E.g, header, footer
             $table->string('component')->nullable(); // E.g, navbar, sub-navbar, footer
+            $table->string('href')->nullable(); // E.g, /checking-account, https://google.com
 
             // Relations
             $table->foreignId('property_id')->nullable();

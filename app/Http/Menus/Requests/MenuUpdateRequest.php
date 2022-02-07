@@ -36,6 +36,8 @@ class MenuUpdateRequest extends FormRequest
             'component' => 'nullable|string',
             'children' => 'nullable|array',
             'children.*.title' => 'required|string',
+            'children.*.location' => 'nullable|string',
+            'children.*.component' => 'nullable|string',
             'children.*.children' => 'nullable|array',
 
             // TODO: Nested item properties which are not listed in rules
