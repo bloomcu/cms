@@ -31,6 +31,7 @@ trait HasUrl {
     protected function generateUrlFromParts(array $parts): string
     {
         $url = implode('/', $parts);
+        $url = ltrim($url, '/');
 
         return $url;
     }
