@@ -48,7 +48,7 @@ class MenuController extends Controller
 
     public function update(Organization $organization, Property $property, Menu $menu, MenuUpdateRequest $request)
     {
-        Menu::rebuildSubtree($menu, $request['children']);
+        Menu::rebuildSubtree($menu, $request['children'], true);
         
         $menu = Menu::defaultOrder()
             ->descendantsAndSelf($menu->id)
