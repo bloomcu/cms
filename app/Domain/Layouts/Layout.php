@@ -10,13 +10,13 @@ use Illuminate\Database\Eloquent\Builder;
 use Cms\Domain\Layouts\Filters\LayoutFilters;
 
 // Traits
-use Cms\App\Traits\IsPublishable;
+use Cms\App\Traits\IsDraftable;
 use Cms\App\Traits\IsCategorizable;
 
 class Layout extends Model
 {
     use HasFactory,
-        IsPublishable,
+        IsDraftable,
         IsCategorizable;
 
     protected $guarded = ['id'];
