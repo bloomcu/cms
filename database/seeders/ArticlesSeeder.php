@@ -29,26 +29,26 @@ class ArticlesSeeder extends Seeder
                 'property_id' => 1,
                 'created_at' => $now->addSecond()->toDateTimeString(),
             ],
-            [
-                'title' => 'My Second Article',
-                'property_id' => 1,
-                'created_at' => $now->addSecond()->toDateTimeString(),
-            ],
-            [
-                'title' => 'My Third Article',
-                'property_id' => 1,
-                'created_at' => $now->addSecond()->toDateTimeString(),
-            ],
-            [
-                'title' => 'My Fourth Article',
-                'property_id' => 1,
-                'created_at' => $now->addSecond()->toDateTimeString(),
-            ],
-            [
-                'title' => 'My Fifth Article',
-                'property_id' => 1,
-                'created_at' => $now->addSecond()->toDateTimeString(),
-            ],
+            // [
+            //     'title' => 'My Second Article',
+            //     'property_id' => 1,
+            //     'created_at' => $now->addSecond()->toDateTimeString(),
+            // ],
+            // [
+            //     'title' => 'My Third Article',
+            //     'property_id' => 1,
+            //     'created_at' => $now->addSecond()->toDateTimeString(),
+            // ],
+            // [
+            //     'title' => 'My Fourth Article',
+            //     'property_id' => 1,
+            //     'created_at' => $now->addSecond()->toDateTimeString(),
+            // ],
+            // [
+            //     'title' => 'My Fifth Article',
+            //     'property_id' => 1,
+            //     'created_at' => $now->addSecond()->toDateTimeString(),
+            // ],
         ];
 
         foreach ($articles as $article) {

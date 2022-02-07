@@ -19,7 +19,7 @@ class LayoutsSeeder extends Seeder
 
         $layouts = [
             [
-                'title' => 'Blank Layout',
+                'title' => 'Blank Page Layout',
                 'property_id' => 1,
                 'post_id' => 1,
                 'created_at' => $now->addSecond()->toDateTimeString(),
@@ -35,7 +35,19 @@ class LayoutsSeeder extends Seeder
                 'property_id' => 1,
                 'post_id' => 3,
                 'created_at' => $now->addSecond()->toDateTimeString(),
-            ]
+            ],
+            [
+                'title' => 'Blank Article Layout',
+                'property_id' => 1,
+                'post_id' => 4,
+                'created_at' => $now->addSecond()->toDateTimeString(),
+            ],
+            [
+                'title' => 'Article Layout',
+                'property_id' => 1,
+                'post_id' => 5,
+                'created_at' => $now->addSecond()->toDateTimeString(),
+            ],
         ];
 
         foreach ($layouts as $layout) {
