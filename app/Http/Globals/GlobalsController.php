@@ -14,7 +14,7 @@ use Cms\Http\Globals\Resources\GlobalsResource;
 
 class GlobalsController extends Controller
 {
-    public function index(Organization $organization, Property $property)
+    public function show(Organization $organization, Property $property)
     {
         $globals = $property->load([
             'globalHeader',

@@ -5,7 +5,7 @@ namespace Cms\Http\Globals\Resources;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 // Resources
-use Cms\Http\Menus\Resources\Menu\ShowMenuResource;
+use Cms\Http\Menus\Resources\ShowMenuResource;
 
 class GlobalsResource extends JsonResource
 {
