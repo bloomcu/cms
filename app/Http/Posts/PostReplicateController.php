@@ -26,6 +26,7 @@ class PostReplicateController extends Controller
         // Replicate post 
         $newPost = $post->replicate()->fill([
             'title' => $post->title . ' Copy',
+            'is_blueprint' => 0
         ]);
         $newPost->save();
         
