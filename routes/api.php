@@ -47,6 +47,7 @@ use Cms\Http\Properties\PropertyController;
 use Cms\Http\Posts\PostController;
 use Cms\Http\Posts\PostBlueprintController;
 use Cms\Http\Posts\PostCheckSlugController;
+use Cms\Http\Posts\PostPublishController;
 use Cms\Http\Posts\PostReplicateController;
 
 // Admin: Pages
@@ -118,8 +119,12 @@ Route::prefix('{organization}/{property}')->group(function () {
     Route::get('/post/blueprints', [PostBlueprintController::class, 'index']);
     
     // Posts - Replicate
-    // TODO: Rename this "duplicate" and use store method
+    // TODO: Rename this "duplicate" and use store method?
     Route::post('/posts/{post}/replicate', [PostReplicateController::class, 'replicate']);
+    
+    // Posts - Publish
+    Route::put('/posts/{post}/publish', [PostPublishController::class, 'publish']);
+    Route::put('/posts/{post}/unpublish', [PostPublishController::class, 'unpublish']);
     
     // Posts - Check Slug
     Route::get('/post/check-slug', [PostCheckSlugController::class, 'show']);

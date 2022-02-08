@@ -21,7 +21,7 @@ class CreateLayoutsTable extends Migration
             $table->foreignId('property_id');
             $table->foreignId('post_id');
 
-            // Publishable
+            // Draftable
             $table->foreignId('drafted_id')->nullable();
             $table->timestamp('drafted_at')->nullable();
 

@@ -34,6 +34,9 @@ class CreatePostsTable extends Migration
             // Meta
             $table->json('meta')->nullable();
             
+            // Publishable
+            $table->timestamp('published_at')->nullable();
+            
             // Timestamps
             $table->timestamps();
             

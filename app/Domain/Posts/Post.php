@@ -19,6 +19,7 @@ use Cms\App\Traits\HasSlug;
 use Cms\App\Traits\HasUrl;
 use Cms\App\Traits\IsBlueprint;
 use Cms\App\Traits\IsCategorizable;
+use Cms\App\Traits\IsPublishable;
 
 // Filters
 use Cms\Domain\Posts\Filters\PostFilters;
@@ -31,6 +32,7 @@ class Post extends Model
         HasUrl,
         IsBlueprint,
         IsCategorizable,
+        IsPublishable,
         Searchable;
 
     protected $guarded = ['id', 'url'];

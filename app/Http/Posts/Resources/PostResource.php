@@ -25,7 +25,7 @@ class PostResource extends JsonResource
             'path' => $this->path,
             'slug' => $this->slug,
             'url' => $this->url,
-            'is_published' => $this->is_published,
+            'published_at' => $this->published_at,
             'categories' => CategoryResource::collection($this->whenLoaded('categories')),
             'layout' => new LayoutResource($this->whenLoaded('layout')),
             'meta' => [

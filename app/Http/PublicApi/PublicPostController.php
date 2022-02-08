@@ -18,7 +18,11 @@ class PublicPostController extends Controller
     {
         // TODO: Create a request class for this
         $post = Post::where('url', $request['path'])->firstOrFail();
-
+        
+        if (!$post->isPublished()) {
+            return response()->json(['message' => 'Not Found'], 404);
+        }
+            
         return new PostResource(
             $post->load([
                 'categories',
