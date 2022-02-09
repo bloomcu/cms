@@ -16,10 +16,7 @@ class PublicPostController extends Controller
 {
     public function show(Property $property, Request $request)
     {
-        // TODO: Create a request class for this
-        
-        $url = '/' . $request['path'];
-        
+        // TODO: Create a request class for this        
         $post = Post::where('url', $url)->firstOrFail();
         
         if (!$post->isPublished()) {
