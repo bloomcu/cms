@@ -48,6 +48,14 @@ class BlocksSeeder extends Seeder
                 'is_blueprint' => true,
                 'data' => []
             ],
+            [
+                'title' => 'Feature V11',
+                'property_id' => 1,
+                'component' => 'FeatureV11',
+                'group' => 'feature',
+                'is_blueprint' => true,
+                'data' => []
+            ],
             // [
             //     'title' => 'Feature V7',
             //     'property_id' => 1,

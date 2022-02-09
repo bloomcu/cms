@@ -31,10 +31,11 @@ trait HasUrl {
     protected function generateUrlFromParts(array $parts): string
     {
         $url = implode('/', $parts);
+        $url = ltrim($url, '/');
         
-        if (substr($url, 0, 1) !== '/') {
-            $url = '/' . $url;
-        }
+        // if (substr($url, 0, 1) !== '/') {
+        //     $url = '/' . $url;
+        // }
         
         return $url;
     }
