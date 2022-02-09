@@ -67,15 +67,17 @@ class PostController extends Controller
         );
         
         // TODO: Remove once layouts and blocks are updated via their own endpoints from the admin ui
-        foreach($request['layout']['blocks'] as $key => $block) {
-            $b = Block::firstOrNew(['uuid' => $block['uuid']], $block);
-            
-            $b->property_id = $property->id;
-            $b->layout_id = $request['layout']['id'];
-            $b->order = $key;
-            $b->data = $block['data'];
-            
-            $b->save();
+        if ($request['layout']) {
+            foreach($request['layout']['blocks'] as $key => $block) {
+                $b = Block::firstOrNew(['uuid' => $block['uuid']], $block);
+                
+                $b->property_id = $property->id;
+                $b->layout_id = $request['layout']['id'];
+                $b->order = $key;
+                $b->data = $block['data'];
+                
+                $b->save();
+            }
         }
 
         return new PostResource(
