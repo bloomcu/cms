@@ -128,14 +128,14 @@ class BlocksSeeder extends Seeder
             //     'is_blueprint' => true,
             //     'data' => []
             // ],
-            // [
-            //     'title' => 'Table',
-            //     'property_id' => 1,
-            //     'component' => 'Table',
-            //     'group' => 'table',
-            //     'is_blueprint' => true,
-            //     'data' => []
-            // ],
+            [
+                'title' => 'Table',
+                'property_id' => 1,
+                'component' => 'AppTable',
+                'group' => 'table',
+                'is_blueprint' => true,
+                'data' => []
+            ],
             // [
             //     'title' => 'Navbar',
             //     'property_id' => 1,
