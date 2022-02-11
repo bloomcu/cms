@@ -11,13 +11,13 @@ use Cms\Domain\Layouts\Filters\LayoutFilters;
 
 // Traits
 use Cms\App\Traits\IsDraftable;
-use Cms\App\Traits\IsCategorizable;
+// use Cms\App\Traits\IsCategorizable;
 
 class Layout extends Model
 {
     use HasFactory,
-        IsDraftable,
-        IsCategorizable;
+        IsDraftable;
+        // IsCategorizable;
 
     protected $guarded = ['id'];
 
@@ -49,10 +49,10 @@ class Layout extends Model
         return $this->hasMany('Cms\Domain\Blocks\Block')->orderBy('order');
     }
 
-    public function scopeFilter(Builder $builder, $request, array $filters = [])
-    {
-        return (new LayoutFilters($request))
-            ->add($filters)
-            ->filter($builder);
-    }
+    // public function scopeFilter(Builder $builder, $request, array $filters = [])
+    // {
+    //     return (new LayoutFilters($request))
+    //         ->add($filters)
+    //         ->filter($builder);
+    // }
 }

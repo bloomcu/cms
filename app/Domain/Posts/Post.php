@@ -4,7 +4,6 @@ namespace Cms\Domain\Posts;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Builder;
 
 // Vendors
 use Parental\HasChildren;
@@ -22,7 +21,7 @@ use Cms\App\Traits\IsCategorizable;
 use Cms\App\Traits\IsPublishable;
 
 // Filters
-use Cms\Domain\Posts\Filters\PostFilters;
+// use Cms\Domain\Posts\Filters\PostFilters;
 
 class Post extends Model
 {
@@ -40,7 +39,8 @@ class Post extends Model
     protected $casts = [
         'meta' => 'json'
     ];
-
+    
+    // TODO: I don't think we need this anymore
     protected $childTypes = [
         'page' => Page::class,
         'article' => Article::class
@@ -107,10 +107,10 @@ class Post extends Model
         return $this->hasMany('Cms\Domain\Layouts\Layout');
     }
 
-    public function scopeFilter(Builder $builder, $request, array $filters = [])
-    {
-        return (new PostFilters($request))
-            ->add($filters)
-            ->filter($builder);
-    }
+    // public function scopeFilter(Builder $builder, $request, array $filters = [])
+    // {
+    //     return (new PostFilters($request))
+    //         ->add($filters)
+    //         ->filter($builder);
+    // }
 }

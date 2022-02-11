@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Builder;
 // Traits
 use Cms\App\Traits\HasUuid;
 use Cms\App\Traits\IsBlueprint;
+use Cms\App\Traits\IsCategorizable;
 
 // Filters
 use Cms\Domain\Blocks\Filters\BlockFilters;
@@ -17,7 +18,8 @@ class Block extends Model
 {
     use HasFactory, 
         HasUuid,
-        IsBlueprint;
+        IsBlueprint,
+        IsCategorizable;
 
     protected $guarded = [
         'id'
@@ -51,17 +53,5 @@ class Block extends Model
     public function layout()
     {
         return $this->belongsTo('Cms\Domain\Layouts\Layout');
-    }
-
-    /**
-     * Apply filters.
-     *
-     * @return \Illuminate\Database\Query\Builder
-     */
-    public function scopeFilter(Builder $builder, $request, array $filters = [])
-    {
-        return (new BlockFilters($request))
-            ->add($filters)
-            ->filter($builder);
     }
 }

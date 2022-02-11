@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-use Cms\Domain\Articles\Article;
+use Cms\Domain\Posts\Post;
 
 class ArticlesSeeder extends Seeder
 {
@@ -17,42 +17,67 @@ class ArticlesSeeder extends Seeder
     {
         $now = now();
         
-        $articles = [
+        $posts = [
             [
                 'title' => 'Blank Article Blueprint',
-                'property_id' => 1,
+                'type' => 'article',
                 'is_blueprint' => true,
+                'property_id' => 1,
                 'created_at' => $now->addSecond()->toDateTimeString(),
+                'category_id' => null,
             ],
             [
-                'title' => 'My First Article',
+                'title' => 'Our Top 10 Budgeting Tips',
+                'type' => 'article',
+                'is_blueprint' => false,
                 'property_id' => 1,
                 'created_at' => $now->addSecond()->toDateTimeString(),
+                'category_id' => 74,
             ],
-            // [
-            //     'title' => 'My Second Article',
-            //     'property_id' => 1,
-            //     'created_at' => $now->addSecond()->toDateTimeString(),
-            // ],
-            // [
-            //     'title' => 'My Third Article',
-            //     'property_id' => 1,
-            //     'created_at' => $now->addSecond()->toDateTimeString(),
-            // ],
-            // [
-            //     'title' => 'My Fourth Article',
-            //     'property_id' => 1,
-            //     'created_at' => $now->addSecond()->toDateTimeString(),
-            // ],
-            // [
-            //     'title' => 'My Fifth Article',
-            //     'property_id' => 1,
-            //     'created_at' => $now->addSecond()->toDateTimeString(),
-            // ],
+            [
+                'title' => 'Home Equity Loans vs. HELOC',
+                'type' => 'article',
+                'is_blueprint' => false,
+                'property_id' => 1,
+                'created_at' => $now->addSecond()->toDateTimeString(),
+                'category_id' => 73,
+            ],
+            [
+                'title' => '2021 Advance Child Tax Credit',
+                'type' => 'article',
+                'is_blueprint' => false,
+                'property_id' => 1,
+                'created_at' => $now->addSecond()->toDateTimeString(),
+                'category_id' => 77,
+            ],
+            [
+                'title' => 'Guide to Jumbo Loans',
+                'type' => 'article',
+                'is_blueprint' => false,
+                'property_id' => 1,
+                'created_at' => $now->addSecond()->toDateTimeString(),
+                'category_id' => 73,
+            ],
+            [
+                'title' => 'To Refinance or Not to Refinance?',
+                'type' => 'article',
+                'is_blueprint' => false,
+                'property_id' => 1,
+                'created_at' => $now->addSecond()->toDateTimeString(),
+                'category_id' => 73,
+            ],
         ];
 
-        foreach ($articles as $article) {
-            Article::create($article);
+        foreach ($posts as $seed) {
+            $post = Post::create([
+                'title'        => $seed['title'],
+                'type'         => $seed['type'],
+                'is_blueprint' => $seed['is_blueprint'],
+                'property_id'  => $seed['property_id'],
+                'created_at'   => $seed['created_at'],
+            ]);
+            
+            $post->categories()->attach($seed['category_id']);
         }
     }
 }

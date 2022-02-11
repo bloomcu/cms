@@ -25,14 +25,15 @@ class PostResource extends JsonResource
             'path' => $this->path,
             'slug' => $this->slug,
             'url' => $this->url,
-            'published_at' => $this->published_at,
+            'is_blueprint' => $this->is_blueprint,
             'categories' => CategoryResource::collection($this->whenLoaded('categories')),
             'layout' => new LayoutResource($this->whenLoaded('layout')),
             'meta' => [
                 'title' => $this->meta['title'] ?? '',
                 'description' => $this->meta['description'] ?? '',
                 'image' => $this->meta['image'] ?? ''
-            ]
+            ],
+            'published_at' => $this->published_at,
         ];
     }
 }

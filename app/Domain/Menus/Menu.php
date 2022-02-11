@@ -46,6 +46,10 @@ class Menu extends Model
         $builder->whereNull('parent_id');
     }
     
+    /**
+     * Get a menu by it's 'location' column
+     *
+     */
     public function scopeLocation($query, $value)
     {
         return $query->where('location', $value);

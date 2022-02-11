@@ -22,7 +22,8 @@ class BlocksSeeder extends Seeder
                 'component' => 'Hero',
                 'group' => 'hero',
                 'is_blueprint' => true,
-                'data' => []
+                'data' => [],
+                'category_id' => 80,
             ],
             [
                 'title' => 'Boxed Hero',
@@ -30,7 +31,8 @@ class BlocksSeeder extends Seeder
                 'component' => 'BoxedHero',
                 'group' => 'hero',
                 'is_blueprint' => true,
-                'data' => []
+                'data' => [],
+                'category_id' => 80,
             ],
             [
                 'title' => 'Video Background Hero',
@@ -38,7 +40,8 @@ class BlocksSeeder extends Seeder
                 'component' => 'VideoBackgroundHero',
                 'group' => 'video-background-hero',
                 'is_blueprint' => true,
-                'data' => []
+                'data' => [],
+                'category_id' => 80,
             ],
             [
                 'title' => 'Feature',
@@ -46,7 +49,8 @@ class BlocksSeeder extends Seeder
                 'component' => 'Feature',
                 'group' => 'feature',
                 'is_blueprint' => true,
-                'data' => []
+                'data' => [],
+                'category_id' => 81,
             ],
             [
                 'title' => 'Feature V11',
@@ -54,7 +58,8 @@ class BlocksSeeder extends Seeder
                 'component' => 'FeatureV11',
                 'group' => 'feature',
                 'is_blueprint' => true,
-                'data' => []
+                'data' => [],
+                'category_id' => 81,
             ],
             // [
             //     'title' => 'Feature V7',
@@ -62,7 +67,8 @@ class BlocksSeeder extends Seeder
             //     'component' => 'FeatureV7',
             //     'group' => 'feature',
             //     'is_blueprint' => true,
-            //     'data' => []
+            //     'data' => [],
+            //     'category_id' => 81,
             // ],
             // [
             //     'title' => 'Feature V9',
@@ -70,7 +76,8 @@ class BlocksSeeder extends Seeder
             //     'component' => 'FeatureV7=9',
             //     'group' => 'feature',
             //     'is_blueprint' => true,
-            //     'data' => []
+            //     'data' => [],
+            //     'category_id' => 81,
             // ],
             [
                 'title' => 'Text Columns',
@@ -78,7 +85,8 @@ class BlocksSeeder extends Seeder
                 'component' => 'TextColumns',
                 'group' => 'text-columns',
                 'is_blueprint' => true,
-                'data' => []
+                'data' => [],
+                'category_id' => 82,
             ],
             // [
             //     'title' => 'Cards',
@@ -86,31 +94,8 @@ class BlocksSeeder extends Seeder
             //     'component' => 'CardRepeater',
             //     'group' => 'cards',
             //     'is_blueprint' => true,
-            //     'data' => []
-            // ],
-            [
-                'title' => 'Testimonial',
-                'property_id' => 1,
-                'component' => 'Testimonial',
-                'group' => 'testimonial',
-                'is_blueprint' => true,
-                'data' => []
-            ],
-            // [
-            //     'title' => 'Accordion',
-            //     'property_id' => 1,
-            //     'component' => 'Accordion',
-            //     'group' => 'accordion',
-            //     'is_blueprint' => true,
-            //     'data' => []
-            // ],
-            // [
-            //     'title' => 'Gallery',
-            //     'property_id' => 1,
-            //     'component' => 'Gallery',
-            //     'group' => 'gallery',
-            //     'is_blueprint' => true,
-            //     'data' => []
+            //     'data' => [],
+            //     'category_id' => 83,
             // ],
             // [
             //     'title' => 'Details List',
@@ -118,7 +103,8 @@ class BlocksSeeder extends Seeder
             //     'component' => 'DetailsList',
             //     'group' => 'heros',
             //     'is_blueprint' => true,
-            //     'data' => []
+            //     'data' => [],
+            //     'category_id' => 84,
             // ],
             // [
             //     'title' => 'Steps',
@@ -126,7 +112,8 @@ class BlocksSeeder extends Seeder
             //     'component' => 'Steps',
             //     'group' => 'steps',
             //     'is_blueprint' => true,
-            //     'data' => []
+            //     'data' => [],
+            //     'category_id' => 85,
             // ],
             [
                 'title' => 'Table',
@@ -134,15 +121,44 @@ class BlocksSeeder extends Seeder
                 'component' => 'AppTable',
                 'group' => 'table',
                 'is_blueprint' => true,
-                'data' => []
+                'data' => [],
+                'category_id' => 86,
             ],
+            [
+                'title' => 'Testimonial',
+                'property_id' => 1,
+                'component' => 'Testimonial',
+                'group' => 'testimonial',
+                'is_blueprint' => true,
+                'data' => [],
+                'category_id' => 87,
+            ],
+            // [
+            //     'title' => 'Accordion',
+            //     'property_id' => 1,
+            //     'component' => 'Accordion',
+            //     'group' => 'accordion',
+            //     'is_blueprint' => true,
+            //     'data' => [],
+            //     'category_id' => 88,
+            // ],
+            // [
+            //     'title' => 'Gallery',
+            //     'property_id' => 1,
+            //     'component' => 'Gallery',
+            //     'group' => 'gallery',
+            //     'is_blueprint' => true,
+            //     'data' => [],
+            //     'category_id' => 89,
+            // ],
             // [
             //     'title' => 'Navbar',
             //     'property_id' => 1,
             //     'component' => 'Navbar',
             //     'group' => 'navigation',
             //     'is_blueprint' => true,
-            //     'data' => []
+            //     'data' => [],
+            //     'category_id' => null,
             // ],
             // [
             //     'title' => 'Footer',
@@ -150,12 +166,22 @@ class BlocksSeeder extends Seeder
             //     'component' => 'Footer',
             //     'group' => 'navigation',
             //     'is_blueprint' => true,
-            //     'data' => []
+            //     'data' => [],
+            //     'category_id' => null,
             // ],
         ];
         
-        foreach ($blueprintBlocks as $block) {
-            Block::create($block);
+        foreach ($blueprintBlocks as $seed) {
+            $block = Block::create([
+                'title'        => $seed['title'],
+                'property_id'  => $seed['property_id'],
+                'component'    => $seed['component'],
+                'group'        => $seed['group'],
+                'is_blueprint' => $seed['is_blueprint'],
+                'data'         => $seed['data'],
+            ]);
+            
+            $block->categories()->attach($seed['category_id']);
         }
         
         $blocksForLayouts = [
@@ -196,9 +222,16 @@ class BlocksSeeder extends Seeder
             //     ]
             // ],
         ];
-
-        foreach ($blocksForLayouts as $block) {
-            Block::create($block);
+        
+        foreach ($blocksForLayouts as $seed) {
+            $block = Block::create([
+                'title'       => $seed['title'],
+                'type'        => $seed['type'],
+                'property_id' => $seed['property_id'],
+                'created_at'  => $seed['created_at'],
+            ]);
+            
+            $block->categories()->attach($seed['category_id']);
         }
     }
 }

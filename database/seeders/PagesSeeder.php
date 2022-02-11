@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 
-use Cms\Domain\Pages\Page;
+use Cms\Domain\Posts\Post;
 
 class PagesSeeder extends Seeder
 {
@@ -17,90 +17,43 @@ class PagesSeeder extends Seeder
     {
         $now = now();
         
-        $pages = [
+        $posts = [
             [
                 'title' => 'Blank Page Blueprint',
+                'type' => 'page',
                 'is_blueprint' => true,
                 'property_id' => 1,
-                // 'category_id' => null,
                 'created_at' => $now->addSecond()->toDateTimeString(),
+                'category_id' => null,
             ],
             [
                 'title' => 'Homepage',
+                'type' => 'page',
+                'is_blueprint' => false,
                 'property_id' => 1,
-                // 'category_id' => 2,
                 'created_at' => $now->addSecond()->toDateTimeString(),
+                'category_id' => 2,
             ],
             [
                 'title' => 'Checking',
+                'type' => 'page',
+                'is_blueprint' => false,
                 'property_id' => 1,
-                // 'category_id' => 4,
                 'created_at' => $now->addSecond()->toDateTimeString(),
+                'category_id' => 4,
             ],
-            // [
-            //     'title' => 'Gold Checking',
-            //     'property_id' => 1,
-            //     // 'category_id' => 4,
-            //     'created_at' => $now->addSecond()->toDateTimeString(),
-            // ],
-            // [
-            //     'title' => 'Savings',
-            //     'property_id' => 1,
-            //     // 'category_id' => 4,
-            //     'created_at' => $now->addSecond()->toDateTimeString(),
-            // ],
-            // [
-            //     'title' => 'Money Market',
-            //     'property_id' => 1,
-            //     // 'category_id' => 4,
-            //     'created_at' => $now->addSecond()->toDateTimeString(),
-            // ],
-            // [
-            //     'title' => 'Auto Loan',
-            //     'property_id' => 1,
-            //     // 'category_id' => 4,
-            //     'created_at' => $now->addSecond()->toDateTimeString(),
-            // ],
-            // [
-            //     'title' => 'Mortgage',
-            //     'property_id' => 1,
-            //     // 'category_id' => 4,
-            //     'created_at' => $now->addSecond()->toDateTimeString(),
-            // ],
-            // [
-            //     'title' => 'Credit Card',
-            //     'property_id' => 1,
-            //     // 'category_id' => 4,
-            //     'created_at' => $now->addSecond()->toDateTimeString(),
-            // ],
-            // [
-            //     'title' => 'Business Checking',
-            //     'property_id' => 1,
-            //     // 'category_id' => 4,
-            //     'created_at' => $now->addSecond()->toDateTimeString(),
-            // ],
-            // [
-            //     'title' => 'Business Savings',
-            //     'property_id' => 1,
-            //     // 'category_id' => 4,
-            //     'created_at' => $now->addSecond()->toDateTimeString(),
-            // ],
-            // [
-            //     'title' => 'Contact Us',
-            //     'property_id' => 1,
-            //     // 'category_id' => 4,
-            //     'created_at' => $now->addSecond()->toDateTimeString(),
-            // ],
-            // [
-            //     'title' => 'About Us',
-            //     'property_id' => 1,
-            //     // 'category_id' => 4,
-            //     'created_at' => $now->addSecond()->toDateTimeString(),
-            // ],
         ];
 
-        foreach ($pages as $page) {
-            Page::create($page);
+        foreach ($posts as $seed) {
+            $post = Post::create([
+                'title'        => $seed['title'],
+                'type'         => $seed['type'],
+                'is_blueprint' => $seed['is_blueprint'],
+                'property_id'  => $seed['property_id'],
+                'created_at'   => $seed['created_at'],
+            ]);
+            
+            $post->categories()->attach($seed['category_id']);
         }
     }
 }

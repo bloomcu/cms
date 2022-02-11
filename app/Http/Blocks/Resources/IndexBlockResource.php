@@ -4,6 +4,8 @@ namespace Cms\Http\Blocks\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
+use Cms\Http\Categories\Resources\CategoryResource;
+
 class IndexBlockResource extends JsonResource
 {
     /**
@@ -19,6 +21,8 @@ class IndexBlockResource extends JsonResource
             'uuid' => $this->uuid,
             'title' => $this->title,
             'component' => $this->component,
+            'is_blueprint' => $this->is_blueprint,
+            'categories' => CategoryResource::collection($this->whenLoaded('categories')),
         ];
     }
 }

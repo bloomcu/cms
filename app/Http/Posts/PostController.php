@@ -4,6 +4,10 @@ namespace Cms\Http\Posts;
 
 use Illuminate\Http\Request;
 use Cms\App\Controllers\Controller;
+use Illuminate\Database\Eloquent\Builder;
+
+// Vendors
+use Spatie\QueryBuilder\QueryBuilder;
 
 // Domains
 use Cms\Domain\Organizations\Organization;
@@ -24,10 +28,14 @@ class PostController extends Controller
 
     public function index(Organization $organization, Property $property, Request $request)
     {
-        $posts = $property->posts()
-            ->withoutBlueprints()
+        $posts = QueryBuilder::for(Post::class)
+            ->where('property_id', $property->id)
+            ->allowedFilters([
+                'is_blueprint',
+                'type', 
+                'categories.id',
+            ])
             ->with('categories')
-            ->filter($request)
             ->latest()
             ->get();
 

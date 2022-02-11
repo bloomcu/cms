@@ -5,6 +5,9 @@ namespace Cms\Http\Blocks;
 use Illuminate\Http\Request;
 use Cms\App\Controllers\Controller;
 
+// Vendors
+use Spatie\QueryBuilder\QueryBuilder;
+
 // Domains
 use Cms\Domain\Organizations\Organization;
 use Cms\Domain\Properties\Property;
@@ -24,9 +27,13 @@ class BlockController extends Controller
     // When would we index all blocks used across layouts?
     public function index(Organization $organization, Property $property, Request $request)
     {
-        $blocks = $property->blocks()
-            ->withoutBlueprints()
-            ->filter($request)
+        $blocks = QueryBuilder::for(Block::class)
+            ->where('property_id', $property->id)
+            ->allowedFilters([
+                'is_blueprint',
+                'categories.id',
+            ])
+            ->with('categories')
             ->latest()
             ->get();
         
@@ -40,6 +47,10 @@ class BlockController extends Controller
             // $request->validated()
             $request->all()
         );
+        
+        if ($request->category) {
+            $block->syncCategories($request->category);
+        }
 
         return new ShowBlockResource($block);
     }
