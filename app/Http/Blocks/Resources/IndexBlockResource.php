@@ -23,6 +23,8 @@ class IndexBlockResource extends JsonResource
             'component' => $this->component,
             'is_blueprint' => $this->is_blueprint,
             'categories' => CategoryResource::collection($this->whenLoaded('categories')),
+            'group' => $this->group,
+            'data' => $this->data,
         ];
     }
 }
