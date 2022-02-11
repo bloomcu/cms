@@ -14,7 +14,6 @@ use Cms\Domain\Properties\Property;
 use Cms\Domain\Blocks\Block;
 
 // Resources
-use Cms\Http\Blocks\Resources\IndexBlockResource;
 use Cms\Http\Blocks\Resources\ShowBlockResource;
 
 // Requests
@@ -37,7 +36,7 @@ class BlockController extends Controller
             ->latest()
             ->get();
         
-        return IndexBlockResource::collection($blocks);
+        return ShowBlockResource::collection($blocks);
     }
 
     public function store(Organization $organization, Property $property, Request $request)
