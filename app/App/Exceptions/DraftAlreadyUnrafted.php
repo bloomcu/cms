@@ -4,7 +4,7 @@ namespace Cms\App\Exceptions;
 
 use Exception;
 
-class DraftAlreadyExists extends Exception
+class DraftAlreadyUnrafted extends Exception
 {
     public function render($request)
     {
@@ -12,7 +12,7 @@ class DraftAlreadyExists extends Exception
 
         return response()->json([
             'error'   => $code,
-            'message' => 'A draft already exists for this model',
+            'message' => 'This model has already been undrafted.',
         ], $code);
     }
 }

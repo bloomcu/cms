@@ -22,6 +22,7 @@ class PostResource extends JsonResource
             'id' => $this->id,
             'type' => $this->type,
             'title' => $this->title,
+            'published_at' => $this->published_at,
             'path' => $this->path,
             'slug' => $this->slug,
             'url' => $this->url,
@@ -33,7 +34,6 @@ class PostResource extends JsonResource
                 'description' => $this->meta['description'] ?? '',
                 'image' => $this->meta['image'] ?? ''
             ],
-            'published_at' => $this->published_at,
         ];
     }
 }

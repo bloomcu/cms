@@ -122,7 +122,7 @@ Route::prefix('{organization}/{property}')->group(function () {
     // TODO: Rename this "duplicate" and use store method?
     Route::post('/posts/{post}/replicate', [PostReplicateController::class, 'replicate']);
     
-    // Posts - Publish
+    // Posts - Publishing
     Route::put('/posts/{post}/publish', [PostPublishController::class, 'publish']);
     Route::put('/posts/{post}/unpublish', [PostPublishController::class, 'unpublish']);
     
@@ -148,12 +148,9 @@ Route::prefix('{organization}/{property}')->group(function () {
     Route::put('/layouts/{layout}',    [LayoutController::class, 'update']);
     Route::delete('/layouts/{layout}', [LayoutController::class, 'destroy']);
     
-    // Layouts - Draft
-    Route::post('/layouts/{layout}/draft', [LayoutDraftController::class, 'store']);
-    Route::get('/layouts/{layout}/draft',  [LayoutDraftController::class, 'show']);
-
-    // Layouts - Publish
-    Route::post('/layouts/{layout}/publish', [LayoutPublishController::class, 'store']);
+    // Layouts - Drafting
+    Route::post('/layouts/{layout}/draft', [LayoutDraftController::class, 'draft']);
+    Route::post('/layouts/{layout}/undraft',  [LayoutDraftController::class, 'undraft']);
 });
 
 // Admin: Blocks

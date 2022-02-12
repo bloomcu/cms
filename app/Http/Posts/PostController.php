@@ -61,9 +61,11 @@ class PostController extends Controller
     {
         return new PostResource(
             $post->load([
+                'layout' => function($query) {
+                    $query->drafted();
+                },
+                'layout.blocks',
                 'categories',
-                'layout',
-                'layout.blocks'
             ])
         );
     }

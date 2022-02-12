@@ -99,12 +99,23 @@ class Post extends Model
 
     public function layout()
     {
-        return $this->hasOne('Cms\Domain\Layouts\Layout')->latestOfMany();
+        return $this->hasOne('Cms\Domain\Layouts\Layout');
     }
 
     public function layouts()
     {
         return $this->hasMany('Cms\Domain\Layouts\Layout');
+    }
+    
+    // public function layout()
+    // {
+    //     return $this->layouts()->latestOfMany();
+    //     // return $this->hasMany('Cms\Domain\Layouts\Layout')->unpublished();
+    // }
+    
+    public function publishedLayout()
+    {
+        return $this->layouts()->published()->latestOfMany();
     }
 
     // public function scopeFilter(Builder $builder, $request, array $filters = [])

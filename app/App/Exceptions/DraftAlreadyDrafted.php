@@ -4,15 +4,15 @@ namespace Cms\App\Exceptions;
 
 use Exception;
 
-class DraftDoesNotExist extends Exception
+class DraftAlreadyDrafted extends Exception
 {
     public function render($request)
     {
-        $code = 404;
+        $code = 409;
 
         return response()->json([
             'error'   => $code,
-            'message' => 'A draft does not exist for this model',
+            'message' => 'This model has already been drafted.',
         ], $code);
     }
 }

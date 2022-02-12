@@ -3,38 +3,46 @@
 namespace Cms\App\Traits;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
+use Carbon\Carbon;
 
-use Cms\App\Exceptions\DraftCannotBeDrafted;
-use Cms\App\Exceptions\DraftAlreadyExists;
-use Cms\App\Exceptions\DraftDoesNotExist;
+use Cms\App\Exceptions\DraftAlreadyDrafted;
+use Cms\App\Exceptions\DraftAlreadyUnrafted;
 
 use Cms\Domain\Layouts\Actions\ReplicateLayoutAction;
 
 trait IsDraftable {
-
-    protected static function bootIsDraftable(): void
-    {
-        // tatic::addGlobalScope(new DraftingScope);
-    }
 
     /**
      * Drafts that belong to model instance.
      *
      * @return HasMany
      */
-    public function drafts()
+    public function draftParent()
     {
-        return $this->hasMany('Cms\Domain\Layouts\Layout', 'drafted_id');
+        return $this->belongsTo('Cms\Domain\Layouts\Layout', 'drafted_id');
     }
 
     /**
-     * Latest draft that belongs to model instance.
+     * Scope a query to only include drafted models.
      *
-     * @return HasOne
      */
-    public function draft()
+    public function scopeDrafted($query)
     {
-        return $this->hasOne('Cms\Domain\Layouts\Layout', 'drafted_id')->latestOfMany();
+        $query->where('drafted_at', '<=', Carbon::now())
+            ->whereNotNull('drafted_at')
+            ->latest();
+    }
+    
+    /**
+     * Scope a query to only include undrafted models.
+     *
+     */
+    public function scopeUndrafted($query)
+    {
+        $query->where('drafted_at', '>', Carbon::now())
+            ->orWhereNull('drafted_at')
+            ->latest();
     }
 
     /**
@@ -47,42 +55,30 @@ trait IsDraftable {
     }
 
     /**
-     * Determine if model instance has a draft.
-     *
-     */
-    public function hasDraft(): bool
-    {
-        return $this->draft()->exists();
-    }
-
-    /**
      * Store a new draft of model instance.
      *
      */
-    public function createDraft(): Model
+    public function draft(): Model
     {
         if ($this->isDraft()) {
-            throw new DraftCannotBeDrafted;
-        }
-
-        if ($this->hasDraft()) {
-            throw new DraftAlreadyExists;
+            throw new DraftAlreadyDrafted;
         }
 
         // TODO: Add "replicate" method to model and call it from here.
         // Or, create a "CanReplicate" trait that resolves the action.
         // The layout model has leaked into this trait.
-
+        
+        // Make a drafted copy of this model
         $draft = ReplicateLayoutAction::execute($this, [
-            'title'      => $this->title . ' - Draft',
             'drafted_id' => $this->id,
             'drafted_at' => now(),
             'created_at' => now(),
-
+            'updated_at' => now(),
+            
             // TODO: Scope draft to user who created it
             // 'user_id' => Auth::user()->id,
         ]);
-
+        
         return $draft;
     }
 
@@ -90,38 +86,28 @@ trait IsDraftable {
      * Show draft belonging to model instance.
      *
      */
-    public function publishDraft(): Model
+    public function undraft(): Model
     {
-        if (! $this->hasDraft()) {
-            throw new DraftDoesNotExist;
+        if (!$this->isDraft()) {
+            throw new DraftAlreadyUnrafted;
         }
-
-        $published = ReplicateLayoutAction::execute($this->draft, [
-            'title'      => $this->title,
+        
+        // Make an undrafted copy of this model
+        $undrafted = ReplicateLayoutAction::execute($this, [
             'drafted_id' => null,
             'drafted_at' => null,
             'created_at' => now(),
+            'updated_at' => now(),
         ]);
-
-        $this->delete();
-
-        return $published;
-    }
-
-    /**
-     * Show draft belonging to model instance.
-     *
-     */
-    public function showDraft(): Model
-    {
-        if ($this->isDraft()) {
-            throw new DraftCannotBeDrafted();
+        
+        // Redraft parent
+        if ($this->draftParent) {
+            $this->draftParent->update([
+                'drafted_at' => now(),
+                'drafted_id' => $undrafted->id
+            ]);    
         }
 
-        if (! $this->hasDraft()) {
-            throw new DraftDoesNotExist;
-        }
-
-        return $this->draft;
+        return $undrafted;
     }
 }

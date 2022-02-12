@@ -22,12 +22,14 @@ class PublicPostController extends Controller
         if (!$post->isPublished()) {
             return response()->json(['message' => 'Not Found'], 404);
         }
-            
+        
         return new PostResource(
             $post->load([
+                'layout' => function($query) {
+                    $query->published()->undrafted();
+                },
+                'layout.blocks',
                 'categories',
-                'layout',
-                'layout.blocks'
             ])
         );
     }

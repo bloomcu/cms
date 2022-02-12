@@ -11,39 +11,30 @@ use Cms\Domain\Properties\Property;
 use Cms\Domain\Layouts\Layout;
 
 // Resources
-use Cms\Http\Layouts\Resources\LayoutCollection;
 use Cms\Http\Layouts\Resources\LayoutResource;
 
 class LayoutDraftController extends Controller
 {
      /**
-      * Store a copy of the layout as a draft.
+      * Make a drafted copy
       *
       */
-     public function store(Organization $organization, Property $property, Layout $layout)
+     public function draft(Organization $organization, Property $property, Layout $layout)
      {
-         $draft = $layout->createDraft();
+         // Can this be named "draft" instead of "undraft"?
+         $drafted = $layout->draft();
 
-         return new LayoutResource($draft);
+         return new LayoutResource($drafted);
      }
+     
+     /**
+      * Make an undrafted copy
+      *
+      */
+     public function undraft(Organization $organization, Property $property, Layout $layout)
+     {
+         $undrafted = $layout->undraft();
 
-    /**
-    * Show the current draft for this layout.
-    *
-    */
-    public function show(Organization $organization, Property $property, Layout $layout)
-    {
-        // TODO: We probably don't need this show method, as a post might load
-        // it's layout draft by default in the Admin controller.
-
-        $draft = $layout->showDraft();
-
-        return new LayoutResource(
-            $draft->load([
-                'category',
-                'blocks',
-                'draft'
-            ])
-        );
-    }
+         return new LayoutResource($undrafted);
+     }
 }
