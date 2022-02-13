@@ -11,13 +11,11 @@ use Cms\Domain\Layouts\Filters\LayoutFilters;
 
 // Traits
 use Cms\App\Traits\IsDraftable;
-// use Cms\App\Traits\IsCategorizable;
 
 class Layout extends Model
 {
     use HasFactory,
         IsDraftable;
-        // IsCategorizable;
 
     protected $guarded = ['id'];
 

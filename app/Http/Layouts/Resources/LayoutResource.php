@@ -5,7 +5,6 @@ namespace Cms\Http\Layouts\Resources;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 use Cms\Http\Layouts\Resources\LayoutCollection;
-use Cms\Http\Categories\Resources\CategoryResource;
 use Cms\Http\Blocks\Resources\ShowBlockResource;
 
 class LayoutResource extends JsonResource
@@ -23,7 +22,6 @@ class LayoutResource extends JsonResource
             'title' => $this->title,
             'drafted_at' => $this->drafted_at,
             'published_at' => $this->published_at,
-            'categories' => CategoryResource::collection($this->whenLoaded('categories')),
             'blocks' => ShowBlockResource::collection($this->whenLoaded('blocks')),
             'draft' => new LayoutResource($this->whenLoaded('draft')),
         ];

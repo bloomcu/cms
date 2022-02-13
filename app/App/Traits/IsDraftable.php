@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 
-use Cms\App\Exceptions\DraftAlreadyDrafted;
 use Cms\App\Exceptions\DraftAlreadyUnrafted;
 
 use Cms\Domain\Layouts\Actions\ReplicateLayoutAction;
@@ -18,9 +17,9 @@ trait IsDraftable {
      *
      * @return HasMany
      */
-    public function draftParent()
+    public function descendents()
     {
-        return $this->belongsTo('Cms\Domain\Layouts\Layout', 'drafted_id');
+        return $this->hasMany(self::class, 'draft_id');
     }
 
     /**
@@ -40,9 +39,7 @@ trait IsDraftable {
      */
     public function scopeUndrafted($query)
     {
-        $query->where('drafted_at', '>', Carbon::now())
-            ->orWhereNull('drafted_at')
-            ->latest();
+        $query->whereNull('drafted_at')->latest();
     }
 
     /**
@@ -53,35 +50,7 @@ trait IsDraftable {
     {
         return $this->drafted_at !== null;
     }
-
-    /**
-     * Store a new draft of model instance.
-     *
-     */
-    public function draft(): Model
-    {
-        if ($this->isDraft()) {
-            throw new DraftAlreadyDrafted;
-        }
-
-        // TODO: Add "replicate" method to model and call it from here.
-        // Or, create a "CanReplicate" trait that resolves the action.
-        // The layout model has leaked into this trait.
-        
-        // Make a drafted copy of this model
-        $draft = ReplicateLayoutAction::execute($this, [
-            'drafted_id' => $this->id,
-            'drafted_at' => now(),
-            'created_at' => now(),
-            'updated_at' => now(),
-            
-            // TODO: Scope draft to user who created it
-            // 'user_id' => Auth::user()->id,
-        ]);
-        
-        return $draft;
-    }
-
+    
     /**
      * Show draft belonging to model instance.
      *
@@ -92,22 +61,56 @@ trait IsDraftable {
             throw new DraftAlreadyUnrafted;
         }
         
+        // dd($this->draftParent);
+        
+        // TODO: Wrap the following two operations in a
+        // database transactions in case of failure
+        
+        // Draft descendents
+        $this->descendents()->update([
+            'drafted_at' => now()
+        ]); 
+        
+        // TODO: Add "replicate" method to model and call it from here.
+        // Or, create a "CanReplicate" trait that resolves the action.
+        // The layout model has leaked into this trait.
+        
         // Make an undrafted copy of this model
         $undrafted = ReplicateLayoutAction::execute($this, [
-            'drafted_id' => null,
+            'draft_id' => $this->id,
             'drafted_at' => null,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
-        
-        // Redraft parent
-        if ($this->draftParent) {
-            $this->draftParent->update([
-                'drafted_at' => now(),
-                'drafted_id' => $undrafted->id
-            ]);    
-        }
 
         return $undrafted;
     }
+
+    /**
+     * Store a new draft of model instance.
+     *
+     */
+    // public function draft(): Model
+    // {
+    //     if ($this->isDraft()) {
+    //         throw new DraftAlreadyDrafted;
+    //     }
+    // 
+    //     // Make a drafted copy of this model
+    //     $draft = ReplicateLayoutAction::execute($this, [
+    //         'draft_id' => $this->id,
+    //         'drafted_at' => null,
+    //         'created_at' => now(),
+    //         'updated_at' => now(),
+    // 
+    //         // TODO: Scope draft to user who created it
+    //         // 'user_id' => Auth::user()->id,
+    //     ]);
+    // 
+    //     $this->update([
+    //         'drafted_at' => now()
+    //     ]);
+    // 
+    //     return $draft;
+    // }
 }

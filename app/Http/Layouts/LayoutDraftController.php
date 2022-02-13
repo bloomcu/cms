@@ -21,7 +21,6 @@ class LayoutDraftController extends Controller
       */
      public function draft(Organization $organization, Property $property, Layout $layout)
      {
-         // Can this be named "draft" instead of "undraft"?
          $drafted = $layout->draft();
 
          return new LayoutResource($drafted);

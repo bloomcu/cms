@@ -26,7 +26,7 @@ class PublicPostController extends Controller
         return new PostResource(
             $post->load([
                 'layout' => function($query) {
-                    $query->published()->undrafted();
+                    $query->undrafted();
                 },
                 'layout.blocks',
                 'categories',

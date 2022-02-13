@@ -23,7 +23,6 @@ class LayoutController extends Controller
     public function index(Organization $organization, Property $property, Request $request)
     {
         $layouts = $property->layouts()
-            ->with('categories')
             ->filter($request)
             ->latest()
             ->get();
@@ -41,19 +40,13 @@ class LayoutController extends Controller
              $layout->syncCategories($request->category);
          }
 
-         return new LayoutResource(
-             $layout->load(['categories'])
-         );
+         return new LayoutResource($layout);
      }
 
     public function show(Organization $organization, Property $property, Layout $layout)
     {
         return new LayoutResource(
-            $layout->load([
-                'categories',
-                'blocks',
-                'draft'
-            ])
+            $layout->load(['blocks'])
         );
     }
 
@@ -81,10 +74,7 @@ class LayoutController extends Controller
         // }
 
         return new LayoutResource(
-            $layout->load([
-                'categories', 
-                'blocks'
-            ])
+            $layout->load(['blocks'])
         );
     }
 
@@ -92,8 +82,6 @@ class LayoutController extends Controller
     {
         $layout->delete();
         
-        return new LayoutResource(
-            $layout->load(['categories'])
-        );
+        return new LayoutResource($layout);
     }
 }
