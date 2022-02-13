@@ -45,16 +45,9 @@ use Cms\Http\Properties\PropertyController;
 
 // Admin: Posts
 use Cms\Http\Posts\PostController;
-use Cms\Http\Posts\PostBlueprintController;
-use Cms\Http\Posts\PostCheckSlugController;
+use Cms\Http\Posts\PostSlugController;
 use Cms\Http\Posts\PostPublishController;
 use Cms\Http\Posts\PostReplicateController;
-
-// Admin: Pages
-use Cms\Http\Pages\PageController;
-
-// Admin: Articles
-use Cms\Http\Articles\ArticleController;
 
 // Admin: Layouts
 use Cms\Http\Layouts\LayoutController;
@@ -63,7 +56,6 @@ use Cms\Http\Layouts\LayoutPublishController;
 
 // Admin: Blocks
 use Cms\Http\Blocks\BlockController;
-use Cms\Http\Blocks\BlockBlueprintController;
 use Cms\Http\Blocks\BlockReorderController;
 
 // Admin: Files
@@ -115,29 +107,16 @@ Route::prefix('{organization}/{property}')->group(function () {
     Route::put('/posts/{post}',    [PostController::class, 'update']);
     Route::delete('/posts/{post}', [PostController::class, 'destroy']);
     
-    // Posts - Blueprints Only
-    Route::get('/post/blueprints', [PostBlueprintController::class, 'index']);
-    
-    // Posts - Replicate
+    // Posts Replicate
     // TODO: Rename this "duplicate" and use store method?
     Route::post('/posts/{post}/replicate', [PostReplicateController::class, 'replicate']);
     
-    // Posts - Publishing
+    // Posts Publish
     Route::put('/posts/{post}/publish', [PostPublishController::class, 'publish']);
     Route::put('/posts/{post}/unpublish', [PostPublishController::class, 'unpublish']);
     
-    // Posts - Check Slug
-    Route::get('/post/check-slug', [PostCheckSlugController::class, 'show']);
-});
-
-// Admin: Pages
-Route::prefix('{organization}/{property}')->group(function () {
-    Route::get('/pages', [PageController::class, 'index']);
-});
-
-// Admin: Articles
-Route::prefix('{organization}/{property}')->group(function () {
-    Route::get('/articles', [ArticleController::class, 'index']);
+    // Posts Slug
+    Route::get('/post/check-slug', [PostSlugController::class, 'check']);
 });
 
 // Admin: Layouts
@@ -160,9 +139,6 @@ Route::prefix('{organization}/{property}')->group(function () {
     Route::get('/blocks/{block}',    [BlockController::class, 'show']);
     Route::put('/blocks/{block}',    [BlockController::class, 'update']);
     Route::delete('/blocks/{block}', [BlockController::class, 'destroy']);
-
-    // Blocks - Blueprints Only
-    Route::get('/block/blueprints', [BlockBlueprintController::class, 'index']);
     
     // Blocks - Reorder
     // TODO: This should probably be scoped to the layout these blocks belong to.

@@ -6,9 +6,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 
-// Filters
-use Cms\Domain\Layouts\Filters\LayoutFilters;
-
 // Traits
 use Cms\App\Traits\IsDraftable;
 
@@ -46,11 +43,4 @@ class Layout extends Model
     {
         return $this->hasMany('Cms\Domain\Blocks\Block')->orderBy('order');
     }
-
-    // public function scopeFilter(Builder $builder, $request, array $filters = [])
-    // {
-    //     return (new LayoutFilters($request))
-    //         ->add($filters)
-    //         ->filter($builder);
-    // }
 }

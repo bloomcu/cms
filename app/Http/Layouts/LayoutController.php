@@ -23,7 +23,6 @@ class LayoutController extends Controller
     public function index(Organization $organization, Property $property, Request $request)
     {
         $layouts = $property->layouts()
-            ->filter($request)
             ->latest()
             ->get();
         

@@ -11,9 +11,6 @@ use Cms\App\Traits\HasUuid;
 use Cms\App\Traits\IsBlueprint;
 use Cms\App\Traits\IsCategorizable;
 
-// Filters
-use Cms\Domain\Blocks\Filters\BlockFilters;
-
 class Block extends Model
 {
     use HasFactory, 

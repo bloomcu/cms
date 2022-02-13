@@ -13,9 +13,9 @@ use Cms\Domain\Posts\Post;
 // Requests
 use Cms\Http\Posts\Requests\PostCheckSlugRequest;
 
-class PostCheckSlugController extends Controller
+class PostSlugController extends Controller
 {
-    public function show(Organization $organization, Property $property, PostCheckSlugRequest $request)
+    public function check(Organization $organization, Property $property, PostCheckSlugRequest $request)
     {
         $query = Post::where('slug', '=', $request->slug);
 

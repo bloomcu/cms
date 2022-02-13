@@ -20,9 +20,6 @@ use Cms\App\Traits\IsBlueprint;
 use Cms\App\Traits\IsCategorizable;
 use Cms\App\Traits\IsPublishable;
 
-// Filters
-// use Cms\Domain\Posts\Filters\PostFilters;
-
 class Post extends Model
 {
     use HasFactory,
@@ -102,26 +99,8 @@ class Post extends Model
         return $this->hasOne('Cms\Domain\Layouts\Layout');
     }
 
-    public function layouts()
-    {
-        return $this->hasMany('Cms\Domain\Layouts\Layout');
-    }
-    
-    // public function layout()
+    // public function layouts()
     // {
-    //     return $this->layouts()->latestOfMany();
-    //     // return $this->hasMany('Cms\Domain\Layouts\Layout')->unpublished();
-    // }
-    
-    public function publishedLayout()
-    {
-        return $this->layouts()->published()->latestOfMany();
-    }
-
-    // public function scopeFilter(Builder $builder, $request, array $filters = [])
-    // {
-    //     return (new PostFilters($request))
-    //         ->add($filters)
-    //         ->filter($builder);
+    //     return $this->hasMany('Cms\Domain\Layouts\Layout');
     // }
 }

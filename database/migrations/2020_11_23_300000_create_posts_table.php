@@ -18,17 +18,15 @@ class CreatePostsTable extends Migration
             $table->string('type')->default('page');
             $table->string('title');
 
+            // Relations
+            $table->foreignId('property_id');
+            
             // URL
             $table->string('path')->nullable();
             $table->string('slug')->unique();
             $table->string('url')->nullable();
 
-            // Relations
-            $table->foreignId('property_id');
-            // $table->foreignId('category_id')->nullable();
-
             // States
-            // $table->boolean('is_published')->default(false);
             $table->boolean('is_blueprint')->default(false);
             
             // Meta
