@@ -88,8 +88,10 @@ class PostController extends Controller
                 
                 $b->save();
             }
+            
+            $post->layout()->drafted()->touch();
         }
-
+        
         return new PostResource(
             $post->load(['categories'])
         );
