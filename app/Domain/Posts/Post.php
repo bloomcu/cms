@@ -93,14 +93,9 @@ class Post extends Model
     // {
     //     return $this->belongsTo('Cms\Domain\Users\User');
     // }
-
+    
     public function layout()
     {
         return $this->hasOne('Cms\Domain\Layouts\Layout');
     }
-
-    // public function layouts()
-    // {
-    //     return $this->hasMany('Cms\Domain\Layouts\Layout');
-    // }
 }

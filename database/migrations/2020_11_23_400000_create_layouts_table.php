@@ -22,7 +22,7 @@ class CreateLayoutsTable extends Migration
             $table->foreignId('post_id');
 
             // Draftable
-            $table->foreignId('draft_id')->nullable();
+            $table->foreignId('drafted_id')->nullable();
             $table->timestamp('drafted_at')->useCurrent()->nullable();
 
             // Revision

@@ -17,8 +17,10 @@ use Cms\Http\Posts\Resources\PostResource;
 class PostPublishController extends Controller
 {
     public function publish(Organization $organization, Property $property, Post $post)
-    {
+    {   
         $post->publish();
+        
+        $post->layout()->drafted()->publish();
         
         return new PostResource($post);
     }

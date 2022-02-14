@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 
-use Cms\App\Exceptions\DraftAlreadyUnrafted;
+use Cms\App\Exceptions\DraftAlreadyPublished;
 
 use Cms\Domain\Layouts\Actions\ReplicateLayoutAction;
 
@@ -17,9 +17,9 @@ trait IsDraftable {
      *
      * @return HasMany
      */
-    public function descendents()
+    public function ancestor()
     {
-        return $this->hasMany(self::class, 'draft_id');
+        return $this->belongsTo(self::class, 'drafted_id');
     }
 
     /**
@@ -27,19 +27,17 @@ trait IsDraftable {
      *
      */
     public function scopeDrafted($query)
-    {
-        $query->where('drafted_at', '<=', Carbon::now())
-            ->whereNotNull('drafted_at')
-            ->latest();
+    {    
+        return $query->whereNotNull('drafted_at')->latest()->first();
     }
     
     /**
-     * Scope a query to only include undrafted models.
+     * Scope a query to only include published models.
      *
      */
-    public function scopeUndrafted($query)
+    public function scopePublished($query)
     {
-        $query->whereNull('drafted_at')->latest();
+        return $query->whereNull('drafted_at')->latest()->first();
     }
 
     /**
@@ -55,35 +53,40 @@ trait IsDraftable {
      * Show draft belonging to model instance.
      *
      */
-    public function undraft(): Model
+    public function publish(): Model
     {
         if (!$this->isDraft()) {
-            throw new DraftAlreadyUnrafted;
+            throw new DraftAlreadyPublished;
         }
-        
-        // dd($this->draftParent);
         
         // TODO: Wrap the following two operations in a
         // database transactions in case of failure
         
-        // Draft descendents
-        $this->descendents()->update([
-            'drafted_at' => now()
-        ]); 
+        // Draft ancestor
+        if ($this->ancestor()->exists()) {
+            $this->ancestor->update([
+                'drafted_at' => now()
+            ]);
+        }
+        
+        // Publish draft
+        $this->update([
+            'drafted_at' => null,
+        ]);
         
         // TODO: Add "replicate" method to model and call it from here.
         // Or, create a "CanReplicate" trait that resolves the action.
         // The layout model has leaked into this trait.
         
-        // Make an undrafted copy of this model
-        $undrafted = ReplicateLayoutAction::execute($this, [
-            'draft_id' => $this->id,
-            'drafted_at' => null,
+        // Create new working draft
+        $draft = ReplicateLayoutAction::execute($this, [
+            'drafted_id' => $this->id,
+            'drafted_at' => now(),
             'created_at' => now(),
             'updated_at' => now(),
         ]);
-
-        return $undrafted;
+        
+        return $this;
     }
 
     /**
@@ -98,7 +101,7 @@ trait IsDraftable {
     // 
     //     // Make a drafted copy of this model
     //     $draft = ReplicateLayoutAction::execute($this, [
-    //         'draft_id' => $this->id,
+    //         'drafted_id' => $this->id,
     //         'drafted_at' => null,
     //         'created_at' => now(),
     //         'updated_at' => now(),

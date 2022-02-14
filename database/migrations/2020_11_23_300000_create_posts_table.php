@@ -21,6 +21,9 @@ class CreatePostsTable extends Migration
             // Relations
             $table->foreignId('property_id');
             
+            // Publishable
+            $table->timestamp('published_at')->nullable();
+            
             // URL
             $table->string('path')->nullable();
             $table->string('slug')->unique();
@@ -31,9 +34,6 @@ class CreatePostsTable extends Migration
             
             // Meta
             $table->json('meta')->nullable();
-            
-            // Publishable
-            $table->timestamp('published_at')->nullable();
             
             // Timestamps
             $table->timestamps();
