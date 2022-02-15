@@ -20,13 +20,12 @@ class HeroResource extends JsonResource
         return [
             'center'     => isset($this['center']) ? $this['center'] : false,
             'fullscreen' => isset($this['fullscreen']) ? $this['fullscreen'] : false,
-            'label'      => isset($this['label']) ? $this['label'] : 'The hero label',
+            'label'      => isset($this['label']) ? $this['label'] : null,
             'title'      => isset($this['title']) ? $this['title'] : 'The hero title',
-            'subtitle'   => isset($this['subtitle']) ? $this['subtitle'] : 'The hero subtitle',
+            'subtitle'   => isset($this['subtitle']) ? $this['subtitle'] : null,
             'image'      => new ImageResource(isset($this['image']) ? $this['image'] : []),
             'buttons'    => new ButtonCollection(isset($this['buttons']) ? $this['buttons'] : [
-                ['text' => 'Primary Button'],
-                ['text' => 'Secondary Button', 'variant' => 'accent']
+                ['text' => 'Primary Button']
             ])
         ];
     }
