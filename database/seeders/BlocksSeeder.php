@@ -184,54 +184,35 @@ class BlocksSeeder extends Seeder
             $block->categories()->attach($seed['category_id']);
         }
         
-        $blocksForLayouts = [
-            // [
-            //     'title' => 'Hero',
-            //     'property_id' => 1,
-            //     'component' => 'Hero',
-            //     'group' => 'hero',
-            //     'layout_id' => 2,
-            //     'data' => [
-            //         'label' => 'The hero label',
-            //         'title' => 'This is the hero title',
-            //         'subtitle' => 'And this is the hero subtitle, it is longer',
-            //     ]
-            // ],
-            // [
-            //     'title' => 'Video Background Hero',
-            //     'property_id' => 1,
-            //     'component' => 'VideoBackgroundHero',
-            //     'layout_id' => 2,
-            //     'group' => 'video-background-hero',
-            //     'data' => [
-            //         'label' => 'The video hero label',
-            //         'title' => 'This is the video hero title',
-            //         'subtitle' => 'And this is the video hero subtitle, it is longer',
-            //     ]
-            // ],
-            // [
-            //     'title' => 'Feature',
-            //     'property_id' => 1,
-            //     'component' => 'Feature',
-            //     'group' => 'feature',
-            //     'layout_id' => 2,
-            //     'data' => [
-            //         'label' => 'The feature label',
-            //         'title' => 'This is the feature title',
-            //         'subtitle' => 'And this is the feature subtitle, it is longer',
-            //     ]
-            // ],
-        ];
-        
-        foreach ($blocksForLayouts as $seed) {
-            $block = Block::create([
-                'title'       => $seed['title'],
-                'type'        => $seed['type'],
-                'property_id' => $seed['property_id'],
-                'created_at'  => $seed['created_at'],
-            ]);
-            
-            $block->categories()->attach($seed['category_id']);
-        }
+        // $blocksForLayouts = [
+        //     [
+        //         'title' => 'Hero',
+        //         'property_id' => 1,
+        //         'component' => 'Hero',
+        //         'group' => 'hero',
+        //         'post_id' => 2,
+        //         'data' => []
+        //     ],
+        //     [
+        //         'title' => 'Video Background Hero',
+        //         'property_id' => 1,
+        //         'component' => 'VideoBackgroundHero',
+        //         'post_id' => 2,
+        //         'group' => 'video-background-hero',
+        //         'data' => []
+        //     ],
+        //     [
+        //         'title' => 'Feature',
+        //         'property_id' => 1,
+        //         'component' => 'Feature',
+        //         'group' => 'feature',
+        //         'post_id' => 2,
+        //         'data' => []
+        //     ],
+        // ];
+        // 
+        // foreach ($blocksForLayouts as $seed) {
+        //     $block = Block::create($seed);
+        // }
     }
 }

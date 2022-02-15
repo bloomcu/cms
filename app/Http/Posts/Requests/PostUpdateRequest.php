@@ -33,11 +33,7 @@ class PostUpdateRequest extends FormRequest
             'path' => 'nullable|string',
 
             // TODO: Create custom slug rule to enforce format "foo-bar"
-            'slug' => [
-                'nullable',
-                'string',
-                Rule::unique('posts')->ignore($this->post->id)
-            ],
+            'slug' => 'nullable|string',
 
             'category'  => 'nullable|integer',
             'is_published' => 'nullable|integer',

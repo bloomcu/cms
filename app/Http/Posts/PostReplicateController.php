@@ -11,6 +11,9 @@ use Cms\Domain\Organizations\Organization;
 use Cms\Domain\Properties\Property;
 use Cms\Domain\Posts\Post;
 
+// Actions
+use Cms\Domain\Posts\Actions\ReplicatePostAction;
+
 // Resources
 use Cms\Http\Posts\Resources\PostResource;
 
@@ -23,42 +26,16 @@ class PostReplicateController extends Controller
         // to the model called "duplicate[ModelBasename]Action" passing title
         // overide into action.
         
-        // Replicate post 
-        $newPost = $post->replicate()->fill([
+        // Replicate post
+        $replicated = ReplicatePostAction::execute($post, [
             'title' => $post->title . ' Copy',
             'is_blueprint' => 0
         ]);
-        $newPost->save();
-        
-        // TODO: The afermentioned "duplicatePostAction" will implement a "duplicateLayoutAction"
-        
-        // Replicate post layout
-        if ($post->layout()->exists()) {
-            $newLayout = $post->layout->replicate()->fill([
-                'title' => $post->layout->title . ' Copy',
-                'post_id' => $newPost->id,
-            ]);
-            $newLayout->save();
-            
-            // TODO: The afermentioned "duplicateLayoutAction" will implement the "duplicateBlockAction"
-            
-            // Replicate layout blocks
-            if ($post->layout->blocks()->exists()) {
-                foreach( $post->layout->blocks as $block ) {
-                    $newBlock = $block->replicate()->fill([
-                        'uuid' => Str::uuid(),
-                        'layout_id' => $newLayout->id,
-                    ]);
-                    $newBlock->save();
-                }
-            }
-        }
 
         return new PostResource(
-            $newPost->load([
+            $replicated->load([
                 'categories',
-                'layout',
-                'layout.blocks'
+                'blocks'
             ])
         );
     }

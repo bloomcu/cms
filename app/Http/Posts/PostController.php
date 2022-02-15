@@ -31,8 +31,8 @@ class PostController extends Controller
         $posts = QueryBuilder::for(Post::class)
             ->where('property_id', $property->id)
             ->allowedFilters([
+                'type',
                 'is_blueprint',
-                'type', 
                 'categories.id',
             ])
             ->with('categories')
@@ -61,10 +61,7 @@ class PostController extends Controller
     {
         return new PostResource(
             $post->load([
-                'layout' => function($query) {
-                    $query->drafted();
-                },
-                'layout.blocks',
+                'blocks',
                 'categories',
             ])
         );
@@ -77,19 +74,17 @@ class PostController extends Controller
         );
         
         // TODO: Remove once layouts and blocks are updated via their own endpoints from the admin ui
-        if ($request['layout']) {
-            foreach($request['layout']['blocks'] as $key => $block) {
+        if ($request['blocks']) {
+            foreach($request['blocks'] as $key => $block) {
                 $b = Block::firstOrNew(['uuid' => $block['uuid']], $block);
                 
                 $b->property_id = $property->id;
-                $b->layout_id = $request['layout']['id'];
+                $b->post_id = $post->id;
                 $b->order = $key;
                 $b->data = $block['data'];
                 
                 $b->save();
             }
-            
-            $post->layout()->drafted()->touch();
         }
         
         return new PostResource(

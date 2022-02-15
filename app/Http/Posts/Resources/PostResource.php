@@ -5,8 +5,7 @@ namespace Cms\Http\Posts\Resources;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 use Cms\Http\Categories\Resources\CategoryResource;
-use Cms\Http\Blocks\Resources\BlockResource;
-use Cms\Http\Layouts\Resources\LayoutResource;
+use Cms\Http\Blocks\Resources\ShowBlockResource;
 
 class PostResource extends JsonResource
 {
@@ -22,13 +21,14 @@ class PostResource extends JsonResource
             'id' => $this->id,
             'type' => $this->type,
             'title' => $this->title,
-            'published_at' => $this->published_at,
+            'published' => $this->hasBeenPublished(),
+            'has_changes' => $this->hasUnpublishedChanges(),
             'path' => $this->path,
             'slug' => $this->slug,
             'url' => $this->url,
             'is_blueprint' => $this->is_blueprint,
             'categories' => CategoryResource::collection($this->whenLoaded('categories')),
-            'layout' => new LayoutResource($this->whenLoaded('layout')),
+            'blocks' => ShowBlockResource::collection($this->whenLoaded('blocks')),
             'meta' => [
                 'title' => $this->meta['title'] ?? '',
                 'description' => $this->meta['description'] ?? '',

@@ -3,8 +3,11 @@
 namespace Cms\App\Traits;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 use Carbon\Carbon;
+
+use Cms\Domain\Posts\Actions\ReplicatePostAction;
 
 // use Cms\App\Exceptions\DraftCannotBeDrafted;
 // use Cms\App\Exceptions\DraftAlreadyExists;
@@ -12,84 +15,67 @@ use Carbon\Carbon;
 
 trait IsPublishable {
     
-    // TODO: When a post is replicated, it should not be published
-    
-    // protected static function bootIsPublishable(): void
-    // {
-    //     static::addGlobalScope(new PublishableScope);
-    // }
-
-    // /**
-    //  * Scope a query to only include published models.
-    //  *
-    //  * @param  \Illuminate\Database\Eloquent\Builder $query
-    //  * @return \Illuminate\Database\Eloquent\Builder
-    //  */
-    // public function scopePublished(Builder $query)
-    // {
-    //     return $query->where('published_at', '<=', Carbon::now())
-    //         ->whereNotNull('published_at');
-    // }
-    // 
-    // /**
-    //  * Scope a query to only include unpublished models.
-    //  *
-    //  * @param  \Illuminate\Database\Eloquent\Builder $query
-    //  * @return \Illuminate\Database\Eloquent\Builder
-    //  */
-    // public function scopeUnpublished(Builder $query)
-    // {
-    //     return $query->where('published_at', '>', Carbon::now())
-    //         ->orWhereNull('published_at');
-    // }
+    /**
+     * Apply scope that excludes published posts globally
+     *
+     */
+    protected static function bootIsPublishable(): void
+    {
+        static::addGlobalScope(function(Builder $builder) {
+            $builder->whereNull('published_at');
+        });
+    }
     
     /**
      * Scope a query to only include published models.
      *
      */
-    public function scopePublished($query)
+    public function scopePublished(Builder $builder)
     {
-        $query->where('published_at', '<=', Carbon::now())
-            ->whereNotNull('published_at');
+        $builder->withoutGlobalScopes()->whereNotNull('published_at');
     }
-
+    
     /**
-     * Scope a query to only include unpublished models.
+     * Published descendents of model.
      *
      */
-    public function scopeUnpublished($query)
+    public function descendents()
     {
-        $query->where('published_at', '>', Carbon::now())
-            ->orWhereNull('published_at');
+        return $this->hasMany(self::class, 'draft_id')->withoutGlobalScopes();
     }
-
+    
     /**
-     * @return bool
+     * Has model been published.
+     *
      */
-    public function isPublished()
+    public function hasBeenPublished(): bool
     {
-        if (is_null($this->published_at)) {
-            return false;
-        }
-        
-        // Less than or equal to now
-        return $this->published_at->lte(Carbon::now());
+        return $this->descendents()->whereNotNull('published_at')->exists();
     }
-
+    
     /**
-     * @return bool
+     * Does model have unpublished changes.
      */
-    public function isUnpublished()
+    public function hasUnpublishedChanges(): bool
     {
-        return !$this->isPublished();
+        return $this->updated_at->gt($this->drafted_at);
     }
-
+    
     /**
-     * @return bool
+     * Publish model
      */
     public function publish()
     {
-        return $this->update([
+        $this->update([
+            'drafted_at' => now(),
+        ]);
+        
+        // TODO: Rather then delete, we could make set a 'revised_at' column
+        $this->descendents()->delete();
+        
+        ReplicatePostAction::execute($this, [
+            'draft_id'   => $this->id,
+            'drafted_at' => null,
             'published_at' => Carbon::now()->toDateTimeString(),
         ]);
     }
@@ -99,21 +85,6 @@ trait IsPublishable {
      */
     public function unpublish()
     {
-        return $this->update([
-            'published_at' => null,
-        ]);
-    }
-
-    /**
-     * @param  mixed $value
-     * @return \Carbon\Carbon
-     */
-    public function getPublishedAtAttribute($value)
-    {
-        if (is_null($value)) {
-            return $value;
-        }
-        
-        return $this->asDateTime($value);
+        $this->descendents()->withoutGlobalScopes()->delete();
     }
 }

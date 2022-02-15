@@ -22,7 +22,7 @@ class CreateBlocksTable extends Migration
             
             // Relations
             $table->foreignId('property_id');
-            $table->foreignId('layout_id')->nullable();
+            $table->foreignId('post_id')->nullable();
             
             // States
             $table->boolean('is_blueprint')->default(false);
@@ -37,11 +37,11 @@ class CreateBlocksTable extends Migration
             $table->timestamps();
 
             // Indexes
-            $table->index(['layout_id', 'is_blueprint']);
+            // $table->index(['post_id', 'is_blueprint']);
 
             // Foreign constraints
             $table->foreign('property_id')->references('id')->on('properties');
-            $table->foreign('layout_id')->references('id')->on('layouts')->onDelete('cascade');
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
         });
     }
 

@@ -20,8 +20,6 @@ class PostPublishController extends Controller
     {   
         $post->publish();
         
-        $post->layout()->drafted()->publish();
-        
         return new PostResource($post);
     }
     

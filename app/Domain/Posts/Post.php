@@ -94,8 +94,8 @@ class Post extends Model
     //     return $this->belongsTo('Cms\Domain\Users\User');
     // }
     
-    public function layout()
+    public function blocks()
     {
-        return $this->hasOne('Cms\Domain\Layouts\Layout');
+        return $this->hasMany('Cms\Domain\Blocks\Block')->orderBy('order');
     }
 }

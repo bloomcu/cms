@@ -16,21 +16,14 @@ class PublicPostController extends Controller
 {
     public function show(Property $property, Request $request)
     {
-        // TODO: Create a request class for this        
-        $post = Post::where('url', $request['path'])->firstOrFail();
+        $post = Post::published()->where('url', $request['path'])->first();
         
-        if (!$post->isPublished()) {
+        if (!$post) {
             return response()->json(['message' => 'Not Found'], 404);
         }
         
         return new PostResource(
-            $post->load([
-                'layout' => function($query) {
-                    $query->published();
-                },
-                'layout.blocks',
-                'categories',
-            ])
+            $post->load(['blocks'])
         );
     }
 }

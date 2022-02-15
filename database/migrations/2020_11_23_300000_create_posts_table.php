@@ -21,12 +21,16 @@ class CreatePostsTable extends Migration
             // Relations
             $table->foreignId('property_id');
             
+            // Draftable
+            $table->foreignId('draft_id')->nullable();
+            $table->timestamp('drafted_at')->nullable();
+            
             // Publishable
             $table->timestamp('published_at')->nullable();
             
             // URL
             $table->string('path')->nullable();
-            $table->string('slug')->unique();
+            $table->string('slug')->nullable();
             $table->string('url')->nullable();
 
             // States
@@ -39,7 +43,7 @@ class CreatePostsTable extends Migration
             $table->timestamps();
             
             // Indexes
-            $table->index(['is_blueprint']);
+            // $table->index(['is_blueprint']);
 
             // Foreign constraints
             $table->foreign('property_id')->references('id')->on('properties');

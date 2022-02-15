@@ -47,8 +47,8 @@ class Block extends Model
     //     return $this->belongsTo('Cms\Domain\Users\User');
     // }
 
-    public function layout()
+    public function post()
     {
-        return $this->belongsTo('Cms\Domain\Layouts\Layout');
+        return $this->belongsTo('Cms\Domain\Posts\Post');
     }
 }
