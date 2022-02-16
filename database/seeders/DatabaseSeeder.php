@@ -20,7 +20,6 @@ class DatabaseSeeder extends Seeder
             CategoriesSeeder::class,
             PagesSeeder::class,
             ArticlesSeeder::class,
-            // LayoutsSeeder::class,
             BlocksSeeder::class,
             FilesSeeder::class,
             MenusSeeder::class

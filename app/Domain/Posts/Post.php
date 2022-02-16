@@ -71,7 +71,7 @@ class Post extends Model
     {
         $array = $this->toArray();
         
-        $array['blocks'] = isset($this->layout->blocks) ? $this->layout->blocks->toArray() : [];
+        $array['blocks'] = isset($this->blocks) ? $this->blocks->toArray() : [];
         
         unset($array['updated_at']);
 

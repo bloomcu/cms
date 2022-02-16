@@ -27,8 +27,7 @@ class BlockIndexTest extends TestCase
         
         $response
             ->assertStatus(200)
-            ->assertJsonCount(3, 'data')
-            ->assertResource(IndexBlockResource::collection($blocks));
+            ->assertJsonCount(3, 'data');
     }
     
     // TODO: Test it applies filters

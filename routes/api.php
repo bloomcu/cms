@@ -49,11 +49,6 @@ use Cms\Http\Posts\PostSlugController;
 use Cms\Http\Posts\PostPublishController;
 use Cms\Http\Posts\PostReplicateController;
 
-// Admin: Layouts
-use Cms\Http\Layouts\LayoutController;
-use Cms\Http\Layouts\LayoutDraftController;
-use Cms\Http\Layouts\LayoutPublishController;
-
 // Admin: Blocks
 use Cms\Http\Blocks\BlockController;
 use Cms\Http\Blocks\BlockReorderController;
@@ -119,19 +114,6 @@ Route::prefix('{organization}/{property}')->group(function () {
     Route::get('/post/check-slug', [PostSlugController::class, 'check']);
 });
 
-// Admin: Layouts
-Route::prefix('{organization}/{property}')->group(function () {
-    Route::get('/layouts',             [LayoutController::class, 'index']);
-    Route::post('/layouts',            [LayoutController::class, 'store']);
-    Route::get('/layouts/{layout}',    [LayoutController::class, 'show']);
-    Route::put('/layouts/{layout}',    [LayoutController::class, 'update']);
-    Route::delete('/layouts/{layout}', [LayoutController::class, 'destroy']);
-    
-    // Layouts - Drafting
-    Route::post('/layouts/{layout}/draft', [LayoutDraftController::class, 'draft']);
-    Route::post('/layouts/{layout}/undraft',  [LayoutDraftController::class, 'undraft']);
-});
-
 // Admin: Blocks
 Route::prefix('{organization}/{property}')->group(function () {
     Route::get('/blocks',            [BlockController::class, 'index']);
@@ -141,8 +123,8 @@ Route::prefix('{organization}/{property}')->group(function () {
     Route::delete('/blocks/{block}', [BlockController::class, 'destroy']);
     
     // Blocks - Reorder
-    // TODO: This should probably be scoped to the layout these blocks belong to.
-    // It's not safe that I can pass any collection of blocks from different layouts.
+    // TODO: This should be scoped to the post these blocks belong to.
+    // It's not safe that I can pass any collection of blocks from different posts.
     Route::post('/blocks/reorder', [BlockReorderController::class, 'reorder']);
 });
 

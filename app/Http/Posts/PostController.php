@@ -73,7 +73,7 @@ class PostController extends Controller
             $request->validated()
         );
         
-        // TODO: Remove once layouts and blocks are updated via their own endpoints from the admin ui
+        // TODO: Remove once posts and blocks are updated via their own endpoints from the admin ui
         if ($request['blocks']) {
             foreach($request['blocks'] as $key => $block) {
                 $b = Block::firstOrNew(['uuid' => $block['uuid']], $block);

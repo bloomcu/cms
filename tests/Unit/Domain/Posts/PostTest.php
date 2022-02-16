@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 use Cms\Domain\Properties\Property;
 use Cms\Domain\Posts\Post;
-use Cms\Domain\Layouts\Layout;
+use Cms\Domain\Blocks\Block;
 use Cms\Domain\Categories\Category;
 
 class PostTest extends TestCase
@@ -14,8 +14,6 @@ class PostTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-
-        $this->post = Post::factory()->create();
     }
     
     // TODO: Test it has a slug
@@ -33,16 +31,30 @@ class PostTest extends TestCase
     }
 
     /** @test */
-    public function it_has_many_layouts()
+    public function it_has_many_blocks()
     {
         $post = Post::factory()
-            ->has(Layout::factory())
+            ->has(Block::factory()->count(3))
             ->create();
-
-        $this->assertInstanceOf(Layout::class, $post->layouts->first());
+            
+        $this->assertInstanceOf(Block::class, $post->blocks->first());
     }
-    
-    // TODO: Test latest single layout relationship
+
+    /** @test */
+    public function its_blocks_are_ordered()
+    {
+        $post = Post::factory()->create();
+            
+        $post->blocks()->save(
+            Block::factory()->create(['title' => 'Block Two', 'order' => 2])
+        );
+
+        $post->blocks()->save(
+            Block::factory()->create(['title' => 'Block One', 'order' => 1])
+        );
+
+        $this->assertStringContainsString('Block Two', $post->blocks()->pluck('title'));
+    }
 
     /** @test */
     // public function it_belongs_to_a_category()

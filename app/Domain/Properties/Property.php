@@ -74,16 +74,6 @@ class Property extends Model
     {
         return $this->posts()->whereType('article');
     }
-
-    /**
-     * Get the posts associated with this property.
-     *
-     * @return hasMany
-     */
-    public function layouts()
-    {
-        return $this->hasMany('Cms\Domain\Layouts\Layout');
-    }
     
     /**
      * Get the blocks associated with this property.

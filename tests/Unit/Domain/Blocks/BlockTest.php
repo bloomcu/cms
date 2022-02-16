@@ -6,7 +6,7 @@ use Tests\TestCase;
 
 use Cms\Domain\Blocks\Block;
 use Cms\Domain\Properties\Property;
-use Cms\Domain\Layouts\Layout;
+use Cms\Domain\Posts\Post;
 
 class BlockTest extends TestCase
 {
@@ -55,12 +55,12 @@ class BlockTest extends TestCase
     }
     
     /** @test */
-    public function it_can_belong_to_a_layout()
+    public function it_can_belong_to_a_post()
     {
         $block = Block::factory()
-            ->has(Layout::factory())
+            ->for(Post::factory())
             ->create();
 
-        $this->assertInstanceOf(Layout::class, $block->layout);
+        $this->assertInstanceOf(Post::class, $block->post);
     }
 }

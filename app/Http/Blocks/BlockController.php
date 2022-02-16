@@ -23,7 +23,7 @@ use Cms\Http\Blocks\Resources\ShowBlockResource;
 class BlockController extends Controller
 {
     // TODO: Do we need this endpoint? 
-    // When would we index all blocks used across layouts?
+    // When would we index all blocks used across posts?
     public function index(Organization $organization, Property $property, Request $request)
     {
         $blocks = QueryBuilder::for(Block::class)

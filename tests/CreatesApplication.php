@@ -15,9 +15,9 @@ trait CreatesApplication
     public function createApplication()
     {
         $app = require __DIR__.'/../bootstrap/app.php';
-
+        
         $app->make(Kernel::class)->bootstrap();
-
+        
         // Add a macro to Illuminate\Testing\TestResponse
         // Macro asserts that response uses the API resource provided
         TestResponse::macro('assertResource', function ($resource) {

@@ -41,7 +41,7 @@ class PostShowTest extends TestCase
     
     // TODO: Test it shows a post with its category relationship
     
-    // TODO: Test it shows a post with its layout relationship
+    // TODO: Test it shows a post with its post relationship
     
-    // TODO: Test it shows a post with its layout and blocks
+    // TODO: Test it shows a post with its post and blocks
 }

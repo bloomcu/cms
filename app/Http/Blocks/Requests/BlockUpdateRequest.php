@@ -24,29 +24,10 @@ class BlockUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'         => 'nullable|string',
-            'component'     => 'nullable|string',
-            'layout_id'     => 'nullable|exists:layouts,id',
-            'order'         => 'nullable|integer|min:0',
-        ];
-    }
-
-    /**
-     * Get the error messages for the defined validation rules.
-     *
-     * @return array
-     */
-    public function messages()
-    {
-        return [
-            'title.string' => 'Title must be a string',
-
-            'component.string' => 'Component must be a string',
-
-            'layout_id.exists' => 'Layout does not exist',
-
-            'order.integer' => 'Order must be an integer',
-            'order.min' => 'Order cannot be negative',
+            'title'     => 'nullable|string',
+            'component' => 'nullable|string',
+            'post_id'   => 'nullable|exists:post_id,id',
+            'order'     => 'nullable|integer|min:0',
         ];
     }
 }

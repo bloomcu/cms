@@ -25,11 +25,15 @@ class BlockFactory extends Factory
         return [
             'title' => $this->faker->company,
             'component' => $this->faker->randomElement([
+                'Hero',
+                'BoxedHero',
+                'Feature',
+            ]),
+            'group' => $this->faker->randomElement([
                 'hero',
-                'feature'
+                'feature',
             ]),
             'property_id' => \Cms\Domain\Properties\Property::factory(),
-            'layout_id' => \Cms\Domain\Layouts\Layout::factory(),
             'order' => $this->faker->randomDigit,
         ];
     }
