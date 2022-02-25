@@ -19,7 +19,7 @@ class ShowBlockResource extends JsonResource
      */
     public function toArray($request)
     {
-        $dataResource = 'Cms\\Http\\Blocks\\Resources\\Data\\' . Str::studly($this->group) . 'Resource';
+        // $dataResource = 'Cms\\Http\\Blocks\\Resources\\Data\\' . Str::studly($this->group) . 'Resource';
 
         return [
             'id' => $this->id,
@@ -28,7 +28,8 @@ class ShowBlockResource extends JsonResource
             'component' => $this->component,
             'group' => $this->group,
             'order' => $this->order,
-            'data' => new $dataResource($this->data),
+            'data' => $this->data,
+            // 'data' => new $dataResource($this->data),
         ];
     }
 }

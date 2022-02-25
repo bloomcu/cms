@@ -21,6 +21,7 @@
         "laravel/tinker": "^2.5",
         "laravel/vapor-core": "^2.19",
         "league/flysystem-aws-s3-v3": "^1.0",
+        "spatie/data-transfer-object": "^3.7",
         "spatie/laravel-query-builder": "4.0.2"
     },
     "require-dev": {

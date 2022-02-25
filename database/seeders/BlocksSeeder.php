@@ -176,7 +176,8 @@ class BlocksSeeder extends Seeder
                 'title'        => $seed['title'],
                 'property_id'  => $seed['property_id'],
                 'component'    => $seed['component'],
-                'group'        => $seed['group'],
+                // 'group'        => $seed['group'],
+                'group'        => 'hero',
                 'is_blueprint' => $seed['is_blueprint'],
                 'data'         => $seed['data'],
             ]);
@@ -184,35 +185,35 @@ class BlocksSeeder extends Seeder
             $block->categories()->attach($seed['category_id']);
         }
         
-        $blocksForPosts = [
-            [
-                'title' => 'Hero',
-                'property_id' => 1,
-                'component' => 'Hero',
-                'group' => 'hero',
-                'post_id' => 2,
-                'data' => []
-            ],
-            [
-                'title' => 'Video Background Hero',
-                'property_id' => 1,
-                'component' => 'VideoBackgroundHero',
-                'post_id' => 2,
-                'group' => 'video-background-hero',
-                'data' => []
-            ],
-            [
-                'title' => 'Feature',
-                'property_id' => 1,
-                'component' => 'Feature',
-                'group' => 'feature',
-                'post_id' => 2,
-                'data' => []
-            ],
-        ];
-        
-        foreach ($blocksForPosts as $seed) {
-            $block = Block::create($seed);
-        }
+        // $blocksForPosts = [
+        //     [
+        //         'title' => 'Hero',
+        //         'property_id' => 1,
+        //         'component' => 'Hero',
+        //         'group' => 'hero',
+        //         'post_id' => 2,
+        //         'data' => []
+        //     ],
+        //     [
+        //         'title' => 'Video Background Hero',
+        //         'property_id' => 1,
+        //         'component' => 'VideoBackgroundHero',
+        //         'post_id' => 2,
+        //         'group' => 'video-background-hero',
+        //         'data' => []
+        //     ],
+        //     [
+        //         'title' => 'Feature',
+        //         'property_id' => 1,
+        //         'component' => 'Feature',
+        //         'group' => 'feature',
+        //         'post_id' => 2,
+        //         'data' => []
+        //     ],
+        // ];
+        // 
+        // foreach ($blocksForPosts as $seed) {
+        //     $block = Block::create($seed);
+        // }
     }
 }

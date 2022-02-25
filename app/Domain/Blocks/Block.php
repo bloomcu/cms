@@ -5,11 +5,15 @@ namespace Cms\Domain\Blocks;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Str;
 
 // Traits
 use Cms\App\Traits\HasUuid;
 use Cms\App\Traits\IsBlueprint;
 use Cms\App\Traits\IsCategorizable;
+
+// Cast
+use Cms\Domain\Blocks\Casts\BlockData;
 
 class Block extends Model
 {
@@ -23,7 +27,8 @@ class Block extends Model
     ];
 
     protected $casts = [
-        'data' => 'json'
+        // 'data' => 'json'
+        'data' => BlockData::class
     ];
 
     public function getRouteKeyName()
@@ -51,4 +56,11 @@ class Block extends Model
     {
         return $this->belongsTo('Cms\Domain\Posts\Post');
     }
+    
+    public function dataClass()
+    {
+        // TODO: Rename 'component' attribute to 'block'
+        return 'Cms\\Domain\\Blocks\\Data\\' . Str::studly($this['group']);
+    }
+
 }
