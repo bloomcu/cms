@@ -15,12 +15,13 @@ class ReplicateBlockAction
         $replicated = $block->replicate()->fill($attributes);
         
         $replicated->uuid = Str::uuid();
-        
+        // dd($replicated->data);
         // TODO: Rename data to content
-        $replicated->data = json_decode($replicated->data);
-
+        // $replicated->data = json_decode($replicated->data, true);
+        // $replicated->data = json_encode($replicated->data);
+        
         $replicated->save();
-
+        
         return $replicated;
     }
 }

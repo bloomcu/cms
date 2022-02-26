@@ -17,7 +17,7 @@ class CreateFilesTable extends Migration
             $table->id();
             $table->string('type');
             $table->string('name');
-            $table->string('path');
+            $table->string('src');
             $table->unsignedBigInteger('size');
             
             // Relations

@@ -61,6 +61,7 @@ class BlockController extends Controller
 
     public function update(Organization $organization, Property $property, Block $block, Request $request)
     {
+        // dd($request->all());
         $block->update(
             // TODO: Use FormRequest for request validation
             // $request->validated()

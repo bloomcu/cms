@@ -15,6 +15,162 @@ class BlocksSeeder extends Seeder
      */
     public function run()
     {        
+        // $blueprintBlocks = [
+        //     [
+        //         'title' => 'Hero',
+        //         'property_id' => 1,
+        //         'component' => 'Hero',
+        //         'group' => 'hero',
+        //         'is_blueprint' => true,
+        //         'data' => [],
+        //         'category_id' => 80,
+        //     ],
+        //     [
+        //         'title' => 'Boxed Hero',
+        //         'property_id' => 1,
+        //         'component' => 'BoxedHero',
+        //         'group' => 'hero',
+        //         'is_blueprint' => true,
+        //         'data' => [],
+        //         'category_id' => 80,
+        //     ],
+        //     [
+        //         'title' => 'Video Background Hero',
+        //         'property_id' => 1,
+        //         'component' => 'VideoBackgroundHero',
+        //         'group' => 'video-background-hero',
+        //         'is_blueprint' => true,
+        //         'data' => [],
+        //         'category_id' => 80,
+        //     ],
+        //     [
+        //         'title' => 'Feature',
+        //         'property_id' => 1,
+        //         'component' => 'Feature',
+        //         'group' => 'feature',
+        //         'is_blueprint' => true,
+        //         'data' => [],
+        //         'category_id' => 81,
+        //     ],
+        //     [
+        //         'title' => 'Feature V11',
+        //         'property_id' => 1,
+        //         'component' => 'FeatureV11',
+        //         'group' => 'feature',
+        //         'is_blueprint' => true,
+        //         'data' => [],
+        //         'category_id' => 81,
+        //     ],
+        //     // [
+        //     //     'title' => 'Feature V7',
+        //     //     'property_id' => 1,
+        //     //     'component' => 'FeatureV7',
+        //     //     'group' => 'feature',
+        //     //     'is_blueprint' => true,
+        //     //     'data' => [],
+        //     //     'category_id' => 81,
+        //     // ],
+        //     // [
+        //     //     'title' => 'Feature V9',
+        //     //     'property_id' => 1,
+        //     //     'component' => 'FeatureV7=9',
+        //     //     'group' => 'feature',
+        //     //     'is_blueprint' => true,
+        //     //     'data' => [],
+        //     //     'category_id' => 81,
+        //     // ],
+        //     [
+        //         'title' => 'Text Columns',
+        //         'property_id' => 1,
+        //         'component' => 'TextColumns',
+        //         'group' => 'text-columns',
+        //         'is_blueprint' => true,
+        //         'data' => [],
+        //         'category_id' => 82,
+        //     ],
+        //     // [
+        //     //     'title' => 'Cards',
+        //     //     'property_id' => 1,
+        //     //     'component' => 'CardRepeater',
+        //     //     'group' => 'cards',
+        //     //     'is_blueprint' => true,
+        //     //     'data' => [],
+        //     //     'category_id' => 83,
+        //     // ],
+        //     // [
+        //     //     'title' => 'Details List',
+        //     //     'property_id' => 1,
+        //     //     'component' => 'DetailsList',
+        //     //     'group' => 'heros',
+        //     //     'is_blueprint' => true,
+        //     //     'data' => [],
+        //     //     'category_id' => 84,
+        //     // ],
+        //     // [
+        //     //     'title' => 'Steps',
+        //     //     'property_id' => 1,
+        //     //     'component' => 'Steps',
+        //     //     'group' => 'steps',
+        //     //     'is_blueprint' => true,
+        //     //     'data' => [],
+        //     //     'category_id' => 85,
+        //     // ],
+        //     [
+        //         'title' => 'Table',
+        //         'property_id' => 1,
+        //         'component' => 'AppTable',
+        //         'group' => 'table',
+        //         'is_blueprint' => true,
+        //         'data' => [],
+        //         'category_id' => 86,
+        //     ],
+        //     [
+        //         'title' => 'Testimonial',
+        //         'property_id' => 1,
+        //         'component' => 'Testimonial',
+        //         'group' => 'testimonial',
+        //         'is_blueprint' => true,
+        //         'data' => [],
+        //         'category_id' => 87,
+        //     ],
+        //     // [
+        //     //     'title' => 'Accordion',
+        //     //     'property_id' => 1,
+        //     //     'component' => 'Accordion',
+        //     //     'group' => 'accordion',
+        //     //     'is_blueprint' => true,
+        //     //     'data' => [],
+        //     //     'category_id' => 88,
+        //     // ],
+        //     // [
+        //     //     'title' => 'Gallery',
+        //     //     'property_id' => 1,
+        //     //     'component' => 'Gallery',
+        //     //     'group' => 'gallery',
+        //     //     'is_blueprint' => true,
+        //     //     'data' => [],
+        //     //     'category_id' => 89,
+        //     // ],
+        //     // [
+        //     //     'title' => 'Navbar',
+        //     //     'property_id' => 1,
+        //     //     'component' => 'Navbar',
+        //     //     'group' => 'navigation',
+        //     //     'is_blueprint' => true,
+        //     //     'data' => [],
+        //     //     'category_id' => null,
+        //     // ],
+        //     // [
+        //     //     'title' => 'Footer',
+        //     //     'property_id' => 1,
+        //     //     'component' => 'Footer',
+        //     //     'group' => 'navigation',
+        //     //     'is_blueprint' => true,
+        //     //     'data' => [],
+        //     //     'category_id' => null,
+        //     // ],
+        // ];
+        
         $blueprintBlocks = [
             [
                 'title' => 'Hero',
@@ -22,7 +178,14 @@ class BlocksSeeder extends Seeder
                 'component' => 'Hero',
                 'group' => 'hero',
                 'is_blueprint' => true,
-                'data' => [],
+                'data' => [
+                    'label' => 'Label',
+                    'title' => 'Title placeholder',
+                    'subtitle' => 'This is the subtitle placeholder',
+                    'image' => [
+                        'id' => 11
+                    ]
+                ],
                 'category_id' => 80,
             ],
             [
@@ -31,7 +194,14 @@ class BlocksSeeder extends Seeder
                 'component' => 'BoxedHero',
                 'group' => 'hero',
                 'is_blueprint' => true,
-                'data' => [],
+                'data' => [
+                    'label' => 'Label',
+                    'title' => 'Title placeholder',
+                    'subtitle' => 'This is the subtitle placeholder',
+                    'image' => [
+                        'id' => 11
+                    ]
+                ],
                 'category_id' => 80,
             ],
             [
@@ -40,7 +210,14 @@ class BlocksSeeder extends Seeder
                 'component' => 'VideoBackgroundHero',
                 'group' => 'video-background-hero',
                 'is_blueprint' => true,
-                'data' => [],
+                'data' => [
+                    'label' => 'Label',
+                    'title' => 'Title placeholder',
+                    'subtitle' => 'This is the subtitle placeholder',
+                    'image' => [
+                        'id' => 11
+                    ]
+                ],
                 'category_id' => 80,
             ],
             [
@@ -49,7 +226,14 @@ class BlocksSeeder extends Seeder
                 'component' => 'Feature',
                 'group' => 'feature',
                 'is_blueprint' => true,
-                'data' => [],
+                'data' => [
+                    'label' => 'Label',
+                    'title' => 'Title placeholder',
+                    'subtitle' => 'This is the subtitle placeholder',
+                    'image' => [
+                        'id' => 11
+                    ]
+                ],
                 'category_id' => 81,
             ],
             [
@@ -58,117 +242,63 @@ class BlocksSeeder extends Seeder
                 'component' => 'FeatureV11',
                 'group' => 'feature',
                 'is_blueprint' => true,
-                'data' => [],
+                'data' => [
+                    'label' => 'Label',
+                    'title' => 'Title placeholder',
+                    'subtitle' => 'This is the subtitle placeholder',
+                    'image' => [
+                        'id' => 11
+                    ]
+                ],
                 'category_id' => 81,
             ],
-            // [
-            //     'title' => 'Feature V7',
-            //     'property_id' => 1,
-            //     'component' => 'FeatureV7',
-            //     'group' => 'feature',
-            //     'is_blueprint' => true,
-            //     'data' => [],
-            //     'category_id' => 81,
-            // ],
-            // [
-            //     'title' => 'Feature V9',
-            //     'property_id' => 1,
-            //     'component' => 'FeatureV7=9',
-            //     'group' => 'feature',
-            //     'is_blueprint' => true,
-            //     'data' => [],
-            //     'category_id' => 81,
-            // ],
             [
                 'title' => 'Text Columns',
                 'property_id' => 1,
                 'component' => 'TextColumns',
                 'group' => 'text-columns',
                 'is_blueprint' => true,
-                'data' => [],
+                'data' => [
+                    'columns' => [
+                        [
+                            'label' => 'Label',
+                            'title' => 'Column One',
+                            'body' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sem lorem, eleifend eget eros id, vulputate.',
+                        ],
+                        [
+                            'label' => 'Label',
+                            'title' => 'Column Two',
+                            'body' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sem lorem, eleifend eget eros id, vulputate.',
+                        ]
+                    ]
+                ],
                 'category_id' => 82,
             ],
-            // [
-            //     'title' => 'Cards',
-            //     'property_id' => 1,
-            //     'component' => 'CardRepeater',
-            //     'group' => 'cards',
-            //     'is_blueprint' => true,
-            //     'data' => [],
-            //     'category_id' => 83,
-            // ],
-            // [
-            //     'title' => 'Details List',
-            //     'property_id' => 1,
-            //     'component' => 'DetailsList',
-            //     'group' => 'heros',
-            //     'is_blueprint' => true,
-            //     'data' => [],
-            //     'category_id' => 84,
-            // ],
-            // [
-            //     'title' => 'Steps',
-            //     'property_id' => 1,
-            //     'component' => 'Steps',
-            //     'group' => 'steps',
-            //     'is_blueprint' => true,
-            //     'data' => [],
-            //     'category_id' => 85,
-            // ],
             [
-                'title' => 'Table',
-                'property_id' => 1,
-                'component' => 'AppTable',
-                'group' => 'table',
-                'is_blueprint' => true,
-                'data' => [],
-                'category_id' => 86,
-            ],
-            [
-                'title' => 'Testimonial',
-                'property_id' => 1,
-                'component' => 'Testimonial',
-                'group' => 'testimonial',
-                'is_blueprint' => true,
-                'data' => [],
-                'category_id' => 87,
-            ],
-            // [
-            //     'title' => 'Accordion',
-            //     'property_id' => 1,
-            //     'component' => 'Accordion',
-            //     'group' => 'accordion',
-            //     'is_blueprint' => true,
-            //     'data' => [],
-            //     'category_id' => 88,
-            // ],
-            // [
-            //     'title' => 'Gallery',
-            //     'property_id' => 1,
-            //     'component' => 'Gallery',
-            //     'group' => 'gallery',
-            //     'is_blueprint' => true,
-            //     'data' => [],
-            //     'category_id' => 89,
-            // ],
-            // [
-            //     'title' => 'Navbar',
-            //     'property_id' => 1,
-            //     'component' => 'Navbar',
-            //     'group' => 'navigation',
-            //     'is_blueprint' => true,
-            //     'data' => [],
-            //     'category_id' => null,
-            // ],
-            // [
-            //     'title' => 'Footer',
-            //     'property_id' => 1,
-            //     'component' => 'Footer',
-            //     'group' => 'navigation',
-            //     'is_blueprint' => true,
-            //     'data' => [],
-            //     'category_id' => null,
-            // ],
+                    'title' => 'Table',
+                    'property_id' => 1,
+                    'component' => 'AppTable',
+                    'group' => 'table',
+                    'is_blueprint' => true,
+                    'data' => [],
+                    'category_id' => 86,
+                ],
+                [
+                    'title' => 'Testimonial',
+                    'property_id' => 1,
+                    'component' => 'Testimonial',
+                    'group' => 'testimonial',
+                    'is_blueprint' => true,
+                    'data' => [
+                        'testimonial' => 'The testimonial lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi atque doloremque beatae! Doloremque perspiciatis aliquid repellat quasi praesentium',
+                        'title' => 'The testimonial title',
+                        'subtitle' => 'The testimonial subtitle',
+                        'image' => [
+                            'id' => 11
+                        ]
+                    ],
+                    'category_id' => 87,
+                ],
         ];
         
         foreach ($blueprintBlocks as $seed) {
@@ -176,8 +306,8 @@ class BlocksSeeder extends Seeder
                 'title'        => $seed['title'],
                 'property_id'  => $seed['property_id'],
                 'component'    => $seed['component'],
-                // 'group'        => $seed['group'],
-                'group'        => 'hero',
+                'group'        => $seed['group'],
+                // 'group'        => 'hero',
                 'is_blueprint' => $seed['is_blueprint'],
                 'data'         => $seed['data'],
             ]);

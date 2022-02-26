@@ -2,30 +2,22 @@
 
 namespace Cms\Domain\Blocks\Data;
 
-class Feature
+use Spatie\DataTransferObject\DataTransferObject;
+
+use Cms\Domain\Blocks\Elements\Image;
+use Cms\Domain\Blocks\Elements\Button;
+
+class Feature extends DataTransferObject
 {
-
-    public static function get(array $value)
+    public static function get(?array $value)
     {
-        // Let's maybe construct everything in $value so we can set defaults for null values
-
         return [
-            'label'    => $value['label'] ?? null,
-            'title'    => $value['title'] ?? null,
-            'subtitle' => $value['subtitle'] ?? null,
-            // 'image'    => new Image($value['image']) ?? []
+            'invert'     => $value['invert'] ?? false,
+            'label'      => $value['label'] ?? '',
+            'title'      => $value['title'] ?? '',
+            'subtitle'   => $value['subtitle'] ?? '',
+            'image'      => isset($value['image']) ? Image::get($value['image']['id']) : new Image(),
+            'buttons'    => isset($value['buttons']) ? Button::collection($value['buttons']) : [],
         ];
-    }
-
-    public static function set(array $value)
-    {
-        $data = [
-            'label'    => $value['label'] ?? null,
-            'title'    => $value['title'] ?? null,
-            'subtitle' => $value['subtitle'] ?? null,
-            // 'image'    => $value['image'] ? new Image($value['image']) : null
-        ];
-
-        return json_encode($data, true);
     }
 }

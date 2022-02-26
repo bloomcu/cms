@@ -44,7 +44,7 @@ class FileController extends Controller
             'user_id' => 1,
             'type' => $request['type'],
             'name' => $request['name'],
-            'path' => $request['path'],
+            'src' => $request['src'],
             'size' => $request['size']
         ]);
 

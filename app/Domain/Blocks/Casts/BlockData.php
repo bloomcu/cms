@@ -18,11 +18,16 @@ class BlockData implements CastsAttributes
      */
     public function get($model, $key, $value, $attributes)
     {
+        // dd(json_decode($value, true));
+        // dd(json_decode($value));
+        $value = is_array($value) ? $value : json_decode($value, true);
+        // dd($value);
         return ($model->dataClass())::get(
-            json_decode($value, true)
+            $value
+            // json_decode($value)
+            // json_decode($value, true)
+            // serialize($value)
         );
-        
-        // return new $model->dataClass();
     }
 
     /**
@@ -36,12 +41,17 @@ class BlockData implements CastsAttributes
      */
     public function set($model, $key, $value, $attributes)
     {
+        // dd($value);
+        $value = !is_array($value) ? $value : json_encode($value);
+        
         // $value = is_array($value) ? $value : json_decode($value, true);
-        // 
+        
         // return ($model->dataClass())::set(
         //     $value
         // );
-        
+        // dd($value);
         return $value;
+        // dd($value);
+        // return json_encode($value);
     }
 }

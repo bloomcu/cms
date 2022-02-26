@@ -8,7 +8,9 @@ use Cms\Domain\Posts\Post;
 
 class Button extends DataTransferObject
 {
+    public ?string $type = 'internal';
     public ?int    $post_id = null;
+    public ?string $post_url = '';
     public ?string $variant = 'primary';
     public ?string $text = 'Button';
     public ?string $href = '';
@@ -19,21 +21,41 @@ class Button extends DataTransferObject
     public static function get(array $button)
     {
         // $post = Post::find($post_id);
+        // return new static([
+        //     ...$button,
+        //     'text' => 'Override the text',
+        // ]);
+        
+        if (isset($button['post_id'])) {
+            $post = Post::find($button['post_id']);
+            $button['post_url'] = $post->url;
+        }
         
         return new static(
-            post_id: $button->post_id,
-            variant: $button->variant,
-            text:    $button->text,
-            href:    $button->href,
-            size:    $button->size,
-            trigger: $button->trigger,
-            target:  $button->target,
+            $button
+            
+            // post_id:  $button['post_id'] ?? null,
+            // post_url: $button['post_url'] ?? '',
+            // variant:  $button['variant'] ?? 'primary',
+            // text:     $button['text'] ?? 'Button',
+            // href:     $button['href'] ?? '',
+            // size:     $button['size'] ?? '',
+            // trigger:  $button['trigger'] ?? '',
+            // target:   $button['target'] ?? '',
         );
+    }
+    
+    public static function collection(array $buttons)
+    {
+        return collect($buttons)->map(function($button) {
+            // return new self($button);
+            return self::get($button);
+        });
     }
     
     // public static function get(array $value)
     // {
-    //     // $file = File::find($file_id);
+    //     // $post = Post::find($id);
     // 
     //     return [
     //         'variant' => $value['variant'] ?? 'primary',
@@ -45,13 +67,6 @@ class Button extends DataTransferObject
     //         'target'  => $value['target']  ?? '',
     //     ];
     // }
-    
-    public static function collection(array $buttons)
-    {
-        return collect($buttons)->map(function($button) {
-            return new self($button);
-        });
-    }
 
     // public static function set(array $value)
     // {

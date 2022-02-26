@@ -76,6 +76,7 @@ class PostController extends Controller
         // TODO: Remove once posts and blocks are updated via their own endpoints from the admin ui
         if ($request['blocks']) {
             foreach($request['blocks'] as $key => $block) {
+                
                 $b = Block::firstOrNew(['uuid' => $block['uuid']], $block);
                 
                 $b->property_id = $property->id;

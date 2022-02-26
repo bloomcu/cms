@@ -15,10 +15,10 @@ class FileResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'uuid' => $this->uuid,
+            'id' => $this->id,
             'type' => $this->type,
             'name' => $this->name,
-            'path' => $this->path,
+            'src' => $this->src,
 
             // TODO: Make a "Size" value object class for this.
             'size' => round($this->size / 125000, 2) . ' MB'
