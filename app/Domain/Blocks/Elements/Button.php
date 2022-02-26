@@ -10,7 +10,7 @@ class Button extends DataTransferObject
 {
     public ?string $type = 'internal';
     public ?int    $post_id = null;
-    public ?string $post_url = '';
+    // public ?string $post_url = '';
     public ?string $variant = 'primary';
     public ?string $text = 'Button';
     public ?string $href = '';
@@ -26,9 +26,18 @@ class Button extends DataTransferObject
         //     'text' => 'Override the text',
         // ]);
         
-        if (isset($button['post_id'])) {
+        if ($button['type'] == 'internal') {
             $post = Post::find($button['post_id']);
-            $button['post_url'] = $post->url;
+            // $button['post_url'] = $post->url;
+            $button['href'] = $post->url;
+        }
+        
+        if ($button['type'] == 'external') {
+            $url = parse_url($button['href']);
+
+            if (!isset($url['scheme'])) {
+                $button['href'] = 'https://' . parse_url($button['href'])['path'];
+            }
         }
         
         return new static(
