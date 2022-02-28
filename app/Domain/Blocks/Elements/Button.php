@@ -26,13 +26,13 @@ class Button extends DataTransferObject
         //     'text' => 'Override the text',
         // ]);
         
-        if ($button['type'] == 'internal') {
+        if ($button['type'] == 'internal' && $button['post_id']) {
             $post = Post::find($button['post_id']);
             // $button['post_url'] = $post->url;
             $button['href'] = $post->url;
         }
         
-        if ($button['type'] == 'external') {
+        if ($button['type'] == 'external' && $button['href']) {
             $url = parse_url($button['href']);
 
             if (!isset($url['scheme'])) {

@@ -4,6 +4,7 @@ namespace Cms\Domain\Blocks\Data;
 
 use Spatie\DataTransferObject\DataTransferObject;
 
+use Cms\Domain\Blocks\Utilities\BlockConfig;
 use Cms\Domain\Blocks\Elements\Image;
 
 class Testimonial extends DataTransferObject
@@ -15,6 +16,7 @@ class Testimonial extends DataTransferObject
             'title'       => $value['title'] ?? '',
             'subtitle'    => $value['subtitle'] ?? '',
             'image'       => isset($value['image']) ? Image::get($value['image']['id']) : new Image(),
+            'config'      => isset($value['config']) ? BlockConfig::get($value['config']) : new BlockConfig(),
         ];
     }
 }
