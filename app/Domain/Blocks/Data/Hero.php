@@ -23,6 +23,10 @@ class Hero extends DataTransferObject
             'config'     => isset($value['config']) ? BlockConfig::get($value['config']) : BlockConfig::get([
                 'headingLevel' => '1',
                 'headingSize' => 'xxxl',
+                'paddingTop' => 'xxl',
+                'paddingBottom' => 'xxl',
+                'marginTop' => 'none',
+                'marginBottom' => 'none',
             ]),
         ];
     }

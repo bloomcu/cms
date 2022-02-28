@@ -24,7 +24,11 @@ class VideoBackgroundHero extends DataTransferObject
             'buttons'    => isset($value['buttons']) ? Button::collection($value['buttons']) : [ new Button() ],
             'config'     => isset($value['config']) ? BlockConfig::get($value['config']) : BlockConfig::get([
                 'headingLevel' => '1',
-                'headingSize' => 'xxl',
+                'headingSize' => 'xxxl',
+                'paddingTop' => 'xxl',
+                'paddingBottom' => 'xxl',
+                'marginTop' => 'none',
+                'marginBottom' => 'none',
             ]),
         ];
     }

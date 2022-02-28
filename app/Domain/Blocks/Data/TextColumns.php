@@ -18,6 +18,10 @@ class TextColumns extends DataTransferObject
             'config'  => isset($value['config']) ? BlockConfig::get($value['config']) : BlockConfig::get([
                 'headingLevel' => '2',
                 'headingSize' => 'xl',
+                'paddingTop' => 'xxl',
+                'paddingBottom' => 'xxl',
+                'marginTop' => 'none',
+                'marginBottom' => 'none',
             ]),
         ];
     }

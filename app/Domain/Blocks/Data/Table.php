@@ -21,7 +21,12 @@ class Table extends DataTransferObject
                 ['Used Car (6-7 years old)', '36 Months', '2.74%'],
                 ['Used Car (8+ years old)', '36 Months', '3.74%'],
             ],
-            'config' => isset($value['config']) ? BlockConfig::get($value['config']) : new BlockConfig(),
+            'config' => isset($value['config']) ? BlockConfig::get($value['config']) : new BlockConfig([
+                'paddingTop' => 'xxl',
+                'paddingBottom' => 'xxl',
+                'marginTop' => 'none',
+                'marginBottom' => 'none',
+            ]),
         ];
     }
 }
