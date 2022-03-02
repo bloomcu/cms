@@ -20,7 +20,7 @@ class VideoBackgroundHero extends DataTransferObject
             'title'      => $value['title'] ?? '',
             'subtitle'   => $value['subtitle'] ?? '',
             'video'      => isset($value['video']) ? Video::get($value['video']['id']) : new Video(),
-            'image'      => isset($value['image']) ? Image::get($value['image']['id']) : new Image(),
+            'image'      => isset($value['image']) ? Image::get($value['image']) : new Image(),
             'buttons'    => isset($value['buttons']) ? Button::collection($value['buttons']) : [ new Button() ],
             'config'     => isset($value['config']) ? BlockConfig::get($value['config']) : BlockConfig::get([
                 'headingLevel' => '1',

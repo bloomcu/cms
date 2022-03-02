@@ -17,7 +17,7 @@ class Feature extends DataTransferObject
             'label'    => $value['label'] ?? '',
             'title'    => $value['title'] ?? '',
             'subtitle' => $value['subtitle'] ?? '',
-            'image'    => isset($value['image']) ? Image::get($value['image']['id']) : new Image(),
+            'image'    => isset($value['image']) ? Image::get($value['image']) : new Image(),
             'buttons'  => isset($value['buttons']) ? Button::collection($value['buttons']) : [ new Button() ],
             'config'   => isset($value['config']) ? BlockConfig::get($value['config']) : BlockConfig::get([
                 'headingLevel' => '2',

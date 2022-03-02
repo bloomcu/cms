@@ -183,7 +183,7 @@ class BlocksSeeder extends Seeder
                     'title' => 'Title placeholder',
                     'subtitle' => 'This is the subtitle placeholder',
                     'image' => [
-                        'id' => 11
+                        'file_id' => 11
                     ]
                 ],
                 'category_id' => 80,
@@ -199,7 +199,7 @@ class BlocksSeeder extends Seeder
                     'title' => 'Title placeholder',
                     'subtitle' => 'This is the subtitle placeholder',
                     'image' => [
-                        'id' => 11
+                        'file_id' => 11
                     ]
                 ],
                 'category_id' => 80,
@@ -215,7 +215,7 @@ class BlocksSeeder extends Seeder
                     'title' => 'Title placeholder',
                     'subtitle' => 'This is the subtitle placeholder',
                     'image' => [
-                        'id' => 11
+                        'file_id' => 11
                     ]
                 ],
                 'category_id' => 80,
@@ -231,7 +231,7 @@ class BlocksSeeder extends Seeder
                     'title' => 'Title placeholder',
                     'subtitle' => 'This is the subtitle placeholder',
                     'image' => [
-                        'id' => 11
+                        'file_id' => 11
                     ]
                 ],
                 'category_id' => 81,
@@ -247,7 +247,7 @@ class BlocksSeeder extends Seeder
                     'title' => 'Title placeholder',
                     'subtitle' => 'This is the subtitle placeholder',
                     'image' => [
-                        'id' => 11
+                        'file_id' => 11
                     ]
                 ],
                 'category_id' => 81,
@@ -294,7 +294,7 @@ class BlocksSeeder extends Seeder
                         'title' => 'The testimonial title',
                         'subtitle' => 'The testimonial subtitle',
                         'image' => [
-                            'id' => 11
+                            'file_id' => 11
                         ]
                     ],
                     'category_id' => 87,

@@ -8,24 +8,28 @@ use Cms\Domain\Files\File;
 
 class Image extends DataTransferObject
 {       
-    public ?int $id = null;
+    public ?int $file_id = null;
     public ?string $name = '';
     public ?string $src = '';
     public ?string $alt = '';
     
-    public static function get(?int $id)
+    public static function get(?array $image)
     {
-        if ($id) {
-            $file = File::find($id);
-
-            return new static(
-                id:    $file->id,
-                name:  $file->name,
-                src:   $file->src,
-            );
-        } else {
+        if ($image) {
+            $file = File::find($image['file_id']);
+            
+            if ($file) {
+                return new static(
+                    file_id:   $file->id,
+                    name: $file->name,
+                    src:  $file->src,
+                );
+            }
+            
             return new static;
         }
+        
+        return new static;
     }
 
     // public static function set(array $value)
