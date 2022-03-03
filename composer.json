@@ -12,6 +12,7 @@
         "algolia/algoliasearch-client-php": "^3.2",
         "aws/aws-sdk-php": "^3.188",
         "calebporzio/parental": "^1.0",
+        "doctrine/dbal": "^3.3",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",

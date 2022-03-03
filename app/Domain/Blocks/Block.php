@@ -59,7 +59,6 @@ class Block extends Model
     
     public function dataClass()
     {
-        // TODO: Rename 'component' attribute to 'block'
         return 'Cms\\Domain\\Blocks\\Data\\' . Str::studly($this['group']);
     }
 

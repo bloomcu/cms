@@ -9,11 +9,18 @@ use Illuminate\Database\Eloquent\Builder;
 // Vendors
 use Kalnoy\Nestedset\NodeTrait;
 
+// Cast
+use Cms\Domain\Menus\Casts\MenuItemData;
+
 class Menu extends Model
 {
     use HasFactory, NodeTrait;
 
     protected $guarded = ['id'];
+    
+    protected $casts = [
+        'data' => MenuItemData::class
+    ];
 
     public function property()
     {
