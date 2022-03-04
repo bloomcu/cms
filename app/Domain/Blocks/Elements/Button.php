@@ -8,7 +8,7 @@ use Cms\Domain\Posts\Post;
 
 class Button extends DataTransferObject
 {
-    public string $type = 'internal';
+    public string  $type = 'internal';
     public ?int    $post_id = null;
     public ?string $href = '';
     public ?string $variant = 'primary';
@@ -21,7 +21,7 @@ class Button extends DataTransferObject
     {
         if ($button) {
             if ($button['type'] == 'internal' && $button['post_id']) {
-                $post = Post::find($button['post_id']);
+                $post = Post::published()->where('draft_id', $button['post_id'])->first();
                 $button['href'] = $post->url;
             }
             

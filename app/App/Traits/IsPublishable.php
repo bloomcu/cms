@@ -27,15 +27,6 @@ trait IsPublishable {
     }
     
     /**
-     * Scope a query to only include published models.
-     *
-     */
-    public function scopePublished(Builder $builder)
-    {
-        $builder->withoutGlobalScopes()->whereNotNull('published_at');
-    }
-    
-    /**
      * Published descendents of model.
      *
      */
@@ -45,16 +36,34 @@ trait IsPublishable {
     }
     
     /**
-     * Has model been published.
+     * Scope a query to only include published models.
      *
      */
-    public function hasBeenPublished(): bool
+    public function scopePublished(Builder $builder)
+    {
+        $builder->withoutGlobalScopes()->whereNotNull('published_at');
+    }
+    
+    /**
+     * Scope a query to only include drafted models.
+     *
+     */
+    public function scopeDrafted(Builder $builder)
+    {
+        $builder->withoutGlobalScopes()->whereNotNull('drafted_at');
+    }
+    
+    /**
+     * Does draft model have a published decendent.
+     *
+     */
+    public function wasPublished(): bool
     {
         return $this->descendents()->whereNotNull('published_at')->exists();
     }
     
     /**
-     * Does model have unpublished changes.
+     * Does draft model have unpublished changes.
      */
     public function hasUnpublishedChanges(): bool
     {

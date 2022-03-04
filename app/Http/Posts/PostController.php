@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 // Vendors
 use Spatie\QueryBuilder\QueryBuilder;
+use Spatie\QueryBuilder\AllowedFilter;
 
 // Domains
 use Cms\Domain\Organizations\Organization;
@@ -31,6 +32,8 @@ class PostController extends Controller
         $posts = QueryBuilder::for(Post::class)
             ->where('property_id', $property->id)
             ->allowedFilters([
+                AllowedFilter::scope('drafted'),
+                AllowedFilter::scope('published'),
                 'type',
                 'is_blueprint',
                 'categories.id',

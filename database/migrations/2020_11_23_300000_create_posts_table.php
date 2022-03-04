@@ -21,12 +21,8 @@ class CreatePostsTable extends Migration
             // Relations
             $table->foreignId('property_id');
             
-            // Draftable
+            // Draft parent
             $table->foreignId('draft_id')->nullable();
-            $table->timestamp('drafted_at')->nullable();
-            
-            // Publishable
-            $table->timestamp('published_at')->nullable();
             
             // URL
             $table->string('path')->nullable();
@@ -40,6 +36,8 @@ class CreatePostsTable extends Migration
             $table->json('meta')->nullable();
             
             // Timestamps
+            $table->timestamp('drafted_at')->nullable();
+            $table->timestamp('published_at')->nullable();
             $table->timestamps();
             
             // Indexes

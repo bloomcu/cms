@@ -21,8 +21,6 @@ class PostResource extends JsonResource
             'id' => $this->id,
             'type' => $this->type,
             'title' => $this->title,
-            'published' => $this->hasBeenPublished(),
-            'has_changes' => $this->hasUnpublishedChanges(),
             'path' => $this->path,
             'slug' => $this->slug,
             'url' => $this->url,
@@ -34,6 +32,9 @@ class PostResource extends JsonResource
                 'description' => $this->meta['description'] ?? '',
                 'image' => $this->meta['image'] ?? ''
             ],
+            'drafted_at' => $this->drafted_at,
+            'has_changes' => $this->hasUnpublishedChanges(),
+            'was_published' => $this->wasPublished(),
         ];
     }
 }
