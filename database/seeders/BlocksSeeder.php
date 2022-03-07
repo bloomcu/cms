@@ -280,7 +280,11 @@ class BlocksSeeder extends Seeder
                     'component' => 'AppTable',
                     'group' => 'table',
                     'is_blueprint' => true,
-                    'data' => [],
+                    'data' => [
+                        'label' => 'Label',
+                        'title' => 'Title placeholder',
+                        'subtitle' => 'This is the subtitle placeholder',
+                    ],
                     'category_id' => 86,
                 ],
                 [
