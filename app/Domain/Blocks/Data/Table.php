@@ -11,6 +11,8 @@ class Table extends DataTransferObject
     public static function get(?array $value)
     {
         return [
+            'align'    => $value['align'] ?? 'left',
+            'label'    => $value['label'] ?? '',
             'title'    => $value['title'] ?? '',
             'subtitle' => $value['subtitle'] ?? '',
             'columns'  => $value['columns'] ?? [
