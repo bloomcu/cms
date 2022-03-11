@@ -57,6 +57,15 @@ trait IsPublishable {
      * Does draft model have a published decendent.
      *
      */
+    public function isPublished(): bool
+    {
+        return $this->published_at !== null;
+    }
+    
+    /**
+     * Does draft model have a published decendent.
+     *
+     */
     public function wasPublished(): bool
     {
         return $this->descendents()->whereNotNull('published_at')->exists();
@@ -75,12 +84,17 @@ trait IsPublishable {
      */
     public function publish()
     {
+        // dd($this->descendents()->get());
         $this->update([
             'drafted_at' => now(),
         ]);
         
         // TODO: Rather then delete, we could make set a 'revised_at' column
-        $this->descendents()->delete();
+        $decendents = $this->descendents()->get();
+        
+        foreach ($decendents as $decendent) {
+            $decendent->delete();    
+        }
         
         ReplicatePostAction::execute($this, [
             'draft_id'   => $this->id,

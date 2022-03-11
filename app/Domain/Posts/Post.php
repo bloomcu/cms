@@ -62,19 +62,24 @@ class Post extends Model
         );
     }
     
+    public function shouldBeSearchable()
+    {
+        return $this->isPublished();
+    }
+    
     /**
      * Get the indexable data array for the model.
      *
      * @return array
      */
     public function toSearchableArray()
-    {
+    {        
         $array = $this->toArray();
-        
+    
         $array['blocks'] = isset($this->blocks) ? $this->blocks->toArray() : [];
-        
+    
         unset($array['updated_at']);
-
+    
         return $array;
     }
 
