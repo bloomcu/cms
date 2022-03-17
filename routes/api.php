@@ -3,39 +3,11 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Public Routes
-|--------------------------------------------------------------------------
-|
-| Here is public routes live.
-|
-*/
-
 // Public: Posts
 use Cms\Http\PublicApi\PublicPostController;
 
 // Public: Globals
 use Cms\Http\PublicApi\PublicGlobalsController;
-
-// Public: Posts
-Route::prefix('public/{property:id}')->group(function () {
-    Route::get('/posts', [PublicPostController::class, 'show']);
-});
-
-// Public: Globals
-Route::prefix('public/{property:id}')->group(function () {
-    Route::get('/globals', [PublicGlobalsController::class, 'show']);
-});
-
-/*
-|--------------------------------------------------------------------------
-| Admin Routes
-|--------------------------------------------------------------------------
-|
-| Here is where admin routes live. You must have an admin role to access.
-|
-*/
 
 // Auth
 use Cms\Http\Auth\AuthController;
@@ -69,6 +41,15 @@ use Cms\Http\Globals\GlobalsController;
 // Admin: Categories
 use Cms\Http\Categories\CategoryController;
 
+/*
+|--------------------------------------------------------------------------
+| Admin Routes
+|--------------------------------------------------------------------------
+|
+| Here is where admin routes live. You must have an admin role to access.
+|
+*/
+
 // TODO: Unwrap all resource controllers
 
 // TODO: Use route groups with prefixes to clean these up
@@ -81,11 +62,11 @@ use Cms\Http\Categories\CategoryController;
 // TODO: Move these organization endpoints to a "super" namespace
 // only to be used by super admins.
 
-// Route::middleware('auth:sanctum')->group(function () {
+Route::middleware('auth:sanctum')->group(function () {
     // Auth
     Route::prefix('{organization}/auth')->group(function () {
-        Route::get('/user', [AuthController::class, 'user']);
-        Route::post('/token', [AuthController::class, 'token']);
+        Route::post('/logout', [AuthController::class, 'logout']);
+        Route::get('/me', [AuthController::class, 'me']);
     });
 
     // Admin: Organizations
@@ -174,4 +155,27 @@ use Cms\Http\Categories\CategoryController;
         Route::put('/categories/{category}',    [CategoryController::class, 'update']);
         Route::delete('/categories/{category}', [CategoryController::class, 'destroy']);
     });
-// });
+});
+
+/*
+|--------------------------------------------------------------------------
+| Public Routes
+|--------------------------------------------------------------------------
+|
+| Here is public routes live.
+|
+*/
+
+// Public: Auth
+Route::post('/auth/register', [AuthController::class, 'register']);
+Route::post('/auth/login',    [AuthController::class, 'login']);
+
+// Public: Posts
+Route::prefix('public/{property:id}')->group(function () {
+    Route::get('/posts', [PublicPostController::class, 'show']);
+});
+
+// Public: Globals
+Route::prefix('public/{property:id}')->group(function () {
+    Route::get('/globals', [PublicGlobalsController::class, 'show']);
+});

@@ -16,29 +16,66 @@ use Cms\Http\Users\Resources\UserResource;
 
 class AuthController extends Controller
 {
-    public function user()
+    public function register(Request $request)
     {
-        return new UserResource(Auth::user());
-    }
-    
-    public function token(Request $request)
-    {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-            'device_name' => 'required',
+        $attr = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|unique:users,email',
+            'password' => 'required|string|min:6|confirmed'
         ]);
-        
-        $user = User::where('email', $request->email)->first();
 
-        if (!$user || !Hash::check($request->password, $user->password)) {
-            throw ValidationException::withMessages([
-                'email' => ['The provided credentials are incorrect.'],
-            ]);
+        $user = User::create([
+            'name' => $attr['name'],
+            'email' => $attr['email'],
+            'password' => bcrypt($attr['password']),
+        ]);
+
+        return response()->json([
+            'status' => 'Success',
+            'message' => 'Registration successful',
+            'data' => [
+                'token_type' => 'Bearer',
+                'access_token' => $user->createToken('access_token')->plainTextToken
+            ]
+        ], 200);
+    }
+
+    public function login(Request $request)
+    {
+        $attr = $request->validate([
+            'email' => 'required|string|email|',
+            'password' => 'required|string|min:6'
+        ]);
+
+        if (!Auth::attempt($attr)) {
+            return response()->json([
+                'status' => 'Unauthorized',
+                'message' => 'Credentials do not match'
+            ], 401);
         }
 
-        $token = $user->createToken($request->device_name)->plainTextToken;
+        return response()->json([
+            'status' => 'Success',
+            'message' => 'Login successful',
+            'data' => [
+                'token_type' => 'Bearer',
+                'token' => auth()->user()->createToken('auth_token')->plainTextToken
+            ]
+        ], 200);
+    }
 
-        return response()->json(['token' => $token], 200);
+    public function logout()
+    {
+        auth()->user()->tokens()->delete();
+
+        return response()->json([
+            'status' => 'Success',
+            'message' => 'Tokens Revoked'
+        ], 200);
+    }
+    
+    public function me()
+    {
+        return new UserResource(Auth::user());
     }
 }
