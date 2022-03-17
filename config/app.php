@@ -185,6 +185,7 @@ return [
         // Cms\App\Providers\BroadcastServiceProvider::class,
         Cms\App\Providers\EventServiceProvider::class,
         Cms\App\Providers\RouteServiceProvider::class,
+        Cms\App\Providers\FortifyServiceProvider::class,
 
     ],
 
