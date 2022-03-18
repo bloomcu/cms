@@ -64,7 +64,7 @@ use Cms\Http\Categories\CategoryController;
 
 Route::middleware('auth:sanctum')->group(function () {
     // Auth
-    Route::prefix('{organization}/auth')->group(function () {
+    Route::prefix('/auth')->group(function () {
         Route::post('/logout', [AuthController::class, 'logout']);
         Route::get('/me', [AuthController::class, 'me']);
     });
