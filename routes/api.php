@@ -3,17 +3,64 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-// Public: Posts
-use Cms\Http\PublicApi\PublicPostController;
+// TODO: When a route model binding is not found (e.g., organization in property > posts)
+// we need to return a helpful error, rather than a generic 404
 
-// Public: Globals
-use Cms\Http\PublicApi\PublicGlobalsController;
+/*
+|--------------------------------------------------------------------------
+| Auth Routes
+|--------------------------------------------------------------------------
+|
+| Here is where public auth routes live.
+|
+*/
 
 // Auth
 use Cms\Http\Auth\AuthController;
 
-// Admin: Organizations
+// Public: Auth
+Route::prefix('/auth')->group(function () {
+    Route::post('/register', [AuthController::class, 'register']);
+    Route::post('/login',    [AuthController::class, 'login']);
+});
+
+// Private: Auth
+Route::middleware('auth:sanctum')->group(function () {
+    Route::prefix('/auth')->group(function () {
+        Route::post('/logout', [AuthController::class, 'logout']);
+        Route::get('/me',      [AuthController::class, 'me']);
+    });
+});
+
+/*
+|--------------------------------------------------------------------------
+| Super Admin Routes
+|--------------------------------------------------------------------------
+|
+| Here is where super admin routes live. You must have a super admin role to access.
+|
+*/
+
+// Super Admin: Organizations
 use Cms\Http\Organizations\OrganizationController;
+
+Route::middleware(['auth:sanctum', 'scopes:super'])->group(function () {
+    // Super Admin: Organizations
+    Route::get('organizations',                   [OrganizationController::class, 'index']);
+    Route::post('organizations',                  [OrganizationController::class, 'store']);
+    Route::get('organizations/{organization}',    [OrganizationController::class, 'show']);
+    Route::put('organizations/{organization}',    [OrganizationController::class, 'update']);
+    Route::delete('organizations/{organization}', [OrganizationController::class, 'destroy']);
+});
+
+/*
+|--------------------------------------------------------------------------
+| Admin Routes
+|--------------------------------------------------------------------------
+|
+| Here is where admin routes live. You must have an admin role to access.
+|
+*/
 
 // Admin: Properties
 use Cms\Http\Properties\PropertyController;
@@ -41,41 +88,7 @@ use Cms\Http\Globals\GlobalsController;
 // Admin: Categories
 use Cms\Http\Categories\CategoryController;
 
-/*
-|--------------------------------------------------------------------------
-| Admin Routes
-|--------------------------------------------------------------------------
-|
-| Here is where admin routes live. You must have an admin role to access.
-|
-*/
-
-// TODO: Unwrap all resource controllers
-
-// TODO: Use route groups with prefixes to clean these up
-// E.g., Route::prefix('organizations/{organization}')->group(function () {});
-// https://laravel.com/docs/8.x/routing#route-groups
-
-// TODO: When a route model binding is not found (e.g., organization in property > posts)
-// we need to return a helpful error, rather than a generic 404
-
-// TODO: Move these organization endpoints to a "super" namespace
-// only to be used by super admins.
-
 Route::middleware('auth:sanctum')->group(function () {
-    // Auth
-    Route::prefix('/auth')->group(function () {
-        Route::post('/logout', [AuthController::class, 'logout']);
-        Route::get('/me', [AuthController::class, 'me']);
-    });
-
-    // Admin: Organizations
-    Route::get('organizations',                   [OrganizationController::class, 'index']);
-    Route::post('organizations',                  [OrganizationController::class, 'store']);
-    Route::get('organizations/{organization}',    [OrganizationController::class, 'show']);
-    Route::put('organizations/{organization}',    [OrganizationController::class, 'update']);
-    Route::delete('organizations/{organization}', [OrganizationController::class, 'destroy']);
-
     // Admin: Properties
     Route::prefix('{organization}')->group(function () {
         Route::get('/properties',               [PropertyController::class, 'index']);
@@ -159,23 +172,23 @@ Route::middleware('auth:sanctum')->group(function () {
 
 /*
 |--------------------------------------------------------------------------
-| Public Routes
+| Public Client Routes
 |--------------------------------------------------------------------------
 |
 | Here is public routes live.
 |
 */
 
-// Public: Auth
-Route::post('/auth/register', [AuthController::class, 'register']);
-Route::post('/auth/login',    [AuthController::class, 'login']);
+// Public Client: Posts
+use Cms\Http\PublicApi\PublicPostController;
 
-// Public: Posts
+// Public Client: Globals
+use Cms\Http\PublicApi\PublicGlobalsController;
+
 Route::prefix('public/{property:id}')->group(function () {
+    // Public: Posts
     Route::get('/posts', [PublicPostController::class, 'show']);
-});
-
-// Public: Globals
-Route::prefix('public/{property:id}')->group(function () {
+    
+    // Public: Globals
     Route::get('/globals', [PublicGlobalsController::class, 'show']);
 });
