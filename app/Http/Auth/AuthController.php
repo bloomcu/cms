@@ -38,7 +38,7 @@ class AuthController extends Controller
             'data' => [
                 'token_type' => 'Bearer',
                 'access_token' => $token,
-                'user' => $user,
+                'user' => new UserResource($user)
             ]
         ], 200);
     }
@@ -60,7 +60,7 @@ class AuthController extends Controller
             'data' => [
                 'token_type' => 'Bearer',
                 'access_token' => $token,
-                'user' => auth()->user(),
+                'user' =>  new UserResource(auth()->user()),
             ]
         ], 200);
     }
@@ -77,6 +77,6 @@ class AuthController extends Controller
     
     public function me()
     {
-        return new UserResource(Auth::user());
+        return new UserResource(auth()->user());
     }
 }
