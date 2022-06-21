@@ -33,8 +33,7 @@ class AuthController extends Controller
         $token = $user->createToken('access_token')->plainTextToken;
 
         return response()->json([
-            'status' => 'Success',
-            'message' => 'Registration successful',
+            'message' => ['Registration successful'],
             'data' => [
                 'token_type' => 'Bearer',
                 'access_token' => $token,
@@ -47,16 +46,16 @@ class AuthController extends Controller
     {
         if (!Auth::attempt($request->validated())) {
             return response()->json([
-                'status' => 'Unauthorized',
-                'message' => 'Credentials do not match'
+                'message' => ['Credentials do not match']
             ], 401);
         }
+        
+        auth()->user()->tokens()->delete();
         
         $token = auth()->user()->createToken('auth_token')->plainTextToken;
 
         return response()->json([
-            'status' => 'Success',
-            'message' => 'Login successful',
+            'message' => ['Login successful'],
             'data' => [
                 'token_type' => 'Bearer',
                 'access_token' => $token,
@@ -70,8 +69,7 @@ class AuthController extends Controller
         auth()->user()->tokens()->delete();
 
         return response()->json([
-            'status' => 'Success',
-            'message' => 'Tokens Revoked'
+            'message' => ['Tokens Revoked']
         ], 200);
     }
     
