@@ -3,30 +3,57 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+// TODO: When a route model binding is not found (e.g., organization in property > posts)
+// we need to return a helpful error, rather than a generic 404
+
 /*
 |--------------------------------------------------------------------------
-| Public Routes
+| Auth Routes
 |--------------------------------------------------------------------------
 |
-| Here is public routes live.
+| Here is where public auth routes live.
 |
 */
 
-// Public: Posts
-use Cms\Http\PublicApi\PublicPostController;
+// Auth
+use Cms\Http\Auth\AuthController;
 
-// Public: Globals
-use Cms\Http\PublicApi\PublicGlobalsController;
-
-// Public: Posts
-Route::prefix('public/{property:id}')->group(function () {
-    Route::get('/posts', [PublicPostController::class, 'show']);
+// Public: Auth
+Route::prefix('/auth')->group(function () {
+    Route::post('/register', [AuthController::class, 'register']);
+    Route::post('/login',    [AuthController::class, 'login']);
 });
 
-// Public: Globals
-Route::prefix('public/{property:id}')->group(function () {
-    Route::get('/globals', [PublicGlobalsController::class, 'show']);
-});
+// Private: Auth
+// Route::middleware('auth:sanctum')->group(function () {
+    Route::prefix('/auth')->group(function () {
+        Route::post('/logout', [AuthController::class, 'logout']);
+        Route::get('/me',      [AuthController::class, 'me']);
+    });
+// });
+
+/*
+|--------------------------------------------------------------------------
+| Super Admin Routes
+|--------------------------------------------------------------------------
+|
+| Here is where super admin routes live. You must have a super admin role to access.
+|
+*/
+
+// Super Admin: Organizations
+use Cms\Http\Organizations\OrganizationController;
+
+// Route::middleware(['auth:sanctum', 'scopes:super'])->group(function () {
+// Route::middleware(['auth:sanctum'])->group(function () {
+// Route::middleware('')->group(function () {
+    // Super Admin: Organizations
+    Route::get('organizations',                   [OrganizationController::class, 'index']);
+    Route::post('organizations',                  [OrganizationController::class, 'store']);
+    Route::get('organizations/{organization}',    [OrganizationController::class, 'show']);
+    Route::put('organizations/{organization}',    [OrganizationController::class, 'update']);
+    Route::delete('organizations/{organization}', [OrganizationController::class, 'destroy']);
+// });
 
 /*
 |--------------------------------------------------------------------------
@@ -36,9 +63,6 @@ Route::prefix('public/{property:id}')->group(function () {
 | Here is where admin routes live. You must have an admin role to access.
 |
 */
-
-// Admin: Organizations
-use Cms\Http\Organizations\OrganizationController;
 
 // Admin: Properties
 use Cms\Http\Properties\PropertyController;
@@ -66,101 +90,108 @@ use Cms\Http\Globals\GlobalsController;
 // Admin: Categories
 use Cms\Http\Categories\CategoryController;
 
-// TODO: Unwrap all resource controllers
+// Route::middleware('auth:sanctum')->group(function () {
+// Route::middleware('')->group(function () {
+    // Admin: Properties
+    Route::prefix('{organization}')->group(function () {
+        Route::get('/properties',               [PropertyController::class, 'index']);
+        Route::post('/properties',              [PropertyController::class, 'store']);
+        Route::get('/properties/{property}',    [PropertyController::class, 'show']);
+        Route::put('/properties/{property}',    [PropertyController::class, 'update']);
+        Route::delete('/properties/{property}', [PropertyController::class, 'destroy']);
+    });
 
-// TODO: Use route groups with prefixes to clean these up
-// E.g., Route::prefix('organizations/{organization}')->group(function () {});
-// https://laravel.com/docs/8.x/routing#route-groups
+    // Admin: Posts
+    Route::prefix('{organization}/{property}')->group(function () {
+        Route::get('/posts',           [PostController::class, 'index']);
+        Route::post('/posts',          [PostController::class, 'store']);
+        Route::get('/posts/{post}',    [PostController::class, 'show']);
+        Route::put('/posts/{post}',    [PostController::class, 'update']);
+        Route::delete('/posts/{post}', [PostController::class, 'destroy']);
+        
+        // Posts Replicate
+        // TODO: Rename this "duplicate" and use store method?
+        Route::post('/posts/{post}/replicate', [PostReplicateController::class, 'replicate']);
+        
+        // Posts Publish
+        Route::put('/posts/{post}/publish', [PostPublishController::class, 'publish']);
+        Route::put('/posts/{post}/unpublish', [PostPublishController::class, 'unpublish']);
+        
+        // Posts Slug
+        Route::get('/post/check-slug', [PostSlugController::class, 'check']);
+    });
 
-// TODO: When a route model binding is not found (e.g., organization in property > posts)
-// we need to return a helpful error, rather than a generic 404
+    // Admin: Blocks
+    Route::prefix('{organization}/{property}')->group(function () {
+        Route::get('/blocks',            [BlockController::class, 'index']);
+        Route::post('/blocks',           [BlockController::class, 'store']);
+        Route::get('/blocks/{block}',    [BlockController::class, 'show']);
+        Route::put('/blocks/{block}',    [BlockController::class, 'update']);
+        Route::delete('/blocks/{block}', [BlockController::class, 'destroy']);
+        
+        // Blocks - Reorder
+        // TODO: This should be scoped to the post these blocks belong to.
+        // It's not safe that I can pass any collection of blocks from different posts.
+        Route::post('/blocks/reorder', [BlockReorderController::class, 'reorder']);
+    });
 
-// TODO: Move these organization endpoints to a "super" namespace
-// only to be used by super admins.
+    // Admin: Files
+    Route::prefix('{organization}/{property}')->group(function () {
+        Route::get('/files',           [FileController::class, 'index']);
+        Route::post('/files',          [FileController::class, 'store']);
+        
+        // TODO: Finish up these actions in the FileController
+        // Route::get('files/{file}',    [FileController::class, 'show']);
+        // Route::put('files/{file}',    [FileController::class, 'update']);
+        // Route::delete('files/{file}', [FileController::class, 'destroy']);
+        
+        // Files - Sign File
+        Route::post('/file/sign', [FileSignUploadController::class, 'sign']);
+    });
 
-// Admin: Organizations
-Route::get('organizations',                   [OrganizationController::class, 'index']);
-Route::post('organizations',                  [OrganizationController::class, 'store']);
-Route::get('organizations/{organization}',    [OrganizationController::class, 'show']);
-Route::put('organizations/{organization}',    [OrganizationController::class, 'update']);
-Route::delete('organizations/{organization}', [OrganizationController::class, 'destroy']);
+    // Admin: Menus
+    Route::prefix('{organization}/{property}')->group(function () {
+        Route::get('/menus',           [MenuController::class, 'index']);
+        Route::post('/menus',          [MenuController::class, 'store']);
+        Route::get('/menus/{menu}',    [MenuController::class, 'show']);
+        Route::put('/menus/{menu}',    [MenuController::class, 'update']);
+        Route::delete('/menus/{menu}', [MenuController::class, 'destroy']);
+    });
 
-// Admin: Properties
-Route::prefix('{organization}')->group(function () {
-    Route::get('/properties',               [PropertyController::class, 'index']);
-    Route::post('/properties',              [PropertyController::class, 'store']);
-    Route::get('/properties/{property}',    [PropertyController::class, 'show']);
-    Route::put('/properties/{property}',    [PropertyController::class, 'update']);
-    Route::delete('/properties/{property}', [PropertyController::class, 'destroy']);
-});
+    // Admin: Globals
+    Route::prefix('{organization}/{property}')->group(function () {
+        Route::get('/globals', [GlobalsController::class, 'show']);
+    });
 
-// Admin: Posts
-Route::prefix('{organization}/{property}')->group(function () {
-    Route::get('/posts',           [PostController::class, 'index']);
-    Route::post('/posts',          [PostController::class, 'store']);
-    Route::get('/posts/{post}',    [PostController::class, 'show']);
-    Route::put('/posts/{post}',    [PostController::class, 'update']);
-    Route::delete('/posts/{post}', [PostController::class, 'destroy']);
+    // Admin: Categories
+    Route::prefix('{organization}/{property}')->group(function () {
+        Route::get('/categories',               [CategoryController::class, 'index']);
+        Route::post('/categories',              [CategoryController::class, 'store']);
+        Route::get('/categories/{category}',    [CategoryController::class, 'show']);
+        Route::put('/categories/{category}',    [CategoryController::class, 'update']);
+        Route::delete('/categories/{category}', [CategoryController::class, 'destroy']);
+    });
+// });
+
+/*
+|--------------------------------------------------------------------------
+| Public Client Routes
+|--------------------------------------------------------------------------
+|
+| Here is public routes live.
+|
+*/
+
+// Public Client: Posts
+use Cms\Http\PublicApi\PublicPostController;
+
+// Public Client: Globals
+use Cms\Http\PublicApi\PublicGlobalsController;
+
+Route::prefix('public/{property:id}')->group(function () {
+    // Public: Posts
+    Route::get('/posts', [PublicPostController::class, 'show']);
     
-    // Posts Replicate
-    // TODO: Rename this "duplicate" and use store method?
-    Route::post('/posts/{post}/replicate', [PostReplicateController::class, 'replicate']);
-    
-    // Posts Publish
-    Route::put('/posts/{post}/publish', [PostPublishController::class, 'publish']);
-    Route::put('/posts/{post}/unpublish', [PostPublishController::class, 'unpublish']);
-    
-    // Posts Slug
-    Route::get('/post/check-slug', [PostSlugController::class, 'check']);
-});
-
-// Admin: Blocks
-Route::prefix('{organization}/{property}')->group(function () {
-    Route::get('/blocks',            [BlockController::class, 'index']);
-    Route::post('/blocks',           [BlockController::class, 'store']);
-    Route::get('/blocks/{block}',    [BlockController::class, 'show']);
-    Route::put('/blocks/{block}',    [BlockController::class, 'update']);
-    Route::delete('/blocks/{block}', [BlockController::class, 'destroy']);
-    
-    // Blocks - Reorder
-    // TODO: This should be scoped to the post these blocks belong to.
-    // It's not safe that I can pass any collection of blocks from different posts.
-    Route::post('/blocks/reorder', [BlockReorderController::class, 'reorder']);
-});
-
-// Admin: Files
-Route::prefix('{organization}/{property}')->group(function () {
-    Route::get('/files',           [FileController::class, 'index']);
-    Route::post('/files',          [FileController::class, 'store']);
-    
-    // TODO: Finish up these actions in the FileController
-    // Route::get('files/{file}',    [FileController::class, 'show']);
-    // Route::put('files/{file}',    [FileController::class, 'update']);
-    // Route::delete('files/{file}', [FileController::class, 'destroy']);
-    
-    // Files - Sign File
-    Route::post('/file/sign', [FileSignUploadController::class, 'sign']);
-});
-
-// Admin: Menus
-Route::prefix('{organization}/{property}')->group(function () {
-    Route::get('/menus',           [MenuController::class, 'index']);
-    Route::post('/menus',          [MenuController::class, 'store']);
-    Route::get('/menus/{menu}',    [MenuController::class, 'show']);
-    Route::put('/menus/{menu}',    [MenuController::class, 'update']);
-    Route::delete('/menus/{menu}', [MenuController::class, 'destroy']);
-});
-
-// Admin: Globals
-Route::prefix('{organization}/{property}')->group(function () {
-    Route::get('/globals', [GlobalsController::class, 'show']);
-});
-
-// Admin: Categories
-Route::prefix('{organization}/{property}')->group(function () {
-    Route::get('/categories',               [CategoryController::class, 'index']);
-    Route::post('/categories',              [CategoryController::class, 'store']);
-    Route::get('/categories/{category}',    [CategoryController::class, 'show']);
-    Route::put('/categories/{category}',    [CategoryController::class, 'update']);
-    Route::delete('/categories/{category}', [CategoryController::class, 'destroy']);
+    // Public: Globals
+    Route::get('/globals', [PublicGlobalsController::class, 'show']);
 });
