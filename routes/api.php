@@ -25,12 +25,12 @@ Route::prefix('/auth')->group(function () {
 });
 
 // Private: Auth
-Route::middleware('auth:sanctum')->group(function () {
+// Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('/auth')->group(function () {
         Route::post('/logout', [AuthController::class, 'logout']);
         Route::get('/me',      [AuthController::class, 'me']);
     });
-});
+// });
 
 /*
 |--------------------------------------------------------------------------
@@ -44,14 +44,16 @@ Route::middleware('auth:sanctum')->group(function () {
 // Super Admin: Organizations
 use Cms\Http\Organizations\OrganizationController;
 
-Route::middleware(['auth:sanctum', 'scopes:super'])->group(function () {
+// Route::middleware(['auth:sanctum', 'scopes:super'])->group(function () {
+// Route::middleware(['auth:sanctum'])->group(function () {
+// Route::middleware('')->group(function () {
     // Super Admin: Organizations
     Route::get('organizations',                   [OrganizationController::class, 'index']);
     Route::post('organizations',                  [OrganizationController::class, 'store']);
     Route::get('organizations/{organization}',    [OrganizationController::class, 'show']);
     Route::put('organizations/{organization}',    [OrganizationController::class, 'update']);
     Route::delete('organizations/{organization}', [OrganizationController::class, 'destroy']);
-});
+// });
 
 /*
 |--------------------------------------------------------------------------
@@ -88,7 +90,8 @@ use Cms\Http\Globals\GlobalsController;
 // Admin: Categories
 use Cms\Http\Categories\CategoryController;
 
-Route::middleware('auth:sanctum')->group(function () {
+// Route::middleware('auth:sanctum')->group(function () {
+// Route::middleware('')->group(function () {
     // Admin: Properties
     Route::prefix('{organization}')->group(function () {
         Route::get('/properties',               [PropertyController::class, 'index']);
@@ -168,7 +171,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::put('/categories/{category}',    [CategoryController::class, 'update']);
         Route::delete('/categories/{category}', [CategoryController::class, 'destroy']);
     });
-});
+// });
 
 /*
 |--------------------------------------------------------------------------
